@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-// node bin/publish.js ./relase.conf
+// node bin/publish.js /path/to/relase.conf
 
 require('../lib/publish.js').run();

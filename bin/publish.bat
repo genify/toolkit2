@@ -1,2 +1,4 @@
-node %~dp0release.js %~dp0%1
+% bin/publish.bat /path/to/release.conf %
+
+node %~dp0publish.js %1
 pause

@@ -1,2 +1,2 @@
-node %~dp0..\..\release\src\release.js -c=%~dp0release.conf
+node %~dp0..\..\lib\release.js -c=%~dp0release.conf
 pause

@@ -1,2 +1,2 @@
-node %~dp0release.js -c=%~dp0%1
+node %~dp0release.js %~dp0%1
 pause

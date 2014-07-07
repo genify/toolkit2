@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>test</title>
+    <meta charset="utf-8"/>
+    <script>
+        function log(m){
+            var p = document.createElement('p');
+            p.innerHTML = m;
+            document.body.appendChild(p);
+        }
+    </script>
+  </head>
+  <body>
+    <!-- @DEFINE -->
+    <script src="http://127.0.0.1:8020/NEJ/src/define.js?d=./deps.js&pro=./"></script>
+    <script src="./f.js"></script>
+    <script>
+        define(['{pro}a.js','{pro}e.js'],function(){
+            log('app');
+        });
+    </script>
+  </body>
+</html>

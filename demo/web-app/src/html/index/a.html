@@ -1,0 +1,19 @@
+<meta charset="utf-8"/>
+<!-- @TEMPLATE -->
+<textarea name="css">
+    .m-a .w-tab2{float:left;width:100px;margin-right:-100px;text-align:center;font-size:14px;}
+    .m-a .w-tab2 .itm{display:block;height:30px;line-height:30px;margin-bottom:5px;color:#000;background:#ccc;}
+    .m-a .w-tab2 .itm:hover{text-decoration:none;}
+    .m-a .w-tab2 .js-selected{background:#888;color:#fff;font-weight:bold;}
+    .m-a .w-box2{margin-left:100px;padding-left:10px;border-left:1px solid #888;}
+</textarea>
+<textarea name="jst" id="a-jst-0">
+    <div class="w-tab2">
+        {list xlist as x}
+        <a class="itm js-tag" href="#">${x.name}</a>
+        {/list}
+    </div>
+    <div class="w-box2"></div>
+</textarea>
+<textarea name="js" data-src="../../javascript/module/index/a.js"></textarea>
+<!-- /@TEMPLATE -->

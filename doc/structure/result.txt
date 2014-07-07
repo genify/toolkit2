@@ -1,0 +1,42 @@
+result data structure
+conf         [Object]        - config info by define
+ - root      [Object]        - root information
+ - pro       [String]        - project js root
+ - lib       [String]        - nej lib js root
+ - patch     [Array|String]  - nej patched root
+ - platform  [String]        - platform config string
+ - deps      [Object]        - old project dependency config
+files        [Object]        - file information
+ - js        [Boolean]       - has core js file
+ - css       [Boolean]       - has core css file
+ - icss      [Boolean]       - css inline flag
+ - ijs       [Boolean]       - js inline flag
+ - pg_js     [Array]         - js in html
+ - pg_css    [Array]         - css in html
+ - tp_js     [Array]         - js in template
+ - tp_css    [Array]         - css in template
+ - tp_mdl    [Array]         - embed module in template
+ - tp_html   [Array]         - embed html in template
+ - source    [String]        - html code after parse
+rmap         [Object]        - remote file map to local temporary file
+owner        [Object]        - file name for js code owner
+deps         [Object]        - js file dependency list
+data         [Object]        - js file content
+output       [Object]        - output information
+ - css       [Object]        - css output file information
+ - js        [Object]        - js output file information
+ - core      [Object]        - js/css in core file map
+ - css_code  [String]        - css core file content
+ - js_code   [String]        - js core file content
+core         [Object]        - js/css in core file config
+ - cs        [Array]         - css in core file list
+ - js        [Array]         - js in core file list
+mask         [Object]        - js/css mask in core file config
+ - cs        [Object]        - css not in core file list
+ - js        [Object]        - js not in core file list
+version      [Object]        - module template file version information
+ - root      [String]        - module template root
+ - ver       [Object]        - module template file version map
+manifest     [Object]        - manifest file and version {file:version}
+manifest_ent [Array]         - manifest entry file version
+

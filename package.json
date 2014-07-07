@@ -1,0 +1,26 @@
+{
+  "name": "publish",
+  "description": "nej publish command",
+  "version": "0.1.0",
+  "license": "MIT",
+  
+  "keywords": ["nej","publish"],
+  "author": "genify",
+  
+  "main": "./lib/release.js",
+  "homepage": "https://github.com/genify/publish",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/genify/publish.git"
+  },
+  "bugs": {
+    "url": "https://github.com/genify/publish/issues"
+  },
+  "devDependencies":{
+    "iconv-lite": ">= 0.4.0",
+    "esprima": ">= 1.0.0"
+  }
+}

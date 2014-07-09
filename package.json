@@ -1,7 +1,7 @@
 {
   "name": "nej-pub",
   "description": "nej project publish toolkit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   
   "keywords": ["nej","publish","toolkit"],
@@ -9,7 +9,8 @@
   
   "main": "./lib/publish.js",
   "bin": {
-    "publish": "./bin/publish.js"
+    "nej-pub": "./bin/publish.js",
+    "nej-init":"./bin/init.js"
   },
   
   "homepage": "https://github.com/genify/publish",

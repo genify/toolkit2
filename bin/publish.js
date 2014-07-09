@@ -27,7 +27,7 @@ var __getConfPath = function(){
     var _args = __getArgs();
     return _args['-c']||
            _args['--config']||
-           _args.config||'./release.conf';
+           _args.config||'release.conf';
 };
 // do publish
 require('../lib/publish.js').run({

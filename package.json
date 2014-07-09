@@ -1,7 +1,7 @@
 {
   "name": "nej-pub",
   "description": "nej project publish toolkit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   
   "keywords": ["nej","publish","toolkit"],

@@ -9,8 +9,8 @@
   
   "main": "./lib/publish.js",
   "bin": {
-    "nej-pub": "./bin/publish.js",
-    "nej-init":"./bin/init.js"
+    "nej-init":"./bin/init.js",
+    "nej-build": "./bin/build.js"
   },
   
   "homepage": "https://github.com/genify/publish",

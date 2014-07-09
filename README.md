@@ -22,6 +22,10 @@
     ```bash
     nej-init
     ```
+    
+    ```bash
+    nej-init /path/to/deploy/dir/
+    ```
 3.  按照项目的实际情况修改配置文件release.conf，具体参数见手册配置参数章节
 4.  执行以下命令打包项目，如果release.conf文件在当前目录也可不指定
 

@@ -13,22 +13,27 @@
 
 ## 使用说明
 1.  执行以下命令安装打包工具，如果已安装打包工具可忽略此步骤
-```
-npm install nej-pub –g
-```
+
+    ```
+    npm install nej-pub –g
+    ```
 2.  执行以下命令初始化打包配置文件，命令后面可输入配置文件输出路径，默认输出在当前目录，此时会在指定目录或者当前目录生成一个release.conf文件用来配置打包选项
-```
-nej-init
-```
+
+    ```
+    nej-init
+    ```
 3.  按照项目的实际情况修改配置文件release.conf，具体参数见手册配置参数章节
 4.  执行以下命令打包项目，如果release.conf文件在当前目录也可不指定
-```
-nej-pub
-```
+
+    ```
+    nej-pub
+    ```
+    
 或者
-```
-nej-pub /path/to/release.conf
-```
+
+    ```
+    nej-pub /path/to/release.conf
+    ```
 
 ## 使用手册
 工具详细的使用手册见[doc/manual.docx](https://github.com/genify/publish/blob/master/doc/manual.docx)

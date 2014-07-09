@@ -30,11 +30,11 @@
 4.  执行以下命令打包项目，如果release.conf文件在当前目录也可不指定
 
     ```bash
-    nej-pub
+    nej-build
     ```
     
     ```bash
-    nej-pub /path/to/release.conf
+    nej-build /path/to/release.conf
     ```
 
 ## 使用手册

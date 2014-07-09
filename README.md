@@ -29,8 +29,6 @@
     nej-pub
     ```
     
-        或者
-
     ```bash
     nej-pub /path/to/release.conf
     ```

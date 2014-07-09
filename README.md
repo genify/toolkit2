@@ -29,7 +29,7 @@
     nej-pub
     ```
     
-或者
+        或者
 
     ```
     nej-pub /path/to/release.conf

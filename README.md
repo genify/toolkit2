@@ -2,9 +2,9 @@
 
 本工具提供了项目前端代码的优化输出和自动化发布功能，本工具的主要特性有：
 * 采用html注释来标记打包指令，降低了对原有系统的侵入性
-* 支持采用NEJ依赖系统的项目，并分离NEJ依赖系统
-* 支持NEJ平台适配策略，并按平台配置输出内容
-* 支持非NEJ项目通过增加打包指令来输出
+* 支持采用[NEJ依赖系统](https://github.com/NetEaseWD/NEJ/blob/master/doc/manual/dependency.docx)的项目，并分离NEJ依赖系统
+* 支持[NEJ平台适配策略](https://github.com/NetEaseWD/NEJ/blob/master/doc/manual/platform.docx)，并按平台配置输出内容
+* 支持非NEJ项目通过增加打包指令来输出内容
 
 # 工具使用
 

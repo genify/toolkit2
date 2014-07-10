@@ -22,7 +22,7 @@
     ```bash
     nej-init
     ```
-    
+
     ```bash
     nej-init /path/to/deploy/dir/
     ```
@@ -32,10 +32,56 @@
     ```bash
     nej-build
     ```
-    
+
     ```bash
     nej-build /path/to/release.conf
     ```
 
 ## 使用手册
 工具详细的使用手册见[doc/manual.docx](https://github.com/genify/publish/blob/master/doc/manual.docx)
+
+# 工具演示
+
+安装完工具后按照以下步骤演示DEMO
+
+1. 执行以下命令生成demo结构
+    ```
+    nej-demo
+    ```
+    ```
+    nej-demo /path/to/demo/
+    ```
+    生成的目录结构类似
+    ```
+    demo
+      | -- deploy
+      | -- webapp
+              | -- res
+              | -- src
+                    |- css
+                    |- html
+                    |- javascript
+    ```
+
+2. 进入deploy目录
+    ```
+    cd deploy
+    ```
+
+3. 执行以下命令初始化打包配置文件
+    ```
+    nej-init
+    ```
+    初始生成的配置文件包括
+    ```
+    deploy
+      | -- cache.manifest.tpl
+      | -- release.conf
+    ```
+
+4. 根据实际项目情况修改release.conf和cache.manifest.tpl文件，相关配置信息参阅工具使用手册[doc/manual.docx](https://github.com/genify/publish/blob/master/doc/manual.docx)，本demo生成的配置可直接使用
+
+5. 执行以下命令打包发布demo项目的前端代码
+    ```
+    nej-build
+    ```

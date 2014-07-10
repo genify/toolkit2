@@ -10,6 +10,7 @@
   "main": "./lib/publish.js",
   "bin": {
     "nej-init":"./bin/init.js",
+    "nej-demo": "./bin/demo.js",
     "nej-build": "./bin/build.js"
   },
   

@@ -8,11 +8,12 @@ var _arr = process.argv.slice(2),
 if (!/\/$/.test(_dst)){
     _dst += '/';
 }
-// copy files in config to Directory
+
+// make dir
 _fs.copy(
-    __dirname+'/../config/',
+    __dirname+'/../demo/',
     _dst,function(_from,_to){
         console.log('Create %s',_to);
     }
 );
-console.log('Config and Template init Success!');
+console.log('Demo Create Success!');

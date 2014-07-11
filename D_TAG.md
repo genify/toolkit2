@@ -42,10 +42,12 @@
 
 支持配置参数：
 
-| 参数 | 类型 | 说明 |
-| -- | -- | -- |
-| core | Boolean | core.css文件插入形式，true - 强行插入core.css；false - 禁止插入core.css； 不设置 - 自动解析【默认】|
-| inline | Boolean | 是否强行内联core样式，默认外联 |
+
+ 参数 | 类型 | 说明 |
+ -- | -- | -- |
+ core | Boolean | core.css文件插入形式，true - 强行插入core.css；false - 禁止插入core.css； 不设置 - 自动解析【默认】|
+ inline | Boolean | 是否强行内联core样式，默认外联 |
+
 
 此标记用以表明当前位置插入打包后的样式文件，具体使用范例如下所示：
 

@@ -10,7 +10,7 @@ if (!/\/$/.test(_dst)){
 }
 // copy files in config to Directory
 _fs.copy(
-    __dirname+'/../config/',
+    __dirname+'/../template/config/',
     _dst,function(_from,_to){
         console.log('Create %s',_to);
     }

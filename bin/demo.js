@@ -11,7 +11,7 @@ if (!/\/$/.test(_dst)){
 
 // make dir
 _fs.copy(
-    __dirname+'/../demo/',
+    __dirname+'/../template/demo/',
     _dst,function(_from,_to){
         console.log('Create %s',_to);
     }

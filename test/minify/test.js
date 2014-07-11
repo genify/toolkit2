@@ -2,7 +2,7 @@ var fs = require('fs'),
     obf = require('../../lib/minify.js');
 
 var result = obf.obfuscate({
-    'core.js':['f.js']
+    'core.js':['g.js']
 },{
     bags:{
         "_$id": "Zz8",
@@ -16,7 +16,8 @@ var result = obf.obfuscate({
     obf_line_mode:1,
     code_map:{
         //'e.js':fs.readFileSync('./element.js', "utf8"),
-        'f.js':fs.readFileSync('./json.js', "utf8"),
+        //'f.js':fs.readFileSync('./json.js', "utf8"),
+        'g.js':'var x = "http://a.b.com/a/a.html";location.href = "http://nei.hz.netease.com/";',
         '2.js':'var x ={},y=\'xxx\'; x[\'__abc\'] = \'xxxx\';console.log(x[y]);e = {7:\'rgb\',\'a-b\':4,__init : 0,__reset : 1,__destroy : 2,__initNode : 3,__doBuild : 4,__onShow : 5,__onHide : 6,__onRefresh : 7}, t = {__supInit : 0,__supReset : 1,__supDestroy : 2,__supInitNode : 3,__supDoBuild : 4,__supOnShow : 5,__supOnHide : 6,__supOnRefresh : 7};',
         '1.js':'HTMLElement.prototype[\'__defineGetter__\']("innerText",function(){return this.textContent;});HTMLElement.prototype[\'__defineSetter__\']("innerText",function(_content){this.textContent = _content;});',
         'a.js':'var a = {}; a.abc = function zzr(zx,zy){zx=1;zy=2;}; function xj(){}; xj();var a = true; var x = {a:"zzzz",v:"vvvvvvvvvvv"};console.log(x.a+":"+x.v);x.b = "mmmmmm"',

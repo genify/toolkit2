@@ -43,7 +43,7 @@
 支持配置参数：
 
 | 参数 | 类型 | 说明 |
-| -- | -- | -- |
+| --- | --- | --- |
 | core | Boolean | core.css文件插入形式，true - 强行插入core.css；false - 禁止插入core.css； 不设置 - 自动解析【默认】|
 | inline | Boolean | 是否强行内联core样式，默认外联 |
 
@@ -163,13 +163,13 @@
 支持配置参数：
 
 | 参数 | 类型 | 说明 |
-| -- | -- | -- |
+| --- | --- | --- |
 | mode | String | 忽略模式，可选test/online/develop |
 
 此标记用以表明从当前位置至结束标记之前的内容在打完包后删除，mode配置忽略的条件，多个值使用“|”分隔，当打包工具中的X_RELEASE_MODE配置值出现在mode的值中时即忽略此标记间的内容，模式说明
 
 | 模式 | 说明 |
-| -- | -- |
+| --- | --- |
 | test | 测试版本 |
 | online | 上线版本，默认值 |
 | develop | 开发版本 |
@@ -201,7 +201,7 @@
 支持配置参数：
 
 | 参数   | 类型    | 描述 |
-| --     | --      | -- |
+| ---  | ---   | --- |
 | nodep  | Boolean | 是否没有使用依赖系统，true - 没有使用依赖系统，后续脚本为源码；false - 使用依赖系统，后续脚本为define.js|
 | core   | Boolean | core.js文件插入形式，true - 强行插入core.js；false - 禁止插入core.js； 不设置 - 自动解析【默认】 |
 | inline | Boolean | 是否强行内联core脚本，默认外联 |

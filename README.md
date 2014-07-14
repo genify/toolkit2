@@ -18,6 +18,7 @@
     ```bash
     npm install nej –g
     ```
+    
 2.  执行以下命令初始化打包配置文件，命令后面可输入配置文件输出路径，默认输出在当前目录，此时会在指定目录或者当前目录生成一个release.conf文件用来配置打包选项
 
     ```bash
@@ -27,6 +28,7 @@
     ```bash
     nej-init /path/to/deploy/dir/
     ```
+    
 3.  按照项目的实际情况修改配置文件release.conf，具体参数见手册配置参数章节
 4.  执行以下命令打包项目，如果release.conf文件在当前目录也可不指定
 

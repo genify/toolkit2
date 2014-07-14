@@ -63,6 +63,55 @@
 <link href="../css/page.css" >
 ```
 
+## SCRIPT
+
+同DEFINE标记
+
+## DEFINE
+
+是否需要结束：无
+
+支持配置参数：
+
+| 参数   | 类型    | 描述 |
+| ---  | ---   | --- |
+| nodep  | Boolean | 是否没有使用依赖系统，true - 没有使用依赖系统，后续脚本为源码；false - 使用依赖系统，后续脚本为define.js|
+| core   | Boolean | core.js文件插入形式，true - 强行插入core.js；false - 禁止插入core.js； 不设置 - 自动解析【默认】 |
+| inline | Boolean | 是否强行内联core脚本，默认外联 |
+
+此标记用以表明后续的脚本标签为依赖系统定义文件路径，对于该文件打包工作做以下处理：
+* 最终输出文件不再引入此文件
+* 从该脚本路径解析出框架所在路径
+* define.js路径支持平台参数配置，所带参数详细说明见平台参数章节
+
+使用依赖系统，后续第一个外联脚本为define.js：
+
+```html
+<!-- @DEFINE -->
+<script src="/path/to/lib/define.js"></script>
+```
+
+没有使用依赖系统，后续脚本作为源码，此标记仅用来表示打包后脚本插入位置：
+
+```html
+<!-- @DEFINE {nodep:true} -->
+<script src="jquery.js"></script>
+<script src="jquery-ui-0.js"></script>
+<script src="jquery-ui-1.js"></script>
+<script src="jquery-ui-2.js"></script>
+<script>
+    // your code
+</script>
+```
+
+项目自己定义了core文件列表，并使用服务器端模版引入页面时可以使用core参数配置；当core显式的设置为false时当前文件的脚本将独立解析，不参与core脚本的合并策略
+
+```html
+<!-- @DEFINE {core:true} -->
+<#include "/core/js.ftl">
+<script src="/js/page.js"></script>
+```
+
 ## TEMPLATE
 
 是否需要结束：必须
@@ -192,51 +241,6 @@
 <!-- @IGNORE {mode:'online|test'} -->
 <script src="../javascript/config/develop.js"></script>
 <!-- /@IGNORE -->
-```
-
-## DEFINE
-
-是否需要结束：无
-
-支持配置参数：
-
-| 参数   | 类型    | 描述 |
-| ---  | ---   | --- |
-| nodep  | Boolean | 是否没有使用依赖系统，true - 没有使用依赖系统，后续脚本为源码；false - 使用依赖系统，后续脚本为define.js|
-| core   | Boolean | core.js文件插入形式，true - 强行插入core.js；false - 禁止插入core.js； 不设置 - 自动解析【默认】 |
-| inline | Boolean | 是否强行内联core脚本，默认外联 |
-
-此标记用以表明后续的脚本标签为依赖系统定义文件路径，对于该文件打包工作做以下处理：
-* 最终输出文件不再引入此文件
-* 从该脚本路径解析出框架所在路径
-* define.js路径支持平台参数配置，所带参数详细说明见平台参数章节
-
-使用依赖系统，后续第一个外联脚本为define.js：
-
-```html
-<!-- @DEFINE -->
-<script src="/path/to/lib/define.js"></script>
-```
-
-没有使用依赖系统，后续脚本作为源码，此标记仅用来表示打包后脚本插入位置：
-
-```html
-<!-- @DEFINE {nodep:true} -->
-<script src="jquery.js"></script>
-<script src="jquery-ui-0.js"></script>
-<script src="jquery-ui-1.js"></script>
-<script src="jquery-ui-2.js"></script>
-<script>
-    // your code
-</script>
-```
-
-项目自己定义了core文件列表，并使用服务器端模版引入页面时可以使用core参数配置；当core显式的设置为false时当前文件的脚本将独立解析，不参与core脚本的合并策略
-
-```html
-<!-- @DEFINE {core:true} -->
-<#include "/core/js.ftl">
-<script src="/js/page.js"></script>
 ```
 
 ## MANIFEST

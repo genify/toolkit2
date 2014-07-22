@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>NEJ控件 - Test Module - 前端实例</title>
+  </head>
+  <body>
+      
+    <!-- template box -->
+    <div id="template-box" style="display:none;">
+      <textarea name="html" data-src="../module.html"></textarea>
+    </div>
+    
+    <script src="http://nej.netease.com/nej/src/define.js?pro=../../../../../javascript/"></script>
+    <script>
+      define(['{lib}util/dispatcher/test.js'],
+      function(){
+          document.mbody = document.body;
+          // test module
+          NEJ.P('nej.e')._$testByTemplate('template-box');
+      });
+    </script>
+    
+  </body>
+</html>

@@ -11,6 +11,7 @@ function(){
         _t = _('nej.ut'),
         _p = _('nm.ut'),
         _pro;
+    if (!!_p._$$Class) return;
     /**
      * 
      * @class   {nm.ut._$$Class}

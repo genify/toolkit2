@@ -11,7 +11,7 @@ var result = obf.obfuscate({
     code_map:{
         //'e.js':fs.readFileSync('./element.js', "utf8"),
         //'f.js':fs.readFileSync('./json.js', "utf8"),
-        'h.js':'(function(){window._def = "xxxxxxx";console.log(_def);window._aaaaaaaaaaaa = {\'for\': "htmlFor"};if (!!_aaaaaaaaaaaa.b){ console.log(_aaaaaaaaaaaa); }})();',
+        'h.js':'(function(){_def = "xxxxxxx";console.log(_def);window._aaaaaaaaaaaa = {\'for\': "htmlFor"};if (!!_aaaaaaaaaaaa.b){ console.log(_aaaaaaaaaaaa); }})();',
         'g.js':'var x = "http://a.b.com/a/a.html";location.href = "http://nei.hz.netease.com/";',
         '2.js':'var x ={},y=\'xxx\'; x[\'__abc\'] = \'xxxx\';console.log(x[y]);e = {7:\'rgb\',\'a-b\':4,__init : 0,__reset : 1,__destroy : 2,__initNode : 3,__doBuild : 4,__onShow : 5,__onHide : 6,__onRefresh : 7}, t = {__supInit : 0,__supReset : 1,__supDestroy : 2,__supInitNode : 3,__supDoBuild : 4,__supOnShow : 5,__supOnHide : 6,__supOnRefresh : 7};',
         '1.js':'HTMLElement.prototype[\'__defineGetter__\']("innerText",function(){return this.textContent;});HTMLElement.prototype[\'__defineSetter__\']("innerText",function(_content){this.textContent = _content;});',

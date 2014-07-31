@@ -97,3 +97,164 @@
     ```
     nej-build
     ```
+
+# 常见问题解答
+
+
+## Q1
+
+Q：如何在非NEJ项目中使用打包工具？
+
+A：在页面中增加打包标记
+
+```html
+<html>
+  <head>
+
+    ...
+
+    <!-- 在要打包后插入样式的位置加入style标记 -->
+
+    <!-- @style -->
+    <link href="/src/css/a.css" .../>
+
+    ...
+
+  </head>
+  <body>
+
+    ...
+
+    <!-- 在要打包后插入脚本的位置加入script标记 -->
+    <!-- script标记增加nodep为true的配置参数 -->
+
+    <!-- @script {nodep:true} -->
+    <script src="/src/js/a.js"></script>
+    <script src="/src/js/b.js"></script>
+    <script src="/src/js/c.js"></script>
+    <script src="/src/js/d.js"></script>
+    <script src="/src/js/e.js"></script>
+
+    ...
+
+  </body>
+</html>
+```
+
+
+## Q2
+
+Q：服务器模版项目中如何使用打包工具？
+
+以freemarker为例，其他模版类似
+
+原先core脚本配置文件core.js.ftl
+
+```html
+<#macro coreJS>
+<script src="/src/js/a.js"></script>
+<script src="/src/js/b.js"></script>
+<script src="/src/js/c.js"></script>
+<script src="/src/js/d.js"></script>
+<script src="/src/js/e.js"></script>
+<script src="/src/js/f.js"></script>
+</#macro>
+```
+
+原先页面入口模版page.ftl
+
+```html
+<@coreJS/>
+<script src="/src/js/pg/a.js"></script>
+<script src="/src/js/pg/b.js"></script>
+<script src="/src/js/pg/c.js"></script>
+```
+
+A：采用打包标记配合打包配置方式来实现
+
+在core.js.ftl文件中增加script标记，这样打完包后的core.js会插入在指定位置
+
+```html
+<#macro coreJS>
+
+<!-- @script {nodep:true} -->
+
+<script src="/src/js/a.js"></script>
+<script src="/src/js/b.js"></script>
+<script src="/src/js/c.js"></script>
+<script src="/src/js/d.js"></script>
+<script src="/src/js/e.js"></script>
+<script src="/src/js/f.js"></script>
+</#macro>
+```
+
+在page.ftl文件中增加script标记，这样打完包后除core.js里的文件外的其他文件会插入在指定位置，注意这里script配置core参数为false禁止二次插入core.js文件，因为coreJS的ftl宏里面已经插入了core.js文件
+
+```html
+<@coreJS/>
+
+<!-- @script {nodep:true,core:false} -->
+
+<script src="/src/js/pg/a.js"></script>
+<script src="/src/js/pg/b.js"></script>
+<script src="/src/js/pg/c.js"></script>
+```
+
+在打包配置文件中打开CORE_LIST_JS配置参数，并将core.js.ftl中的js文件列表配置在该参数中
+
+```js
+CORE_LIST_JS = ['/src/js/a.js','/src/js/b.js','/src/js/c.js','/src/js/d.js','/src/js/e.js','/src/js/f.js']
+```
+
+最后执行打包命令即可
+
+
+## Q3
+
+Q：如何在使用RequireJS加载器的项目中使用打包工具？
+
+A：可以按照以下步骤对RequireJS项目做打包输出
+
+1. 页面合适位置增加style标记
+2. 对页面外链脚本增加noparse标记
+
+    ```html
+    <!-- @noparse -->
+    <script data-main="scripts/main" src="scripts/require.js"></script>
+    <!-- /@noparse -->
+    ```
+
+3. 配置打包参数X_NOPARSE_FLAG为2，不对内联脚本做任何解析
+
+    ```js
+    X_NOPARSE_FLAG = 2
+    ```
+
+4. 使用RequireJS的打包工具r.js对项目进行打包输出
+5. 针对输出结果配置打包参数，包括输入输出配置等
+6. 执行打包命令对样式和静态资源等内容做优化输出
+
+
+## Q4
+
+Q：如何在代码中植入调试信息
+
+A：编码时使用DEBUG标识区分开发调试代码片段
+
+```javascript
+
+var a = 'aaaaa';
+
+if (DEBUG){
+    
+    // 这里的代码片段在打包发布时会自动删除
+    console.log('info for test');
+    
+}
+
+// TODO something
+
+```
+
+
+

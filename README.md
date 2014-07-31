@@ -40,8 +40,18 @@
     nej-build /path/to/release.conf
     ```
 
+5. 更新打包工具
+
+    ```bash
+    npm update nej –g
+    ```
+
 ## 使用手册
 工具详细的使用手册见[doc/manual.docx](https://github.com/genify/publish/blob/master/doc/manual.docx)
+
+打包标记说明见[wiki](https://github.com/genify/toolkit/wiki/%E6%89%93%E5%8C%85%E6%A0%87%E8%AE%B0%E8%AF%B4%E6%98%8E)
+
+配置参数说明见[wiki](https://github.com/genify/toolkit/wiki/%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E)
 
 # 工具演示
 

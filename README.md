@@ -18,6 +18,12 @@
     ```bash
     npm install nej –g
     ```
+
+    如果已安装过打包工具，则可以使用以下命令更新打包工具至最新版本
+
+    ```bash
+    npm update nej –g
+    ```
     
 2.  执行以下命令初始化打包配置文件，命令后面可输入配置文件输出路径，默认输出在当前目录，此时会在指定目录或者当前目录生成一个release.conf文件用来配置打包选项
 
@@ -38,12 +44,6 @@
 
     ```bash
     nej-build /path/to/release.conf
-    ```
-
-5. 更新打包工具
-
-    ```bash
-    npm update nej –g
     ```
 
 ## 使用手册

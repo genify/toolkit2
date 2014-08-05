@@ -128,22 +128,22 @@ MANIFEST_TEMPLATE = ./cache.manifest.tpl
 模版文件内容范例如下
 
 ```
-CACHE MANIFEST
-#VERSION = #<VERSION>
+ CACHE MANIFEST
+ #VERSION = #<VERSION>
 
-CACHE:
-#<CACHE_LIST>
+ CACHE:
+ #<CACHE_LIST>
 
-NETWORK:
-*
+ NETWORK:
+ *
 
-FALLBACK:
+ FALLBACK:
 ```
 
 模板中使用的变量格式如下：
 
 ```
-#<VAR_NAME>
+ #<VAR_NAME>
 ```
 
 其中VAR_NAME为变量名，可用变量名如下：

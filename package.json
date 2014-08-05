@@ -1,7 +1,7 @@
 {
   "name": "nej",
   "description": "nej toolkit",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   
   "keywords": ["nej","toolkit"],
@@ -28,7 +28,8 @@
   },
   
   "dependencies":{
-    "iconv-lite": "~0.4.0",
-    "uglify-js": ">=2.4.15"
+    "iconv-lite" : "~0.4.0",
+    "uglify-js" : ">=2.4.15",
+    "nej-minimage" : ">=0.1.3"
   }
 }

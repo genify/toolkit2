@@ -125,6 +125,21 @@ HTML5离线应用配置文件输出模板路径，纯文本文件，不配置使
 MANIFEST_TEMPLATE = ./cache.manifest.tpl
 ```
 
+模版文件内容范例如下
+
+```
+CACHE MANIFEST
+#VERSION = #<VERSION>
+
+CACHE:
+#<CACHE_LIST>
+
+NETWORK:
+*
+
+FALLBACK:
+```
+
 模板中使用的变量格式如下：
 
 ```

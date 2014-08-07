@@ -19,7 +19,7 @@ files        [Object]        - file information
  - tp_html   [Array]         - embed html in template
  - source    [String]        - html code after parse
 rmap         [Object]        - remote file map to local temporary file
-owner        [Object]        - file name for js code owner
+owner        [Object]        - file name for js inline code owner
 deps         [Object]        - js file dependency list
 data         [Object]        - js file content
 output       [Object]        - output information

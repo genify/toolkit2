@@ -12,6 +12,7 @@
     "nej-init"  : "./bin/init.js",
     "nej-demo"  : "./bin/demo.js",
     "nej-build" : "./bin/build.js",
+    "nej-patch" : "./bin/patch.js",
     "nej-widget": "./bin/widget.js"
   },
   
@@ -29,7 +30,6 @@
   
   "dependencies":{
     "iconv-lite" : "~0.4.0",
-    "uglify-js" : ">=2.4.15",
-    "nej-minimage" : ">=0.1.3"
+    "uglify-js" : ">=2.4.15"
   }
 }

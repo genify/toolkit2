@@ -108,6 +108,86 @@
     nej-build
     ```
 
+# 指令说明
+
+## nej-init
+
+初始化配置文件，可以指定配置文件的输出目录，默认在当前目录输出配置文件
+
+    ```bash
+    nej-init
+    ```
+
+    ```bash
+    nej-init /path/to/deploy/dir/
+    ```
+
+## nej-build
+
+根据配置文件打包项目，可以指定配置文件路径，默认在当前目录下寻找release.conf配置文件
+
+    ```bash
+    nej-build
+    ```
+
+    ```bash
+    nej-build /path/to/release.conf
+    ```
+
+## nej-patch
+
+根据控件规范生成平台适配文件模版，可以指定适配文件的名称和路径，默认当前路径下的platform/hack
+
+以下指令在当前目录下查找platform目录，没有则新建platform目录，然后在platform目录下生成hack.js和hack.patch.js
+
+    ```bash
+    nej-patch
+    ```
+
+生成的结果
+
+    ```
+    dir
+     |-- platform
+            | -- hack.js
+            | -- hack.patch.js
+    ```
+
+以下指令在当前目录下查找platform目录，没有则新建platform目录，然后在platform目录下生成test.js和test.patch.js
+
+    ```bash
+    nej-patch test
+    ```
+    
+生成的结果
+
+    ```
+    dir
+     |-- platform
+            | -- test.js
+            | -- test.patch.js
+    ```
+
+以下指令在/path/to/patch/目录下查找platform目录，没有则新建platform目录，然后在platform目录下生成test.js和test.patch.js
+
+    ```bash
+    nej-patch test /path/to/patch/
+    ```
+
+生成的结果
+
+    ```
+    /path/to/patch/
+         |-- platform
+                | -- test.js
+                | -- test.patch.js
+    ```
+
+## nej-demo
+
+生成内置测试案例，可用于实验打包的各项配置及输出功能
+
+
 # 常见问题解答
 
 

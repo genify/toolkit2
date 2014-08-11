@@ -8,7 +8,7 @@
 NEJ.define([
     '{lib}base/klass.js',
     '{lib}ui/base.js',
-    '{lib}util/template/jst.js'
+    '{lib}util/template/tpl.js'
 ],function(_k,_i,_t,_p,_o,_f,_r){
     // variables
     var _seed_html,

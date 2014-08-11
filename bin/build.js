@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// node bin/publish.js /path/to/relase.conf
 
 /*
  * 取命令行参数
@@ -30,6 +29,6 @@ var __getConfPath = function(){
            _args.config||'release.conf';
 };
 // do publish
-require('../lib/publish.js').run({
+require('../lib/pub/publish.js').run({
     config:__getConfPath()
 });

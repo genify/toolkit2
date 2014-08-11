@@ -7,7 +7,7 @@
   "keywords": ["nej","toolkit"],
   "author": "genify",
   
-  "main": "./lib/publish.js",
+  "main": "./main.js",
   "bin": {
     "nej-init"  : "./bin/init.js",
     "nej-demo"  : "./bin/demo.js",
@@ -30,6 +30,7 @@
   
   "dependencies":{
     "iconv-lite" : "~0.4.0",
-    "uglify-js" : ">=2.4.15"
+    "uglify-js" : ">=2.4.15",
+    "nej-minimage" : ">=0.1.3"
   }
 }

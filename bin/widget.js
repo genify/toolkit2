@@ -3,6 +3,7 @@
 var _fs = require('../lib/file.js');
     
 // init args
+// nej-widget ui abc
 var _arr = process.argv.slice(2),
     _dst = (_arr[0]||'').trim()||process.cwd();
 if (!/\/$/.test(_dst)){

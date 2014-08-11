@@ -1,0 +1,31 @@
+标记
+
+---- 带以下标记的注释块被导出 
+class
+event
+method
+api
+const
+
+---- class注释块专用
+singleton
+extends
+uses
+
+---- method注释块专用
+static
+public
+private
+protected
+
+---- api注释块专用
+chainable
+
+---- const注释块专用
+type
+
+---- 通用标记
+param
+config
+return
+deprecated

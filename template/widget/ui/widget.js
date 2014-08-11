@@ -1,28 +1,29 @@
 /*
  * ------------------------------------------
- * 
+ * UI控件描述
  * @version  1.0
  * @author   
  * ------------------------------------------
  */
-define(['{lib}ui/base.js'],
-function(){
-    var _  = NEJ.P,
-        _i = _('nej.ui'),
-        _p = _('nm.ui'),
-        _seed_html,
+NEJ.define([
+    '{lib}base/klass.js',
+    '{lib}ui/base.js',
+    '{lib}util/template/jst.js'
+],function(_k,_i,_t,_p,_o,_f,_r){
+    // variables
+    var _seed_html,
         _seed_css,
         _pro;
-    if (!!_p._$$Class) return;
     /**
+     * 控件描述
      * 
-     * @class   {nm.ui._$$Class}
-     * @extends {nej.ui._$$Abstract}
+     * @class   {_$$Class}
+     * @extends {_$$Abstract}
      * 
      * @param   {Object} 可选配置参数，已处理参数列表如下
      *
      */
-    _p._$$Class = NEJ.C();
+    _p._$$Class = _k._$klass();
     _pro = _p._$$Class._$extend(_i._$$Abstract);
     /**
      * 控件初始化
@@ -31,7 +32,7 @@ function(){
      * @return {Void}
      */
     _pro.__init = function(){
-        this.__supInit();
+        this.__super();
         // TODO
     };
     /**
@@ -42,7 +43,7 @@ function(){
      * @return {Void}
      */
     _pro.__reset = function(_options){
-        this.__supReset(_options);
+        this.__super(_options);
         // TODO
     };
     /**
@@ -52,7 +53,7 @@ function(){
      * @return {Void}
      */
     _pro.__destroy = function(){
-        this.__supDestroy();
+        this.__super();
         // TODO
     };
     /**
@@ -72,9 +73,9 @@ function(){
      * @return {Void}
      */
     _pro.__initNode = function(){
-        this.__supInitNode();
+        this.__super();
         // TODO
     };
     
-    // TODO
+    return _p;
 });

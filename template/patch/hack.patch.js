@@ -5,7 +5,7 @@
  * @author   
  * ------------------------------------------
  */
-define([
+NEJ.define([
     './#<PATCH_NAME>.js',
     '{lib}base/platform.js'
 ],function(_h,_m,_p,_o,_f,_r){

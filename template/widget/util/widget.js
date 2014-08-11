@@ -1,26 +1,25 @@
 /*
  * ------------------------------------------
- * 
+ * 通用控件实现文件
  * @version  1.0
  * @author   
  * ------------------------------------------
  */
-define(['{lib}util/event.js'],
-function(){
-    var _  = NEJ.P,
-        _t = _('nej.ut'),
-        _p = _('nm.ut'),
-        _pro;
-    if (!!_p._$$Class) return;
+NEJ.define([
+    '{lib}base/klass.js',
+    '{lib}util/event.js'
+],function(_k,_t,_p,_o,_f,_r){
+    var _pro;
     /**
+     * 控件描述
      * 
-     * @class   {nm.ut._$$Class}
-     * @extends {nej.ut._$$Event}
+     * @class   {_$$Class}
+     * @extends {_$$Event}
      * 
      * @param   {Object} 可选配置参数，已处理参数列表如下
      *
      */
-    _p._$$Class = NEJ.C();
+    _p._$$Class = _k._$klass();
     _pro = _p._$$Class._$extend(_t._$$Event);
     /**
      * 控件初始化
@@ -29,7 +28,7 @@ function(){
      * @return {Void}
      */
     _pro.__init = function(){
-        this.__supInit();
+        this.__super();
         // TODO
     };
     /**
@@ -40,7 +39,7 @@ function(){
      * @return {Void}
      */
     _pro.__reset = function(_options){
-        this.__supReset(_options);
+        this.__super(_options);
         // TODO
     };
     /**
@@ -50,9 +49,9 @@ function(){
      * @return {Void}
      */
     _pro.__destroy = function(){
-        this.__supDestroy();
+        this.__super();
         // TODO
     };
     
-    
+    return _p;
 });

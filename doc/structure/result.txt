@@ -39,4 +39,4 @@ version      [Object]        - module template file version information
  - ver       [Object]        - module template file version map
 manifest     [Object]        - manifest file and version {file:version}
 manifest_ent [Array]         - manifest entry file version
-
+plugins      [Object]        - plugin function for file, {file:function}

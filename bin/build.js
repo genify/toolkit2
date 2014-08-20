@@ -29,6 +29,6 @@ var __getConfPath = function(){
            _args.config||'release.conf';
 };
 // do publish
-require('../lib/pub/publish.js').run({
+require('../main.js').run({
     config:__getConfPath()
 });

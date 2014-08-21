@@ -9,6 +9,7 @@
   
   "main": "./main.js",
   "bin": {
+    "nej-doc"   : "./bin/doc.js",
     "nej-init"  : "./bin/init.js",
     "nej-demo"  : "./bin/demo.js",
     "nej-build" : "./bin/build.js",

@@ -17,6 +17,7 @@ if (!/\/$/.test(_dst)){
 }
 // dump file list
 var _ignore = /^(demo|test|platform)$/i;
+var _regfle = /\.js$/i;
 var _dump = function(_dir,_list){
     var _xrr = fs.readdirSync(_dir);
     if (!_xrr||!_xrr.length) return;
@@ -32,7 +33,9 @@ var _dump = function(_dir,_list){
             }
             continue;
         }
-        _list.push(_file);
+        if (_regfle.test(_it)){
+            _list.push(_file);
+        }
     }
 };
 // do dump file

@@ -6,7 +6,7 @@
  * ------------------------------------------
  */
 NEJ.define([
-    '{lib}base/platform.js'
+    'base/platform'
 ],function(_m,_p,_o,_f,_r){
     /**
      * 接口描述

@@ -7,7 +7,7 @@
  */
 NEJ.define([
     './#<PATCH_NAME>.js',
-    '{lib}base/platform.js'
+    'base/platform'
 ],function(_h,_m,_p,_o,_f,_r){
     // TR 2.0 - IE 6
     // TR 3.0 - IE 7

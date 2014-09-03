@@ -2,8 +2,8 @@
 
 本工具提供了项目前端代码的优化输出和自动化发布功能，本工具的主要特性有：
 * 采用html注释来标记打包指令，降低了对原有系统的侵入性
-* 支持采用[NEJ依赖管理系统](https://github.com/genify/nej/blob/sandbox/doc/DEPENDENCY.md)的项目，并分离NEJ依赖系统
-* 支持[NEJ平台适配系统](https://github.com/genify/nej/blob/sandbox/doc/PLATFORM.md)，并按平台配置选择性输出内容
+* 支持采用[NEJ依赖管理系统](https://github.com/genify/nej/blob/master/doc/DEPENDENCY.md)的项目，并分离NEJ依赖系统
+* 支持[NEJ平台适配系统](https://github.com/genify/nej/blob/master/doc/PLATFORM.md)，并按平台配置选择性输出内容
 * 支持非NEJ项目通过增加打包指令来输出内容
 * 支持SourceMap输出，增加测试环境可调试性
 
@@ -49,9 +49,9 @@
 ## 使用手册
 工具详细的使用手册见[doc/manual.docx](https://github.com/genify/publish/blob/master/doc/manual.docx)
 
-打包标记说明见[wiki](https://github.com/genify/toolkit/wiki/%E6%89%93%E5%8C%85%E6%A0%87%E8%AE%B0%E8%AF%B4%E6%98%8E)
+打包标记说明见[wiki](./doc/TAG.md)
 
-配置参数说明见[wiki](https://github.com/genify/toolkit/wiki/%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E)
+配置参数说明见[wiki](./doc/CONFIG.md)
 
 # 工具演示
 

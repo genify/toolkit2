@@ -1,8 +1,8 @@
 var fs = require('fs'),
-    obf = require('../../lib/minify.js');
+    obf = require('../../lib/pub/minify.js');
 
 var result = obf.obfuscate({
-    'core.js':['h.js']
+    'core.js':['i.js']
 },{
     bags:{
         "_def":"a"
@@ -18,7 +18,8 @@ var result = obf.obfuscate({
         'a.js':'var a = {}; a.abc = function zzr(zx,zy){zx=1;zy=2;}; function xj(){}; xj();var a = true; var x = {a:"zzzz",v:"vvvvvvvvvvv"};console.log(x.a+":"+x.v);x.b = "mmmmmm"',
         'b.js':'var b = "bbbb"; test: while(true){var dddddddddddd = "xxxxx";}',
         'c.js':'(function(){var ccccccc = "ccccccccc";window.abc=function def(){return ccccccc;};})();',
-        'd.js':'(function(){var dddddddddddd = "ddddddddddddddddd";a="zzzzzz";if(DEBUG){var x="xxxxx";}})();'
+        'd.js':'(function(){var dddddddddddd = "ddddddddddddddddd";a="zzzzzz";if(DEBUG){var x="xxxxx";}})();',
+        'i.js':'var a=1,b=2,c;c=a;b=a;a=c;'
     }
 });
 

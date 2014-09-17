@@ -58,12 +58,18 @@ exports.run = function(_options){
         return;
     }
     // optimat images in /res/
-    require('nej-minimage').dirHandler({
-        input:_config.get('DIR_STATIC'),
-        output:_config.get('DIR_STATIC'),
-        quality:_config.get('OPT_IMAGE_QUALITY'),
-        log:_log.info,
-        callback:function(){
+    var _shell = require('child_process'),
+        _cmd = require('util').format(
+            'nej-minimage -i=%s -o=%s -q=%s',
+            _config.get('DIR_STATIC'),
+            _config.get('DIR_STATIC'),
+            _config.get('OPT_IMAGE_QUALITY')
+        );
+    _log.info('exec image zip command [%s]',_cmd);
+    _shell.exec(_cmd,function(_err){
+        if (_err!=null){
+            _log.error('please install nej-minimage first. usage: npm install nej-minimage -g');
+        }else{
             __doPublish(_result);
         }
     });

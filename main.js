@@ -66,7 +66,9 @@ exports.run = function(_options){
             _config.get('OPT_IMAGE_QUALITY')
         );
     _log.info('exec image zip command [%s]',_cmd);
-    _shell.exec(_cmd,function(_err){
+    _shell.exec(_cmd,function(_err,_stdout,_stderr){
+        if (!!_stdout) _log.info(_stdout);
+        if (!!_stderr) _log.error(_stderr);
         if (_err!=null){
             _log.error('please install nej-minimage first. usage: npm install nej-minimage -g');
         }else{

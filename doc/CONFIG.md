@@ -26,6 +26,15 @@ DIR_WEBROOT = ../webapp/
 DIR_SOURCE = ./src/html/
 ```
 
+## DIR_SOURCE_SUB
+可选
+
+输入HTML文件子目录配置，多个目录用逗号或者分号分隔，如果是相对路径相对于DIR_SOURCE配置
+
+```
+DIR_SOURCE = ./a/,./b/,./c/
+```
+
 ## DIR_OUTPUT
 可选
 
@@ -51,6 +60,15 @@ DIR_OUTPUT_STATIC = ./r/
 
 ```
 DIR_SOURCE_TP = ./template/
+```
+
+## DIR_SOURCE_TP_SUB
+可选
+
+输入服务器端模板文件子目录配置，多个目录用逗号或者分号分隔，如果是相对路径相对于DIR_SOURCE_TP配置
+
+```
+DIR_SOURCE = ./a/,./b/,./c/
 ```
 
 ## DIR_OUTPUT_TP

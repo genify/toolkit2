@@ -14,9 +14,20 @@ var _fs      = require('./lib/file.js'),
     _parser  = require('./lib/pub/parser.js');
 // publish
 var __doPublish = function(_result){
-    // parse project
-    _parser.html(_config.get('DIR_SOURCE'),_result);
-    _parser.template(_config.get('DIR_SOURCE_TP'),_result);
+    // dump html file and parse
+    ['DIR_SOURCE','DIR_SOURCE_TP'].forEach(function(_name){
+        var _root = _config.get(_name);
+        if (!_root) return;
+        _config.get(_name+'_SUB').forEach(function(_dir){
+            _dir = _path.path(_dir||'./',_root);
+            if (!_path.exist(_dir)){
+                _log.warn('dir not exist %s',_dir);
+                return;
+            }
+            _parser.html(_dir,_result);
+        });
+    });
+    // download outline resource
     _result.ondownload = function(){
         _parser.cs(_result);
         _parser.js(_result);

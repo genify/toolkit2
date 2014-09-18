@@ -92,6 +92,18 @@ NEJ_PLATFORM = wk|td-1
 ## OPT_IMAGE_FLAG
 可选
 
+使用此开关之前先安装图片压缩工具nej-minimage，安装方式如下
+
+```
+npm install nej-minimage -g
+```
+
+如果之前已安装则可以通过以下方式更新到最新版本
+
+```
+npm update nej-minimage -g
+```
+
 图片压缩开关，设置为true则DIR_STATIC配置的路径下的所有图片会做一次压缩，替换原图片，默认不压缩
 
 ```

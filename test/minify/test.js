@@ -2,10 +2,10 @@ var fs = require('fs'),
     obf = require('../../lib/pub/minify.js');
 
 var result = obf.obfuscate({
-    'core.js':['i.js']
+    'core.js':['z.js']
 },{
     bags:{
-        "_def":"a"
+        "w":"w"
     },
     obf_level:3,
     code_map:{
@@ -19,7 +19,8 @@ var result = obf.obfuscate({
         'b.js':'var b = "bbbb"; test: while(true){var dddddddddddd = "xxxxx";}',
         'c.js':'(function(){var ccccccc = "ccccccccc";window.abc=function def(){return ccccccc;};})();',
         'd.js':'(function(){var dddddddddddd = "ddddddddddddddddd";a="zzzzzz";if(DEBUG){var x="xxxxx";}})();',
-        'i.js':'var a=1,b=2,c;c=a;b=a;a=c;'
+        'i.js':'var a=1,b=2,c;c=a;b=a;a=c;',
+        'z.js':'function u(x) {        var v = [];        (function w(y, z) {            for (var A = y.firstChild; A; A = A.nextSibling) {                if (A.nodeType == 3) {                    z += A.nodeValue.length                } else {                    if (A.nodeType == 1) {                        v.push({                            event: "start",                            offset: z,                            node: A                        });                        z = w(A, z);                        if (!t(A).match(/br|hr|img|input/)) {                            v.push({                                event: "stop",                                offset: z,                                node: A                            })                        }                    }                }            }            return z        })(x, 0);        return v    }'
     }
 });
 

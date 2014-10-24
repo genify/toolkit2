@@ -1,9 +1,10 @@
-0.3.7   (2014-10-24)
+0.3.8   (2014-10-24)
     - 支持json!插件形式注入
     - 支持regular!插件形式注入
     - 支持regular预解析
     - 支持define返回类实例
     - 修正单页面模块路径使用location.config.root配置
+    - 修正define依赖执行函数为空时异常
 
 0.3.2   (2014-10-17)
     - 修正在X_NOPARSE_FLAG忽略内联脚本时不能正确处理VERSION标记的bug

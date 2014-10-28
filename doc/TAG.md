@@ -63,11 +63,11 @@
 <link href="../css/page.css" >
 ```
 
-## SCRIPT
-
-同DEFINE标记
-
 ## DEFINE
+
+[Deprecated] 同SCRIPT标记
+
+## SCRIPT
 
 是否需要结束：无
 
@@ -87,14 +87,14 @@
 使用依赖系统，后续第一个外联脚本为define.js：
 
 ```html
-<!-- @DEFINE -->
+<!-- @SCRIPT -->
 <script src="/path/to/lib/define.js"></script>
 ```
 
 没有使用依赖系统，后续脚本作为源码，此标记仅用来表示打包后脚本插入位置：
 
 ```html
-<!-- @DEFINE {nodep:true} -->
+<!-- @SCRIPT {nodep:true} -->
 <script src="jquery.js"></script>
 <script src="jquery-ui-0.js"></script>
 <script src="jquery-ui-1.js"></script>
@@ -107,7 +107,7 @@
 项目自己定义了core文件列表，并使用服务器端模版引入页面时可以使用core参数配置；当core显式的设置为false时当前文件的脚本将独立解析，不参与core脚本的合并策略
 
 ```html
-<!-- @DEFINE {core:true} -->
+<!-- @SCRIPT {core:true} -->
 <#include "/core/js.ftl">
 <script src="/js/page.js"></script>
 ```

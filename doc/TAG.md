@@ -63,10 +63,6 @@
 <link href="../css/page.css" >
 ```
 
-## DEFINE
-
-[Deprecated] 同SCRIPT标记
-
 ## SCRIPT
 
 是否需要结束：无
@@ -111,6 +107,10 @@
 <#include "/core/js.ftl">
 <script src="/js/page.js"></script>
 ```
+
+## DEFINE
+
+Deprecated, 使用SCRIPT标记代替
 
 ## TEMPLATE
 

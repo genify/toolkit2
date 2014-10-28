@@ -1,10 +1,11 @@
 # 工具简介
 
 本工具提供了项目前端代码的优化输出和自动化发布功能，本工具的主要特性有：
-* 采用html注释来标记打包指令，降低了对原有系统的侵入性
+* 通过配置控制打包输出，降低了对原有系统的侵入性
+* 支持使用html注释标记来控制打包输出，增加了打包的灵活性
+* 支持非NEJ项目智能识别，并优化输出结果
 * 支持采用[NEJ依赖管理系统](https://github.com/genify/nej/blob/master/doc/DEPENDENCY.md)的项目，并分离NEJ依赖系统
 * 支持[NEJ平台适配系统](https://github.com/genify/nej/blob/master/doc/PLATFORM.md)，并按平台配置选择性输出内容
-* 支持非NEJ项目通过增加打包指令来输出内容
 * 支持SourceMap输出，增加测试环境可调试性
 
 # 工具使用

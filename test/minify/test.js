@@ -3,7 +3,7 @@ var fs = require('fs'),
 
 var result = obf.obfuscate({
     'core.js':['z.js']
-},{
+},{ 
     bags:{
         "w":"w"
     },

@@ -541,3 +541,12 @@ X_MODULE_WRAPPER = <#noparse>%s</#noparse>
 ```
 
 
+## X_SCRIPT_WRAPPER
+可选
+
+@SCRIPT/@DEFINE标记的位置在打包后插入内容时可用以下参数指定的标签包装起来，其中%s为要插入的脚本
+
+```
+X_SCRIPT_WRAPPER = <#noparse>%s</#noparse>
+```
+

@@ -56,5 +56,6 @@
     "X_AUTO_EXLINK_PATH":	true,
     "X_AUTO_EXLINK_PREFIX":	"data-href|data-html-root",
     "X_MODULE_WRAPPER"	:	"<#noparse>%s</#noparse>",
+    "X_SCRIPT_WRAPPER"	:	"<#noparse>%s</#noparse>",
     "X_RELEASE_MODE"	:	"online"
 }

@@ -1,7 +1,7 @@
 {
   "name": "nej",
   "description": "nej toolkit",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "license": "MIT",
   
   "keywords": ["nej","toolkit"],
@@ -9,6 +9,7 @@
   
   "main": "./main.js",
   "bin": {
+    "nej"       : "./bin/help.js",
     "nej-doc"   : "./bin/doc.js",
     "nej-init"  : "./bin/init.js",
     "nej-demo"  : "./bin/demo.js",

@@ -27,7 +27,9 @@ switch(entry){
         console.log('  nej-patch      Create widget platform patch files');
         console.log('                 nej-patch [patch_name] [/path/to/patch/dir/]');
         console.log();
-        console.log('  -v, --version  Shows toolkit version');
+        console.log('Available Options:');
+        console.log();
+        console.log('  -v, --version  Show toolkit version');
         console.log();
         process.exit();
     return;

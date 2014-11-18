@@ -218,7 +218,13 @@ nej-demo /path/to/demo/
 
 Q：如何在非NEJ项目中使用打包工具？
 
-A：在页面中增加打包标记
+A：
+
+1. 使用nej-init生成配置文件
+2. 修改配置参数，[参数说明](./doc/CONFIG.md)
+3. 使用nej-build打包
+
+如果需要指定打完包后的样式/脚本插入位置，则可以在页面中增加打包标记，[标记说明](./doc/TAG.md)
 
 ```html
 <html>

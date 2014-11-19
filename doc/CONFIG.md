@@ -550,3 +550,25 @@ X_MODULE_WRAPPER = <#noparse>%s</#noparse>
 X_SCRIPT_WRAPPER = <#noparse>%s</#noparse>
 ```
 
+
+## X_LOGGER_LEVEL
+可选
+
+日志输出模式，可用值：
+
+| 值    | 描述 |
+| :-- | :-- |
+| DEBUG | 输出DEBUG/INFO/WARN/ERROR级别的日志 |
+| INFO  | 输出INFO/WARN/ERROR级别的日志 |
+| WARN  | 输出WARN/ERROR级别的日志 |
+| ERROR | 输出ERROR级别的日志 |
+| ALL   | 输出所有日志 |
+| OFF   | 关闭日志输出 |
+
+```
+X_LOGGER_LEVEL = OFF
+```
+
+
+
+

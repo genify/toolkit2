@@ -1,0 +1,22 @@
+var fs = require('fs'),
+    path = require('path'),
+    Mocha = require('mocha'),
+    mocha = new Mocha().ui('bdd').reporter('spec');
+
+var dumpTestFile = function(dir){
+    fs.readdirSync(dir).forEach(function(name){
+        var file = dir+name;
+        if (fs.lstatSync(file).isDirectory()){
+            dumpTestFile(file+'/');
+        }else if(name=='test.js'){
+            mocha.addFile(file);
+        }
+    });
+};
+dumpTestFile(__dirname+'/');
+
+mocha.run(function (failed) {
+    process.on('exit', function () {
+        process.exit(failed);
+    });
+});

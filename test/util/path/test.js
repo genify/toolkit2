@@ -55,5 +55,19 @@ describe('util/path',function(){
         });
     });
     
+    describe('.isURL(url)',function(){
+        it('should return true when url is http://a.b.com/a/b',function(){
+            path.isURL('http://a.b.com/a/b').should.be.true;
+        });
+        it('should return true when url is https://a.b.com/a/b',function(){
+            path.isURL('https://a.b.com/a/b').should.be.true;
+        });
+        it('should return true when url is ftp://a.b.com/a/b',function(){
+            path.isURL('ftp://a.b.com/a/b').should.be.true;
+        });
+        it('should return false when url is /home/user/local/',function(){
+            path.isURL('/home/user/local/').should.be.false;
+        });
+    });
     
 });

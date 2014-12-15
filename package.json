@@ -34,7 +34,7 @@
     "should": "^4.3.0"
   },
   "dependencies": {
-    "parse5": ">=1.2.0",
+    "htmlparser2": ">=3.8.2",
     "iconv-lite": "~0.4.0",
     "uglify-js": ">=2.4.15",
     "regularjs": "*"

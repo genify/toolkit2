@@ -80,39 +80,91 @@ describe('parser/tag',function(){
         });
         
         var _doTestFromFile = function(file){
+            var ret = {tag:[],text:[],comment:[]};
             new _tag.Tokenizer(
                 _fs.read(process.cwd()+file).join('\n'),{
                     tag:function(event){
-                        var source = event.source;
-                        delete event.source;
-                        console.log('TAG: %s -> %j',source,event);
+                        ret.tag.push(event);
+                        //var source = event.source;
+                        //delete event.source;
+                        //console.log('TAG: %s -> %j',source,event);
                     },
                     text:function(event){
-                        console.log('TEXT -> %j',event);
+                        ret.text.push(event);
+                        //console.log('TEXT -> %j',event);
                     },
                     comment:function(event){
-                        console.log('COMMENT -> %j',event);
+                        ret.comment.push(event);
+                        //console.log('COMMENT -> %j',event);
                     }
                 }
             );
+            return ret;
         };
-        it('should be ok for parsing html file',function(){
-            _doTestFromFile('/parser/tag/a.html');
-        });
-        it('should be ok for parsing freemarker file',function(){
-            _doTestFromFile('/parser/tag/a.ftl');
-        });
+        // it('should be ok for parsing html file',function(){
+            // _doTestFromFile('/parser/tag/a.html');
+        // });
+        // it('should be ok for parsing freemarker file',function(){
+            // _doTestFromFile('/parser/tag/a.ftl');
+        // });
         it('should be ok for parsing script with tag',function(){
-            _doTestFromFile('/parser/tag/b.html');
+            var ret = _doTestFromFile('/parser/tag/b.html');
+            // beg script
+            var tag = ret.tag.shift();
+            tag.name.should.equal('script');
+            // end script
+            var tag = ret.tag.pop();
+            tag.name.should.equal('script');
+            tag.closed.should.be.true;
         });
         it('should be ok for parsing textarea with content',function(){
-            _doTestFromFile('/parser/tag/c.html');
+            var ret = _doTestFromFile('/parser/tag/c.html');
+            // beg textarea
+            var tag = ret.tag.shift();
+            tag.name.should.equal('textarea');
+            tag.attrs.should.eql({name:"jst",id:"#<seedDate>"});
+            // end textarea
+            var tag = ret.tag.pop();
+            tag.name.should.equal('textarea');
+            tag.closed.should.be.true;
+        });
+        it('should be ok for parsing conditional comments',function(){
+            var ret = _doTestFromFile('/parser/tag/d.html');
+            ret.comment.length.should.equal(1);
+            ret.comment[0].comment.trim().should.equal('Comment content');
         });
     });
     
     describe('Paser',function(){
-        
-        
+
+        var _doTestFromFile = function(file){
+            var ret = {style:[],script:[],textarea:[],comment:[]};
+            var parser = new _tag.Parser(
+                _fs.read(process.cwd()+file).join('\n'),{
+                    style:function(event){
+                        ret.style.push(event);
+                        console.log('STYLE\n%j\n%j',event.config,event.source);
+                    },
+                    script:function(event){
+                        ret.script.push(event);
+                        console.log('SCRIPT\n%j\n%j',event.config,event.source);
+                    },
+                    textarea:function(event){
+                        ret.textarea.push(event);
+                        console.log('TEXTAREA\n%j\n%j',event.config,event.source);
+                    },
+                    comment:function(event){
+                        ret.comment.push(event);
+                        console.log('COMMENT\n%j\n%s',event.config,event.source);
+                    }
+                }
+            );
+            ret.inst = parser;
+        };
+        it('should be ok for parsing html file',function(){
+            var ret = _doTestFromFile('/parser/tag/a.html');
+            
+        });
         
     });
 });

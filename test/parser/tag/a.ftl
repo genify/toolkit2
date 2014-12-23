@@ -56,7 +56,7 @@
       <div class="m-poact f-cb">
         <#if activities??&&activities?size&gt;0>
         <div class="x a ${(activities?size&gt;1)?string("j-show","")}" id="activity-box">
-          <span class="t">${activities?join("，")}</span>
+          <span class="t">${activities}</span>
           <i class="m-pobg i">&nbsp;</i>
         </div>
         <div class="m-pohd" id="activity-box-list">

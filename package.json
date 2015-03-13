@@ -32,7 +32,6 @@
   
   "dependencies":{
     "iconv-lite" : "~0.4.0",
-    "uglify-js"  : ">=2.4.15",
-    "regularjs"  : "0.2.13"
+    "uglify-js"  : ">=2.4.15"
   }
 }

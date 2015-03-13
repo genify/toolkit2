@@ -1,3 +1,6 @@
+0.5.3
+    - 支持RegularJS预解析脚本识别配置NEJ_REGULAR
+
 0.5.2   (2015-01-19)
     - 增加X_KEEP_COMMENT配置参数支持
     - regularjs容错

@@ -107,6 +107,16 @@ NEJ平台适配参数，等价于define.js?p=wk|td这里p参数的配置，优�
 NEJ_PLATFORM = wk|td-1
 ```
 
+## NEJ_REGULAR
+可选
+
+指定REGULAR预解析执行文件路径，如果是规范的目录结构可以不用配置此参数，工具自动识别
+工具自动识别的路径为： [DIR_WEBROOT](#DIR_WEBROOT)/src/javascript/lib/regularjs/dist/regular.js
+
+```
+NEJ_REGULAR = ./src/javascript/lib/regularjs/dist/regular.js
+```
+
 ## OPT_IMAGE_FLAG
 可选
 

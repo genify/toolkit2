@@ -2,13 +2,14 @@ var fs = require('fs'),
     obf = require('../../lib/pub/minify.js');
 
 var result = obf.obfuscate({
-    'core.js':['z.js']
+    'core.js':['zz.js']
 },{ 
     bags:{
         "w":"w"
     },
     obf_level:3,
     code_map:{
+        'zz.js':'var x = {_abc:"abc","_def":"def","a-b":"aabb"};x["_ghi"] = "gggg";',
         //'e.js':fs.readFileSync('./element.js', "utf8"),
         //'f.js':fs.readFileSync('./json.js', "utf8"),
         'h.js':'(function(){_def = "xxxxxxx";console.log(_def);window._aaaaaaaaaaaa = {\'for\': "htmlFor"};if (!!_aaaaaaaaaaaa.b){ console.log(_aaaaaaaaaaaa); }})();',

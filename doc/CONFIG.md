@@ -399,10 +399,16 @@ ALIAS_DICTIONARY = {"pro_root":"../js/","config_lib_root":"{lib}"}
 ## NAME_SUFFIX
 可选
 
-输出文件名后缀，配置了后缀的情况下对所有输出文件的请求都不会带版本号，默认带版本号
+输出文件名后缀，可以使用[VERSION]来插入文件的MD5值，配置了后缀的情况下对所有输出文件的请求都不会带版本号，默认带版本号
 
 ```
 NAME_SUFFIX = v1
+```
+
+使用[VERSION]插入当前文件的MD5值
+
+```
+NAME_SUFFIX = v1_[VERSION]
 ```
 
 ## FILE_SUFFIX

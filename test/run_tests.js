@@ -14,7 +14,9 @@ var dumpTestFile = function(dir){
     });
 };
 // run all test case
-dumpTestFile(__dirname+'/');
+dumpTestFile(
+    __dirname+((process.argv[2]||'').trim()||'/')
+);
 mocha.run(function(failed){
     process.on('exit', function(){
         process.exit(failed);

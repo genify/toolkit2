@@ -7,8 +7,26 @@
     <#include "../../wrap/3g.common.ftl">
     <title>${title!"品购页"}</title>
     <@meta/>
+    <link rel="shortcut icon" href="http://shared.ydstatic.com/images/favicon.ico" type="image/x-icon"/>
+    
+    <link rel="nej" type="text/css" href="/src/css/page/schedule.css">
+    <link rel="nej" type="text/javascript" href="/src/js/page/schedule.js">
+    <link rel="nej" type="text/html" href="/src/js/page/schedule.html">
+    
     <@css/>
     <link rel="stylesheet" type="text/css" href="/src/css/page/schedule.css">
+    <style>
+        .a{color:#aaa;}
+        .b{background:#bbb;}
+    </style>
+    <style type="nej/css">
+        .aa{color:#aaa;}
+        .bb{background:#bbb;}
+    </style>
+    <style type="template/css">
+        .aa{color:#aaa;}
+        .bb{background:#bbb;}
+    </style>
     <script>
       <#assign nowTime = .now?long>
       <#assign endTime = (schedule.endTime)!0>

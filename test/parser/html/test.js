@@ -11,6 +11,7 @@ describe('parser/html',function(){
         it('should be ok for parse freemarker file',function(){
             var parser = new Parser('./parser/html/a.ftl');
             parser.should.be.an.instanceof(Parser);
+            console.log('%j',parser);
         });
     });
     

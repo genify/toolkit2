@@ -1,3 +1,4 @@
+<!-- @NOCOMPRESS -->
 <#escape x as x?html>
 <@compress>
 <!DOCTYPE html>
@@ -8,12 +9,13 @@
     <title>${title!"品购页"}</title>
     <@meta/>
     <link rel="shortcut icon" href="http://shared.ydstatic.com/images/favicon.ico" type="image/x-icon"/>
-    
-    <link rel="nej" type="text/css" href="/src/css/page/schedule.css">
-    <link rel="nej" type="text/javascript" href="/src/js/page/schedule.js">
-    <link rel="nej" type="text/html" href="/src/js/page/schedule.html">
+    <!-- test nej template -->
+    <link rel="nej" type="nej/css" href="/src/css/page/schedule.css">
+    <link rel="nej" type="nej/javascript" href="/src/js/page/schedule.js">
+    <link rel="nej" type="nej/html" href="/src/js/page/schedule.html">
     
     <@css/>
+    <!-- @STYLE {core:false,inline:true} -->
     <link rel="stylesheet" type="text/css" href="/src/css/page/schedule.css">
     <style>
         .a{color:#aaa;}
@@ -109,6 +111,13 @@
     
     <@template>
       <#noparse>
+      <!-- @TEMPLATE -->
+      
+      <!-- test nej template -->
+      <textarea name="css" data-src="./a.css"></textarea>
+      <textarea name="js" data-src="./a.js"></textarea>
+      <textarea name="html" data-src="./a.html"></textarea>
+      
       <textarea name="txt" id="product-loading">
         <div class="loading">加载中...</div>
       </textarea>
@@ -142,9 +151,14 @@
           </div>
         {/list}
       </textarea>
+      <!-- @MODULE -->
+      <textarea name="html" data-src="./a.html"></textarea>
+      <textarea name="html" data-src="./b.html"></textarea>
+      <textarea name="html" data-src="./c.html"></textarea>
+      <!-- /@MODULE -->
       </#noparse>
     </@template>
-    
+    <!-- @SCRIPT -->
     <script src="${jslib}define.js?${jscnf}"></script>
     <script src="${jspro}page/schedule/schedule.js"></script>
   </body>

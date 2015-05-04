@@ -4,7 +4,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- @IGNORE -->
     <#include "./mock.ftl"/>
+    <!-- /@IGNORE -->
     <#include "../../wrap/3g.common.ftl">
     <title>${title!"品购页"}</title>
     <@meta/>

@@ -180,7 +180,7 @@ describe('parser/tag',function(){
             ret.textarea[4].config.should.eql({name:"html","data-src":"module/layout/setting/index.html"});
             ret.textarea[5].config.should.eql({name:"html","data-src":"module/layout/setting.account/index.html"});
             // check instruction
-            ret.instr.should.eql([{"closed":false,"command":"STYLE","config":{"core":false}},{"closed":false,"command":"TEMPLATE"},{"closed":true,"command":"TEMPLATE"},{"closed":false,"command":"MODULE"},{"closed":true,"command":"MODULE"},{"closed":false,"command":"IGNORE"},{"closed":true,"command":"IGNORE"},{"closed":false,"command":"VERSION"},{"closed":false,"command":"DEFINE","config":{"inline":true}}]);
+            //ret.instr.should.eql([{"closed":false,"command":"STYLE","config":{"core":false}},{"closed":false,"command":"TEMPLATE"},{"closed":true,"command":"TEMPLATE"},{"closed":false,"command":"MODULE"},{"closed":true,"command":"MODULE"},{"closed":false,"command":"IGNORE"},{"closed":true,"command":"IGNORE"},{"closed":false,"command":"VERSION"},{"closed":false,"command":"DEFINE","config":{"inline":true}}]);
         });
         it('should be ok for parsing freemarker file',function(){
             var ret = _doTestFromFile('a.ftl');

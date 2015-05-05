@@ -45,4 +45,9 @@ describe('util/util',function(){
         });
     });
     
+    describe('.getFormatTime(format,time)',function(){
+        it('should be ok for format %s%s%s.%s%s%s%s with time',function(){
+            // TODO
+        });
+    });
 });

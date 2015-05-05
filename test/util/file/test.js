@@ -1,6 +1,7 @@
 var fs = require('../../../lib/util/file.js'),
+    path = require('../../../lib/util/path.js'),
     should = require('should'),
-    root = __dirname+'/';
+    root = path.normalize(__dirname+'/');
 
 describe('util/file',function(){
     
@@ -125,7 +126,7 @@ describe('util/file',function(){
     
     describe('.rmdir(dir)',function(){
         it('should be ok when dir is not exist',function(){
-            var dir = root+'c/';
+            var dir = root+'z/';
             fs.exist(dir).should.be.false;
             fs.rmdir(dir);
             fs.exist(dir).should.be.false;
@@ -149,6 +150,32 @@ describe('util/file',function(){
             fs.exist(dst+'c/a.txt').should.be.true;
             fs.exist(dst+'d/b.txt').should.be.true;
             fs.rmdir(dst);
+        });
+    });
+    
+    describe('.lsfile(dir,filter)',function(){
+        it('should return empty array when dir not exist',function(){
+            var ret = fs.lsfile('/a/b/');
+            ret.should.eql([]);
+        });
+        it('should return empty array when dir is empty',function(){
+            var ret = fs.lsfile(__dirname+'/a/');
+            ret.should.eql([]);
+        });
+        it('should return all files when no filter',function(){
+            var dir = root+'c/';
+            var ret = fs.lsfile(dir);
+            ret.should.eql([
+                dir+'d/test.html',dir+'d/test.js',
+                dir+'test.css',dir+'_test.txt'
+            ]);
+        });
+        it('should return files not be filted',function(){
+            var dir = root+'c/';
+            var ret = fs.lsfile(dir,function(name,path){
+                return /\.(css|js)$/i.test(name);
+            });
+            ret.should.eql([dir+'d/test.js',dir+'test.css']);
         });
     });
     

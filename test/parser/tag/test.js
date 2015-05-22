@@ -3,78 +3,94 @@ var _tag = require('../../../lib/parser/tag.js'),
      should = require('should');
     
 describe('parser/tag',function(){
-    
-    describe('Tokenizer',function(){
-        [
-            {
-                code:'<!DOCTYPE html>',
-                result:{name:'!DOCTYPE',attrs:{html:''},closed:!1,selfClosed:!1}
-            },{
-                code:'<html>',
-                result:{name:'html',closed:!1,selfClosed:!1}
-            },{
-                code:'<meta charset="utf-8"/>',
-                result:{name:'meta',attrs:{charset:'utf-8'},closed:!1,selfClosed:!0}
-            },{
-                type:'comment',
-                code:'<!-- @STYLE -->',
-                result:{comment:' @STYLE '}
-            },{
-                code:'<link href="../css/template.css" rel="stylesheet" type="text/css"/>',
-                result:{name:'link',attrs:{href:'../css/template.css',rel:'stylesheet',type:'text/css'},closed:!1,selfClosed:!0}
-            },{
-                code:'<textarea name="html" data-src="module/tab/index.html">',
-                result:{name:'textarea',attrs:{name:'html','data-src':'module/tab/index.html'},closed:!1,selfClosed:!1}
-            },{
-                code:'</script>',
-                result:{name:'script',closed:!0,selfClosed:!1}
-            },{
-                code:'<a hidefocus>',
-                result:{name:'a',attrs:{hidefocus:''},closed:!1,selfClosed:!1}
-            },{
-                code:'<a hidefocus/>',
-                result:{name:'a',attrs:{hidefocus:''},closed:!1,selfClosed:!0}
-            },{
-                code:'<a hidefocus=true>',
-                result:{name:'a',attrs:{hidefocus:'true'},closed:!1,selfClosed:!1}
-            },{
-                code:'<a hidefocus=true/>',
-                result:{name:'a',attrs:{hidefocus:'true'},closed:!1,selfClosed:!0}
-            },{
-                code:'<#escape x as x?html>',
-                result:{name:'#escape',closed:!1,selfClosed:!1}
-            },{
-                code:'<#include "../../wrap/3g.common.ftl">',
-                result:{name:'#include',closed:!1,selfClosed:!1}
-            },{
-                code:'<@topbar title=title!"品购页"/>',
-                result:{name:'@topbar',closed:!1,selfClosed:!0}
-            },{
-                code:'<#if category??&&category?size&gt;0>',
-                result:{name:'#if',attrs:{'category??&&category?size&gt;0':''},closed:!1,selfClosed:!1}
-            },{
-                code:'</#list>',
-                result:{name:'#list',closed:!0,selfClosed:!1}
-            },{
-                code:'<#assign a = b + c />',
-                result:{name:'#assign',closed:!1,selfClosed:!0}
+
+    var cases = [
+        {
+            code:'<!DOCTYPE html>',
+            result:{name:'!DOCTYPE',attrs:{html:''},closed:!1,selfClosed:!1}
+        },{
+            code:'<html>',
+            result:{name:'html',closed:!1,selfClosed:!1}
+        },{
+            code:'<meta charset="utf-8"/>',
+            result:{name:'meta',attrs:{charset:'utf-8'},closed:!1,selfClosed:!0}
+        },{
+            type:'comment',
+            code:'<!-- @STYLE -->',
+            result:{comment:' @STYLE '}
+        },{
+            code:'<link href="../css/template.css" rel="stylesheet" type="text/css"/>',
+            result:{name:'link',attrs:{href:'../css/template.css',rel:'stylesheet',type:'text/css'},closed:!1,selfClosed:!0}
+        },{
+            code:'<textarea name="html" data-src="module/tab/index.html">',
+            result:{name:'textarea',attrs:{name:'html','data-src':'module/tab/index.html'},closed:!1,selfClosed:!1}
+        },{
+            code:'</script>',
+            result:{name:'script',closed:!0,selfClosed:!1}
+        },{
+            code:'<a hidefocus>',
+            result:{name:'a',attrs:{hidefocus:''},closed:!1,selfClosed:!1}
+        },{
+            code:'<a hidefocus/>',
+            result:{name:'a',attrs:{hidefocus:''},closed:!1,selfClosed:!0}
+        },{
+            code:'<a hidefocus="true">',
+            result:{name:'a',attrs:{hidefocus:'true'},closed:!1,selfClosed:!1}
+        },{
+            code:'<a hidefocus="true"/>',
+            result:{name:'a',attrs:{hidefocus:'true'},closed:!1,selfClosed:!0}
+        },{
+            code:'<#escape x as x?html>',
+            result:{name:'#escape',attrs:{x:'',as:'','x?html':''},closed:!1,selfClosed:!1}
+        },{
+            code:'<#include "../../wrap/3g.common.ftl">',
+            result:{name:'#include',attrs:{'"../../wrap/3g.common.ftl"':''},closed:!1,selfClosed:!1}
+        },{
+            code:'<#if category??&&category?size&gt;0>',
+            result:{name:'#if',attrs:{'category??&&category?size&gt;0':''},closed:!1,selfClosed:!1}
+        },{
+            code:'</#list>',
+            result:{name:'#list',closed:!0,selfClosed:!1}
+        }
+    ];
+
+    describe('.stringify(tag)',function(){
+        cases.forEach(function(config){
+            if (config.type==='comment'){
+                return;
             }
-            
-        ].forEach(function(config){
+            it('should return '+config.code+' for stringify '+JSON.stringify(config.result),function(){
+                var ret = _tag.stringify(config.result);
+                ret.should.eql(config.code);
+            });
+        });
+    });
+
+    describe('Tokenizer',function(){
+
+        cases.push({
+            code:'<#assign a = b + c />',
+            result:{name:'#assign',closed:!1,selfClosed:!0}
+        },{
+            code:'<@topbar title="title!\"品购页\""/>',
+            result:{name:'@topbar',closed:!1,selfClosed:!0}
+        });
+        cases.forEach(function(config){
             config.type = config.type||'tag';
             config.result.source = config.code;
-            it('should be ok for '+config.type+': '+config.code,function(){
+            it('should return '+JSON.stringify(config.result)+' for parse '+config.type+': '+config.code,function(){
                 // do tokenizer
-                var opt = {},ret;
-                opt[config.type] = function(e){ret = e;};
-                new _tag.Tokenizer(config.code,opt);
+                //var opt = {},ret;
+                //opt[config.type] = function(e){ret = e;};
+                var tokenizer = new _tag.Tokenizer(config.code);
+                var ret = (tokenizer.dump(config.type)[0]||{}).data;
                 // check result
                 var r = config.result;
                 if (!!r.attrs){
-                    ret.attrs.should.eql(r.attrs);
-                }else{
-                    delete ret.attrs;
+                    (ret.attrs).should.containEql(r.attrs);
                 }
+                delete r.attrs;
+                delete ret.attrs;
                 ret.should.eql(r);
             });
         });

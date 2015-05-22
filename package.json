@@ -6,7 +6,9 @@
   "keywords": [
     "nej",
     "toolkit",
-    "builder"
+    "builder",
+    "deploy",
+    "javascript"
   ],
   "author": "genify",
   "main": "./main.js",
@@ -32,7 +34,8 @@
   },
   "devDependencies": {
     "mocha": ">=2.0.1",
-    "should": "^4.3.0"
+    "should": "^4.3.0",
+    "jshint": "*"
   },
   "dependencies": {
     "css": ">=2.2.0",

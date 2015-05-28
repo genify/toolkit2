@@ -1,114 +1,222 @@
-var logger = require('../../../lib/util/logger.js'),
-    should = require('should');
+var should = require('should'),
+    log = require('../../../lib/util/logger.js');
 
 describe('util/logger',function(){
-    
-    describe('.config(conf)',function(){
-        var dolog = function(){
-            logger.log('default log message');
-            logger.debug('debug message');
-            logger.info('info message');
-            logger.warn('warn message');
-            logger.error('error message');
-        };
-        it('should output error log when level=ERROR',function(){
-            logger.config({
-                level:'ERROR',
-                onlog:function(log){
-                    ['ERROR'].should.containEql(log.level);
+
+    var dolog = function(logger){
+        logger.log('info message');
+        logger.debug('debug message');
+        logger.info('info message');
+        logger.warn('warn message');
+        logger.error('error message');
+    };
+
+    describe('Logger',function(){
+        it('should be ok when create Logger instance',function(){
+            var ret = [];
+            var inst = new log.Logger({
+                level:log.level.ALL,
+                log:function(event){
+                    ret.push(event.level);
                 }
             });
-            dolog();
-            logger.removeAllListeners();
-        });
-        it('should output warn/error log when level=WARN',function(){
-            var count = 0;
-            logger.config({
-                level:'WARN',
-                onlog:function(log){
-                    count++;
-                    ['ERROR','WARN'].should.containEql(log.level);
-                }
-            });
-            dolog();
-            count.should.equal(2);
-            logger.removeAllListeners();
-        });
-        it('should output info/warn/error log when level=INFO',function(){
-            var count = 0;
-            logger.config({
-                level:'INFO',
-                onlog:function(log){
-                    count++;
-                    ['ERROR','WARN','INFO'].should.containEql(log.level);
-                }
-            });
-            dolog();
-            count.should.equal(4);
-            logger.removeAllListeners();
-        });
-        it('should output debug/info/warn/error log when level=DEBUG',function(){
-            var count = 0;
-            logger.config({
-                level:'DEBUG',
-                onlog:function(log){
-                    count++;
-                    ['ERROR','WARN','INFO','DEBUG'].should.containEql(log.level);
-                }
-            });
-            dolog();
-            count.should.equal(5);
-            logger.removeAllListeners();
+            dolog(inst);
+            ret.should.eql([
+                log.level.INFO,
+                log.level.DEBUG,
+                log.level.INFO,
+                log.level.WARN,
+                log.level.ERROR
+            ]);
         });
     });
 
-    describe('.debug(message)',function(){
+    describe('leve',function(){
+        it('level can be used in logger.config',function(){
+            log.level.should.eql({
+                ALL   :  100,
+                DEBUG :  4,
+                INFO  :  3,
+                WARN  :  2,
+                ERROR :  1,
+                OFF   : -1
+            });
+        });
+    });
+
+    describe('logger',function(){
+        it('should be instanceof Logger',function(){
+            (log.logger instanceof log.Logger).should.eql(true);
+        });
+    });
+
+    describe('logger.config(conf)',function(){
+        it('should output error log when level=ERROR',function(){
+            var ret = [];
+            log.logger.config({
+                level:log.level.ERROR,
+                log:function(event){
+                    ret.push(event.level);
+                }
+            });
+            dolog(log.logger);
+            log.logger.removeAllListeners();
+            ret.should.eql([
+                log.level.ERROR
+            ]);
+        });
+        it('should output warn/error log when level=WARN',function(){
+            var ret = [];
+            log.logger.config({
+                level:log.level.WARN,
+                log:function(event){
+                    ret.push(event.level);
+                }
+            });
+            dolog(log.logger);
+            log.logger.removeAllListeners();
+            ret.should.eql([
+                log.level.WARN,
+                log.level.ERROR
+            ]);
+        });
+        it('should output info/warn/error log when level=INFO',function(){
+            var ret = [];
+            log.logger.config({
+                level:log.level.INFO,
+                log:function(event){
+                    ret.push(event.level);
+                }
+            });
+            dolog(log.logger);
+            log.logger.removeAllListeners();
+            ret.should.eql([
+                log.level.INFO,
+                log.level.INFO,
+                log.level.WARN,
+                log.level.ERROR
+            ]);
+        });
+        it('should output debug/info/warn/error log when level=DEBUG',function(){
+            var ret = [];
+            log.logger.config({
+                level:log.level.DEBUG,
+                log:function(event){
+                    ret.push(event.level);
+                }
+            });
+            dolog(log.logger);
+            log.logger.removeAllListeners();
+            ret.should.eql([
+                log.level.INFO,
+                log.level.DEBUG,
+                log.level.INFO,
+                log.level.WARN,
+                log.level.ERROR
+            ]);
+        });
+        it('should output debug/info/warn/error log when level=DEBUG',function(){
+            var ret = [];
+            log.logger.config({
+                level:log.level.DEBUG,
+                log:function(event){
+                    ret.push(event.level);
+                }
+            });
+            dolog(log.logger);
+            log.logger.removeAllListeners();
+            ret.should.eql([
+                log.level.INFO,
+                log.level.DEBUG,
+                log.level.INFO,
+                log.level.WARN,
+                log.level.ERROR
+            ]);
+        });
+        it('should output debug/info/warn/error log when level=ALL',function(){
+            var ret = [];
+            log.logger.config({
+                level:log.level.ALL,
+                log:function(event){
+                    ret.push(event.level);
+                }
+            });
+            dolog(log.logger);
+            log.logger.removeAllListeners();
+            ret.should.eql([
+                log.level.INFO,
+                log.level.DEBUG,
+                log.level.INFO,
+                log.level.WARN,
+                log.level.ERROR
+            ]);
+        });
+        it('should no output log when level=OFF',function(){
+            var ret = [];
+            log.logger.config({
+                level:log.level.OFF,
+                log:function(event){
+                    ret.push(event.level);
+                }
+            });
+            dolog(log.logger);
+            log.logger.removeAllListeners();
+            ret.should.eql([]);
+        });
+    });
+
+    describe('logger.debug(message)',function(){
         it('should output DEBUG message',function(){
-            logger.on('log',function(log){
-                log.level.should.equal('DEBUG');
+            log.logger.on('log',function(event){
+                event.level.should.equal(log.level.DEBUG);
+                done();
             });
-            logger.debug('message');
-            logger.removeAllListeners();
+            log.logger.debug('message');
+            log.logger.removeAllListeners();
         });
     });
     
-    describe('.log(message)',function(){
+    describe('logger.log(message)',function(){
         it('should output INFO message',function(){
-            logger.on('log',function(log){
-                log.level.should.equal('INFO');
+            log.logger.on('log',function(event){
+                event.should.equal(log.level.INFO);
+                done();
             });
-            logger.log('message');
-            logger.removeAllListeners();
+            log.logger.log('message');
+            log.logger.removeAllListeners();
         });
     });
     
-    describe('.info(message)',function(){
+    describe('logger.info(message)',function(){
         it('should output INFO message',function(){
-            logger.on('log',function(log){
-                log.level.should.equal('INFO');
+            log.logger.on('log',function(event){
+                event.level.should.equal(log.level.INFO);
+                done();
             });
-            logger.info('message');
-            logger.removeAllListeners();
+            log.logger.info('message');
+            log.logger.removeAllListeners();
         });
     });
     
-    describe('.warn(message)',function(){
+    describe('logger.warn(message)',function(){
         it('should output WARN message',function(){
-            logger.on('log',function(log){
-                log.level.should.equal('WARN');
+            log.logger.on('log',function(event){
+                event.level.should.equal(log.level.INFO);
+                done();
             });
-            logger.warn('message');
-            logger.removeAllListeners();
+            log.logger.warn('message');
+            log.logger.removeAllListeners();
         });
     });
     
-    describe('.error(message)',function(){
+    describe('logger.error(message)',function(){
         it('should output ERROR message',function(){
-            logger.on('log',function(log){
-                log.level.should.equal('ERROR');
+            log.logger.on('log',function(event){
+                event.level.should.equal(log.level.ERROR);
+                done();
             });
-            logger.error('message');
-            logger.removeAllListeners();
+            log.logger.error('message');
+            log.logger.removeAllListeners();
         });
     });
     

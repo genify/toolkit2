@@ -1,5 +1,5 @@
-var Parser = require('../../../lib/parser/config.js'),
-    should = require('should');
+var should = require('should'),
+    Parser = require('../../../lib/parser/config.js');
 
 describe('parser/config',function(){
     
@@ -18,10 +18,13 @@ describe('parser/config',function(){
             parser.get('DIR_STATIC').should.equal(parser.get('DIR_WEBROOT')+'res/');
             
            (parser.get('NEJ_DIR')==null).should.be.true;
-            parser.get('NEJ_PLATFORM').should.equal('td|wk|gk');
+            parser.get('NEJ_PLATFORM').should.equal('');
+            parser.get('NEJ_REGULAR').should.equal('regularjs');
+            parser.get('NEJ_PROCESSOR').should.have.properties('text','json','regular','rgl');
             
             parser.get('OPT_IMAGE_FLAG').should.be.false;
             parser.get('OPT_IMAGE_QUALITY').should.equal(100);
+           (parser.get('OPT_IMAGE_SPRITE')==null).should.be.true;
             
            (parser.get('MANIFEST_OUTPUT')==null).should.be.true;
            (parser.get('MANIFEST_TEMPLATE')==null).should.be.true;
@@ -36,13 +39,12 @@ describe('parser/config',function(){
             
             parser.get('VERSION_STATIC').should.be.false;
             parser.get('VERSION_MODE').should.equal(0);
-            parser.get('VERSION_MERGE').should.equal(0);
-            
-           (parser.get('DM_STATIC')==null).should.be.true;
-           (parser.get('DM_STATIC_RS')==parser.get('DM_STATIC')).should.be.true;
-           (parser.get('DM_STATIC_CS')==parser.get('DM_STATIC')).should.be.true;
-           (parser.get('DM_STATIC_JS')==parser.get('DM_STATIC')).should.be.true;
-           (parser.get('DM_STATIC_MF')==parser.get('DM_STATIC')).should.be.true;
+
+            parser.get('DM_STATIC').should.eql([]);
+            parser.get('DM_STATIC_RS').should.eql([]);
+            parser.get('DM_STATIC_CS').should.eql([]);
+            parser.get('DM_STATIC_JS').should.eql([]);
+            parser.get('DM_STATIC_MF').should.eql([]);
            (parser.get('DM_STATIC_MR')==null).should.be.true;
             
             parser.get('OBF_LEVEL').should.equal(3);
@@ -52,12 +54,17 @@ describe('parser/config',function(){
             parser.get('OBF_MAX_JS_INLINE_SIZE').should.equal(0);
             parser.get('OBF_NAME_BAGS').should.equal(parser.get('DIR_CONFIG')+'names.json');
             
-            (parser.get('CORE_LIST_JS')==null).should.be.true;
-            (parser.get('CORE_LIST_CS')==null).should.be.true;
-            (parser.get('CORE_MASK_JS')==null).should.be.true;
-            (parser.get('CORE_MASK_CS')==null).should.be.true;
-            
+           (parser.get('CORE_LIST_JS')==null).should.be.true;
+           (parser.get('CORE_LIST_CS')==null).should.be.true;
+           (parser.get('CORE_MASK_JS')==null).should.be.true;
+           (parser.get('CORE_MASK_CS')==null).should.be.true;
+            parser.get('CORE_FREQUENCY_JS').should.eql(2);
+            parser.get('CORE_FREQUENCY_CS').should.eql(2);
+            parser.get('CORE_IGNORE_ENTRY').should.be.false;
+
+
             parser.get('X_NOCOMPRESS').should.be.false;
+            parser.get('X_KEEP_COMMENT').should.be.false;
             parser.get('X_NOPARSE_FLAG').should.equal(0);
             parser.get('X_NOCORE_FLAG').should.equal(0);
             parser.get('X_AUTO_EXLINK_PATH').should.be.false;
@@ -75,10 +82,14 @@ describe('parser/config',function(){
             _doCheckDefault(new Parser());
         });
         it('should has right default value when init config from property file',function(){
-            _doCheckDefault(new Parser('./config.ini'));
+            _doCheckDefault(new Parser({
+                config:'./config.ini'
+            }));
         });
         it('should has right default value when init config from json file',function(){
-            _doCheckDefault(new Parser('./config.json'));
+            _doCheckDefault(new Parser({
+                config:'./config.json'
+            }));
         });
     });
     
@@ -100,19 +111,55 @@ describe('parser/config',function(){
     });
     
     describe('config value',function(){
-        it('should emit error when DIR_WEBROOT not exist',function(){
+        it('should emit error when config file not exist',function(){
+            var ret;
             var parser = new Parser({
-                DIR_WEBROOT:'./webapp'
-            },{
+                config:'./config.json',
                 error:function(event){
-                    event.data[0].should.equal(parser.get('DIR_WEBROOT'));
+                    if (event.field==='DIR_CONFIG'){
+                        ret = !0;
+                    }
                 }
             });
+            ret.should.be.true;
+        });
+        it('should emit error when DIR_WEBROOT not exist',function(){
+            var ret;
+            var root = './'+(+new Date);
+            var parser = new Parser({
+                config:{
+                    DIR_WEBROOT:root
+                },
+                error:function(event){
+                    if (event.field==='DIR_WEBROOT'){
+                        ret = !0;
+                    }
+                }
+            });
+            require('fs').rmdirSync(root);
+            ret.should.be.true;
+        });
+        it('should emit error when no input',function(){
+            var ret;
+            var parser = new Parser({
+                error:function(event){
+                    var test = [
+                        'DIR_SOURCE','DIR_SOURCE_SUB',
+                        'DIR_SOURCE_TP','DIR_SOURCE_TP_SUB'
+                    ];
+                    if (test.should.eql(event.field)){
+                        ret = !0;
+                    }
+                }
+            });
+            ret.should.be.true;
         });
         it('should compatible with ALIAS_START_TAG/ALIAS_END_TAG',function(){
             var parser = new Parser({
-                ALIAS_START_TAG:'{{',
-                ALIAS_END_TAG:'}}'
+                config:{
+                    ALIAS_START_TAG:'{{',
+                    ALIAS_END_TAG:'}}'
+                }
             });
             var v = '{{config_lib_root}}define.js?pro={{pro_root}}'.replace(
                 parser.get('ALIAS_MATCH'),function($1,$2){
@@ -124,7 +171,9 @@ describe('parser/config',function(){
         it('should be ok when set ALIAS_MATCH with type of string/regexp',function(){
             // string
             var parser = new Parser({
-                ALIAS_MATCH:'\\{\\{(.*?)\\}\\}'
+                config:{
+                    ALIAS_MATCH : '\\{\\{(.*?)\\}\\}'
+                }
             });
             var v = '{{config_lib_root}}define.js?pro={{pro_root}}'.replace(
                 parser.get('ALIAS_MATCH'),function($1,$2){
@@ -134,7 +183,9 @@ describe('parser/config',function(){
             v.should.equal('config_lib_rootdefine.js?pro=pro_root');
             // regexp
             var parser = new Parser({
-                ALIAS_MATCH:/\{\{(.*?)\}\}/gi
+                config:{
+                    ALIAS_MATCH:/\{\{(.*?)\}\}/gi
+                }
             });
             var v = '{{config_lib_root}}define.js?pro={{pro_root}}'.replace(
                 parser.get('ALIAS_MATCH'),function($1,$2){
@@ -152,60 +203,82 @@ describe('parser/config',function(){
         };
         it('should compatible with FILE_SUFFIXE',function(){
             var parser = new Parser({
-                FILE_SUFFIXE:'html|ftl|vm'
+                config:{
+                    FILE_SUFFIXE:'html|ftl|vm'
+                }
             });
             _doMatchFile(parser.get('FILE_FILTER'));
         });
         it('should be ok when set FILE_FILTER with type of string/regexp',function(){
             var parser = new Parser({
-                FILE_FILTER:'\\.(?:html|ftl|vm)$'
+                config:{
+                    FILE_FILTER:'\\.(?:html|ftl|vm)$'
+                }
             });
             _doMatchFile(parser.get('FILE_FILTER'));
             var parser = new Parser({
-                FILE_FILTER:/\.(?:html|ftl|vm)$/i
+                config:{
+                    FILE_FILTER:/\.(?:html|ftl|vm)$/i
+                }
             });
             _doMatchFile(parser.get('FILE_FILTER'));
         });
         it('should compatible with NAME_SUFFIX',function(){
             var parser = new Parser({
-                NAME_SUFFIX:'v2'
+                config:{
+                    NAME_SUFFIX:'v2'
+                }
             });
-            parser.get('VERSION_MODE').should.equal('v2');
+            parser.get('VERSION_MODE').should.equal('[FILENAME]_v2');
         });
         it('should compatible with RAND_VERSION',function(){
             var parser = new Parser({
-                RAND_VERSION:true
+                config:{
+                    RAND_VERSION:true
+                }
             });
             parser.get('VERSION_MODE').should.equal(1);
         });
         it('should compatible with STATIC_VERSION',function(){
             var parser = new Parser({
-                STATIC_VERSION:true
+                config:{
+                    STATIC_VERSION:true
+                }
             });
             parser.get('VERSION_STATIC').should.be.true;
         });
         it('should compatible with X_NOCORE_STYLE/X_NOCORE_SCRIPT',function(){
             var parser = new Parser({
-                X_NOCORE_STYLE:true
+                config:{
+                    X_NOCORE_STYLE:true
+                }
             });
             parser.get('X_NOCORE_FLAG').should.equal(1);
             var parser = new Parser({
-                X_NOCORE_SCRIPT:true
+                config:{
+                    X_NOCORE_SCRIPT:true
+                }
             });
             parser.get('X_NOCORE_FLAG').should.equal(2);
             var parser = new Parser({
-                X_NOCORE_STYLE:true,
-                X_NOCORE_SCRIPT:true
+                config:{
+                    X_NOCORE_STYLE:true,
+                    X_NOCORE_SCRIPT:true
+                }
             });
             parser.get('X_NOCORE_FLAG').should.equal(3);
         });
         it('should compatible with X_MODULE_WRAPPER/X_SCRIPT_WRAPPER',function(){
             var parser = new Parser({
-                X_MODULE_WRAPPER:'<#noparse>%s</#noparse>'
+                config:{
+                    X_MODULE_WRAPPER:'<#noparse>%s</#noparse>'
+                }
             });
             parser.get('X_INSERT_WRAPPER').should.equal('<#noparse>%s</#noparse>');
             var parser = new Parser({
-                X_SCRIPT_WRAPPER:'<#noparse>%s</#noparse>'
+                config:{
+                    X_SCRIPT_WRAPPER:'<#noparse>%s</#noparse>'
+                }
             });
             parser.get('X_INSERT_WRAPPER').should.equal('<#noparse>%s</#noparse>');
         });

@@ -1,6 +1,6 @@
-var _tag = require('../../../lib/parser/tag.js'),
-    _fs  = require('../../../lib/util/file.js'),
-     should = require('should');
+var should = require('should'),
+    fs  = require('../../../lib/util/file.js'),
+    tag = require('../../../lib/parser/tag.js');
     
 describe('parser/tag',function(){
 
@@ -60,7 +60,7 @@ describe('parser/tag',function(){
                 return;
             }
             it('should return '+config.code+' for stringify '+JSON.stringify(config.result),function(){
-                var ret = _tag.stringify(config.result);
+                var ret = tag.stringify(config.result);
                 ret.should.eql(config.code);
             });
         });
@@ -70,8 +70,9 @@ describe('parser/tag',function(){
     describe('Parser',function(){
         var _doTestFromFile = function(file){
             var ret = {style:[],script:[],textarea:[],instr:[]};
-            ret.inst = new _tag.Parser(
-                _fs.read(__dirname+'/'+file).join('\n'),{
+            ret.inst = new tag.Parser(
+                {
+                    content:fs.read(__dirname+'/'+file).join('\n'),
                     style:function(event){
                         ret.style.push(event);
                         //console.log('STYLE\n%j\n%j',event.config,event.source);

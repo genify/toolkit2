@@ -1,0 +1,145 @@
+var should = require('should'),
+    util = require('../../../lib/script/nej/util.js');
+
+describe('util/util',function(){
+
+    describe('.parsePlatform(platform)',function(){
+        [
+            {
+                platform:'td',
+                result:{engines:['trident']}
+            },
+            {
+                platform:'td-0',
+                result:{engines:['trident'],lower:'3.0'}
+            },
+            {
+                platform:'td-1',
+                result:{engines:['trident'],lower:'6.0'}
+            },
+            {
+                platform:'wk',
+                result:{engines:['webkit']}
+            },
+            {
+                platform:'gk',
+                result:{engines:['gecko']}
+            },
+            {
+                platform:'android',
+                result:{engines:['webkit']}
+            },
+            {
+                platform:'ios',
+                result:{engines:['webkit']}
+            },
+            {
+                platform:'cef',
+                result:{engines:['webkit']}
+            },
+            {
+                platform:'win',
+                result:{engines:['trident'],lower:'6.0'}
+            },
+            {
+                platform:'td|wk|gk',
+                result:{engines:['trident','webkit','gecko']}
+            },
+            {
+                platform:'wk|gk',
+                result:{engines:['webkit','gecko']}
+            }
+        ].forEach(function(config){
+            it('should return '+JSON.stringify(config.result)+' for platform '+config.platform,function(){
+                var ret = util.parsePlatform(config.platform);
+                config.result.should.be.eql(ret);
+            });
+        });
+    });
+
+    describe('.parseExpression(expression)',function(){
+        [
+            {
+                exp:'TR',
+                result:{engine:"._$KERNEL.engine==='trident'"}
+            },
+            {
+                exp:'WR',
+                result:{engine:"._$KERNEL.engine==='webkit'"}
+            },
+            {
+                exp:'GR',
+                result:{engine:"._$KERNEL.engine==='gecko'"}
+            },
+            {
+                exp:'TV',
+                result:{engine:"._$KERNEL.engine==='trident'"}
+            },
+            {
+                exp:'WV',
+                result:{engine:"._$KERNEL.engine==='webkit'"}
+            },
+            {
+                exp:'GV',
+                result:{engine:"._$KERNEL.engine==='gecko'"}
+            },
+            {
+                exp:'TR>3.0',
+                result:{engine:"._$KERNEL.engine==='trident'",version:'._$KERNEL.release',lower:{value:'3.0',eq:false}}
+            },
+            {
+                exp:'TR<3.0',
+                result:{engine:"._$KERNEL.engine==='trident'",version:'._$KERNEL.release',upper:{value:'3.0',eq:false}}
+            },
+            {
+                exp:'TR<=3.0',
+                result:{engine:"._$KERNEL.engine==='trident'",version:'._$KERNEL.release',upper:{value:'3.0',eq:true}}
+            },
+            {
+                exp:'TR=3.0',
+                result:{engine:"._$KERNEL.engine==='trident'",version:'._$KERNEL.release',midle:{value:'3.0',eq:true}}
+            },
+            {
+                exp:'3.0<TR',
+                result:{engine:"._$KERNEL.engine==='trident'",version:'._$KERNEL.release',lower:{value:'3.0',eq:false}}
+            },
+            {
+                exp:'3.0>TR',
+                result:{engine:"._$KERNEL.engine==='trident'",version:'._$KERNEL.release',upper:{value:'3.0',eq:false}}
+            },
+            {
+                exp:'3.0>=TR',
+                result:{engine:"._$KERNEL.engine==='trident'",version:'._$KERNEL.release',upper:{value:'3.0',eq:true}}
+            },
+            {
+                exp:'3.0=TR',
+                result:{engine:"._$KERNEL.engine==='trident'",version:'._$KERNEL.release',midle:{value:'3.0',eq:true}}
+            },
+            {
+                exp:'2.0<TR<3.0',
+                result:{engine:"._$KERNEL.engine==='trident'",version:'._$KERNEL.release',lower:{value:'2.0',eq:false},upper:{value:'3.0',eq:false}}
+            },
+            {
+                exp:'2.0<=TR<=3.0',
+                result:{engine:"._$KERNEL.engine==='trident'",version:'._$KERNEL.release',lower:{value:'2.0',eq:true},upper:{value:'3.0',eq:true}}
+            },
+            {
+                exp:'3.0>=TR>=2.0',
+                result:{engine:"._$KERNEL.engine==='trident'",version:'._$KERNEL.release',lower:{value:'2.0',eq:true},upper:{value:'3.0',eq:true}}
+            },
+            {
+                exp:'3.0>=TR=2.0',
+                result:{engine:"._$KERNEL.engine==='trident'",version:'._$KERNEL.release',midle:{value:'2.0',eq:true},upper:{value:'3.0',eq:true}}
+            }
+        ].forEach(function(config){
+            it('should return '+JSON.stringify(config.result)+' for expression '+config.exp,function(){
+                var ret = util.parseExpression(config.exp);
+                config.result.should.be.eql(ret);
+            });
+        });
+    });
+
+
+
+
+});

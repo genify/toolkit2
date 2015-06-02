@@ -57,6 +57,7 @@ describe('script/nej/patcher',function(){
             patcher.stringify().should.containEql(
                 fs.read(__dirname+'/func.js').join('\n')
             );
+            //console.log('%j',patcher.stringify());
         });
     });
 });

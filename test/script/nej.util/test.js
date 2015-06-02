@@ -395,4 +395,43 @@ describe('script/nej/util',function(){
         });
     });
 
+    describe('.parsePatch(content)',function(){
+        [
+            {
+                file:'a.js',
+                result:null
+            },
+            {
+                file:'e.js',
+                result:{
+                    args:['_h','_m','_u','_p','_o','_f','_r'],
+                    riturn:'return _h;',
+                    patches:[
+                        {expression:'TR',dependency:null},
+                        {expression:'TR<=6.0',dependency:null},
+                        {expression:'TR<=5.0',dependency:null},
+                        {expression:'TR<=4.0',dependency:null},
+                        {expression:'TR<=3.0',dependency:null},
+                        {expression:'TR<=2.0',dependency:null},
+                        {expression:'GR',dependency:null}
+                    ]
+                }
+            }
+        ].forEach(function(config){
+            it('should return '+JSON.stringify(config.result)+' for file '+config.file,function(){
+                var ret = util.parsePatch(
+                    fs.read(__dirname+'/'+config.file).join('\n')
+                );
+                if (config.result==null){
+                    (ret==null).should.be.true;
+                }else{
+                    ret.patches.forEach(function(it){
+                        delete it.source;
+                    })
+                    config.result.should.be.eql(ret);
+                }
+            });
+        });
+    });
+
 });

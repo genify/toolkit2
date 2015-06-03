@@ -5,13 +5,16 @@
     "license": "MIT",
     "keywords": [
         "nej",
+        "web",
+        "project",
         "toolkit",
         "builder",
         "deploy",
         "publisher",
-        "javascript"
+        "javascript",
+        "front end"
     ],
-    "author": "genify",
+    "author": "genify <caijf@corp.netease.com> (http://genify.blog.163.com/)",
     "main": "./main.js",
     "bin": {
         "nej": "./bin/help.js",
@@ -22,16 +25,16 @@
         "nej-patch": "./bin/patch.js",
         "nej-widget": "./bin/widget.js"
     },
-    "homepage": "https://github.com/genify/publish",
+    "homepage": "https://github.com/genify/toolkit2",
     "scripts": {
         "test": "node test/run_tests.js"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/genify/publish.git"
+        "url": "https://github.com/genify/toolkit2.git"
     },
     "bugs": {
-        "url": "https://github.com/genify/publish/issues"
+        "url": "https://github.com/genify/toolkit2/issues"
     },
     "devDependencies": {
         "mocha": ">=2.0.1",

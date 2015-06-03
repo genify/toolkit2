@@ -17,7 +17,7 @@ describe('parser/html',function(){
                 content:fs.read(__dirname+'/a.ftl').join('\n')
             });
             parser.should.be.an.instanceof(Parser);
-            console.log('%s',JSON.stringify(parser,null,4));
+            //console.log('%s',JSON.stringify(parser,null,4));
         });
     });
     

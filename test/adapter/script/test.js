@@ -15,37 +15,58 @@ describe('adapter/script',function(){
     });
 
     describe('.parse(config)',function(){
-
+        var codeMap = {
+            'a1.js':'(function(x,y){var a=1111;})();',
+            'a2.js':'(function(z){var b=22222;})();',
+            'a3.js':fs.read(__dirname+'/../../cases/base/global.js').join('\n'),
+            'b1.js':'var c="ccc";',
+            'b2.js':'var d="ddddd";',
+            'error.js':'zzzz+function();'
+        };
         [
             {
+                map:{'a.js':['error.js','a1.js','a2.js','error.js','b1.js','b2.js']},
+                config:{level:0},
+                result:function(ret){
+                    ret.should.have.property('code');
+                    Object.keys(ret.code).should.be.eql(Object.keys(this.map));
+                    console.log('%j',ret);
+                }
+            },
+            {
+                map:{'a.js':['a1.js','a2.js'],'b.js':['b1.js','b2.js']},
+                config:{level:0},
+                result:function(ret){
+                    ret.should.have.property('code');
+                    Object.keys(ret.code).should.be.eql(Object.keys(this.map));
+                    console.log('%j',ret);
+                }
+            },
+            {
                 map:{'a.js':['a1.js','a2.js']},
-                code:{'a1.js':'var a=1111;','a2.js':'var b=22222;'},
-                config:{level:0}
+                config:{level:3},
+                result:function(ret){
+                    ret.should.have.property('code');
+                    Object.keys(ret.code).should.be.eql(Object.keys(this.map));
+                    console.log('%j',ret);
+                }
             }
         ].forEach(function(config){
-            it('should be ok for map '+JSON.stringify(config.map)+' with code '+JSON.stringify(config.code),function(){
+            it('should be ok for map '+JSON.stringify(config.map),function(){
                 var parser = new Parser({
                     map:config.map,
-                    code:config.code,
+                    code:codeMap,
                     warn:function(event){
                         console.log(event);
                     },
                     error:function(event){
-                        console.log(event);
+                        event.data.unshift(event.message);
+                        console.log.apply(console,event.data);
+                        console.log('%j',event.files);
                     }
                 });
-                var conf = config.config||{};
-                parser.parse(conf);
-                var ret = parser.dump();
-                ret.should.have.property('code');
-                if (conf.level>0){
-                    ret.should.have.property('bags');
-                }
-                if (!!conf.sourcemap){
-                    ret.should.have.property('sourcemap');
-                }
-                Object.keys(ret.code).should.be.eql(Object.keys(config.map));
-                console.log('%j',ret);
+                parser.parse(config.config);
+                config.result(parser.dump());
             });
         });
 

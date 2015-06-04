@@ -16,7 +16,7 @@ describe('adapter/script',function(){
 
     describe('.parse(config)',function(){
         var codeMap = {
-            'a1.js':'(function(x,y){var a=1111;})();',
+            'a1.js':'(function(x,y){var a=1111;})();if (DEBUG){dosomething(1);}',
             'a2.js':'(function(z){var b=22222;})();',
             'a3.js':fs.read(__dirname+'/../../cases/base/global.js').join('\n'),
             'b1.js':'var c="ccc";',
@@ -57,7 +57,7 @@ describe('adapter/script',function(){
                     map:config.map,
                     code:codeMap,
                     warn:function(event){
-                        console.log(event);
+                        console.log(event.message);
                     },
                     error:function(event){
                         event.data.unshift(event.message);

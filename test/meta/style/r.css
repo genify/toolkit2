@@ -1,0 +1,9 @@
+.a{background:url(http://a.b.com/a.png);}
+.b{background:url(http://a.b.com/a.png);}
+.c{background:url(http://a.b.com/a.png);}
+.d{background:url(#<c:/pro/b.png>);}
+.e{background:url(#<c:/pro/b.png>);}
+.f{background:url(#<c:/pro/b.png>);}
+.g{background:url(#<c:/webapp/c.png>);}
+.h{background:url(#<c:/webapp/c.png>);}
+.i{background:url(#<c:/webapp/c.png>);}

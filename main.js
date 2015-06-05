@@ -1,96 +1,86 @@
-/* ----------------------------------------------------------
- * 打包入口文件，使用方式
- * × 指定打包配置文件
- *   > node release/src/release.js config=d:/test/blog.conf
- * × 配置文件为release/release.conf
- *   > node release/src/release.js
- * ----------------------------------------------------------
+/*
+ * exports toolkit
+ * @author   genify(caijf@corp.netease.com)
  */
-// require module
-var _fs      = require('./lib/file.js'),
-    _log     = require('./lib/logger.js'),
-    _path    = require('./lib/path.js'),
-    _config  = require('./lib/pub/config.js'),
-    _parser  = require('./lib/pub/parser.js');
-// publish
-var __doPublish = function(_result){
-    // dump html file and parse
-    ['DIR_SOURCE','DIR_SOURCE_TP'].forEach(function(_name){
-        var _root = _config.get(_name);
-        if (!_root) return;
-        _config.get(_name+'_SUB').forEach(function(_dir){
-            _dir = _path.path(_dir||'./',_root);
-            if (!_path.exist(_dir)){
-                _log.warn('dir not exist %s',_dir);
-                return;
+// klass exports map
+var KLASS = {
+    // base klass
+    Event:'util/event',
+    Logger:'util/logger#Logger',
+    // resource meta
+    RES_Text:'meta/text',
+    RES_Html:'meta/html',
+    RES_Style:'meta/style',
+    RES_Script:'meta/script',
+    RES_Resource:'meta/resource',
+    // resource explorer
+    EXP_Style:'explorer/style',
+    EXP_Script:'explorer/script',
+    EXP_Template:'explorer/template',
+    EXP_Explorer:'explorer/explorer',
+    // resource adapter
+    ADP_Style:'adapter/style#Parser',
+    ADP_Script:'adapter/script',
+    // resource parser
+    PRS_Tag:'parser/tag#Parser',
+    PRS_Html:'parser/html',
+    PRS_Config:'parser/config',
+    PRS_Tokenizer:'parser/token',
+    // file parser
+    FLP_Parser:'script/parser',
+    FLP_NEJParser:'script/nej#Parser',
+    FLP_NEJPatcher:'script/nej/patcher',
+    // entry parser
+    Deployer:'deploy',
+    Exporter:'export'
+};
+// api exports map
+var API = {
+    io:'util/io',
+    fs:'util/file',
+    ps:'util/path',
+    ut:'util/util',
+    ks:'util/klass',
+    dp:'util/dependency',
+    lg:'util/logger#level,logger',
+    nej:'script/nej/util'
+};
+// export klass or api
+function global(map){
+    Object.keys(map).forEach(function(key){
+        var file = map[key],
+            arr = file.split('#'),
+            mdl = require('./lib/'+arr[0]+'.js');
+        // for util/logger#Logger
+        if (!!arr[1]){
+            // for util/logger#level,logger
+            var brr = arr[1].split(',');
+            if (brr.length>1){
+                var ret = {};
+                brr.forEach(function(name){
+                    ret[name] = mdl[name];
+                });
+                mdl = ret;
+            }else{
+                mdl = mdl[brr[0]];
             }
-            _parser.html(_dir,_result);
-        });
-    });
-    // download outline resource
-    _result.ondownload = function(){
-        _parser.cs(_result);
-        _parser.js(_result);
-        _parser.output(_result);
-        if (!!_result.onreleasedone){
-            _result.onreleasedone(_result);
         }
-    };
-    _parser.download(_result);
-};
-// exports api
-/**
- * 执行打包
- * @param    {Object}   配置参数
- * @property {String}   config        - 配置文件路径
- * @property {Function} onreleasedone - 打包结束事件
- * @return   {Void}
- */
-exports.run = function(_options){
-    var _result = {};
-    _result.onreleasedone = (_options||{}).onreleasedone;
-    // parse config file
-    var _conf = _options.config;
-    // a/b/release.conf relative to current directory
-    if (/^[\w]/.test(_conf)&&_conf.indexOf(':')<0){
-        _conf =  process.cwd()+'/'+_conf;
-    }
-    _conf = _path.path(_conf,__dirname+'/');
-    // check config file
-    if (!_path.exist(_conf)){
-        _log.error('config file[%s] not exist!',_conf);
-        return;
-    }
-    // parse config file
-    _config.parse(_conf);
-    // no image optimat
-    if (!_config.get('OPT_IMAGE_FLAG')){
-        __doPublish(_result);
-        return;
-    }
-    // optimat images in /res/
-    var _shell = require('child_process'),
-        _cmd = require('util').format(
-            'nej-minimage -i=%s -o=%s -q=%s',
-            _config.get('DIR_STATIC'),
-            _config.get('DIR_STATIC'),
-            _config.get('OPT_IMAGE_QUALITY')
-        );
-    _log.info('exec image zip command [%s]',_cmd);
-    _shell.exec(_cmd,function(_err,_stdout,_stderr){
-        if (!!_stdout) _log.info(_stdout);
-        if (!!_stderr) _log.error(_stderr);
-        if (_err!=null){
-            _log.error('please install nej-minimage first. usage: npm install nej-minimage -g');
-        }else{
-            __doPublish(_result);
-        }
+        exports[key] = mdl;
     });
 };
+// export constructor
+// export api
+global(KLASS);
+global(API);
 /**
- * 清除日志
- * @return {Void}
+ *
  */
-exports.clear = function(){
-    _fs.rmdir(_config.get('DIR_TEMPORARY'));
-};;
+exports.deploy = function(){
+
+};
+/**
+ *
+ */
+exports.export = function(){
+
+};

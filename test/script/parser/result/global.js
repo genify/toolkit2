@@ -1,4 +1,4 @@
-I$(1,function(_p,_o,_f,_r){
+I$(1,function (_p,_o,_f,_r){
     var _extpro = Function.prototype;
     /**
      * AOP增强操作，增强操作接受一个输入参数包含以下信息
@@ -33,7 +33,7 @@ I$(1,function(_p,_o,_f,_r){
      *
      *  ```javascript
      *  var scope = {a:0};
-     *
+     * 
      *  var func = function(a,b){
      *      // 第一个参数 ：1
      *      console.log(a);
@@ -42,7 +42,7 @@ I$(1,function(_p,_o,_f,_r){
      *      // 当前this.a ： 0
      *      console.log(this.a);
      *  };
-     *
+     * 
      *  func._$bind(scope,"1")(2);
      *  ```
      *
@@ -69,7 +69,7 @@ I$(1,function(_p,_o,_f,_r){
      *
      *  ```javascript
      *  var scope = {a:0};
-     *
+     * 
      *  var func = function(a,b){
      *      // 第一个参数 ：2
      *      console.log(a);
@@ -78,7 +78,7 @@ I$(1,function(_p,_o,_f,_r){
      *      // 当前this.a ： 0
      *      console.log(this.a);
      *  };
-     *
+     * 
      *  func._$bind(scope,"1")(2);
      *  ```
      *
@@ -99,12 +99,12 @@ I$(1,function(_p,_o,_f,_r){
     // for compatiable
     var _extpro = String.prototype;
     if (!_extpro.trim){
-        _extpro.trim = (function(){
+         _extpro.trim = (function(){
             var _reg = /(?:^\s+)|(?:\s+$)/g;
             return function(){
                 return this.replace(_reg,'');
             };
-        })();
+         })();
     }
     if (!this.console){
         this.console = {
@@ -138,12 +138,12 @@ I$(1,function(_p,_o,_f,_r){
                     var _package = window;
                     for(var a=_namespace.split('.'),
                             l=a.length,i=(a[0]=='window')?1:0;i<l;
-                        _package=_package[a[i]]=_package[a[i]]||{},i++);
+                            _package=_package[a[i]]=_package[a[i]]||{},i++);
                     return  _package;
                 }
             }
         );
-
+        
         return NEJ;
     }
 

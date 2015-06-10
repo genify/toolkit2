@@ -248,7 +248,7 @@ describe('script/nej/util',function(){
             },
             {
                 uri:'base/element',
-                config:{nejRoot:'c:/nej/src/'},
+                config:{nejRoot:'c:\\nej\\src\\'},
                 result:{uri:'c:/nej/src/base/element.js'}
             },
             {

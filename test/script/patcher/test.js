@@ -46,7 +46,7 @@ describe('script/nej/patcher',function(){
         it('will be ok after parse',function(){
             patcher.parse({
                 platformName:'p',
-                nejRoot:'c:/nej/src/'
+                nejRoot:'c:\\nej\\src\\'
             });
             [
                 {uri:'c:/nej/src/base/config.js'},

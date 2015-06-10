@@ -1,18 +1,18 @@
 var should = require('should'),
+    path = require('../../../lib/util/path.js'),
+    dep = require('../../../lib/util/dependency.js'),
+    io  = require('../../../lib/util/io.js'),
     fs  = require('../../../lib/util/file.js'),
+    ut  = require('../../../lib/script/nej/util.js'),
     nej = require('../../../lib/script/nej.js');
 
 describe('script/nej',function(){
 
     describe('.try(file,content)',function(){
-        var prsConf = {
-            webRoot:__dirname+'/',
-            libRoot:__dirname+'/',
-            nejPlatform:'td|wk|gk',
-            params:{
-                lib:__dirname+'/'
-            }
-        };
+        ut.cacheConfig({
+            nejRoot:__dirname+'/../../cases/',
+            nejPlatform:'td|wk|gk'
+        });
         [
             {
                 file:'base/global.js',
@@ -52,12 +52,22 @@ describe('script/nej',function(){
             }
         ].forEach(function(config){
             it('should output '+config.result+' content for file input '+config.file,function(){
-                var file = __dirname+'/'+config.file;
-                var ret = nej.try(file,fs.read(file).join('\n'));
-                ret.parse(prsConf);
+                var file = path.normalize(__dirname+'/../../cases/'+config.file);
+                var ret = nej.try({
+                    file:file,
+                    content:fs.read(file).join('\n')
+                });
+                ret.should.be.an.instanceof(nej.Parser);
+                ret.parse({
+                    webRoot:__dirname
+                });
+                fs.write(__dirname+'/'+config.result,ret.stringify());
                 var code = (ret.stringify()||'').replace(/\s+/g,'');
                 var match = (fs.read(__dirname+'/'+config.result)||[]).join('\n').replace(/\s+/g,'');
                 code.should.be.eql(match);
+
+                fs.write(__dirname+'/dep.json',JSON.stringify(dep.dump(),null,4));
+                fs.write(__dirname+'/io.json',JSON.stringify(Object.keys(io.dump()).sort(),null,4));
             });
         });
     });

@@ -12,6 +12,7 @@ var KLASS = {
     RES_Html:'meta/html',
     RES_Style:'meta/style',
     RES_Script:'meta/script',
+    RES_Template:'meta/template',
     RES_Resource:'meta/resource',
     // resource explorer
     EXP_Style:'explorer/style',
@@ -19,7 +20,7 @@ var KLASS = {
     EXP_Template:'explorer/template',
     EXP_Explorer:'explorer/explorer',
     // resource adapter
-    ADP_Style:'adapter/style#Parser',
+    ADP_Style:'adapter/style',
     ADP_Script:'adapter/script',
     // resource parser
     PRS_Tag:'parser/tag#Parser',

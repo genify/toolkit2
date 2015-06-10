@@ -1,17 +1,17 @@
 var should = require('should'),
     fs  = require('../../../lib/util/file.js'),
-    css = require('../../../lib/adapter/style.js');
+    Parser = require('../../../lib/adapter/style.js');
 
 describe('adapter/style',function(){
 
-    var parser = new css.Parser({
+    var parser = new Parser({
         file:'c:/pro/a.css',
         content:fs.read(__dirname+'/a.css').join('\n')
     });
 
     describe('new Parser',function(){
         it('should instance of Parser',function(){
-            parser.should.be.an.instanceof(css.Parser);
+            parser.should.be.an.instanceof(Parser);
         });
     });
 

@@ -1,15 +1,15 @@
 .a{background:url(http://a.b.com/a.png);}
 .b{background:url(http://a.b.com/a.png);}
 .c{background:url(http://a.b.com/a.png);}
-.d{background:url(#<c:/pro/b.png>);}
-.e{background:url(#<c:/pro/b.png>);}
-.f{background:url(#<c:/pro/b.png>);}
-.g{background:url(#<c:/webapp/c.png>);}
-.h{background:url(#<c:/webapp/c.png>);}
-.i{background:url(#<c:/webapp/c.png>);}
+.d{background:url(#<c:/pro/b.png>#);}
+.e{background:url(#<c:/pro/b.png>#);}
+.f{background:url(#<c:/pro/b.png>#);}
+.g{background:url(#<c:/webapp/c.png>#);}
+.h{background:url(#<c:/webapp/c.png>#);}
+.i{background:url(#<c:/webapp/c.png>#);}
 .j{background:url(data:image/gif;base64,R0lGOD lhCwAOAMQfAP////7+/vj4+Hh4eHd3d/v7+/Dw8HV1dfLy8ubm5vX19e3t7fr 6+nl5edra2nZ2dnx8fMHBwYODg/b29np6eujo6JGRkeHh4eTk5LCwsN3d3dfX 13Jycp2dnevr6////yH5BAEAAB8ALAAAAAALAA4AAAVq4NFw1DNAX/o9imAsB tKpxKRd1+YEWUoIiUoiEWEAApIDMLGoRCyWiKThenkwDgeGMiggDLEXQkDoTh CKNLpQDgjeAsY7MHgECgx8YR8oHwNHfwADBACGh4EDA4iGAYAEBAcQIg0Dk gcEIQA7);}
 .k{background:url(data:image/gif;base64,R0lGOD lhCwAOAMQfAP////7+/vj4+Hh4eHd3d/v7+/Dw8HV1dfLy8ubm5vX19e3t7fr 6+nl5edra2nZ2dnx8fMHBwYODg/b29np6eujo6JGRkeHh4eTk5LCwsN3d3dfX 13Jycp2dnevr6////yH5BAEAAB8ALAAAAAALAA4AAAVq4NFw1DNAX/o9imAsB tKpxKRd1+YEWUoIiUoiEWEAApIDMLGoRCyWiKThenkwDgeGMiggDLEXQkDoTh CKNLpQDgjeAsY7MHgECgx8YR8oHwNHfwADBACGh4EDA4iGAYAEBAcQIg0Dk gcEIQA7);}
 .l{background:url(data:image/gif;base64,R0lGOD lhCwAOAMQfAP////7+/vj4+Hh4eHd3d/v7+/Dw8HV1dfLy8ubm5vX19e3t7fr 6+nl5edra2nZ2dnx8fMHBwYODg/b29np6eujo6JGRkeHh4eTk5LCwsN3d3dfX 13Jycp2dnevr6////yH5BAEAAB8ALAAAAAALAA4AAAVq4NFw1DNAX/o9imAsB tKpxKRd1+YEWUoIiUoiEWEAApIDMLGoRCyWiKThenkwDgeGMiggDLEXQkDoTh CKNLpQDgjeAsY7MHgECgx8YR8oHwNHfwADBACGh4EDA4iGAYAEBAcQIg0Dk gcEIQA7);}
 .x{background:url(http://a.b.com/a.png?v=1);}
-.y{background:url(#<c:/pro/b.png?t=2>);}
-.z{background:url(#<c:/webapp/c.png?i=567>);}
+.y{background:url(#<c:/pro/b.png?t=2>#);}
+.z{background:url(#<c:/webapp/c.png?i=567>#);}

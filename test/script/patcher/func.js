@@ -1,7 +1,7 @@
 function(_c,_e){
     var _localStorage;
     /*
-     * ³õÊ¼»¯±¾µØ´æ´¢ÏµÍ³
+     * åˆå§‹åŒ–æœ¬åœ°å­˜å‚¨ç³»ç»Ÿ
      * @return {Void}
      */
     var _doInitFlash = function(){
@@ -25,9 +25,9 @@ function(_c,_e){
         });
     };
     /**
-     * È¡»º´æĞÅÏ¢
-     * @param  {String} »º´æ±êÊ¶
-     * @return {String} »º´æĞÅÏ¢
+     * å–ç¼“å­˜ä¿¡æ¯
+     * @param  {String} ç¼“å­˜æ ‡è¯†
+     * @return {String} ç¼“å­˜ä¿¡æ¯
      */
     _h.__getItemInStorage = function(_key){
         if (!!_localStorage){
@@ -35,9 +35,9 @@ function(_c,_e){
         }
     };
     /**
-     * ÉèÖÃ»º´æĞÅÏ¢
-     * @param  {String} »º´æ±êÊ¶
-     * @param  {String} »º´æĞÅÏ¢
+     * è®¾ç½®ç¼“å­˜ä¿¡æ¯
+     * @param  {String} ç¼“å­˜æ ‡è¯†
+     * @param  {String} ç¼“å­˜ä¿¡æ¯
      * @return {Void}
      */
     _h.__setItemToStorage = function(_key,_value){
@@ -46,8 +46,8 @@ function(_c,_e){
         }
     };
     /**
-     * É¾³ı»º´æĞÅÏ¢
-     * @param  {String} »º´æ±êÊ¶
+     * åˆ é™¤ç¼“å­˜ä¿¡æ¯
+     * @param  {String} ç¼“å­˜æ ‡è¯†
      * @return {Void}
      */
     _h.__removeItemFromStorage = function(_key){
@@ -56,7 +56,7 @@ function(_c,_e){
         }
     };
     /**
-     * Çå³ı»º´æ
+     * æ¸…é™¤ç¼“å­˜
      * @return {Void}
      */
     _h.__clearStorage = function(){
@@ -65,15 +65,15 @@ function(_c,_e){
         }
     };
     /**
-     * ³õÊ¼»¯±¾µØ´æ´¢ÏµÍ³
+     * åˆå§‹åŒ–æœ¬åœ°å­˜å‚¨ç³»ç»Ÿ
      * @return {Void}
      */
     _h.__initStorage = function(){
         _doInitFlash();
     };
     /**
-     * ¼ì²â±¾µØ´æ´¢ÏµÍ³ÊÇ·ñ×¼±¸Íê±Ï
-     * @return {Boolean} ÊÇ·ñ×¼±¸Íê±Ï
+     * æ£€æµ‹æœ¬åœ°å­˜å‚¨ç³»ç»Ÿæ˜¯å¦å‡†å¤‡å®Œæ¯•
+     * @return {Boolean} æ˜¯å¦å‡†å¤‡å®Œæ¯•
      */
     _h.__isStorageReady = function(){
         return !!_localStorage;

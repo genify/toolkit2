@@ -5,129 +5,300 @@ var path = require('../../../lib/util/path.js'),
 describe('util/path',function(){
     
     describe('.normalize(path)',function(){
-        it('should return /a/c/d/e/ for /a/./b/../c//d\\e\\',function(){
-            path.normalize('/a/./b/../c//d\\e\\').should.equal('/a/c/d/e/');
-        });
-        it('should return c:/a/c/d/e/ for c:\\a/./b/../c//d\\e\\',function(){
-            path.normalize('c:\\a/./b/../c//d\\e\\').should.equal('c:/a/c/d/e/');
-        });
-        it('should return http://a.b.com/a/c/d/e/ for http://a.b.com/a/./b/../c//d\\e\\',function(){
-            path.normalize('http://a.b.com/a/./b/../c//d\\e\\').should.equal('http://a.b.com/a/c/d/e/');
-        });
-        it('should return https://a.b.com/a/c/d/e/ for https://a.b.com/a/./b/../c//d\\e\\',function(){
-            path.normalize('https://a.b.com/a/./b/../c//d\\e\\').should.equal('https://a.b.com/a/c/d/e/');
+        [
+            {
+                uri:'/a/./b/../c//d\\e\\',
+                result:'/a/c/d/e/'
+            },
+            {
+                uri:'c:\\a/./b/../c//d\\e\\',
+                result:'c:/a/c/d/e/'
+            },
+            {
+                uri:'http://a.b.com/a/./b/../c//d\\e\\',
+                result:'http://a.b.com/a/c/d/e/'
+            },
+            {
+                uri:'https://a.b.com/a/./b/../c//d\\e\\',
+                result:'https://a.b.com/a/c/d/e/'
+            }
+        ].forEach(function(config){
+            it('should return '+config.result+' for '+config.uri,function(){
+                path.normalize(config.uri).should.equal(config.result);
+            });
         });
     });
     
     describe('.absoluteURL(url,root)',function(){
-        it('should return http://a.b.com/c/ for http://a.b.com/c/ with root http://a.b.com/c/d/',function(){
-            path.absoluteURL('http://a.b.com/c/','http://a.b.com/c/d/').should.equal('http://a.b.com/c/');
-        });
-        it('should return http://a.b.com/c/d/a/b for ./a/b with root http://a.b.com/c/d/',function(){
-            path.absoluteURL('./a/b','http://a.b.com/c/d/').should.equal('http://a.b.com/c/d/a/b');
-        });
-        it('should return http://a.b.com/c/a/b for ../a/b with root http://a.b.com/c/d/',function(){
-            path.absoluteURL('../a/b','http://a.b.com/c/d/').should.equal('http://a.b.com/c/a/b');
-        });
-        it('should return http://a.b.com/a/b for /a/b with root http://a.b.com/c/d/',function(){
-            path.absoluteURL('/a/b','http://a.b.com/c/d/').should.equal('http://a.b.com/a/b');
-        });
-        it('should return http://a.b.com/a/b for /a/b with root http://a.b.com/',function(){
-            path.absoluteURL('/a/b','http://a.b.com/').should.equal('http://a.b.com/a/b');
-        });
-        it('should return http://a.b.com/a/b for ../../a/b with root http://a.b.com/',function(){
-            path.absoluteURL('../../a/b','http://a.b.com/').should.equal('http://a.b.com/a/b');
-        });
-        it('should return http://a.b.com:8090/a/b for a/b with root http://a.b.com:8090/',function(){
-            path.absoluteURL('a/b','http://a.b.com:8090/').should.equal('http://a.b.com:8090/a/b');
+        [
+            {
+                uri:'http://a.b.com/c/',
+                root:'http://a.b.com/c/d/',
+                result:'http://a.b.com/c/'
+            },
+            {
+                uri:'./a/b',
+                root:'http://a.b.com/c/d/',
+                result:'http://a.b.com/c/d/a/b'
+            },
+            {
+                uri:'../a/b',
+                root:'http://a.b.com/c/d/',
+                result:'http://a.b.com/c/a/b'
+            },
+            {
+                uri:'/a/b',
+                root:'http://a.b.com/c/d/',
+                result:'http://a.b.com/a/b'
+            },
+            {
+                uri:'/a/b',
+                root:'http://a.b.com/',
+                result:'http://a.b.com/a/b'
+            },
+            {
+                uri:'../../a/b',
+                root:'http://a.b.com/',
+                result:'http://a.b.com/a/b'
+            },
+            {
+                uri:'a/b',
+                root:'http://a.b.com:8090/',
+                result:'http://a.b.com:8090/a/b'
+            }
+        ].forEach(function(config){
+            it('should return '+config.result+' for '+config.uri+' with root '+config.root,function(){
+                path.absoluteURL(config.uri,config.root).should.equal(config.result);
+            });
         });
     });
     
     describe('.absolutePath(path,root)',function(){
-        it('should return /home/user/local/a/b for .//a/b with root /home/user/local/',function(){
-            path.absolutePath('.//a/b','/home/user/local/').should.equal('/home/user/local/a/b');
-        });
-        it('should return /a/b for /a/b with root /home/user/local/',function(){
-            path.absolutePath('/a/b','/home/user/local/').should.equal('/a/b');
-        });
-        it('should return /a/b for ../../../../../a/b with root /home/user/local/',function(){
-            path.absolutePath('../../../../../a/b','/home/user/local/').should.equal('/a/b');
-        });
-        it('should return /home/user/local/a/b for a/b with root /home/user/local/',function(){
-            path.absolutePath('a/b','/home/user/local/').should.equal('/home/user/local/a/b');
-        });
-        it('should return c:/a/b for c:/a/b with root c:/user/local/',function(){
-            path.absolutePath('c:/a/b','c:/user/local/').should.equal('c:/a/b');
-        });
-        it('should return c:/a/b for ../../../../../a/b with root c:/user/local/',function(){
-            path.absolutePath('../../../../../a/b','c:/user/local/').should.equal('c:/a/b');
-        });
-        it('should return c:/user/local/a/b for a/b with root c:/user/local/',function(){
-            path.absolutePath('a/b','c:/user/local/').should.equal('c:/user/local/a/b');
+        [
+            {
+                uri:'.//a/b',
+                root:'/home/user/local/',
+                result:'/home/user/local/a/b'
+            },
+            {
+                uri:'/a/b',
+                root:'/home/user/local/',
+                result:'/a/b'
+            },
+            {
+                uri:'../../../../../a/b',
+                root:'/home/user/local/',
+                result:'/a/b'
+            },
+            {
+                uri:'a/b',
+                root:'/home/user/local/',
+                result:'/home/user/local/a/b'
+            },
+            {
+                uri:'c:/a/b',
+                root:'c:/user/local/',
+                result:'c:/a/b'
+            },
+            {
+                uri:'../../../../../a/b',
+                root:'c:/user/local/',
+                result:'c:/a/b'
+            },
+            {
+                uri:'a/b',
+                root:'c:/user/local/',
+                result:'c:/user/local/a/b'
+            }
+        ].forEach(function(config){
+            it('should return '+config.result+' for '+config.uri+' with root '+config.root,function(){
+                path.absolutePath(config.uri,config.root).should.equal(config.result);
+            });
         });
     });
     
     describe('.absolute(file,root)',function(){
-        it('should return http://a.b.com/c/ for http://a.b.com/c/ with root http://a.b.com/c/d/',function(){
-            path.absolute('http://a.b.com/c/','http://a.b.com/c/d/').should.equal('http://a.b.com/c/');
-        });
-        it('should return http://a.b.com/c/d/a/b for ./a/b with root http://a.b.com/c/d/',function(){
-            path.absolute('./a/b','http://a.b.com/c/d/').should.equal('http://a.b.com/c/d/a/b');
-        });
-        it('should return http://a.b.com/c/a/b for ../a/b with root http://a.b.com/c/d/',function(){
-            path.absolute('../a/b','http://a.b.com/c/d/').should.equal('http://a.b.com/c/a/b');
-        });
-        it('should return http://a.b.com/a/b for /a/b with root http://a.b.com/c/d/',function(){
-            path.absolute('/a/b','http://a.b.com/c/d/').should.equal('http://a.b.com/a/b');
-        });
-        it('should return http://a.b.com/a/b for /a/b with root http://a.b.com/',function(){
-            path.absolute('/a/b','http://a.b.com/').should.equal('http://a.b.com/a/b');
-        });
-        it('should return http://a.b.com/a/b for ../../a/b with root http://a.b.com/',function(){
-            path.absolute('../../a/b','http://a.b.com/').should.equal('http://a.b.com/a/b');
-        });
-        it('should return http://a.b.com:8090/a/b for a/b with root http://a.b.com:8090/',function(){
-            path.absolute('a/b','http://a.b.com:8090/').should.equal('http://a.b.com:8090/a/b');
-        });
-        it('should return /home/user/local/a/b for .//a/b with root /home/user/local/',function(){
-            path.absolute('.//a/b','/home/user/local/').should.equal('/home/user/local/a/b');
-        });
-        it('should return /a/b for /a/b with root /home/user/local/',function(){
-            path.absolute('/a/b','/home/user/local/').should.equal('/a/b');
-        });
-        it('should return /a/b for ../../../../../a/b with root /home/user/local/',function(){
-            path.absolute('../../../../../a/b','/home/user/local/').should.equal('/a/b');
-        });
-        it('should return /home/user/local/a/b for a/b with root /home/user/local/',function(){
-            path.absolute('a/b','/home/user/local/').should.equal('/home/user/local/a/b');
-        });
-        it('should return c:/a/b for c:/a/b with root c:/user/local/',function(){
-            path.absolute('c:/a/b','c:/user/local/').should.equal('c:/a/b');
-        });
-        it('should return c:/a/b for ../../../../../a/b with root c:/user/local/',function(){
-            path.absolute('../../../../../a/b','c:/user/local/').should.equal('c:/a/b');
-        });
-        it('should return c:/user/local/a/b for a/b with root c:/user/local/',function(){
-            path.absolute('a/b','c:/user/local/').should.equal('c:/user/local/a/b');
+        [
+            {
+                uri:'http://a.b.com/c/',
+                root:'http://a.b.com/c/d/',
+                result:'http://a.b.com/c/'
+            },
+            {
+                uri:'./a/b',
+                root:'http://a.b.com/c/d/',
+                result:'http://a.b.com/c/d/a/b'
+            },
+            {
+                uri:'../a/b',
+                root:'http://a.b.com/c/d/',
+                result:'http://a.b.com/c/a/b'
+            },
+            {
+                uri:'/a/b',
+                root:'http://a.b.com/c/d/',
+                result:'http://a.b.com/a/b'
+            },
+            {
+                uri:'/a/b',
+                root:'http://a.b.com/',
+                result:'http://a.b.com/a/b'
+            },
+            {
+                uri:'../../a/b',
+                root:'http://a.b.com/',
+                result:'http://a.b.com/a/b'
+            },
+            {
+                uri:'a/b',
+                root:'http://a.b.com:8090/',
+                result:'http://a.b.com:8090/a/b'
+            },
+            {
+                uri:'.//a/b',
+                root:'/home/user/local/',
+                result:'/home/user/local/a/b'
+            },
+            {
+                uri:'/a/b',
+                root:'/home/user/local/',
+                result:'/a/b'
+            },
+            {
+                uri:'../../../../../a/b',
+                root:'/home/user/local/',
+                result:'/a/b'
+            },
+            {
+                uri:'a/b',
+                root:'/home/user/local/',
+                result:'/home/user/local/a/b'
+            },
+            {
+                uri:'c:/a/b',
+                root:'c:/user/local/',
+                result:'c:/a/b'
+            },
+            {
+                uri:'../../../../../a/b',
+                root:'c:/user/local/',
+                result:'c:/a/b'
+            },
+            {
+                uri:'a/b',
+                root:'c:/user/local/',
+                result:'c:/user/local/a/b'
+            }
+        ].forEach(function(config){
+            it('should return '+config.result+' for '+config.uri+' with root '+config.root,function(){
+                path.absolute(config.uri,config.root).should.equal(config.result);
+            });
         });
     });
-    
+
+    describe('.absoluteAltRoot(uri,pathRoot,webRoot)',function(){
+        [
+            {
+                uri:'../../../../../a/b',
+                pathRoot:'c:/user/local/',
+                webRoot:'/home/user/local/',
+                result:'c:/a/b'
+            },
+            {
+                uri:'./a/b',
+                pathRoot:'c:/user/local/',
+                webRoot:'/home/user/local/',
+                result:'c:/user/local/a/b'
+            },
+            {
+                uri:'a/b',
+                pathRoot:'c:/user/local/',
+                webRoot:'/home/user/local/',
+                result:'c:/user/local/a/b'
+            },
+            {
+                uri:'/a/b',
+                pathRoot:'c:/user/local/',
+                webRoot:'/home/user/local/',
+                result:'/home/user/local/a/b'
+            }
+        ].forEach(function(config){
+            it('should return '+config.result+' for '+config.uri+' with pathRoot '+config.pathRoot+' and webRoot '+config.webRoot,function(){
+                path.absoluteAltRoot(config.uri,config.pathRoot,config.webRoot).should.equal(config.result);
+            });
+        });
+    });
+
     describe('.isURL(url)',function(){
-        it('should return true when url is http://a.b.com/a/b',function(){
-            path.isURL('http://a.b.com/a/b').should.be.true;
-        });
-        it('should return true when url is https://a.b.com/a/b',function(){
-            path.isURL('https://a.b.com/a/b').should.be.true;
-        });
-        it('should return true when url is ftp://a.b.com/a/b',function(){
-            path.isURL('ftp://a.b.com/a/b').should.be.true;
-        });
-        it('should return false when url is /home/user/local/',function(){
-            path.isURL('/home/user/local/').should.be.false;
+        [
+            {
+                uri:'http://a.b.com/a/b',
+                result:true
+            },
+            {
+                uri:'https://a.b.com/a/b',
+                result:true
+            },
+            {
+                uri:'ftp://a.b.com/a/b',
+                result:true
+            },
+            {
+                uri:'/home/user/local/',
+                result:false
+            }
+        ].forEach(function(config){
+            it('should return '+config.result+' when url is '+config.uri,function(){
+                path.isURL(config.uri).should.equal(config.result);
+            });
         });
     });
 
+    describe('.wrapURI(uri)',function(){
+        [
+            {
+                uri:'c:/a/b/a.png',
+                result:'#<c:/a/b/a.png>#'
+            }
+        ].forEach(function(config){
+            it('should return '+config.result+' when uri is '+config.uri,function(){
+                path.wrapURI(config.uri).should.equal(config.result);
+            });
+        });
+    });
 
-
+    describe('.unwrapURI(uri,func)',function(){
+        [
+            {
+                uri:'#<c:/a/b/a.png>#',
+                result:'c:/a/b/a.png'
+            },
+            {
+                uri:'#<c:/a/b/a.png>#',
+                func:function(uri){
+                    return null;
+                },
+                result:'c:/a/b/a.png'
+            },
+            {
+                uri:'#<c:/a/b/a.png>#',
+                func:function(uri){
+                    return './a.png';
+                },
+                result:'./a.png'
+            },
+            {
+                uri:'#<c:/a/b/a.png># and #<c:/a/b/b.png># and #<c:/a/b/c.png>#',
+                func:function(uri){
+                    return uri.replace('c:/a','');
+                },
+                result:'/b/a.png and /b/b.png and /b/c.png'
+            }
+        ].forEach(function(config){
+            it('should return '+config.result+' when uri is '+config.uri,function(){
+                path.unwrapURI(config.uri,config.func).should.equal(config.result);
+            });
+        });
+    });
 
 });

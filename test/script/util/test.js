@@ -248,7 +248,7 @@ describe('script/nej/util',function(){
             },
             {
                 uri:'base/element',
-                config:{libRoot:'c:/nej/src/'},
+                config:{nejRoot:'c:/nej/src/'},
                 result:{uri:'c:/nej/src/base/element.js'}
             },
             {
@@ -301,7 +301,7 @@ describe('script/nej/util',function(){
         });
     });
 
-    describe('.formatArgs(uri,deps,func)',function(){
+    describe('.formatARG(uri,deps,func)',function(){
         [
             {
                 args:['/a/b.js',['/a/c.js','/d/e.js'],function(){}],
@@ -329,7 +329,7 @@ describe('script/nej/util',function(){
             }
         ].forEach(function(config){
             it('should return '+JSON.stringify(config.result)+' for '+JSON.stringify(config.args),function(){
-                var ret = util.formatArgs.apply(util,config.args);
+                var ret = util.formatARG.apply(util,config.args);
                 config.result.should.eql(ret);
             });
         });
@@ -340,17 +340,17 @@ describe('script/nej/util',function(){
             {
                 uri:'http://fed.hz.netease.com/nej2/src/define.js?pro=/src/javascript/&p=wk',
                 config:{webRoot:'c:/webapp/'},
-                result:{nejPlatform:'wk',libRoot:'http://fed.hz.netease.com/nej2/src/',params:{pro:'c:/webapp/src/javascript/',lib:'http://fed.hz.netease.com/nej2/src/'}}
+                result:{nejPlatform:'wk',nejRoot:'http://fed.hz.netease.com/nej2/src/',params:{pro:'c:/webapp/src/javascript/'}}
             },
             {
                 uri:'/src/javascript/nej/define.js?p=td|wk|gk',
                 config:{webRoot:'c:/webapp/',pathRoot:'c:/webapp/html/'},
-                result:{nejPlatform:'td|wk|gk',libRoot:'c:/webapp/src/javascript/nej/',params:{pro:'c:/webapp/src/javascript/',lib:'c:/webapp/src/javascript/nej/'}}
+                result:{nejPlatform:'td|wk|gk',nejRoot:'c:/webapp/src/javascript/nej/',params:{pro:'c:/webapp/src/javascript/'}}
             },
             {
                 uri:'/src/javascript/nej/define.js?d=./deps.js',
                 config:{webRoot:'c:/webapp/',pathRoot:__dirname+'/'},
-                result:{libRoot:'c:/webapp/src/javascript/nej/',params:{pro:'c:/webapp/src/javascript/',lib:'c:/webapp/src/javascript/nej/'},deps:{
+                result:{nejRoot:'c:/webapp/src/javascript/nej/',params:{pro:'c:/webapp/src/javascript/'},deps:{
                     'pro/a.js':['pro/b.js','pro/c.js'],
                     'pro/b.js':['pro/e.js','pro/f.js','pro/a/c/d.js'],
                     'pro/c.js':['pro/f.js'],
@@ -434,4 +434,90 @@ describe('script/nej/util',function(){
         });
     });
 
+    describe('.formatURI(uri)',function(){
+        [
+            {
+                uri:'a/b.js',
+                result:'a/b.js'
+            },
+            {
+                uri:{uri:'/a/b.js',plugin:'json'},
+                result:'json:/a/b.js'
+            }
+        ].forEach(function(config){
+            it('should return '+config.result+' for uri '+JSON.stringify(config.uri),function(){
+                var ret = util.formatURI(config.uri);
+                config.result.should.be.eql(ret);
+            });
+        });
+    });
+
+    describe('.cacheConfig(key,value)',function(){
+        [
+            {
+                key:'nejRoot',
+                value:'c:/nej/src/',
+                check:function(){
+                    'c:/nej/src/'.should.be.eql(util.getConfig('nejRoot'));
+                    'c:/nej/src/'.should.be.eql(util.getConfig('params').lib);
+                }
+            },
+            {
+                key:'nejRoot',
+                value:'d:/nej/',
+                check:function(){
+                    'c:/nej/src/'.should.be.eql(util.getConfig('nejRoot'));
+                    'c:/nej/src/'.should.be.eql(util.getConfig('params').lib);
+                }
+            },
+            {
+                key:'nejPlatform',
+                value:'wk|gk',
+                check:function(){
+                    'wk|gk'.should.be.eql(util.getConfig('nejPlatform'));
+                }
+            },
+            {
+                key:'nejPlatform',
+                value:'td',
+                check:function(){
+                    'wk|gk'.should.be.eql(util.getConfig('nejPlatform'));
+                }
+            },
+            {
+                key:'params',
+                value:{pro:'c:/webapp/src/javascript/'},
+                check:function(){
+                    'c:/webapp/src/javascript/'.should.be.eql(util.getConfig('params').pro);
+                }
+            },
+            {
+                key:'params',
+                value:{pro:'c:/webapp/javascript/',abc:'c:/com/'},
+                check:function(){
+                    'c:/webapp/javascript/'.should.be.eql(util.getConfig('params').pro);
+                    'c:/com/'.should.be.eql(util.getConfig('params').abc);
+                }
+            },
+            {
+                key:'nejProcessor',
+                value:null,
+                check:function(){
+                    util.getConfig('nejProcessor').should.have.properties('text','json');
+                }
+            },
+            {
+                key:'nejProcessor',
+                value:{rgl:function(){}},
+                check:function(){
+                    util.getConfig('nejProcessor').should.have.properties('text','json','rgl');
+                }
+            }
+        ].forEach(function(config){
+            it('should be ok for setting key '+config.key+' with value '+JSON.stringify(config.value),function(){
+                util.cacheConfig(config.key,config.value);
+                config.check();
+            });
+        });
+    });
 });

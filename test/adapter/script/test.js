@@ -66,7 +66,7 @@ describe('adapter/script',function(){
                 var parser = new Parser({
                     map:config.map,
                     code:codeMap,
-                    warn:function(event){
+                    debug:function(event){
                         console.log(event.message);
                     },
                     error:function(event){

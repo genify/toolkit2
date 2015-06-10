@@ -301,4 +301,13 @@ describe('util/path',function(){
         });
     });
 
+    describe('.uri2key(uri)',function(){
+        it('should generate unique key for uri',function(){
+            var ret1 = path.uri2key('a.js');
+            var ret2 = path.uri2key('a.js');
+            ret1.should.be.eql(ret2);
+            var ret3 = path.uri2key('c.js');
+            ret3.should.not.be.eql(ret2);
+        });
+    });
 });

@@ -4,32 +4,12 @@
         "e:/workspace/git/toolkit2/test/cases/base/global.js",
         "e:/workspace/git/toolkit2/test/cases/base/platform/util.patch.js"
     ],
-    "e:/workspace/git/toolkit2/test/cases/base/platform/util.js": [],
-    "e:/workspace/git/toolkit2/test/cases/base/platform/util.patch.js": [
-        "e:/workspace/git/toolkit2/test/cases/base/platform/util.js",
-        "e:/workspace/git/toolkit2/test/cases/base/platform.js"
-    ],
-    "e:/workspace/git/toolkit2/test/cases/base/platform.js": [
-        "e:/workspace/git/toolkit2/test/cases/base/global.js"
-    ],
     "e:/workspace/git/toolkit2/test/cases/base/chain.js": [
         "e:/workspace/git/toolkit2/test/cases/base/util.js"
-    ],
-    "e:/workspace/git/toolkit2/test/cases/base/util.js": [
-        "e:/workspace/git/toolkit2/test/cases/base/global.js",
-        "e:/workspace/git/toolkit2/test/cases/base/platform/util.patch.js"
     ],
     "e:/workspace/git/toolkit2/test/cases/base/config.js": [
         "e:/workspace/git/toolkit2/test/cases/base/global.js",
         "e:/workspace/git/toolkit2/test/cases/base/platform/config.patch.js"
-    ],
-    "e:/workspace/git/toolkit2/test/cases/base/platform/config.js": [
-        "e:/workspace/git/toolkit2/test/cases/base/global.js",
-        "e:/workspace/git/toolkit2/test/cases/base/util.js"
-    ],
-    "e:/workspace/git/toolkit2/test/cases/base/platform/config.patch.js": [
-        "e:/workspace/git/toolkit2/test/cases/base/platform/config.js",
-        "e:/workspace/git/toolkit2/test/cases/base/platform.js"
     ],
     "e:/workspace/git/toolkit2/test/cases/base/constant.js": [
         "e:/workspace/git/toolkit2/test/cases/base/global.js",
@@ -50,10 +30,42 @@
         "e:/workspace/git/toolkit2/test/cases/base/chain.js",
         "e:/workspace/git/toolkit2/test/cases/base/platform/event.patch.js"
     ],
+    "e:/workspace/git/toolkit2/test/cases/base/platform.js": [
+        "e:/workspace/git/toolkit2/test/cases/base/global.js"
+    ],
+    "e:/workspace/git/toolkit2/test/cases/base/util.js": [
+        "e:/workspace/git/toolkit2/test/cases/base/global.js",
+        "e:/workspace/git/toolkit2/test/cases/base/platform/util.patch.js"
+    ],
+    "e:/workspace/git/toolkit2/test/cases/base/platform/util.js": [],
+    "e:/workspace/git/toolkit2/test/cases/base/platform/config.js": [
+        "e:/workspace/git/toolkit2/test/cases/base/global.js",
+        "e:/workspace/git/toolkit2/test/cases/base/util.js"
+    ],
+    "e:/workspace/git/toolkit2/test/cases/base/platform/util.patch.js": [
+        "e:/workspace/git/toolkit2/test/cases/base/platform/util.js",
+        "e:/workspace/git/toolkit2/test/cases/base/platform.js"
+    ],
+    "e:/workspace/git/toolkit2/test/cases/base/platform/config.patch.js": [
+        "e:/workspace/git/toolkit2/test/cases/base/platform/config.js",
+        "e:/workspace/git/toolkit2/test/cases/base/platform.js"
+    ],
+    "e:/workspace/git/toolkit2/test/cases/base/platform/element.js": [
+        "e:/workspace/git/toolkit2/test/cases/base/util.js",
+        "e:/workspace/git/toolkit2/test/cases/base/platform.js"
+    ],
+    "e:/workspace/git/toolkit2/test/cases/base/platform/event.js": [
+        "e:/workspace/git/toolkit2/test/cases/base/util.js",
+        "e:/workspace/git/toolkit2/test/cases/base/platform.js"
+    ],
     "e:/workspace/git/toolkit2/test/cases/base/platform/element.patch.js": [
-        "e:/workspace/git/toolkit2/test/cases/base/platform/element.js"
+        "e:/workspace/git/toolkit2/test/cases/base/platform/element.js",
+        "e:/workspace/git/toolkit2/test/cases/base/platform.js",
+        "e:/workspace/git/toolkit2/test/cases/base/util.js"
     ],
     "e:/workspace/git/toolkit2/test/cases/base/platform/event.patch.js": [
-        "e:/workspace/git/toolkit2/test/cases/base/platform/event.js"
+        "e:/workspace/git/toolkit2/test/cases/base/platform.js",
+        "e:/workspace/git/toolkit2/test/cases/base/platform/event.js",
+        "e:/workspace/git/toolkit2/test/cases/base/util.js"
     ]
 }

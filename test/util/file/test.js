@@ -41,6 +41,37 @@ describe('util/file',function(){
         });
     });
 
+    describe('.readAsync(file,charset)',function(){
+        it('should return null when file not exist',function(){
+            var file = root+'abc.txt';
+            fs.exist(file).should.be.false;
+            fs.readAsync(file,function(content){
+                (content==null).should.be.true;
+            });
+        });
+        it('should return null when charset not support',function(){
+            fs.readAsync(root+'a.txt',function(content){
+                (content==null).should.be.true;
+            },'abc');
+        });
+        it('should be ok when file charset is utf-8',function(done){
+            fs.readAsync(root+'a.txt',function(list){
+                list[0].should.equal('aaaaa');
+                list[1].should.equal('中文');
+                //console.log(list);
+                done();
+            });
+        });
+        it('should be ok when file charset is gbk',function(done){
+            fs.readAsync(root+'a.gbk.txt',function(list){
+                list[0].should.equal('aaaaa');
+                list[1].should.equal('中文');
+                //console.log(list);
+                done();
+            },'gbk');
+        });
+    });
+
     describe('.write(file,content,charset)',function(){
         var file = root+'out.txt';
         var content = 'aabb中文';
@@ -58,7 +89,15 @@ describe('util/file',function(){
             fs.rm(file);
         });
     });
-    
+
+    describe('.writeAsync(file,content,charset)',function(){
+        var file = root+'out.txt';
+        var content = 'aabb中文';
+        it('should throw an exception when charset not support',function(){
+            (function(){fs.writeAsync(file,content,'abc');}).should.throw();
+        });
+    });
+
     describe('.copy(src,dst,logger)',function(){
         it('should throw an exception when source not exist',function(){
             (function(){fs.copy(root+'x.js',root+'y.js');}).should.throw();

@@ -1,112 +1,59 @@
 {
     "e:/workspace/git/toolkit2/test/cases/base/global.js": [],
     "e:/workspace/git/toolkit2/test/cases/base/klass.js": [
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/global.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/platform/util.js",
-            "patch": "e:/workspace/git/toolkit2/test/cases/base/platform/util.patch.js"
-        }
+        "e:/workspace/git/toolkit2/test/cases/base/global.js",
+        "e:/workspace/git/toolkit2/test/cases/base/platform/util.patch.js"
     ],
     "e:/workspace/git/toolkit2/test/cases/base/platform/util.js": [],
     "e:/workspace/git/toolkit2/test/cases/base/platform/util.patch.js": [
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/platform/util.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/platform.js"
-        }
+        "e:/workspace/git/toolkit2/test/cases/base/platform/util.js",
+        "e:/workspace/git/toolkit2/test/cases/base/platform.js"
     ],
     "e:/workspace/git/toolkit2/test/cases/base/platform.js": [
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/global.js"
-        }
+        "e:/workspace/git/toolkit2/test/cases/base/global.js"
     ],
     "e:/workspace/git/toolkit2/test/cases/base/chain.js": [
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/util.js"
-        }
+        "e:/workspace/git/toolkit2/test/cases/base/util.js"
     ],
     "e:/workspace/git/toolkit2/test/cases/base/util.js": [
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/global.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/platform/util.js",
-            "patch": "e:/workspace/git/toolkit2/test/cases/base/platform/util.patch.js"
-        }
+        "e:/workspace/git/toolkit2/test/cases/base/global.js",
+        "e:/workspace/git/toolkit2/test/cases/base/platform/util.patch.js"
     ],
     "e:/workspace/git/toolkit2/test/cases/base/config.js": [
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/global.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/platform/config.js",
-            "patch": "e:/workspace/git/toolkit2/test/cases/base/platform/config.patch.js"
-        }
+        "e:/workspace/git/toolkit2/test/cases/base/global.js",
+        "e:/workspace/git/toolkit2/test/cases/base/platform/config.patch.js"
     ],
     "e:/workspace/git/toolkit2/test/cases/base/platform/config.js": [
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/global.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/util.js"
-        }
+        "e:/workspace/git/toolkit2/test/cases/base/global.js",
+        "e:/workspace/git/toolkit2/test/cases/base/util.js"
     ],
     "e:/workspace/git/toolkit2/test/cases/base/platform/config.patch.js": [
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/platform/config.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/platform.js"
-        }
+        "e:/workspace/git/toolkit2/test/cases/base/platform/config.js",
+        "e:/workspace/git/toolkit2/test/cases/base/platform.js"
     ],
     "e:/workspace/git/toolkit2/test/cases/base/constant.js": [
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/global.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/config.js"
-        }
+        "e:/workspace/git/toolkit2/test/cases/base/global.js",
+        "e:/workspace/git/toolkit2/test/cases/base/config.js"
     ],
     "e:/workspace/git/toolkit2/test/cases/base/element.js": [
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/global.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/constant.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/util.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/event.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/chain.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/platform/element.js",
-            "patch": "e:/workspace/git/toolkit2/test/cases/base/platform/element.patch.js"
-        }
+        "e:/workspace/git/toolkit2/test/cases/base/global.js",
+        "e:/workspace/git/toolkit2/test/cases/base/constant.js",
+        "e:/workspace/git/toolkit2/test/cases/base/util.js",
+        "e:/workspace/git/toolkit2/test/cases/base/event.js",
+        "e:/workspace/git/toolkit2/test/cases/base/chain.js",
+        "e:/workspace/git/toolkit2/test/cases/base/platform/element.patch.js"
     ],
     "e:/workspace/git/toolkit2/test/cases/base/event.js": [
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/global.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/element.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/util.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/chain.js"
-        },
-        {
-            "uri": "e:/workspace/git/toolkit2/test/cases/base/platform/event.js",
-            "patch": "e:/workspace/git/toolkit2/test/cases/base/platform/event.patch.js"
-        }
+        "e:/workspace/git/toolkit2/test/cases/base/global.js",
+        "e:/workspace/git/toolkit2/test/cases/base/element.js",
+        "e:/workspace/git/toolkit2/test/cases/base/util.js",
+        "e:/workspace/git/toolkit2/test/cases/base/chain.js",
+        "e:/workspace/git/toolkit2/test/cases/base/platform/event.patch.js"
+    ],
+    "e:/workspace/git/toolkit2/test/cases/base/platform/element.patch.js": [
+        "e:/workspace/git/toolkit2/test/cases/base/platform/element.js"
+    ],
+    "e:/workspace/git/toolkit2/test/cases/base/platform/event.patch.js": [
+        "e:/workspace/git/toolkit2/test/cases/base/platform/event.js"
     ]
 }

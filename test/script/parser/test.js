@@ -65,7 +65,7 @@ describe('script/nej',function(){
                 var code = (ret.stringify()||'').replace(/\s+/g,'');
                 var match = (fs.read(__dirname+'/'+config.result)||[]).join('\n').replace(/\s+/g,'');
                 code.should.be.eql(match);
-
+                ut.formatDependencies();
                 fs.write(__dirname+'/dep.json',JSON.stringify(dep.dump(),null,4));
                 fs.write(__dirname+'/io.json',JSON.stringify(Object.keys(io.dump()).sort(),null,4));
             });

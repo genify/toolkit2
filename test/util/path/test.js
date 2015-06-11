@@ -258,11 +258,26 @@ describe('util/path',function(){
         [
             {
                 uri:'c:/a/b/a.png',
-                result:'#<c:/a/b/a.png>#'
+                result:'#<rs+c:/a/b/a.png>#'
+            },
+            {
+                uri:'c:/a/b/a.css',
+                type:'cs',
+                result:'#<cs+c:/a/b/a.css>#'
+            },
+            {
+                uri:'c:/a/b/a.js',
+                type:'js',
+                result:'#<js+c:/a/b/a.js>#'
+            },
+            {
+                uri:'c:/a/b/',
+                type:'ph',
+                result:'#<ph+c:/a/b/>#'
             }
         ].forEach(function(config){
-            it('should return '+config.result+' when uri is '+config.uri,function(){
-                path.wrapURI(config.uri).should.equal(config.result);
+            it('should return '+config.result+' when uri is '+config.uri+' and type is '+config.type,function(){
+                path.wrapURI(config.type,config.uri).should.equal(config.result);
             });
         });
     });
@@ -270,29 +285,29 @@ describe('util/path',function(){
     describe('.unwrapURI(uri,func)',function(){
         [
             {
-                uri:'#<c:/a/b/a.png>#',
+                uri:'#<rs+c:/a/b/a.png>#',
                 result:'c:/a/b/a.png'
             },
             {
-                uri:'#<c:/a/b/a.png>#',
-                func:function(uri){
+                uri:'#<rs+c:/a/b/a.png>#',
+                func:function(type,uri){
                     return null;
                 },
                 result:'c:/a/b/a.png'
             },
             {
-                uri:'#<c:/a/b/a.png>#',
-                func:function(uri){
+                uri:'#<rs+c:/a/b/a.png>#',
+                func:function(type,uri){
                     return './a.png';
                 },
                 result:'./a.png'
             },
             {
-                uri:'#<c:/a/b/a.png># and #<c:/a/b/b.png># and #<c:/a/b/c.png>#',
-                func:function(uri){
-                    return uri.replace('c:/a','');
+                uri:'#<rs+c:/a/b/a># and #<cs+c:/a/b/b># and #<js+c:/a/b/c>#',
+                func:function(type,uri){
+                    return uri.replace('c:/a','')+'.'+type;
                 },
-                result:'/b/a.png and /b/b.png and /b/c.png'
+                result:'/b/a.rs and /b/b.cs and /b/c.js'
             }
         ].forEach(function(config){
             it('should return '+config.result+' when uri is '+config.uri,function(){

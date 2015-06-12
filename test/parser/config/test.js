@@ -20,7 +20,7 @@ describe('parser/config',function(){
            (parser.get('NEJ_DIR')==null).should.be.true;
             parser.get('NEJ_PLATFORM').should.equal('');
             parser.get('NEJ_REGULAR').should.equal('regularjs');
-            parser.get('NEJ_PROCESSOR').should.have.properties('text','json','regular','rgl');
+            parser.get('NEJ_PROCESSOR').should.have.properties('regular','rgl');
             
             parser.get('OPT_IMAGE_FLAG').should.be.false;
             parser.get('OPT_IMAGE_QUALITY').should.equal(100);
@@ -61,15 +61,20 @@ describe('parser/config',function(){
             parser.get('CORE_FREQUENCY_JS').should.eql(2);
             parser.get('CORE_FREQUENCY_CS').should.eql(2);
             parser.get('CORE_IGNORE_ENTRY').should.be.false;
+            parser.get('CORE_MERGE_FLAG').should.equal(0);
 
+            parser.get('WRP_INLINE_SOURCE').should.equal('%s');
+            parser.get('WRP_INLINE_CS').should.equal('<textarea name="css">%s</textarea>');
+            parser.get('WRP_EXLINE_CS').should.equal('<textarea name="css" data-src="%s"></textarea>');
+            parser.get('WRP_INLINE_JS').should.equal('<textarea name="js">%s</textarea>');
+            parser.get('WRP_EXLINE_JS').should.equal('<textarea name="js" data-src="%s"></textarea>');
+            parser.get('WRP_INLINE_TP').should.equal('<textarea id="%s" name="%s">%s</textarea>');
 
             parser.get('X_NOCOMPRESS').should.be.false;
             parser.get('X_KEEP_COMMENT').should.be.false;
             parser.get('X_NOPARSE_FLAG').should.equal(0);
-            parser.get('X_NOCORE_FLAG').should.equal(0);
             parser.get('X_AUTO_EXLINK_PATH').should.be.false;
            (parser.get('X_AUTO_EXLINK_PREFIX')==null).should.be.true;
-            parser.get('X_INSERT_WRAPPER').should.equal('%s');
             parser.get('X_RELEASE_MODE').should.equal('online');
             parser.get('X_LOGGER_LEVEL').should.equal('ALL');
         };
@@ -253,20 +258,20 @@ describe('parser/config',function(){
                     X_NOCORE_STYLE:true
                 }
             });
-            parser.get('X_NOCORE_FLAG').should.equal(1);
+            parser.get('CORE_MERGE_FLAG').should.equal(1);
             var parser = new Parser({
                 config:{
                     X_NOCORE_SCRIPT:true
                 }
             });
-            parser.get('X_NOCORE_FLAG').should.equal(2);
+            parser.get('CORE_MERGE_FLAG').should.equal(2);
             var parser = new Parser({
                 config:{
                     X_NOCORE_STYLE:true,
                     X_NOCORE_SCRIPT:true
                 }
             });
-            parser.get('X_NOCORE_FLAG').should.equal(3);
+            parser.get('CORE_MERGE_FLAG').should.equal(3);
         });
         it('should compatible with X_MODULE_WRAPPER/X_SCRIPT_WRAPPER',function(){
             var parser = new Parser({
@@ -274,13 +279,13 @@ describe('parser/config',function(){
                     X_MODULE_WRAPPER:'<#noparse>%s</#noparse>'
                 }
             });
-            parser.get('X_INSERT_WRAPPER').should.equal('<#noparse>%s</#noparse>');
+            parser.get('WRP_INLINE_SOURCE').should.equal('<#noparse>%s</#noparse>');
             var parser = new Parser({
                 config:{
                     X_SCRIPT_WRAPPER:'<#noparse>%s</#noparse>'
                 }
             });
-            parser.get('X_INSERT_WRAPPER').should.equal('<#noparse>%s</#noparse>');
+            parser.get('WRP_INLINE_SOURCE').should.equal('<#noparse>%s</#noparse>');
         });
     });
 });

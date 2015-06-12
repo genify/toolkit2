@@ -25,11 +25,12 @@ describe('parser/config',function(){
             parser.get('OPT_IMAGE_FLAG').should.be.false;
             parser.get('OPT_IMAGE_QUALITY').should.equal(100);
            (parser.get('OPT_IMAGE_SPRITE')==null).should.be.true;
-            
+
+           (parser.get('MANIFEST_ROOT')==null).should.be.true;
            (parser.get('MANIFEST_OUTPUT')==null).should.be.true;
            (parser.get('MANIFEST_TEMPLATE')==null).should.be.true;
            (parser.get('MANIFEST_FILTER')==null).should.be.true;
-           
+
             parser.get('ALIAS_DICTIONARY').should.eql({});
             '${abc}'.should.match(parser.get('ALIAS_MATCH'));
             '{abc}'.should.not.match(parser.get('ALIAS_MATCH'));
@@ -44,7 +45,6 @@ describe('parser/config',function(){
             parser.get('DM_STATIC_RS').should.eql([]);
             parser.get('DM_STATIC_CS').should.eql([]);
             parser.get('DM_STATIC_JS').should.eql([]);
-            parser.get('DM_STATIC_MF').should.eql([]);
            (parser.get('DM_STATIC_MR')==null).should.be.true;
             
             parser.get('OBF_LEVEL').should.equal(3);
@@ -286,6 +286,14 @@ describe('parser/config',function(){
                 }
             });
             parser.get('WRP_INLINE_SOURCE').should.equal('<#noparse>%s</#noparse>');
+        });
+        it('should compatible with DM_STATIC_MF',function(){
+            var parser = new Parser({
+                config:{
+                    DM_STATIC_MF:'/pub/'
+                }
+            });
+            parser.get('MANIFEST_ROOT').should.equal('/pub/');
         });
     });
 });

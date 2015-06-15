@@ -1,0 +1,1 @@
+I$(35,function(_k,_e,_l,_m,_p,_pro){_p._$$ModuleAccountEdu=_k._$klass();_pro=_p._$$ModuleAccountEdu._$extend(_m._$$Module);_pro.__doBuild=function(){this.__body=_e._$html2node(_l._$getTextTemplate("module-id-d"))};_m._$regist("setting-edu",_p._$$ModuleAccountEdu)},15,16,17,19);

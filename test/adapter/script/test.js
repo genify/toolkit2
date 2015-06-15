@@ -53,7 +53,7 @@ describe('adapter/script',function(){
                 }
             },
             {
-                map:{'c.js':['c1.js','b2.js']},
+                map:{'c.js':['a3.js']},
                 config:{dropconsole:true},
                 result:function(ret){
                     ret.should.have.property('code');

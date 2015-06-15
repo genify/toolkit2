@@ -1,1 +1,0 @@
-I$(6,function(){document.mbody="module-id-0";NEJ.P("nej.e")._$testByTemplate("template-box")},3);

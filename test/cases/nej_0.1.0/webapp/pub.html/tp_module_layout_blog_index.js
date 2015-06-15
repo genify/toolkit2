@@ -1,1 +1,0 @@
-I$(18,function(_k,_e,_l,_m,_p,_pro){_p._$$ModuleLayoutBlog=_k._$klass();_pro=_p._$$ModuleLayoutBlog._$extend(_m._$$Module);_pro.__doBuild=function(){this.__body=_e._$html2node(_l._$getTextTemplate("module-id-l1"));var _list=_e._$getByClassName(this.__body,"j-flag");this.__export={tab:_list[0],parent:_list[1]}};_m._$regist("layout-blog",_p._$$ModuleLayoutBlog)},3,4,6,7);

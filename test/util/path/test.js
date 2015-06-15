@@ -21,6 +21,10 @@ describe('util/path',function(){
             {
                 uri:'https://a.b.com/a/./b/../c//d\\e\\',
                 result:'https://a.b.com/a/c/d/e/'
+            },
+            {
+                uri:'',
+                result:'./'
             }
         ].forEach(function(config){
             it('should return '+config.result+' for '+config.uri,function(){
@@ -258,7 +262,7 @@ describe('util/path',function(){
         [
             {
                 uri:'c:/a/b/a.png',
-                result:'#<rs+c:/a/b/a.png>#'
+                result:'#<+c:/a/b/a.png>#'
             },
             {
                 uri:'c:/a/b/a.css',

@@ -14,7 +14,17 @@ describe('script/nej',function(){
             nejPlatform:'td|wk|gk'
         });
 
+        it('should ok for not nej script',function(){
+            var file = path.normalize(__dirname+'/3rd.json.js');
+            var ret = nej.try({
+                file:file,
+                content:fs.read(file).join('\n')
+            });
+            (ret==null).should.be.true;
+        });
+
         it('should be ok after file parser',function(done){
+            this.timeout(20000);
             [
                 {
                     file:'base/global.js',
@@ -81,5 +91,6 @@ describe('script/nej',function(){
         });
 
     });
+
 
 });

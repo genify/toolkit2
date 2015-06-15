@@ -1,0 +1,26 @@
+<meta charset="utf-8"/>
+<textarea name="txt" id="module-id-6">
+  <div class="f-cb w-lyx mdl-4">
+    <div class="lyr fr">
+      <div class="w-blk">
+        <h4 class="ytl">温馨提示</h4>
+        <p class="ybx">标签是由用户定义的、概括文章内容的关键词，比日志分类更准确、更具体。经常使用标签，可以让读者更加方便地找到感兴趣的文章。</p>
+      </div>
+    </div>
+    <div class="lym f-cb j-flag"></div>
+  </div>
+</textarea>
+<textarea name="jst" id="jst-6-tag-list">
+  {list beg..end as y}
+    {var x=xlist[y]}
+    <div class="fl it">
+      <a href="#/blog/?tid=${x.id}">${x.tagName}</a>
+      <span class="sp">(${x.blogCount})</span>
+      <a class="up" href="#">修改</a>
+    </div>
+  {/list}
+</textarea>
+<!-- @TEMPLATE -->
+<textarea name="css" data-src="./index.css"></textarea>
+<textarea name="js"  data-src="./index.js"></textarea>
+<!-- /@TEMPLATE -->

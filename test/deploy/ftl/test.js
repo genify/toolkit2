@@ -6,7 +6,7 @@ describe('deploy',function(){
     it('should be ok for deploy project with template',function(done){
         this.timeout(20000);
         new Processor({
-            file:__dirname+'/release.ftl.conf',
+            file:__dirname+'/release.conf',
             done:function(){
                 done();
             }

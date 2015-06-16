@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8"/>
     <title>NEJ Module Sample - 前端实例</title>
-    <link href="../css/template.css" rel="stylesheet" type="text/css"/>
-    <link href="../css/app.css" rel="stylesheet" type="text/css"/>
+    <link href="${css_root}template.css" rel="stylesheet" type="text/css"/>
+    <link href="${css_root}app.css" rel="stylesheet" type="text/css"/>
   </head>
   <body id="www-wd-com">
   
@@ -47,14 +47,14 @@
     </div>
     
     <!-- @IGNORE -->
-    <script src="../javascript/cache/tag.data.js"></script>
-    <script src="../javascript/cache/blog.data.js"></script>
+    <script src="/src/javascript/cache/tag.data.js"></script>
+    <script src="/src/javascript/cache/blog.data.js"></script>
     <!-- /@IGNORE -->
     
     <!-- @VERSION -->
-    <script>location.config={root:'./'};</script>
+    <script>location.config={root:'/src/html/'};</script>
 
-    <script src="http://fed.hz.netease.com/git/nej2/src/define.js"></script>
-    <script src="../javascript/page/app.js"></script>
+    <script src="${lib_root}define.js?pro=${pro_root}"></script>
+    <script src="${pro_root}page/app.js"></script>
   </body>
 </html>

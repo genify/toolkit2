@@ -1,0 +1,47 @@
+{
+  "/?/tab/":"module/tab/index.html",
+  "/?/blog/tab/":"module/blog.html",
+  "/?/blog/box/":"module/blog.html",
+  "/?/blog/tag/":"module/blog.html",
+  "/?/blog/list/":"module/blog.html",
+  "/?/setting/tab/":"module/setting.html",
+  "/?/setting/account/tab/":"module/setting.html",
+
+  "/m":{
+    "module":"module/layout.html",
+    "composite":{
+      "tab":"/?/tab/"
+    }
+  },
+  "/m/blog":{
+    "module":"module/layout.html",
+    "composite":{
+      "tab":"/?/blog/tab/"
+    }
+  },
+  "/m/blog/list/":{
+    "module":"module/layout.html",
+    "composite":{
+      "box":"/?/blog/box/",
+      "tag":"/?/blog/tag/",
+      "list":"/?/blog/list/"
+    }
+  },
+  "/m/blog/tag/":"module/blog.html",
+
+  "/m/setting":{
+    "module":"module/layout.html",
+    "composite":{
+      "tab":"/?/setting/tab/"
+    }
+  },
+  "/m/setting/account":{
+    "module":"module/layout.html",
+    "composite":{
+      "tab":"/?/setting/account/tab/"
+    }
+  },
+  "/m/setting/account/":"module/setting.html",
+  "/m/setting/account/edu/":"module/setting.html",
+  "/m/setting/permission/":"module/setting.html"
+}

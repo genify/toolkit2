@@ -1,0 +1,48 @@
+{
+  "/?/tab/":"module/tab/index.html",
+  "/?/blog/tab/":"module/blog/tab/index.html",
+  "/?/blog/box/":"module/blog/list.box/index.html",
+  "/?/blog/tag/":"module/blog/list.tag/index.html",
+  "/?/blog/list/":"module/blog/list/index.html",
+  "/?/setting/tab/":"module/setting/tab/index.html",
+  "/?/setting/account/tab/":"module/setting/account.tab/index.html",
+
+  "/m":{
+    "module":"module/layout/system/index.html",
+    "composite":{
+      "tab":"/?/tab/"
+    }
+  },
+  "/m/blog":{
+    "module":"module/layout/blog/index.html",
+    "composite":{
+      "tab":"/?/blog/tab/"
+    }
+  },
+  "/m/blog/list/":{
+    "module":"module/layout/blog.list/index.html",
+    "composite":{
+      "box":"/?/blog/box/",
+      "tag":"/?/blog/tag/",
+      "list":"/?/blog/list/"
+    }
+  },
+  "/m/blog/tag/":"module/blog/tag/index.html",
+
+  "/m/setting":{
+    "module":"module/layout/setting/index.html",
+    "composite":{
+      "tab":"/?/setting/tab/"
+    }
+  },
+  "/m/setting/account":{
+    "module":"module/layout/setting.account/index.html",
+    "composite":{
+      "tab":"/?/setting/account/tab/"
+    }
+  },
+  "/m/setting/account/":"module/setting/profile/index.html",
+  "/m/setting/account/edu/":"module/setting/edu/index.html",
+  "/m/setting/permission/":"module/setting/permission/index.html",
+  "/m/setting/tag/":"module/blog/tag/index.html"
+}

@@ -13,7 +13,11 @@
         <h1 class="m-logo">网易-杭研院-前端技术组-实例库</h1>
         <h2 class="m-title">NEJ Module Sample</h2>
     </div>
-    <div class="g-bd" id="module-box"></div>
+    <div class="g-bd" id="module-box">
+        <a href="/src/html/app.html">link</a>
+        <div data-href="/src/html/link.html">xxxx</div>
+        <a data-html="/src/html/notexist.html">link</a>
+    </div>
     <div class="g-bd">
         <div class="m-foot">
             如有任何问题，请联系：蔡剑飞(<a href="mailto:caijf@corp.netease.com">caijf@corp.netease.com</a>)

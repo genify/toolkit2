@@ -26,7 +26,7 @@
     </div>
 </div>
 
-
+<script src="/src/javascript/widget.js"></script>
 <script src="http://fed.hz.netease.com/git/nej2/src/define.js"></script>
 <script src="/src/javascript/page/app2.js"></script>
 </body>

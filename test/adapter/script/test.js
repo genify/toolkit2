@@ -16,9 +16,10 @@ describe('adapter/script',function(){
 
     describe('.parse(config)',function(){
         var codeMap = {
-            'a1.js':'(function(x,y){var a=1111;})();if (DEBUG){dosomething(1);}',
-            'a2.js':'(function(z){var b=22222;})();',
+            'a1.js':'(function(x,y){var a=1111;console.log(a);})();if (DEBUG){dosomething(1);}',
+            'a2.js':'(function(z){var b=22222;console.log(b);})();',
             'a3.js':fs.read(__dirname+'/../../cases/base/global.js').join('\n'),
+            'a4.js':fs.read(__dirname+'/../../cases/base/platform/element.js').join('\n'),
             'b1.js':'var c="ccc";if (CMPT){dosomething2(1);}',
             'b2.js':'var d="ddddd";',
             'c1.js':'var a;console.log(1);var b;',
@@ -26,16 +27,14 @@ describe('adapter/script',function(){
         };
         [
             {
-                map:{'a.js':['error.js','a1.js','a2.js','error.js','b1.js','b2.js']},
+                map:{'1.js':['error.js','a1.js','a2.js','error.js','b1.js','b2.js']},
                 config:{level:0},
                 result:function(ret){
-                    //ret.should.have.property('code');
-                    //Object.keys(ret.code).should.be.eql(Object.keys(this.map));
-                    //console.log('%j',ret);
+                    (ret==null).should.be.true;
                 }
             },
             {
-                map:{'a.js':['a1.js','a2.js'],'b.js':['b1.js','b2.js']},
+                map:{'21.js':['a1.js','a2.js'],'22.js':['b1.js','b2.js']},
                 config:{level:0},
                 result:function(ret){
                     ret.should.have.property('code');
@@ -44,7 +43,7 @@ describe('adapter/script',function(){
                 }
             },
             {
-                map:{'a.js':['a1.js','a2.js']},
+                map:{'3.js':['a1.js','a2.js']},
                 config:{level:3},
                 result:function(ret){
                     ret.should.have.property('code');
@@ -53,8 +52,8 @@ describe('adapter/script',function(){
                 }
             },
             {
-                map:{'c.js':['a3.js']},
-                config:{dropconsole:true},
+                map:{'4.js':['a3.js','a4.js']},
+                config:{level:2},
                 result:function(ret){
                     ret.should.have.property('code');
                     Object.keys(ret.code).should.be.eql(Object.keys(this.map));

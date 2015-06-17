@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>test</title>
+    <meta charset="utf-8"/>
+    <script>
+        function log(m){
+            var p = document.createElement('p');
+            p.innerHTML = m;
+            document.body.appendChild(p);
+        }
+    </script>
+  </head>
+  <body>
+    <!-- @SCRIPT -->
+    <script src="http://fed.hz.netease.com/git/nej/src/define.js?d=../javascript/deps.js&pro=../javascript/"></script>
+    <script src="../javascript/f.js"></script>
+    <script>
+        define(['{pro}a.js','{pro}e.js'],function(){
+            log('app');
+        });
+    </script>
+  </body>
+</html>

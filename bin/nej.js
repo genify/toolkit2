@@ -1,32 +1,28 @@
 #!/usr/bin/env node
 
-var argc = require('../lib/util/args.js');
+var argc = require('../lib/util/args.js'),
+    package = require('../package.json');
 // cache help message
 argc.config({
     '-default':[
-        '使用方式：',
-        'nej [命令] [参数]',
+        'Toolkit '+package.version,
         '',
-        '可选参数：',
-        '-v, --version      显示版本信息',
-        '-h, --help         显示帮助信息',
+        'Usage:',
+        package.name+' [Command] [Options]',
         '',
-        '可用命令：',
-        'new                生成工程、页面、模块、组件及初始代码',
-        'test               运行当前项目下的所有测试用例',
-        'init               初始化发布配置信息',
-        'build              打包发布'
-    ],
-    'create':[
-        
-    
+        '[Options] is one of:',
+        '-v, --version      Show Toolkit Version',
+        '-h, --help         Quick Help on [Command]',
+        '',
+        '[Command] is one of:',
+        'init               Create release.conf',
+        'build              Build Web Project by release.conf'
     ],
     'init':[
-        '使用方式：',
-        'nej init [参数]',
+        'Usage:',
+        'nej init [Options]',
         '',
-        '可选参数：',
-        '-h, --help         显示帮助信息',
+        '[Options] is one of:',
         '-o, --output       输出目录路径，默认为当前目录'
     ],
     'build':[

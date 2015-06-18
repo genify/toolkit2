@@ -15,6 +15,7 @@ var KLASS = {
     RES_Template:'meta/template',
     RES_Resource:'meta/resource',
     // resource explorer
+    EXP_Html:'explorer/html',
     EXP_Style:'explorer/style',
     EXP_Script:'explorer/script',
     EXP_Template:'explorer/template',
@@ -38,12 +39,14 @@ var KLASS = {
 // api exports map
 var API = {
     io:'util/io',
+    rg:'util/args',
     fs:'util/file',
     ps:'util/path',
     ut:'util/util',
     ks:'util/klass',
     dp:'util/dependency',
     lg:'util/logger#level,logger',
+    tag:'parser/tag#stringify',
     nej:'script/nej/util'
 };
 // export klass or api
@@ -73,15 +76,45 @@ function global(map){
 // export api
 global(KLASS);
 global(API);
+// bin api
+var _fs   = require('./util/fs.js'),
+    _path = require('./util/path.js');
 /**
- *
+ * init project deploy config
+ * @param  {String} output - output directory
+ * @return {Void}
  */
-exports.deploy = function(){
-
+exports.init = function(output){
+    output = _path.absolute(
+        output+'/',process.cwd()+'/'
+    );
+    _fs.copy(
+        __dirname+'/template/release.conf',
+        output+'release.conf'
+    );
+    console.log('init release.conf to %srelease.conf',output);
 };
 /**
- *
+ * deploy project by config file
+ * @param  {String} file - config file path
+ * @param  {Function} callback - deploy done callback
+ * @return {Void}
  */
-exports.export = function(){
+exports.build = function(file,callback){
+    file = _path.absolute(
+        file,process.cwd()+'/'
+    );
+    new (require('./deploy.js'))({
+        file:file,
+        done:callback||function(){}
+    });
+};
+/**
+ * export script list
+ * @param  {Array} list - script list
+ * @param  {Object} config - config object
+ * @return {Void}
+ */
+exports.export = function(list,config){
 
 };

@@ -93,8 +93,11 @@ describe('util/file',function(){
     describe('.writeAsync(file,content,charset)',function(){
         var file = root+'out.txt';
         var content = 'aabb中文';
-        it('should throw an exception when charset not support',function(){
-            (function(){fs.writeAsync(file,content,'abc');}).should.throw();
+        it('should throw an exception when charset not support',function(done){
+            fs.writeAsync(file,content,'abc',function(isok){
+                isok.should.be.false;
+                done();
+            });
         });
     });
 

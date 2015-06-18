@@ -27,15 +27,15 @@ describe('parser/config',function(){
            (parser.get('OPT_IMAGE_SPRITE')==null).should.be.true;
 
            (parser.get('MANIFEST_ROOT')==null).should.be.true;
-           (parser.get('MANIFEST_OUTPUT')==null).should.be.true;
-           (parser.get('MANIFEST_TEMPLATE')==null).should.be.true;
+            parser.get('MANIFEST_OUTPUT').should.containEql('/cache.manifest');
+           (parser.get('MANIFEST_TEMPLATE')==null).should.be.false;
            (parser.get('MANIFEST_FILTER')==null).should.be.true;
 
             parser.get('ALIAS_DICTIONARY').should.eql({});
             '${abc}'.should.match(parser.get('ALIAS_MATCH'));
             '{abc}'.should.not.match(parser.get('ALIAS_MATCH'));
             
-           (parser.get('FILE_FILTER')==null).should.be.true;
+           (parser.get('FILE_FILTER')==null).should.be.false;
             parser.get('FILE_CHARSET').should.equal('utf-8');
             
             parser.get('VERSION_STATIC').should.be.false;

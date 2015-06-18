@@ -4,12 +4,10 @@ var io = require('../../../lib/util/io.js'),
 describe('util/io',function(){
     
     describe('.get(uri,callback)',function(){
-        it('should be ok for getting local file',function(){
-            var ret;
+        it('should be ok for getting local file',function(done){
             io.get(__dirname+'/a.txt',function(event){
-                ret = event.value;
+                '123456789'.should.be.eql(event.value);
             });
-            '123456789'.should.be.eql(ret);
         });
     });
 

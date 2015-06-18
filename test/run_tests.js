@@ -6,6 +6,9 @@ var fs = require('fs'),
 var dumpTestFile = function(dir){
     fs.readdirSync(dir).forEach(function(name){
         var file = dir+name;
+        if (name=='cases'){
+            return;
+        }
         if (fs.lstatSync(file).isDirectory()){
             dumpTestFile(file+'/');
         }else if(name=='test.js'){

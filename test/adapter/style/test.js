@@ -1,12 +1,17 @@
 var should = require('should'),
     fs  = require('../../../lib/util/file.js'),
+    ps  = require('../../../lib/util/path.js'),
     Parser = require('../../../lib/adapter/style.js');
 
 describe('adapter/style',function(){
 
     var parser = new Parser({
-        file:'c:/pro/a.css',
-        content:fs.read(__dirname+'/a.css').join('\n')
+        file:ps.normalize(__dirname+'/')+'a.css',
+        content:fs.read(__dirname+'/a.css').join('\n'),
+        warn:function(event){
+            event.data.unshift(event.message);
+            console.log.apply(console,event.data);
+        }
     });
 
     describe('new Parser',function(){
@@ -18,7 +23,8 @@ describe('adapter/style',function(){
     describe('.parse(config)',function(){
         it('should be ok after parse with config',function(){
             parser.parse({
-                webRoot:'c:/webapp/'
+                webRoot:'c:/webapp/',
+                resRoot:ps.normalize(__dirname+'/')
             });
             var ret = parser.stringify().replace(/\s/g,'');
             var out = fs.read(__dirname+'/r.css').join('\n').replace(/\s/g,'');

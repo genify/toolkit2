@@ -39,7 +39,7 @@ describe('adapter/script',function(){
                 result:function(ret){
                     ret.should.have.property('code');
                     Object.keys(ret.code).should.be.eql(Object.keys(this.map));
-                    console.log('%j',ret);
+                    //console.log('%j',ret);
                 }
             },
             {
@@ -48,7 +48,7 @@ describe('adapter/script',function(){
                 result:function(ret){
                     ret.should.have.property('code');
                     Object.keys(ret.code).should.be.eql(Object.keys(this.map));
-                    console.log('%j',ret);
+                    //console.log('%j',ret);
                 }
             },
             {
@@ -57,7 +57,7 @@ describe('adapter/script',function(){
                 result:function(ret){
                     ret.should.have.property('code');
                     Object.keys(ret.code).should.be.eql(Object.keys(this.map));
-                    console.log('%j',ret);
+                    //console.log('%j',ret);
                 }
             }
         ].forEach(function(config){
@@ -71,7 +71,7 @@ describe('adapter/script',function(){
                     error:function(event){
                         event.data.unshift(event.message);
                         console.log.apply(console,event.data);
-                        console.log('%j',event.files);
+                        //console.log('%j',event.files);
                     }
                 });
                 parser.parse(config.config);

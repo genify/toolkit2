@@ -23,7 +23,7 @@ describe('meta/script',function(){
             });
             var list = parser.getDependencies();
             var ret = io.getFromCache(list[0]).replace(/\s/g,'');
-            var org = fs.read(__dirname+'/r.css').join('').replace(/\s/g,'');
+            var org = (fs.read(__dirname+'/r.css')||[]).join('').replace(/\s/g,'');
             ret.should.be.eql(org);
         });
     });

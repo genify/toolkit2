@@ -48,6 +48,9 @@ describe('util/args',function(){
             doTest(['new','-o = /path/to/output/ -u'],{command:'new',options:{o:'/path/to/output/',u:true}});
             doTest(['new','--output = /path/to/output/ -u'],{command:'new',options:{output:'/path/to/output/',u:true}});
         });
+        it('should be ok for "export file1.js,file2.js,file3.js -o=/path/to/output/"',function(){
+            doTest(['export file1.js,file2.js,file3.js -o=/path/to/output/',{command:'export',o:'/path/to/output/'}])
+        });
     });
     
 });

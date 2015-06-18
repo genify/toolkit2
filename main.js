@@ -76,15 +76,30 @@ function global(map){
 // export api
 global(KLASS);
 global(API);
+
 // bin api
-var _fs   = require('./util/fs.js'),
-    _path = require('./util/path.js');
+var _fs     = require('./util/file.js'),
+    _path   = require('./util/path.js'),
+    _logger = require('./util/logger.js').logger;
 /**
- * init project deploy config
- * @param  {String} output - output directory
+ * show toolkit version
  * @return {Void}
  */
-exports.init = function(output){
+exports.version = function(){
+    _logger.info(
+        'Toolkit Version is %s \n',
+        require('./package.json').version
+    );
+};
+/**
+ * init project deploy config
+ * @param  {Object} options - input options
+ * @param  {String} options.o - output directory
+ * @param  {String} options.output - output directory
+ * @return {Void}
+ */
+exports.init = function(options){
+    var output = options.o||options.output||'.';
     output = _path.absolute(
         output+'/',process.cwd()+'/'
     );
@@ -92,7 +107,7 @@ exports.init = function(output){
         __dirname+'/template/release.conf',
         output+'release.conf'
     );
-    console.log('init release.conf to %srelease.conf',output);
+    _logger.info('output release.conf to %srelease.conf',output);
 };
 /**
  * deploy project by config file
@@ -104,7 +119,7 @@ exports.build = function(file,callback){
     file = _path.absolute(
         file,process.cwd()+'/'
     );
-    new (require('./deploy.js'))({
+    new (require('./lib/deploy.js'))({
         file:file,
         done:callback||function(){}
     });
@@ -116,5 +131,12 @@ exports.build = function(file,callback){
  * @return {Void}
  */
 exports.export = function(list,config){
-
+    var file = _path.absolute(
+        './export.html',process.cwd()+'/'
+    );
+    var exporter = new (require('./lib/export.js'))({
+        file:file,
+        list:list
+    });
+    exporter.parse(config);
 };

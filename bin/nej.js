@@ -12,24 +12,42 @@ argc.config({
         '',
         '[Options] is one of:',
         '-v, --version      Show Toolkit Version',
-        '-h, --help         Quick Help on [Command]',
+        '-h, --help         Quick help on [Command]',
         '',
         '[Command] is one of:',
         'init               Create release.conf',
-        'build              Build Web Project by release.conf'
+        'build              Build web project by release.conf',
+        'export             Export script files'
     ],
     'init':[
         'Usage:',
-        'nej init [Options]',
+        package.name+' init [Options]',
         '',
         '[Options] is one of:',
-        '-o, --output       输出目录路径，默认为当前目录'
+        '-o, --output       Specify output directory where to generate release.conf',
+        '',
+        'Example:',
+        package.name+' init',
+        'or',
+        package.name+' init -o=/path/to/output/'
     ],
     'build':[
-    
+        'Usage:',
+        package.name+' build [Options]',
+        '',
+        '[Options] is one of:',
+        '-c, --config       Specify release.conf file path'
+    ],
+    'export':[
+        'Usage:',
+        package.name+' export [Input Script Files] [Options]',
+        '',
+        '[Input Script Files]',
+        'it can take multiple input files',
+        '',
+        '[Options] is one of:',
+        '-o, --output       Specify output file where to generate source'
     ]
-
-
 });
 // parse command line
 var args = argc.parse(
@@ -47,9 +65,9 @@ if (!cmd&&(opt.v||opt.version)){
     cmd = 'version';
 }
 // handle command
-var handler = require('../lib/cmd.js')[cmd];
+var handler = require('../main.js')[cmd];
 if (!!handler){
-    handler.call(null,opt);
+    handler.call(null,opt,args.args);
 }else{
     argc.show();
 }

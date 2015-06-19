@@ -17,7 +17,7 @@
     "author": "genify <caijf@corp.netease.com> (http://genify.blog.163.com/)",
     "main": "./main.js",
     "bin": {
-        "nej": "./bin/help.js",
+        "nej": "./bin/nej.js",
         "nej-init": "./bin/init.js",
         "nej-build": "./bin/build.js"
     },
@@ -38,7 +38,7 @@
     },
     "dependencies": {
         "css":">=2.2.0",
-        "iconv-lite": "~0.4.0",
-        "uglify-js": ">=2.4.15"
+        "uglify-js": ">=2.4.15",
+        "iconv-lite": "~0.4.0"
     }
 }

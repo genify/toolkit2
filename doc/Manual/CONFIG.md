@@ -26,7 +26,7 @@
 
 ## 路径配置
 
-这部分配置主要用于配置发布项目的输入输出目录信息
+这部分配置主要用于配置发布项目的输入输出目录信息，这里需要注意的是必须配置至少一个输入路径，即 [DIR_SOURCE](#dir_source) 或者 [DIR_SOURCE_TP](#dir_source_tp) 至少配置一项
 
 ### DIR_WEBROOT
 
@@ -523,13 +523,25 @@ DM_STATIC = b1.bst.126.net
 
 静态资源域名，如图片、Flash等，没有配置则使用 [DM_STATIC](#dm_static) 配置信息
 
+```
+DM_STATIC_RS = b4.bst.126.net,b5.bst.126.net
+```
+
 ### DM_STATIC_CS
 
 外联样式请求域名，没有配置则使用 [DM_STATIC](#dm_static) 配置信息
 
+```
+DM_STATIC_CS = b1.bst.126.net
+```
+
 ### DM_STATIC_JS
 
 外联脚本请求域名，没有配置则使用 [DM_STATIC](#dm_static) 配置信息
+
+```
+DM_STATIC_JS = b2.bst.126.net
+```
 
 ## 图片优化
 

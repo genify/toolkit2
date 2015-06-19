@@ -4,7 +4,7 @@
 * 配置参数使用 KEY = VALUE 格式
 * 配置参数如没有特别说明则表示可选配置项
 * 配置参数为路径的，如果是相对路径则必须以“./”、“../”开始
-* 配置参数中如无特殊说明使用的相对路径均相对于 [DIR_WEBROOT](#DIR_WEBROOT) 的路径
+* 配置参数中如无特殊说明使用的相对路径均相对于 [DIR_WEBROOT](#dir_webroot) 的路径
 * 配置参数名称忽略大小写，即cfg_dir_webroot等价于CFG_DIR_WEBROOT
 
 # 配置分类
@@ -40,7 +40,7 @@ DIR_WEBROOT = ../webapp/
 
 ### DIR_SOURCE
 
-项目HTML文件根路径，如果是使用服务器端模板的项目可以不用配置此目录，直接配置 [DIR_SOURCE_TP](#DIR_SOURCE_TP) 即可
+项目HTML文件根路径，如果是使用服务器端模板的项目可以不用配置此目录，直接配置 [DIR_SOURCE_TP](#dir_source_tp) 即可
 
 ```
 DIR_SOURCE = ./src/html/
@@ -48,7 +48,7 @@ DIR_SOURCE = ./src/html/
 
 ### DIR_SOURCE_SUB
 
-输入HTML文件子目录配置，多个目录用逗号或者分号分隔，如果是相对路径则相对于 [DIR_SOURCE](#DIR_SOURCE) 配置
+输入HTML文件子目录配置，多个目录用逗号或者分号分隔，如果是相对路径则相对于 [DIR_SOURCE](#dir_source) 配置
 
 ```
 DIR_SOURCE_SUB = ./a/,./b/,./c/
@@ -91,9 +91,9 @@ DIR_SOURCE_SUB = ./common/,./sys-c/
 
 ### DIR_OUTPUT
 
-HTML文件输出路径，默认为 [DIR_WEBROOT](#DIR_WEBROOT) 配置的路径，如果配置的路径不存在则会自动为其创建此输出目录 
+HTML文件输出路径，默认为 [DIR_WEBROOT](#dir_webroot) 配置的路径，如果配置的路径不存在则会自动为其创建此输出目录 
 
-配置的目录如不在 [DIR_WEBROOT](#DIR_WEBROOT) 目录下则在发布过程会有警告信息
+配置的目录如不在 [DIR_WEBROOT](#dir_webroot) 目录下则在发布过程会有警告信息
 
 ```
 DIR_OUTPUT = ./pub/
@@ -101,9 +101,9 @@ DIR_OUTPUT = ./pub/
 
 ### DIR_OUTPUT_STATIC
 
-静态文件（样式、脚本）输出目录，默认为 [DIR_OUTPUT](#DIR_OUTPUT) 配置的路径，如果配置的路径不存在则会自动为其创建此输出目录 
+静态文件（样式、脚本）输出目录，默认为 [DIR_OUTPUT](#dir_output) 配置的路径，如果配置的路径不存在则会自动为其创建此输出目录 
 
-配置的目录如不在 [DIR_WEBROOT](#DIR_WEBROOT) 目录下则在发布过程会有警告信息
+配置的目录如不在 [DIR_WEBROOT](#dir_webroot) 目录下则在发布过程会有警告信息
 
 ```
 DIR_OUTPUT_STATIC = ./r/
@@ -121,7 +121,7 @@ DIR_SOURCE_TP = ./template/
 
 ### DIR_SOURCE_TP_SUB
 
-输入服务器端模板文件子目录配置，多个目录用逗号或者分号分隔，如果是相对路径相对于 [DIR_SOURCE_TP](#DIR_SOURCE_TP) 配置，其功能等同于 [DIR_SOURCE_SUB](#DIR_SOURCE_SUB) 的配置
+输入服务器端模板文件子目录配置，多个目录用逗号或者分号分隔，如果是相对路径相对于 [DIR_SOURCE_TP](#DIR_SOURCE_TP) 配置，其功能等同于 [DIR_SOURCE_SUB](#dir_source_sub) 的配置
 
 ```
 DIR_SOURCE = ./a/,./b/,./c/
@@ -129,7 +129,7 @@ DIR_SOURCE = ./a/,./b/,./c/
 
 ### DIR_OUTPUT_TP
 
-项目服务器端模板输出路径，默认为 [DIR_OUTPUT](#DIR_OUTPUT) 配置信息，如果配置的路径不存在则会自动为其创建此输出目录
+项目服务器端模板输出路径，默认为 [DIR_OUTPUT](#dir_output) 配置信息，如果配置的路径不存在则会自动为其创建此输出目录
 
 ```
 DIR_OUTPUT_TP = ./tpl/
@@ -137,10 +137,10 @@ DIR_OUTPUT_TP = ./tpl/
 
 ### DIR_STATIC
 
-项目中使用的静态资源路径，默认为 [DIR_WEBROOT](#DIR_WEBROOT) 下的res目录，此参数主要用于识别样式中引入的资源、页面src、href中引入的资源路径，主要用于以下两个方面
+项目中使用的静态资源路径，默认为 [DIR_WEBROOT](#dir_webroot) 下的res目录，此参数主要用于识别样式中引入的资源、页面src、href中引入的资源路径，主要用于以下两个方面
 
 * 发布后页面输出路径变化时调整这些资源引用的相对路径
-* 在打开 [VERSION_STATIC](#VERSION_STATIC) 开关时增加静态资源的版本信息
+* 在打开 [VERSION_STATIC](#version_static) 开关时增加静态资源的版本信息
 
 ```
 DIR_STATIC = ./res/
@@ -191,7 +191,7 @@ ALIAS_MATCH = \$\{(.*?)\}
 
 ### ALIAS_DICTIONARY
 
-别名配置信息，通过 [ALIAS_MATCH](#ALIAS_MATCH) 匹配到的变量可以通过以下配置的别名配置表中的值进行替换，以补全成完整的路径信息
+别名配置信息，通过 [ALIAS_MATCH](#alias_match) 匹配到的变量可以通过以下配置的别名配置表中的值进行替换，以补全成完整的路径信息
 
 注意这里配置的JSON对象需要在一行内完成，不允许换行
 
@@ -256,7 +256,7 @@ CORE_LIST_JS = ./core.js.json
 
 ### CORE_MASK_JS
 
-脚本CORE屏蔽文件列表，即此列表中配置的文件均不会出现在CORE文件中，此配置列表不做依赖分析，因此此配置列表中的文件不应该被其他文件依赖，如独立的第三方库、页面入口等，其配置形式同 [CORE_LIST_JS](#CORE_LIST_JS) ，可以配置JSON对象或者独立配置文件路径
+脚本CORE屏蔽文件列表，即此列表中配置的文件均不会出现在CORE文件中，此配置列表不做依赖分析，因此此配置列表中的文件不应该被其他文件依赖，如独立的第三方库、页面入口等，其配置形式同 [CORE_LIST_JS](#core_list_js) ，可以配置JSON对象或者独立配置文件路径
 
 ```
 CORE_MASK_JS = ./mask.js.json
@@ -272,7 +272,7 @@ CORE_FREQUENCY_JS = 2
 
 ### CORE_LIST_CS
 
-样式CORE文件列表配置文件，具体配置同 [CORE_LIST_JS](#CORE_LIST_JS)
+样式CORE文件列表配置文件，具体配置同 [CORE_LIST_JS](#core_list_js)
 
 ```
 CORE_LIST_CS = ["/src/css/reset.css","/src/css/base.css"]
@@ -280,11 +280,11 @@ CORE_LIST_CS = ["/src/css/reset.css","/src/css/base.css"]
 
 ### CORE_MASK_CS
 
-样式CORE屏蔽文件列表，具体配置同 [CORE_MASK_JS](#CORE_MASK_JS)
+样式CORE屏蔽文件列表，具体配置同 [CORE_MASK_JS](#core_mask_js)
 
 ### CORE_FREQUENCY_CS
 
-自动样式CORE文件时，提取文件的频率控制，具体配置同 [CORE_FREQUENCY_JS](#CORE_FREQUENCY_JS)
+自动样式CORE文件时，提取文件的频率控制，具体配置同 [CORE_FREQUENCY_JS](#core_frequency_js)
 
 ## NEJ配置
 
@@ -478,7 +478,7 @@ OBF_MAX_JS_INLINE_SIZE = 0
 
 ### VERSION_STATIC
 
-静态资源是否自动带版本号，打开此开关则静态资源即 [DIR_STATIC](#DIR_STATIC) 配置的目录下的所有资源文件的使用均自动带上版本信息（包括样式中使用的静态资源、页面中使用的静态资源），如果资源使用时自带版本信息，如url(/path/to/a.png?v=1234)则不再生成版本信息
+静态资源是否自动带版本号，打开此开关则静态资源即 [DIR_STATIC](#dir_static) 配置的目录下的所有资源文件的使用均自动带上版本信息（包括样式中使用的静态资源、页面中使用的静态资源），如果资源使用时自带版本信息，如url(/path/to/a.png?v=1234)则不再生成版本信息
 
 ```
 VERSION_STATIC = true
@@ -513,7 +513,7 @@ VERSION_MODE = [FILENAME]_[VERSION]
 
 ### DM_STATIC
 
-默认静态资源请求域名，限定 [DIR_STATIC](#DIR_STATIC) 配置路径下资源、脚本资源、样式资源访问域
+默认静态资源请求域名，限定 [DIR_STATIC](#dir_static) 配置路径下资源、脚本资源、样式资源访问域
 
 ```
 DM_STATIC = b1.bst.126.net
@@ -521,15 +521,15 @@ DM_STATIC = b1.bst.126.net
 
 ### DM_STATIC_RS
 
-静态资源域名，如图片、Flash等，没有配置则使用 [DM_STATIC](#DM_STATIC) 配置信息
+静态资源域名，如图片、Flash等，没有配置则使用 [DM_STATIC](#dm_static) 配置信息
 
 ### DM_STATIC_CS
 
-外联样式请求域名，没有配置则使用 [DM_STATIC](#DM_STATIC) 配置信息
+外联样式请求域名，没有配置则使用 [DM_STATIC](#dm_static) 配置信息
 
 ### DM_STATIC_JS
 
-外联脚本请求域名，没有配置则使用 [DM_STATIC](#DM_STATIC) 配置信息
+外联脚本请求域名，没有配置则使用 [DM_STATIC](#dm_static) 配置信息
 
 ## 图片优化
 
@@ -547,7 +547,7 @@ npm update nej-minimage -g
 
 ### OPT_IMAGE_FLAG
 
-图片优化开关，打开此开关则 [DIR_STATIC](#DIR_STATIC) 下的图片会做优化压缩，替换原文件
+图片优化开关，打开此开关则 [DIR_STATIC](#dir_static) 下的图片会做优化压缩，替换原文件
 
 ```
 OPT_IMAGE_FLAG = true
@@ -567,7 +567,7 @@ OPT_IMAGE_QUALITY = 100
 
 ### MANIFEST_ROOT
 
-页面请求Manifest文件路径配置，没有配置则使用相对路径，否则使用相对于 [DIR_WEBROOT](#DIR_WEBROOT) 的路径
+页面请求Manifest文件路径配置，没有配置则使用相对路径，否则使用相对于 [DIR_WEBROOT](#dir_webroot) 的路径
 
 ```
 MANIFEST_ROOT = /
@@ -575,7 +575,7 @@ MANIFEST_ROOT = /
 
 ### MANIFEST_OUTPUT
 
-manifest输出路径，默认在 [DIR_WEBROOT](#DIR_WEBROOT) 下输出 cache.manifest 文件
+manifest输出路径，默认在 [DIR_WEBROOT](#dir_webroot) 下输出 cache.manifest 文件
 
 ```
 MANIFEST_OUTPUT = ./cache.manifest
@@ -713,10 +713,10 @@ X_NOPARSE_FLAG = 0
 
 发布后使用绝对路径调整外链地址，主要处理页面中同时符合以下条件的外链地址
 
-* 地址指向的内容为 [DIR_SOURCE](#DIR_SOURCE) 配置下的内容
-* html中使用src="[LINK]"或者href="[LINK]"形式引入指向 [DIR_SOURCE](#DIR_SOURCE) 下的地址
+* 地址指向的内容为 [DIR_SOURCE](#dir_source) 配置下的内容
+* html中使用src="[LINK]"或者href="[LINK]"形式引入指向 [DIR_SOURCE](#dir_source) 下的地址
 
-注意：DIR_SOURCE_TP配置目录下的文件解析时自动打开此开关调整指向 [DIR_SOURCE](#DIR_SOURCE) 下的src和href
+注意：DIR_SOURCE_TP配置目录下的文件解析时自动打开此开关调整指向 [DIR_SOURCE](#dir_source) 下的src和href
 
 ```
 X_AUTO_EXLINK_PATH = true
@@ -724,7 +724,7 @@ X_AUTO_EXLINK_PATH = true
 
 ### X_AUTO_EXLINK_PREFIX
 
-如果 [X_AUTO_EXLINK_PATH](#X_AUTO_EXLINK_PATH) 配置为true则可以通过此配置增加前缀标识来强行替换带该标识的路径，带标识路径规则为[X_AUTO_EXLINK_PREFIX]="[LINK]"，多个前缀标识用|分隔
+如果 [X_AUTO_EXLINK_PATH](#x_auto_exlink_path) 配置为true则可以通过此配置增加前缀标识来强行替换带该标识的路径，带标识路径规则为[X_AUTO_EXLINK_PREFIX]="[LINK]"，多个前缀标识用|分隔
 
 注意：使用NEJ单页面多模块调度的系统这里切勿配置data-src
 

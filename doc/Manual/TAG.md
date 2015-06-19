@@ -45,7 +45,6 @@
 | 参数 | 类型 | 说明 |
 | --- | --- | --- |
 | core | Boolean | core.css文件插入形式，true - 强行插入core.css；false - 禁止插入core.css； 不设置 - 自动解析【默认】|
-| inline | Boolean | 是否强行内联core样式，默认外联 |
 
 此标记用以表明当前位置插入打包后的样式文件，具体使用范例如下所示：
 
@@ -73,7 +72,6 @@
 | ---  | ---   | --- |
 | nodep  | Boolean | 是否没有使用依赖系统，true - 没有使用依赖系统，后续脚本为源码；false - 使用依赖系统，后续脚本为define.js|
 | core   | Boolean | core.js文件插入形式，true - 强行插入core.js；false - 禁止插入core.js； 不设置 - 自动解析【默认】 |
-| inline | Boolean | 是否强行内联core脚本，默认外联 |
 
 此标记用以表明后续的脚本标签为依赖系统定义文件路径，对于该文件打包工作做以下处理：
 * 最终输出文件不再引入此文件
@@ -106,48 +104,6 @@
 <!-- @SCRIPT {core:true} -->
 <#include "/core/js.ftl">
 <script src="/js/page.js"></script>
-```
-
-## DEFINE
-
-Deprecated, 使用SCRIPT标记代替
-
-## TEMPLATE
-
-是否需要结束：必须
-
-支持配置参数：无
-
-此标记用以表明从当前位置至结束标记之前的内容中存在资源模板信息，打包针对模板会做优化处理包括：
-* 外联样式文件（类型为css的模板）做内联处理
-* 外联嵌套模板文件（类型为html的模板）做内联处理
-* 外联脚本文件（类型为js的模板）按照指定标记做内联或者外联处理
-
-因此仅需要在引入资源模板是加此标记即可，具体使用范例如下所示：
-
-```html
-<div style="display:none;" id="template-box">
-  <textarea name="txt" id="txt-0">
-      text content
-  </textarea>
-  <textarea name="jst" id="jst-0">
-      jst content
-  </textarea>
-  <textarea name="ntp" id="ntp-0">
-      ntp content
-  </textarea>
-  <!-- @TEMPLATE -->
-  <textarea name="css">
-      css code
-  </textarea>
-  <textarea name="js">
-      js code
-  </textarea>
-  <textarea name="css" data-src="./css/component/left.css"></textarea>
-  <textarea name="js" data-src="./javascript/component/left.js"></textarea>
-  <textarea name="html" data-src="./html/component/left.html"></textarea>
-  <!-- /@TEMPLATE -->
-</div>
 ```
 
 ## MODULE
@@ -257,4 +213,47 @@ Deprecated, 使用SCRIPT标记代替
   <head>
     <meta charset="utf-8"/>
 ...
+```
+
+## DEFINE
+
+Deprecated, 使用SCRIPT标记代替
+
+## TEMPLATE
+
+Deprecated，模板的识别及插入位置由工具自动识别，此标记可以不再使用
+
+是否需要结束：可选
+
+支持配置参数：无
+
+此标记用以表明页面模板插入位置，打包针对外链模板会做优化处理包括：
+* 外联样式文件（类型为css的模板）做内联处理
+* 外联嵌套模板文件（类型为html的模板）做内联处理
+* 外联脚本文件（类型为js的模板）按照指定标记做内联或者外联处理
+
+因此仅需要在引入资源模板是加此标记即可，具体使用范例如下所示：
+
+```html
+<div style="display:none;" id="template-box">
+  <!-- @TEMPLATE -->
+  <textarea name="txt" id="txt-0">
+      text content
+  </textarea>
+  <textarea name="jst" id="jst-0">
+      jst content
+  </textarea>
+  <textarea name="ntp" id="ntp-0">
+      ntp content
+  </textarea>
+  <textarea name="css">
+      css code
+  </textarea>
+  <textarea name="js">
+      js code
+  </textarea>
+  <textarea name="css" data-src="./css/component/left.css"></textarea>
+  <textarea name="js" data-src="./javascript/component/left.js"></textarea>
+  <textarea name="html" data-src="./html/component/left.html"></textarea>
+</div>
 ```

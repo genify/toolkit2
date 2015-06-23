@@ -12,7 +12,8 @@
         "deploy",
         "publisher",
         "javascript",
-        "front end"
+        "front end",
+        "obfuscator"
     ],
     "author": "genify <caijf@corp.netease.com> (http://genify.blog.163.com/)",
     "main": "./main.js",
@@ -41,5 +42,6 @@
         "css":">=2.2.0",
         "uglify-js": ">=2.4.15",
         "iconv-lite": "~0.4.0"
-    }
+    },
+    "nei":"http://nei.hz.netease.com/data/"
 }

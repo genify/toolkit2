@@ -78,9 +78,10 @@ global(KLASS);
 global(API);
 
 // bin api
-var _fs     = require('./util/file.js'),
-    _path   = require('./util/path.js'),
-    _logger = require('./util/logger.js').logger;
+var _fs     = require('./lib/util/file.js'),
+    _nei    = require('./lib/nei/util.js'),
+    _path   = require('./lib/util/path.js'),
+    _logger = require('./lib/util/logger.js').logger;
 /**
  * init project deploy config
  * @param  {String} output - output path
@@ -126,4 +127,59 @@ exports.export = function(list,config){
         list:list
     });
     exporter.parse(config);
+};
+/**
+ * build nei project
+ * @param  {String} id - nei project id
+ * @param  {Object} config - config object
+ * @param  {String} config.output - path to output
+ * @param  {String} config.template - path to template output
+ * @return {Void}
+ */
+exports.nei = function(id,config){
+    var file = _nei.find(config.output);
+    // for nei project
+    if (!!file){
+        _logger.error('use "nei update" to update nei project');
+        process.exit(1);
+        return;
+    }
+    // build nei project
+    new (require('./lib/nei/builder.js'))({
+        nei:require('./package.json').nei,
+        file:config.output+'/nei.json',
+        config:{
+            id:id,
+            updateTime:0,
+            webRoot:config.output,
+            tplRoot:config.template
+        }
+    });
+};
+/**
+ * update project by nei
+ * @param  {String} path - nei project path
+ * @return {Void}
+ */
+exports.update = function(path){
+    var file = _nei.find(path);
+    // for not nei project
+    if (!file){
+        _logger.error('"nei update" only used to update nei project');
+        process.exit(1);
+        return;
+    }
+    // check nei project config
+    var nei = require(file);
+    if (!nei.id){
+        _logger.error('illegal nei project with config %s',file);
+        process.exit(1);
+        return;
+    }
+    // for nei project
+    new (require('./lib/nei/builder.js'))({
+        nei:require('./package.json').nei,
+        config:nei,
+        file:file
+    });
 };

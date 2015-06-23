@@ -137,7 +137,10 @@ exports.export = function(list,config){
  * @return {Void}
  */
 exports.nei = function(id,config){
-    var file = _nei.find(config.output);
+    var output = _path.absolute(
+        config.output,process.cwd()+'/'
+    );
+    var file = _nei.find(output);
     // for nei project
     if (!!file){
         _logger.error('use "nei update" to update nei project');
@@ -151,18 +154,24 @@ exports.nei = function(id,config){
         config:{
             id:id,
             updateTime:0,
-            webRoot:config.output,
-            tplRoot:config.template
+            webRoot:output,
+            tplRoot:_path.absolute(
+                config.template,
+                process.cwd()+'/'
+            )
         }
     });
 };
 /**
  * update project by nei
- * @param  {String} path - nei project path
+ * @param  {String} root - nei project path
  * @return {Void}
  */
-exports.update = function(path){
-    var file = _nei.find(path);
+exports.update = function(root){
+    root = _path.absolute(
+        root,process.cwd()+'/'
+    );
+    var file = _nei.find(root);
     // for not nei project
     if (!file){
         _logger.error('"nei update" only used to update nei project');

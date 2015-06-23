@@ -82,24 +82,11 @@ var _fs     = require('./util/file.js'),
     _path   = require('./util/path.js'),
     _logger = require('./util/logger.js').logger;
 /**
- * show toolkit version
- * @return {Void}
- */
-exports.version = function(){
-    _logger.info(
-        'Toolkit Version is %s \n',
-        require('./package.json').version
-    );
-};
-/**
  * init project deploy config
- * @param  {Object} options - input options
- * @param  {String} options.o - output directory
- * @param  {String} options.output - output directory
+ * @param  {String} output - output path
  * @return {Void}
  */
-exports.init = function(options){
-    var output = options.o||options.output||'.';
+exports.init = function(output){
     output = _path.absolute(
         output+'/',process.cwd()+'/'
     );
@@ -107,11 +94,11 @@ exports.init = function(options){
         __dirname+'/template/release.conf',
         output+'release.conf'
     );
-    _logger.info('output release.conf to %srelease.conf',output);
+    _logger.info('output release.conf to %s',output);
 };
 /**
  * deploy project by config file
- * @param  {String} file - config file path
+ * @param  {String}   file - config file path
  * @param  {Function} callback - deploy done callback
  * @return {Void}
  */

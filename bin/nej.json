@@ -1,0 +1,51 @@
+{
+    "-default":[
+        "Toolkit %v",
+        "",
+        "Usage:",
+        "nej [Command] [Options]",
+        "",
+        "[Options] is one of:",
+        "-v, --version      Show toolkit version",
+        "-h, --help         Quick help on [Command]",
+        "",
+        "[Command] is one of:",
+        "init               Create release.conf",
+        "build              Build web project by release.conf",
+        "export             Export script files"
+    ],
+    "init":[
+        "Usage:",
+        "nej init [Options]",
+        "",
+        "[Options] is one of:",
+        "-h, --help         Quick help on init command",
+        "-o, --output       Specify output directory where to generate release.conf, default ./",
+        "",
+        "Example:",
+        "nej init -o",
+        "nej init -o=/path/to/output/"
+    ],
+    "build":[
+        "Usage:",
+        "nej build [Options]",
+        "",
+        "[Options] is one of:",
+        "-h, --help         Quick help on build command",
+        "-c, --config       Specify release.conf file path, default ./release.conf",
+        "",
+        "Example:",
+        "nej build -c",
+        "nej build -c=/path/to/release.conf"
+    ],
+    "export":[
+        "Usage:",
+        "nej export [Input Script Files] [Options]",
+        "",
+        "[Input Script Files]",
+        "it can take multiple input files",
+        "",
+        "[Options] is one of:",
+        "-o, --output       Specify output file where to generate source"
+    ]
+}

@@ -17,6 +17,7 @@
     "author": "genify <caijf@corp.netease.com> (http://genify.blog.163.com/)",
     "main": "./main.js",
     "bin": {
+        "nei":"./bin/nei.js",
         "nej": "./bin/nej.js",
         "nej-init": "./bin/init.js",
         "nej-build": "./bin/build.js"

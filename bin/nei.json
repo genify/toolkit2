@@ -20,12 +20,14 @@
         "参数说明：",
         "-h, --help         显示build命令帮助信息",
         "-i, --id           指定项目在NEI平台上的项目ID",
-        "-o, --output       指定项目输出目录，默认在当前目录输出",
-        "-t, --template     指定项目模板文件输出目录，默认在 -o 指定目录的 templates 目录下输出",
+        "-p, --project      指定项目目录，默认为当前目录",
+        "-r, --webroot      指定WEBROOT目录，默认根据maven目录结构规范，相对于 -p 路径的 src/main/webapp/",
+        "-t, --template     指定服务器端模板目录，默认根据maven目录结构规范，相对于 -p 路径的 src/main/views/",
+        "-w, --overwrite    是否覆盖已存在的文件，默认不覆盖已存在的文件",
         "",
         "使用举例：",
-        "nei build -i=23456798",
-        "nei build -i=23456798 -o=/path/to/webRoot/"
+        "nei build -i 23456798 -w",
+        "nei build -i 23456798 -p /path/to/project/"
     ],
     "update":[
         "使用说明：",

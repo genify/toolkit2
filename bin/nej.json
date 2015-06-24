@@ -24,7 +24,7 @@
         "",
         "使用举例：",
         "nej init -o",
-        "nej init -o=/path/to/output/"
+        "nej init -o /path/to/output/"
     ],
     "build":[
         "使用说明：",
@@ -36,7 +36,7 @@
         "",
         "使用举例：",
         "nej build -c",
-        "nej build -c=/path/to/release.conf"
+        "nej build -c /path/to/release.conf"
     ],
     "export":[
         "使用说明：",
@@ -50,6 +50,6 @@
         "",
         "使用举例：",
         "nej export ./a.js,./b.js",
-        "nej export util/ajax/xdr,./app.js -o=/path/to/app.min.js"
+        "nej export util/ajax/xdr,./app.js -o /path/to/app.min.js"
     ]
 }

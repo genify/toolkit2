@@ -132,17 +132,19 @@ exports.export = function(list,config){
  * build nei project
  * @param  {String} id - nei project id
  * @param  {Object} config - config object
- * @param  {String} config.output - path to output
- * @param  {String} config.template - path to template output
+ * @param  {String} config.project   - path to project root
+ * @param  {String} config.webroot   - path to webroot output
+ * @param  {String} config.template  - path to template output
+ * @param  {String} config.overwrite - whether overwrite files existed
  * @return {Void}
  */
 exports.nei = function(id,config){
-    var output = _path.absolute(
-        config.output,process.cwd()+'/'
-    );
-    var file = _nei.find(output);
-    // for nei project
-    if (!!file){
+    var cwd = process.cwd()+'/',
+        project = _path.absolute(
+            config.project+'/',cwd
+        );
+    // check nei.json file
+    if (_fs.exist(project+'nei.json')){
         _logger.error('use "nei update" to update nei project');
         process.exit(1);
         return;
@@ -150,15 +152,17 @@ exports.nei = function(id,config){
     // build nei project
     new (require('./lib/nei/builder.js'))({
         nei:require('./package.json').nei,
-        file:config.output+'/nei.json',
         config:{
             id:id,
             updateTime:0,
-            webRoot:output,
+            proRoot:project,
+            webRoot:_path.absolute(
+                config.webroot+'/',cwd
+            ),
             tplRoot:_path.absolute(
-                config.template,
-                process.cwd()+'/'
-            )
+                config.template+'/',cwd
+            ),
+            overwrite:config.overwrite
         }
     });
 };

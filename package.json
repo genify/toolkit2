@@ -44,5 +44,5 @@
         "uglify-js": ">=2.4.15",
         "iconv-lite": "~0.4.0"
     },
-    "nei":"http://nei.hz.netease.com/api/projectView/getByProjectId?pid=%s"
+    "nei":"http://106.2.32.86/api/projectView/getByProjectId?pid=%s"
 }

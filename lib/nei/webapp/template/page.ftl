@@ -2,12 +2,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- @IGNORE -->
-    <#include "/mock/{{mock}}">
-    <!-- /@IGNORE -->
 
     <#include "/wrap/config.ftl">
     <#include "/wrap/macro.ftl">
+
+    {% if !!mock %}
+    <#if useMockData><#include "/mock/{{mock}}"></#if>
+    {% endif %}
 
     <title>{{title}}</title>
     <meta charset="utf-8"/>

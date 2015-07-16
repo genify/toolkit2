@@ -16,24 +16,11 @@ var main = require('../main.js');
             this.show('build');
             process.exit(0);
         }else{
-            var project = opt.p||opt.project;
-            if (typeof project!=='string'){
-                project = './';
-            }
-            var webroot = opt.r||opt.webroot;
-            if (typeof webroot!=='string'){
-                webroot = project+'/src/main/webapp/';
-            }
-            var template = opt.t||opt.template;
-            if (typeof template!=='string'){
-                template = project+'/src/main/views/';
-            }
-            main.nei(id,{
-                project:project,
-                webroot:webroot,
-                template:template,
-                overwrite:opt.w||opt.overwrite
-            });
+            opt.id = id;
+            opt.project = opt.p||opt.project||'./';
+            opt.overwrite = opt.w||opt.overwrite||!1;
+            opt.template = opt.t||opt.template||'';
+            main.nei(opt);
         }
     },
     update:function(event){

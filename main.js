@@ -45,7 +45,7 @@ var API = {
     ut:'util/util',
     ks:'util/klass',
     dp:'util/dependency',
-    lg:'util/logger#level,logger',
+    lg:'util/logger#level,logger,log',
     tag:'parser/tag#stringify',
     nej:'script/nej/util'
 };
@@ -79,9 +79,10 @@ global(API);
 
 // bin api
 var _fs     = require('./lib/util/file.js'),
-    _nei    = require('./lib/nei/util.js'),
     _path   = require('./lib/util/path.js'),
-    _logger = require('./lib/util/logger.js').logger;
+    _util   = require('./lib/util/util.js'),
+    _log    = require('./lib/util/logger.js'),
+    _logger = _log.logger;
 /**
  * init project deploy config
  * @param  {String} output - output path
@@ -130,15 +131,15 @@ exports.export = function(list,config){
 };
 /**
  * build nei project
- * @param  {String} id - nei project id
  * @param  {Object} config - config object
+ * @param  {String} config.id        - nei project id
  * @param  {String} config.project   - path to project root
- * @param  {String} config.webroot   - path to webroot output
  * @param  {String} config.template  - path to template output
  * @param  {String} config.overwrite - whether overwrite files existed
+ * @param  {Function} callback - build finish callback
  * @return {Void}
  */
-exports.nei = function(id,config){
+exports.nei = function(config,callback){
     var cwd = process.cwd()+'/',
         project = _path.absolute(
             config.project+'/',cwd
@@ -150,21 +151,22 @@ exports.nei = function(id,config){
         return;
     }
     // build nei project
-    new (require('./lib/nei/builder.js'))({
-        nei:require('./package.json').nei,
-        config:{
-            id:id,
-            updateTime:0,
-            proRoot:project,
-            webRoot:_path.absolute(
-                config.webroot+'/',cwd
-            ),
-            tplRoot:_path.absolute(
-                config.template+'/',cwd
-            ),
-            overwrite:config.overwrite
-        }
+    var Builder;
+    try{
+        Builder = require(config.template);
+    }catch(ex){
+        Builder = require('./lib/nei/webapp.js');
+    }
+    config = _util.merge(config,{
+        updateTime:0,
+        proRoot:project,
+        done:callback||function(){},
+        debug:_log.log.bind(_log,'debug'),
+        info:_log.log.bind(_log,'info'),
+        warn:_log.log.bind(_log,'warn'),
+        error:_log.log.bind(_log,'error')
     });
+    new Builder(config);
 };
 /**
  * update project by nei
@@ -172,27 +174,5 @@ exports.nei = function(id,config){
  * @return {Void}
  */
 exports.update = function(root){
-    root = _path.absolute(
-        root,process.cwd()+'/'
-    );
-    var file = _nei.find(root);
-    // for not nei project
-    if (!file){
-        _logger.error('"nei update" only used to update nei project');
-        process.exit(1);
-        return;
-    }
-    // check nei project config
-    var nei = require(file);
-    if (!nei.id){
-        _logger.error('illegal nei project with config %s',file);
-        process.exit(1);
-        return;
-    }
-    // for nei project
-    new (require('./lib/nei/builder.js'))({
-        nei:require('./package.json').nei,
-        config:nei,
-        file:file
-    });
+
 };

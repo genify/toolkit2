@@ -233,6 +233,19 @@ CORE文件识别策略配置，可以配置的值如下：
 CORE_MERGE_FLAG = 0
 ```
 
+### CORE_NOPARSE_FLAG
+
+输出文件中不做解析的内容设置，默认根据页面标记处理，此优先级高于页面配置标记 @NOPARSE，此配置可使用的值：
+
+* 0 - 根据页面标记处理，默认使用此方式
+* 1 - 不处理内联样式，如&lt;style&gt;&lt;/style&gt;之间的内容
+* 2 - 不处理内联脚本，如&lt;script&gt;&lt;/script&gt;之间的内容
+* 3 - 不处理内联样式和脚本，即1和2的情况都不处理
+
+```
+CORE_NOPARSE_FLAG = 0
+```
+
 ### CORE_IGNORE_ENTRY
 
 页面脚本识别时是否屏蔽所有入口文件（即直接在页面以script标签形式引入的脚本）
@@ -719,19 +732,6 @@ X_NOCOMPRESS = true
 
 ```
 X_KEEP_COMMENT = true
-```
-
-### X_NOPARSE_FLAG
-
-输出文件中不做解析的内容设置，默认根据页面标记处理，此优先级高于页面配置标记 @NOPARSE，此配置可使用的值：
-
-* 0 - 根据页面标记处理，默认使用此方式
-* 1 - 不处理内联样式，如<style></style>之间的内容
-* 2 - 不处理内联脚本，如<script></script>之间的内容
-* 3 - 不处理内联样式和脚本，即1和2的情况都不处理
-
-```
-X_NOPARSE_FLAG = 0
 ```
 
 ### X_AUTO_EXLINK_PATH

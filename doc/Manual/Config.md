@@ -472,6 +472,19 @@ OBF_MAX_CS_INLINE_SIZE = 0
 OBF_MAX_JS_INLINE_SIZE = 0
 ```
 
+### OBF_CORE_INLINE_FLAG
+
+CORE文件内联规则配置，整体控制CORE文件的内联，优先级高于页面SCRIPT标记中的inline配置，可配置值：
+
+* 0 - 自动处理，根据页面SCRIPT标记配置的inline参数决定，默认外联
+* 1 - 所有页面的样式CORE文件内联
+* 2 - 所有页面的脚本CORE文件内联
+* 3 - 所有页面的样式和脚本CORE文件内联
+
+```
+OBF_CORE_INLINE_FLAG = 3
+```
+
 ## 版本配置
 
 这部分主要用来配置静态资源的版本信息

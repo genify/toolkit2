@@ -92,10 +92,13 @@ exports.init = function(output){
     output = _path.absolute(
         output+'/',process.cwd()+'/'
     );
-    _fs.copy(
-        __dirname+'/template/release.conf',
-        output+'release.conf'
+    var content = require('swig').renderFile(
+        __dirname+'/template/release.conf',{
+            comment:'#',
+            DIR_WEBROOT:'../webapp/'
+        }
     );
+    _fs.write(output+'release.conf',content);
     _logger.info('output release.conf to %s',output);
 };
 /**

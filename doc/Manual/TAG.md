@@ -18,7 +18,7 @@
 * 标记支持的配置参数为JS对象，紧跟标记名称后，并以空格分隔，具体标记支持的参数见各标记说明，范例如
 
     ```html
-    <!-- @STYLE {name:'core.css',inline:true} -->
+    <!-- @STYLE {core:false,inline:true} -->
     ```
 
 * 所有打包标记在项目打包完成后删除，因此在最终输出的html文件中不会有任何标记

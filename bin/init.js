@@ -7,9 +7,7 @@
  * nej-init ./relative/to/current/directory/
  */
 
-var args = argc.parse(
-    process.argv.slice(2)
-);
+var args = process.argv.slice(2);
 require('../main.js').init(
     args[0]||'./'
 );

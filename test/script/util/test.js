@@ -526,4 +526,36 @@ describe('script/nej/util',function(){
             });
         });
     });
+
+    describe('.parseFunction(content)',function(){
+        [
+            {
+                file:'aa.js',
+                result:{args:[],riturn:''}
+            },
+            {
+                file:'bb.js',
+                result:{args:['a','b','c','p'],riturn:'return p;'}
+            },
+            {
+                file:'cc.js',
+                result:{args:[],riturn:''}
+            },
+            {
+                file:'dd.js',
+                result:{args:['a','b','c'],riturn:''}
+            },
+            {
+                file:'ee.js',
+                result:{args:['_c1','_c2','_c3','_c4','_c5','_c6','_c7','_c8','_c9','_c10','_c11','_c12','_c13','_c14','_c15','_c16','_c17','_c18','_c19','_c20','_c21','_c22','_c23','_c24','_c25','_c26'],riturn:''}
+            }
+        ].forEach(function(config){
+            it('should be return '+JSON.stringify(config.result)+' for file '+config.file,function(){
+                var content = (fs.read(__dirname+'/'+config.file)||[]).join('\n');
+                //console.log(content);
+                var ret = util.parseFunction(content);
+                config.result.should.eql(ret);
+            });
+        });
+    });
 });

@@ -7,9 +7,7 @@
  * nej-build ./relative/to/current/directory/release.conf
  */
 
-var args = argc.parse(
-    process.argv.slice(2)
-);
+var args = process.argv.slice(2);
 require('../main.js').build(
     args[0]||'./release.conf'
 );

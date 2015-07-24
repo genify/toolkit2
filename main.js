@@ -196,9 +196,10 @@ exports.nei = function(config,callback){
         error:_log.log.bind(_log,'error')
     });
     // do build or update
-    var builder = new Builder(config);
-    if (!!builder[action]){
-        builder[action]();
+    var builder = new Builder(conf),
+        handler = builder[action];
+    if (!!handler){
+        handler.call(builder);
     }else{
         _logger.error('not supported action %s',action);
     }

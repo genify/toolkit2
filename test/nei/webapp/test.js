@@ -16,8 +16,8 @@ describe('nei/webapp',function(){
         it('should ok to build webapp',function(done){
             this.timeout(40000);
             var root = path.normalize(__dirname+'/');
-            new WebApp({
-                id:10350,
+            (new WebApp({
+                id:10355,
                 overwrite:true,
                 proRoot:root+'pro/',
                 debug:log.bind(log,'debug'),
@@ -27,7 +27,7 @@ describe('nei/webapp',function(){
                 done:function(){
                     done();
                 }
-            });
+            })).build();
         });
 
     });

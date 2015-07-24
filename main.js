@@ -169,7 +169,7 @@ exports.nei = function(config,callback){
         warn:_log.log.bind(_log,'warn'),
         error:_log.log.bind(_log,'error')
     });
-    new Builder(config);
+    (new Builder(config)).build();
 };
 /**
  * update project by nei
@@ -210,5 +210,5 @@ exports.update = function(config,callback){
             error:_log.log.bind(_log,'error')
         }
     );
-    new Builder(config);
+    (new Builder(config)).update();
 };

@@ -25,7 +25,11 @@ var main = require('../main.js');
     },
     update:function(event){
         event.stopped = !0;
-        // TODO
+        var opt = event.options||{};
+        opt.project = opt.p||opt.project||'./';
+        opt.overwrite = opt.w||opt.overwrite||!1;
+        opt.template = opt.t||opt.template||'';
+        main.update(opt);
     }
 })).exec(
     process.argv.slice(2)

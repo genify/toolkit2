@@ -10,8 +10,7 @@ var main = require('../main.js');
     },
     init:function(event){
         event.stopped = !0;
-        var opt = event.options||{},
-            output = opt.o||opt.output;
+        var output = event.args[0]||'./';
         if (!output){
             this.show('init');
         }else{
@@ -24,8 +23,7 @@ var main = require('../main.js');
     },
     build:function(event){
         event.stopped = !0;
-        var opt = event.options||{},
-            file = opt.c||opt.config;
+        var file = event.args[0]||'./release.conf';
         if (!file){
             this.show('build');
             process.exit(0);

@@ -11,7 +11,7 @@ var main = require('../main.js');
     build:function(event){
         event.stopped = !0;
         var opt = event.options||{},
-            id = opt.i||opt.id;
+            id = (event.args||[])[0];
         if (!id){
             this.show('build');
             process.exit(0);

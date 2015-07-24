@@ -20,8 +20,6 @@ describe('nei/webapp',function(){
                 id:10350,
                 overwrite:true,
                 proRoot:root+'pro/',
-                webRoot:root+'pro/webapp/',
-                viewRoot:root+'pro/views/',
                 debug:log.bind(log,'debug'),
                 info:log.bind(log,'info'),
                 warn:log.bind(log,'warn'),

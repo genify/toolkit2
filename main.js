@@ -7,6 +7,9 @@ var KLASS = {
     // base klass
     Event:'util/event',
     Logger:'util/logger#Logger',
+    // nei builder
+    NEI_Builder:'nei/builder',
+    NEI_WebApp:'nei/webapp',
     // resource meta
     RES_Text:'meta/text',
     RES_Html:'meta/html',
@@ -135,6 +138,7 @@ exports.export = function(list,config){
 /**
  * build nei project
  * @param  {Object} config - config object
+ * @param  {String} config.action    - builder action
  * @param  {String} config.id        - nei project id
  * @param  {String} config.project   - path to project root
  * @param  {String} config.template  - path to template output
@@ -146,22 +150,44 @@ exports.nei = function(config,callback){
     var cwd = process.cwd()+'/',
         project = _path.absolute(
             config.project+'/',cwd
-        );
+        ),
+        action = config.action||'build';
     // check nei.json file
+    var msg;
     if (_fs.exist(project+'nei.json')){
-        _logger.error('use "nei update" to update nei project');
+        if (action==='build'){
+            msg = 'use "nei update" to update nei project';
+        }
+    }else{
+        if (action==='update'){
+            msg = 'use "nei build" to build nei project';
+        }
+    }
+    if (!!msg){
+        _logger.error(msg);
         process.exit(1);
         return;
     }
-    // build nei project
+    // generator builder
+    var bmap = {
+            webapp:'./lib/nei/webapp.js'
+        },
+        name = bmap[config.template]||bmap.webapp;
     var Builder;
     try{
-        Builder = require(config.template);
+        Builder = require(name);
     }catch(ex){
-        Builder = require('./lib/nei/webapp.js');
+        Builder = require(bmap.webapp);
     }
-    config = _util.merge(config,{
-        updateTime:0,
+    // generator config
+    var conf = config;
+    if (action==='update'){
+        conf = require(project+'nei.json');
+        conf.overwrite = !!config.overwrite;
+    }else{
+        conf.updateTime = 0;
+    }
+    conf = _util.merge(conf,{
         proRoot:project,
         done:callback||function(){},
         debug:_log.log.bind(_log,'debug'),
@@ -169,46 +195,11 @@ exports.nei = function(config,callback){
         warn:_log.log.bind(_log,'warn'),
         error:_log.log.bind(_log,'error')
     });
-    (new Builder(config)).build();
-};
-/**
- * update project by nei
- * @param  {Object} config - config object
- * @param  {String} config.project   - path to project root
- * @param  {String} config.template  - path to template output
- * @param  {String} config.overwrite - whether overwrite files existed
- * @param  {Function} callback - build callback
- * @return {Void}
- */
-exports.update = function(config,callback){
-    var cwd = process.cwd()+'/',
-        project = _path.absolute(
-            config.project+'/',cwd
-        );
-    // check nei.json file
-    if (!_fs.exist(project+'nei.json')){
-        _logger.error('use "nei build" to build nei project');
-        process.exit(1);
-        return;
+    // do build or update
+    var builder = new Builder(config);
+    if (!!builder[action]){
+        builder[action]();
+    }else{
+        _logger.error('not supported action %s',action);
     }
-    // nei project builder
-    var Builder;
-    try{
-        Builder = require(config.template);
-    }catch(ex){
-        Builder = require('./lib/nei/webapp.js');
-    }
-    // merge config
-    config = _util.merge(
-        require(project+'nei.json'),{
-            proRoot:project,
-            overwrite:!!config.overwrite,
-            done:callback||function(){},
-            debug:_log.log.bind(_log,'debug'),
-            info:_log.log.bind(_log,'info'),
-            warn:_log.log.bind(_log,'warn'),
-            error:_log.log.bind(_log,'error')
-        }
-    );
-    (new Builder(config)).update();
 };

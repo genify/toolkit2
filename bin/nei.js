@@ -17,6 +17,7 @@ var main = require('../main.js');
             process.exit(0);
         }else{
             opt.id = id;
+            opt.action = 'build';
             opt.project = opt.p||opt.project||'./';
             opt.overwrite = opt.w||opt.overwrite||!1;
             opt.template = opt.t||opt.template||'';
@@ -26,10 +27,11 @@ var main = require('../main.js');
     update:function(event){
         event.stopped = !0;
         var opt = event.options||{};
+        opt.action = 'update';
         opt.project = opt.p||opt.project||'./';
         opt.overwrite = opt.w||opt.overwrite||!1;
         opt.template = opt.t||opt.template||'';
-        main.update(opt);
+        main.nei(opt);
     }
 })).exec(
     process.argv.slice(2)

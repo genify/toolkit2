@@ -173,9 +173,42 @@ exports.nei = function(config,callback){
 };
 /**
  * update project by nei
- * @param  {String} root - nei project path
+ * @param  {Object} config - config object
+ * @param  {String} config.project   - path to project root
+ * @param  {String} config.template  - path to template output
+ * @param  {String} config.overwrite - whether overwrite files existed
+ * @param  {Function} callback - build callback
  * @return {Void}
  */
-exports.update = function(root){
-
+exports.update = function(config,callback){
+    var cwd = process.cwd()+'/',
+        project = _path.absolute(
+            config.project+'/',cwd
+        );
+    // check nei.json file
+    if (!_fs.exist(project+'nei.json')){
+        _logger.error('use "nei build" to build nei project');
+        process.exit(1);
+        return;
+    }
+    // nei project builder
+    var Builder;
+    try{
+        Builder = require(config.template);
+    }catch(ex){
+        Builder = require('./lib/nei/webapp.js');
+    }
+    // merge config
+    config = _util.merge(
+        require(project+'nei.json'),{
+            proRoot:project,
+            overwrite:!!config.overwrite,
+            done:callback||function(){},
+            debug:_log.log.bind(_log,'debug'),
+            info:_log.log.bind(_log,'info'),
+            warn:_log.log.bind(_log,'warn'),
+            error:_log.log.bind(_log,'error')
+        }
+    );
+    new Builder(config);
 };

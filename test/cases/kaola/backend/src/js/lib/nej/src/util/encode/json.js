@@ -1,1 +1,0 @@
-NEJ.define(['{platform}json.js'],function(){return JSON;});

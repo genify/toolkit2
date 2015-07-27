@@ -1,0 +1,9 @@
+[name=from],[name=to]{width:80px;}
+.bRed{background-color: #ff291c}
+.w-datatable th, .w-datatable td {
+	border:1px solid #ddd;
+}
+.w-datatable th{
+	font-weight: bold;
+	border-bottom:3px solid #ccc;
+}

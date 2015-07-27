@@ -1,0 +1,64 @@
+<form id="ruleform" action="/backend/dw/period/duration/rule/add" method="post">
+	<table class="m-modalbox">
+		<thead> <tr> <td></td> <td></td><td></td> <td></td> </tr> </thead>
+		<tbody>
+			<tr>
+				<td>规则属性：</td>
+				<td colspan="3">
+					{{#if type==2}}
+					<input type="hidden" name="ruleId" value="{{item.id}}" />
+					{{/if}}
+					<select {{#if type==2}}class="z-dis" disabled="disabled"{{/if}} name="ruleType" r-model={{item.ruleType}}><option value="1">默认规则</option><option value="2">特殊规则</option></select>
+				</td>
+			</tr> 
+			<tr>
+				<td>物流公司：</td>
+				<td>
+					<select {{#if type==2}}class="z-dis" disabled="disabled"{{/if}} name="logisticsId" r-model={{item.logisticsId}}>
+						{{#if companyList}}
+						{{#list companyList as x}}
+						<option value={{x.logisticsId}}>{{x.logisCompanyName}}</option>
+						{{/list}}
+						{{/if}}
+					</select>
+				</td>
+				<td>是否延长至24点：</td>
+				<td>
+					<select r-model={{item.delay}} name="delay">
+						<option value="1">是</option>
+						<option value="0">否</option>
+					</select>
+				</td>
+			</tr>
+			{{#if item.ruleType==2}}
+			<tr>
+				<td>规则生效日期：</td>
+				<td>
+					<input class="u-ipt" type="text" placeholder="点击选择生效日期" readonly on-click={{this.datePick($event,1)}} r-model={{item.startTime|format:'yyyy-MM-dd'}}>
+				</td>
+				<td>规则失效日期：</td>
+				<td>
+					<input class="u-ipt" type="text" placeholder="点击选择失效日期" readonly on-click={{this.datePick($event,2)}} r-model={{item.endTime|format:'yyyy-MM-dd'}}>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="startTime" r-model="{{item.startTime}}"></td>
+				<td><input type="hidden" name="endTime" r-model="{{item.endTime}}"></td>
+			</tr>
+			{{/if}}  
+			<tr>
+				<td>导入文件：</td>
+				<td colspan="3">
+					<input type="file" accept=".xls,.xlsx" name="file" />
+				</td>
+			</tr> 
+			<tr>
+				<td>文件填写示例<span class="u-must">*</span>：</td>
+				<td colspan="3">
+					<img src="/rsc/backend/rsc/img/logistic/demo.png"/>
+				</td>
+			</tr> 
+		</tbody>
+	</table>
+					
+</form>

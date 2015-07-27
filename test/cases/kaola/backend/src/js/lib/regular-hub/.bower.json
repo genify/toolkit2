@@ -1,0 +1,30 @@
+{
+  "name": "regular-hub",
+  "version": "0.0.2",
+  "main": "hub.js",
+  "description": "Regular Component's Hub",
+  "authors": "@leeluolee <87399126@163.com>",
+  "license": "MIT",
+  "ignore": [
+    ".*",
+    "node_modules",
+    "bin",
+    "test",
+    "gulpfile.js",
+    "*.json",
+    "*.md"
+  ],
+  "dependencies": {
+    "regularjs": "*"
+  },
+  "homepage": "https://github.com/regularjs/regular-hub",
+  "_release": "0.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.2",
+    "commit": "78d68359abd201a699755f3c2e3323c7ddfe6cf2"
+  },
+  "_source": "git://github.com/regularjs/regular-hub.git",
+  "_target": "*",
+  "_originalSource": "regular-hub"
+}

@@ -1,0 +1,91 @@
+#g-searchbar{
+    left: 250px;
+}
+#u-searchbox{
+    display: none;
+}
+#g-supplier-list{
+    padding-top: 10px;
+}
+body #g-contentwrap{
+    overflow:visible;
+}
+#g-searchbar .date{
+    width: 100px;
+}
+#m-ruku{
+    padding: 15px 0;
+    border-bottom: 2px solid black;
+    font-weight:bold;
+    overflow: hidden;
+}
+.ruku-order,.ruku-rel{
+    float: left;
+}
+.ruku-order{
+    margin-right: 50px;
+}
+#m-rukudetail{
+    padding:20px 0;
+}
+#m-rukudetail ul{
+    overflow: hidden;
+}
+#m-rukudetail li{
+    margin-right:40px;
+    float: left;
+}
+#m-remark{
+    margin-top: 30px;
+    padding: 20px;
+    background:#e2e2e2;
+    -webkit-border-radius:10px;
+}
+#m-remark .remark-title{
+    font-weight: bold;
+}
+#g-tablebody{
+    height: 500px;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+/* 分页 */
+#m-pager{
+    border:1px solid #c8c8c8;
+    border-top:0;
+    padding:10px;
+    background:#e2e2e2;
+    text-align:right;
+}
+#m-pager b{
+    margin:0 3px;
+    font-weight:700;
+}
+#m-pager em{
+    margin:0 0 0 3px;
+}
+#m-pager span,
+#m-pager a,
+#m-pager a:hover{
+    display:inline-block;
+    text-align:center;
+    border:1px solid #ccc;
+    background:#f8f8f8;
+    padding:0 5px;
+    margin:0 0 0 3px;
+    text-decoration:none;
+    color:#383838;
+    
+     -webkit-border-radius: 6px 0 6px 0;
+          border-radius: 6px 0 6px 0;
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+#m-pager span{
+    border-color:#e2e2e2;
+    background:#e2e2e2;
+    font-weight:700;
+}
+#m-pager a:hover{
+    background:#f4a600;
+    color:#fff;
+}

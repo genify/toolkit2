@@ -1,0 +1,17 @@
+.m-databox dl { padding:10px; line-height:30px; }
+.m-databox dt, .m-databox dd { float:left;  }
+.m-databox dt { width:105px; color:#333; text-align:right; }
+.m-databox dt.small { width:60px; }
+.m-databox dd { min-width:147px; width:14%; color:#999; height:20px; overflow:hidden; text-overflow:ellipsis;  }
+.m-databox dd.small { width:61px; }
+.m-databox dd.large { float:none; width:100%; height:auto; word-break:break-all; overflow:visible; text-overflow:auto; }
+.m-databox dd.large a, .m-databox dd.large a:hover { white-space:normal;}
+.m-databox .subtitle { display:block; margin:10px 0; border-bottom:1px solid #ddd; }
+
+.m-databox dd a, .m-databox dd a:hover { color:#999; white-space:nowrap; }
+.m-databox dd a.link { color:#158cba;}
+
+.m-databox .logs { padding:20px; background:#eee; margin-top:20px; border-radius:5px; color:#666;  }
+.m-databox .btn { margin-left:50%; }
+
+.modal-dialog { top:100px; }

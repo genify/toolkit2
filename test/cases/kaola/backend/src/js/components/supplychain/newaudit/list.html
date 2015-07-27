@@ -1,0 +1,49 @@
+{{#if loading}}
+  <div class="m-loading">数据加载中...</div>
+{{#else}}
+  <table class="w-datatable w-supplychangtbl">
+  <thead>
+    <tr>
+        <th>商品ID</th>
+        <th width="120px">商品名称</th>
+        <th>跨境方式</th>
+        <th>条形码</th>
+        <th width="60px">SKU</th>
+        <th>采购数量</th>
+        <th>单价成本</th>
+        <th>金额小计</th>
+        <th>国际+转关（¥）</th>
+        <th>快递（¥）</th>
+        <th>仓内运营（¥）</th>
+        <th>总成本</th>
+        <th>竞品价格（¥）</th>
+        <th width=100px>毛利率</th>
+        <th width=60px>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+	  {{#list list as item}}
+	    <tr>
+	      <td>{{item.isNew?'新品':item.goodsId}}</td>
+	      <td title={{item.goodsName}}>{{item.goodsName}}</td>
+	      <td>{{item.importType|importType}}</td>
+	      <td>{{item.barcode}}</td>
+	      <td>{{#if isNew}}默认{{#else}}{{item.skuDesc}}{{/if}}</td>
+	      <td><input type="text" r-model={{item.purchaseCount}}></td>
+	      <td><input type="text" r-model={{item.unitPrice}}></td>
+	      <td>{{item.purchaseCount*item.unitPrice|fixed}}</td>
+	      <td><input type="text" r-model={{item.internationalTransit}}></td>
+	      <td><input type="text" r-model={{item.deliveryFee}}></td>
+	      <td><input type="text" r-model={{item.operationFee}}></td>
+	      <td>{{this.getCost(item)}}</td>
+	      <td><input type="text" r-model={{item.competitionPrice}}></td>
+	      <td>{{this.getGrossProfit(item)}}</td>
+	      <td><a on-click={{this.removeProduct(item_index)}} href="javascript:void(0)">删除</a></td>
+	    </tr>
+	  {{/list}}
+	  <tr>
+	  	<td colspan=15 class="f-tac"> <button  name="adddata"class="w-btn w-btn-black btag" on-click={{this.addProduct()}}>添加商品</button> <button  name="adddata"class="w-btn w-btn-black btag" on-click={{this.importProduct()}}>导入商品</button></td>
+	  </tr>
+  </tbody>
+  </table>
+{{/if}}

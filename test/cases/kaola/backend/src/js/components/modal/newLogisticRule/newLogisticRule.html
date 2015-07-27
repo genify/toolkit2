@@ -1,0 +1,81 @@
+<table class="m-modalbox">
+	<thead> <tr> <td></td> <td width="180"></td><td></td> <td></td> </tr> </thead>
+	<tbody> 
+		<tr>
+			<td>规则属性：</td>
+			<td>
+				{{#if type==2}}
+				<input type="hidden" name="ruleId" value="{{item.id}}" />
+				{{/if}}
+				<select {{#if type==2}}class="z-dis" disabled="disabled"{{/if}} r-model={{item.isDefault}}><option value=1>默认规则</option><option value=0>特殊规则</option></select>
+			</td>
+			<td>物流公司名称：</td>
+			<td>
+				<select {{#if type==2}}class="z-dis" disabled="disabled"{{/if}} r-model={{item.logisticCompanyId}}>
+					{{#if companyList}}
+					{{#list companyList as x}}
+					<option value={{x.logisticsId}}>{{x.logisCompanyName}}</option>
+					{{/list}}
+					{{/if}}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>发货截止时间：</td>
+			<td>
+				<select class="u-sel" r-model={{criticalHour}}>
+					{{#list 0..23 as x}}
+					<option value="{{x}}">{{x}}</option>
+					{{/list}}
+				</select> <span>时</span>
+				<select class="u-sel" r-model={{criticalMinute}}><option value="00">00</option><option value="30">30</option></select> <span>分</span>
+			</td>
+			<td>揽收后延天数1：</td>
+			<td>
+				<input type="text" class="u-ipt" r-model={{item.delayDay1}} />
+			</td>
+		</tr>
+		<tr>
+			<td>揽收截止时间1：</td>
+			<td>
+				<select class="u-sel" r-model={{deadlineHour1}}>
+					{{#list 0..23 as x}}
+					<option value="{{x}}">{{x}}</option>
+					{{/list}}
+				</select> <span>时</span>
+				<select class="u-sel" r-model={{deadlineMinute1}}><option value="00">00</option><option value="30">30</option></select> <span>分</span>
+			</td>
+			<td>揽收后延天数2：</td>
+			<td>
+				<input type="text" class="u-ipt" r-model={{item.delayDay2}} />
+			</td>
+		</tr>
+		<tr>
+			<td>揽收截止时间2：</td>
+			<td>
+				<select class="u-sel" r-model={{deadlineHour2}}>
+					{{#list 0..23 as x}}
+					<option value="{{x}}">{{x}}</option>
+					{{/list}}
+				</select> <span>时</span>
+				<select class="u-sel" r-model={{deadlineMinute2}}><option value="00">00</option><option value="30">30</option></select> <span>分</span>
+			</td>
+			<td>非工作日是否顺延：</td>
+			<td>
+				<select r-model={{item.holidayDelay}}><option value="1">是</option><option value="0">否</option></select>
+			</td>
+		</tr>
+		{{#if item.isDefault==0}}
+		<tr>
+			<td>规则生效日期：</td>
+			<td>
+				<input class="u-ipt" type="text" placeholder="点击选择生效日期" readonly on-click={{this.datePick($event,1)}} r-model={{item.availableStart|format:'yyyy-MM-dd'}}>
+			</td>
+			<td>规则失效日期：</td>
+			<td>
+				<input class="u-ipt" type="text" placeholder="点击选择失效日期" readonly on-click={{this.datePick($event,2)}} r-model={{item.availableEnd|format:'yyyy-MM-dd'}}>
+			</td>
+		</tr>
+		{{/if}}  
+	</tbody>
+</table>

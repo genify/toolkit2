@@ -1,0 +1,56 @@
+.s-fc-blue {color:#369;}
+.s-fs-14 { font-size:14px; }
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{*+height:1%;}
+table { width:100%; margin:35px 0; border:1px solid #ddd; }
+th, td { border:1px solid #ddd; text-align:center; padding:7px; }
+thead { background:#8CC6DC; color:#fff; }
+td { font-size:12px; }
+tr.odd { background:#eee; }
+
+.m-tabview .detail { position:relative; }
+.m-task .info, .m-detail .info { position:absolute; right:20px; top:-27px; }
+
+.m-box { font-size:12px; margin-bottom:20px; color:#111; }
+.m-box .status { float:right; color:#999; font-size:12px; }
+.m-box h2 { border-bottom:1px solid #ddd; margin-bottom:12px; }
+.m-box li { float:left; padding:10px 0 10px 10px; background:#eee;margin-right:5px;  font-size:12px; }
+.m-box .item2 { position:relative; max-width:170px;padding:4px; border-radius:5px; padding-right:25px; margin-bottom:5px;  white-space: nowrap; text-overflow:ellipsis; overflow:hidden; }
+.m-box .item2 a { color:#0923FB; }
+
+.m-box .attachment { margin-top:15px; }
+.m-box .attachment a { font-size:12px; color:#369; }
+.m-logs {background:#eee; padding:10px; height:300px; overflow:auto; }
+
+.m-detail { font-size:13px; color:#666;}
+.m-detail dl { padding:10px; line-height:30px;  line-height:40px; }
+.m-detail dt, .m-detail dd { float:left;  }
+.m-detail dt { width:100px; color:#666; text-align:right; }
+.m-detail dd { width:100px; color:#999; height:20px; }
+
+.m-task .btn { padding:5px 20px; border:1px solid #ccc; color:#333; font-size:12px; background:#eee; margin:15px 1px; border-radius:0;}
+.m-task .item2 .del { position:absolute; right:10px; top:2px;  font-size:14px; color:#aaa; }
+.m-task .upload { position:absolute; top:0; left:0; line-height:200px; opacity:0; }
+.m-task .item { position:relative;  width:130px; border-top:1px solid #5FBF60; }
+.m-task .item.invalid { border-top:1px solid #D25318;}
+.m-box .item-1 { width:190px; }
+.m-task .updateBtn { position:absolute; display:none; width:100%; height:100%; line-height:56px; left:0; top:0; text-align:center; background:#444; opacity:0.9; font-size:20px; color:#fff; }
+.m-task .item:hover .updateBtn { display:block; }
+
+#upload { opacity:0; margin-left:-35px; margin-top:-30px; width:52px; border:1px solid red; line-height:20px; position:absolute; }
+
+.m-dialog label {display:inline-block; width:100px; text-align:right; margin-bottom:20px; }
+#updateForm .btn, #submitForm .btn { float:right; margin-top:0; margin-bottom:auto; margin-right:5px;  }
+
+/* clearfix modal footer */
+.modal-footer:after {
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content:"\20 ";
+    clear:both;
+    height:0;
+}
+
+.zday { margin:0; }
+.zday th, .zday td { padding:2px; }

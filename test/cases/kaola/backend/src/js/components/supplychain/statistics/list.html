@@ -1,0 +1,70 @@
+{{#if loading}}
+  <div class="m-loading">数据加载中...</div>
+{{#else}}
+<div class="m-planinfo">
+	<span>在途SKU数：{{inTransitSkuCount}}</span>
+	<span>在途库存数量：{{inTransitGoodCount}}</span>
+	<span>在途柜数：{{inTransitContainerCount}}</span>
+	<span>在途货值：{{inTransitAmount|currencyFormat}}</span>
+</div>
+  <table class="w-datatable w-supplychangtbl">
+  <thead>
+    <tr>
+        <th width="90px">日期</th>
+        <th>到港数量(柜数)</th>
+        <th>到港金额</th>
+        <th>到港采购单</th>
+        <th>到库数量(柜数)</th>
+        <th>到库金额</th>
+        <th>到库采购单</th>
+        <th>理货数量(柜数)</th>
+        <th>理货采购单</th>
+        <th>理货金额</th>
+    </tr>
+  </thead>
+  <tbody>
+ 	  {{#if list.length!=0}}
+	  {{#list list as item}}
+	    <tr>
+	      <td>{{item.date|format}}</td>
+	      <td>{{item.arrivalPortCount}}({{item.arrivalPortContainerCount}})</td>
+	      <td>{{Math.round(item.arrivalPortAmount)}}元</td>
+	      <td>
+	      {{#list item.arrivalPortPurchaseOrders as citem}}
+	      	<a href="/backend/invoicing/order?id={{citem}}" target="_blank">{{citem}}</a>{{#if citem_index!=item.arrivalPortPurchaseOrders.length-1}}，{{/if}}
+	      {{/list}}
+		  </td>
+	      <td>{{item.arrivalWarehouseCount}}({{item.arrivalWarehouseContainerCount}})</td>
+	      <td>{{Math.round(item.arrivalWarehouseAmount)}}元</td>
+	      <td>
+	      {{#list item.arrivalWarehousePurchaseOrders as citem}}
+	      	<a href="/backend/invoicing/order?id={{citem}}" target="_blank">{{citem}}</a>{{#if citem_index!=item.arrivalWarehousePurchaseOrders.length-1}}，{{/if}}
+	      {{/list}}
+	      </td>
+	      <td>
+	      	{{item.tallyCount}}({{item.tallyContainerCount}})
+	      </td>
+	      <td>
+	      	{{#list item.tallyPurchaseOrders as citem}}
+	      	<a href="/backend/invoicing/order?id={{citem}}" target="_blank">{{citem}}</a>{{#if citem_index!=item.tallyPurchaseOrders.length-1}}，{{/if}}
+	     	 {{/list}}
+	      </td>
+	      <td>
+	      	{{Math.round(item.tallyAmount)}}元
+	      </td>
+	    </tr>
+	  {{/list}}
+	  {{#else}}
+	  <tr>
+        <td colspan=10><div class="m-empty">暂时没有数据</div></td>
+      </tr>
+	  {{/if}}
+  </tbody>
+  </table>
+{{/if}}
+<div class="m-pager f-cb">
+	<ul class="m-pagination f-cb">
+		<li on-click={{this.prePage()}} class='pageprv'><a  href="javascript:void(0);" >上一页</a></li>
+		<li on-click={{this.nextPage()}} class='pagenxt'><a  href="javascript:void(0);" >下一页</a></li>
+	</ul>
+</div>

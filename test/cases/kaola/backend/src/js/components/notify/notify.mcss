@@ -1,0 +1,69 @@
+$notify-theme = ($color){
+  color: #fff;
+  border: l-adjust($color, -5%);
+  background-color: l-adjust($color, +12%);
+}
+.m-notify{
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  min-width: 240px;
+  z-index: $z-middle + 1;
+  .notify_close{
+    cursor: pointer;
+    position: absolute;
+    font-size: 16px;
+    top: 6px;
+    right: 6px;
+    &:hover{
+      font-weight: bold;
+    }
+  }
+  .notify{
+    position: relative;
+    margin: $padding-base-vertical $padding-base-horizontal;
+    padding: $padding-base-vertical $padding-base-horizontal $padding-base-vertical 32px + 8px ;
+    $border-radius: 1px;
+    $box-shadow: 1px 1px 1px rgba(1,1,1,0.5);
+    $clearfix();
+    &:hover{
+      $box-shadow: 1px 1px 3px rgba(1,1,1,0.5);
+    }
+
+    p{
+      margin-top: 12px;
+    }
+
+    .glyphicon{
+      position: absolute;
+      $gsize = 32px;
+      $lh: $gsize;
+      top: 50%;
+      left: 12px;
+      margin-top: - ($gsize / 2);
+      font-size: 20px;
+      margin-right: 4px;
+    }
+
+    &-error{
+      $notify-theme: $brand-danger;
+    }
+    &-info{
+      $notify-theme: $brand-info;
+    }
+    &-success{
+      $notify-theme: $brand-success;
+    }
+    &-warning{
+      $notify-theme: $brand-warning;
+    }
+
+  }
+}
+.m-notify-left{
+  left: 12px;
+  right: auto;
+}
+.m-notify-middle{
+  left: 50%;
+}

@@ -1,0 +1,63 @@
+.g-body .left{
+	float:left;
+	width:35%;
+}
+.g-body .right{
+	float:right;
+	width:63%;
+}
+
+.right  h2{
+	margin-right:30px;
+	cursor:pointer;
+}
+
+.right .cur{
+	color:#f80000;
+}
+
+/* 翻页器样式 */
+.m-fixPag{
+	padding:10px;
+	background-color:#ddd;
+}
+
+.m-fixPag .pager{
+	float:right;
+}
+
+/* 重写btn控件的hover样式 */
+a.w-btn,a.w-btn:hover {
+    transition:0s;
+}
+
+.group a.w-btn,.group a.w-btn:hover {
+	 color: #fff;
+}
+
+.f-cb:after{
+	clear:both;content:'.';display:block;height:0;visibility:hidden;overflow:hidden;
+}
+.f-cb{zoom:1;
+}
+.f-mr40{
+	margin-right:40px;
+}
+.f-mr140{
+	margin-right:140px;
+}
+.f-w115{
+	width:115px;
+}
+
+#total{
+	display:inline-block; margin-left:20px;
+}
+
+.m-databox .w-datatable .curtr{
+	background-color: #ECD318;
+}
+
+.w-dataform button a,.w-dataform button a:hover {
+	color:#fff;
+}

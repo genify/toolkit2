@@ -1,0 +1,64 @@
+{{#if loading}}
+<div class="m-loading">数据加载中...</div>
+{{#else}}
+
+<table class="w-datatable">
+    <thead>
+        <tr>
+            {{#if condition.isRelated == true}}
+            <th>商品ID</th>
+            <th width="100">规格</th>
+            <th>料号</th>
+            <th>商品名称</th>
+            <th>商品条码</th>
+            <th>跨境方式</th>
+            <th>所在仓库</th>
+            <th>预计到港日期</th>
+            <th>创建人员</th>
+            <th>操作</th>
+            {{#else}}
+            <th>商品名称</th>
+            <th>商品条码</th>
+            <th>跨境方式</th>
+            <th>所在仓库</th>
+            <th>预计到港日期</th>
+            <th>创建人员</th>
+            <th>操作</th>
+            {{/if}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#list list as item}}
+        <tr>
+            {{#if condition.isRelated == true}}
+            <td>{{@(item.mmGoodsId)}}</td>
+            <td>{{item.mmSkuDesc}}</td>
+            <td>{{item.productSkuCode}}</td>
+            <td>{{item.goodsName}}</td>
+            <td>{{item.barcode}}</td>
+            <td>{{item.importType | importType }}</td>
+            <td>{{item.storageName}}</td>
+            <td>{{@(item.arrivalTime | format)}}</td>
+            <td>{{@(item.createUser)}}{{#if item.personalName}}({{@(item.personalName)}}){{/if}}</td>
+            <td><a href="showRelateDetail?id={{@(item.id)}}" target="_blank">查看详情</a></td>
+            {{#else}}
+            <td>{{item.goodsName}}</td>
+            <td>{{item.barcode}}</td>
+            <td>{{item.importType | importType }}</td>
+            <td>{{item.storageName}}</td>
+            <td>{{@(item.arrivalTime | format)}}</td>
+            <td>{{@(item.createUser)}}{{#if item.personalName}}({{@(item.personalName)}}){{/if}}</td>
+            <td>
+                <a href="showRelateDetail?id={{@(item.id)}}" target="_blank">关联商品</a>&emsp;
+                <a href="javascript:;" on-click="{{this.deleteItem(item)}}">删除</a>
+            </td>
+            {{/if}}
+        </tr>
+        {{/list}}
+    </tbody>
+</table>
+{{/if}}
+<div id="dialog"></div>
+<div class="m-pager f-cb">
+    <pager total={{Math.ceil(total/limit)}} current={{current}}></pager>
+</div>

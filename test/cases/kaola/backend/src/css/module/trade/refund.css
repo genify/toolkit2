@@ -1,0 +1,7 @@
+.w-datatable tbody tr{
+	background-color: #efefef;
+}
+
+.w-datatable th, .w-datatable td {
+	border: 1px solid #ccc;
+}

@@ -1,0 +1,155 @@
+/**
+ * 后台权限管理 登陆页面
+ * Created by zmm on 12/11/14.
+ */
+
+html {
+    background-color: transparent;
+}
+body {
+    background-color: #d9dee2;
+    font: 12px "Lucida Sans Unicode","Trebuchet MS",Arial,Helvetica;
+    min-height: 400px;
+    min-width: 500px;
+}
+fieldset {
+    border: 0px none;
+    padding: 0px;
+    margin: 0px;
+}
+#login {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    z-index: 0;
+    padding: 30px;
+    margin: -160px 0 0 -210px;
+    background-color: #fff;
+    background-image: -webkit-linear-gradient(#FFF, #EEE);
+    background-image: -o-linear-gradient(#FFF, #EEE);
+    background-image: linear-gradient(#FFF, #EEE);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2),
+    0 1px 1px rgba(0, 0, 0, .2),
+    0 3px 0 #fff,
+    0 4px 0 rgba(0, 0, 0, .2),
+    0 6px 0 #fff,
+    0 7px 0 rgba(0, 0, 0, .2);
+}
+#login:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    border: 1px dashed #ccc;
+    box-shadow: 0 0 0 1px #fff;
+}
+#login h1 {
+    position: relative;
+    margin: 0 0 30px;
+    color: #666;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
+    letter-spacing: 3px;
+    font-weight: normal;
+    font-size: 26px;
+}
+#login h1:after, #login h1:before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    width: 75px;
+    height: 1px;
+    background-color: #777;
+}
+#login h1:after {
+    right: 0;
+    background-image: -webkit-linear-gradient(left, #777, #fff);
+    background-image: -o-linear-gradient(left, #777, #fff);
+    background-image: linear-gradient(to right, #777, #fff);
+}
+#login h1:before {
+    left: 0;
+    background-image: -webkit-linear-gradient(right, #777, #fff);
+    background-image: -o-linear-gradient(right, #777, #fff);
+    background-image: linear-gradient(to left, #777, #fff);
+}
+
+#inputs .item {
+    position: relative;
+    z-index: 1;
+    padding-top: 2px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    background-color: #ccc;
+}
+#inputs .item label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding-left: 2px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+#inputs  input {
+    padding: 10px;
+    line-height: 18px;
+}
+#inputs .item input {
+    width: 332px;
+    margin-left: 40px;
+}
+#inputs input:focus {
+    border: 2px solid #eead69;
+    background-image: -webkit-linear-gradient(#EEE, #efefef);
+    background-image: -o-linear-gradient(#EEE, #efefef);
+    background-image: linear-gradient(#EEE, #efefef);
+}
+#inputs #captchaImg {
+    vertical-align: middle;
+}
+#actions {
+    margin: 25px 0 10px;
+    clear: both;
+}
+#actions a{
+    float: left;
+    margin-left: 10px;
+    line-height: 36px;
+    color: #3151a2;
+    text-decoration: none;
+}
+
+#submit {
+    float: left;
+    width: 120px;
+    height: 35px;
+    line-height: 34px;
+    cursor: pointer;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 1px solid #127BA3;
+    border-width: 1px 1px 4px 1px;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3), 0px 1px 0px rgba(255, 255, 255, 0.3) inset;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
+    background-color: #158CBA;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    transition: 0.5s;
+}
+#submit:hover {
+    border-width: 0 1px 1px;
+}

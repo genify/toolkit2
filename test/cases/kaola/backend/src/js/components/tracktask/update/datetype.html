@@ -1,0 +1,15 @@
+<div class="m-dialog">
+	<div><strong style="color:red">{{msg}}</strong></div>
+	<label >{{dialogTitle1}}:</label>
+	<select name="{{dialogName1}}">
+		<option value="0" {{#if data1 == 0}}selected{{/if}}>否</option>
+		<option value="1" {{#if data1 == 1}}selected{{/if}}>是</option>
+	</select>
+	<br />
+	
+	<div>
+		<label>{{dialogTitle2}}：</label>
+		<input type="text" name="userdate" value="" id="userdate"/>
+		<input type="hidden" name="{{dialogName2}}" value="" id="{{dialogName2}}">
+	</div>
+</div>

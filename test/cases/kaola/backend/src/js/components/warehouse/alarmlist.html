@@ -1,0 +1,43 @@
+{{#if loading}}
+  <div class="m-loading">数据加载中...</div>
+{{#else}}
+  <div class="m-warehousestatics">
+    <button class="f-fr w-btn w-btn-black addData" on-click={{this.addPersonInfo(0)}}>新增</button>
+    <table class="w-datatable">
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>用户名</th>
+          <th>创建日期</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#if list.length==0}}
+      没有列表数据！
+      {{#else}}
+        {{#list list as item}}
+          <tr>
+            <td>{{item_index+1}}</td>
+            <td>{{item.name}}({{item.email}})</td>
+            <td>{{item.createTime.substring(0,10)}}</td>
+            <td class="f-fr">
+              <button class="w-btn w-btn-black btag editPerson" on-click={{this.addPersonInfo(item, item_index)}}>编辑</button>
+              <button class="w-btn w-btn-black btag deletePerson" on-click={{this.deletePersonInfo(item, item_index)}}>删除</button>
+            </td>
+          </tr>
+        {{/list}}
+      {{/if}}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="14">
+            <div class="m-pager f-cb">
+              <pager total={{Math.ceil(total/limit)}} current={{pageNo}} on-nav="{{this.pageChange($event)}}"></pager>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+{{/if}}

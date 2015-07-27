@@ -1,0 +1,120 @@
+<textarea name="txt" id="#<seedTxt>">
+<div class="cnt">
+	<form class="j-flag">
+		
+	</form>
+	<div class="btns f-tac">
+		<input type="button" value="确定" class="w-btn w-btn-blue j-flag"/>
+		<input type="button" value="取消" class="w-btn w-btn-blue j-flag"/>
+	</div>
+</div> 
+</textarea>
+<textarea name="jst" id='#<seedInfo>'>
+	<table id="storgeEdit">
+		<tr>
+			<td width="126"><label for="isDefault">规则属性：</label></td>
+			<td>
+				<select name="isDefault" id="isDefault" class="u-textbox" {if (info.storageId)}disabled{/if}>
+					<option value="1" {if info.isDefault == 1}selected{/if}>默认规则</option>
+					<option value="0" {if info.isDefault == 0}selected{/if}>特殊规则</option>
+				</select>
+			</td>
+			<td width="106"><label for="ruleType">规则类型：</label></td>
+			<td>
+				<select name="ruleType" id="ruleType" class="u-textbox">
+					<option value="1" {if info.ruleType == 1}selected{/if}>规则1</option>
+					<option value="2" {if info.ruleType == 2}selected{/if}>规则2</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="storageId">仓库名称：</label></td>
+			<td>
+				<select name="storageId" class="u-textbox"  {if info.storageId}disabled{/if}>
+					{list warehouseList as item}
+	    				<option value="${item.warehouseId}" {if item.warehouseId==info.storageId}selected{/if}>${item.warehouseName}</option>
+	    			{/list}
+				</select>
+			</td>
+		{if info.ruleType==1}
+			<td><label for="criticalTime">订单截止时间：</label></td>
+			<td>
+				<select name="criticalTime" class="u-textbox" value="${info.criticalTime}">
+					{list 0..23 as x}
+						<option value="${x}:00:00" {if (x*60)==(info.criticalTime.length==8?(parseInt(info.criticalTime.substring(0,2)*60)+parseInt(info.criticalTime.substring(3,5))):(parseInt(info.criticalTime.substring(0,1)*60)+parseInt(info.criticalTime.substring(2,4))))}selected{/if}>${x}:00</option>
+						<option value="${x}:30:00" {if (x*60+30)==(info.criticalTime.length==8?(parseInt(info.criticalTime.substring(0,2)*60)+parseInt(info.criticalTime.substring(3,5))):(parseInt(info.criticalTime.substring(0,1)*60)+parseInt(info.criticalTime.substring(2,4))))}selected{/if}>${x}:30</option>
+					{/list}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="delayDay1">发货后延天数1：</label></td>
+			<td><input type="text" id="delayDay1" name="delayDay1" value="${info.delayDay1}" class="u-textbox" /></td>
+			<td><label for="delayTimeDeadline1">发货截止时间1：</label></td>
+			<td>
+				<select name="delayTimeDeadline1" class="u-textbox" value="${info.delayTimeDeadline1}">
+					{list 0..23 as x}
+						<option value="${x}:00:00" {if (x*60)==(info.delayTimeDeadline1.length==8?(parseInt(info.delayTimeDeadline1.substring(0,2)*60)+parseInt(info.delayTimeDeadline1.substring(3,5))):(parseInt(info.delayTimeDeadline1.substring(0,1)*60)+parseInt(info.delayTimeDeadline1.substring(2,4))))}selected{/if}>${x}:00</option>
+						<option value="${x}:30:00" {if (x*60+30)==(info.delayTimeDeadline1.length==8?(parseInt(info.delayTimeDeadline1.substring(0,2)*60)+parseInt(info.delayTimeDeadline1.substring(3,5))):(parseInt(info.delayTimeDeadline1.substring(0,1)*60)+parseInt(info.delayTimeDeadline1.substring(2,4))))}selected{/if}>${x}:30</option>
+					{/list}
+						<option value="23:59:00" {if (23*60+59)==(info.delayTimeDeadline1.length==8?(parseInt(info.delayTimeDeadline1.substring(0,2)*60)+parseInt(info.delayTimeDeadline1.substring(3,5))):(parseInt(info.delayTimeDeadline1.substring(0,1)*60)+parseInt(info.delayTimeDeadline1.substring(2,4))))}selected{/if}>23:59</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="delayDay2">发货后延天数2：</label></td>
+			<td><input type="text" id="delayDay2" name="delayDay2" value="${info.delayDay2}" class="u-textbox" /></td>
+			<td><label for="delayTimeDeadline2">发货截止时间2：</label></td>
+			<td>
+				<select name="delayTimeDeadline2" class="u-textbox" value="${info.delayTimeDeadline2}">
+					{list 0..23 as x}
+						<option value="${x}:00:00" {if (x*60)==(info.delayTimeDeadline2.length==8?(parseInt(info.delayTimeDeadline2.substring(0,2)*60)+parseInt(info.delayTimeDeadline2.substring(3,5))):(parseInt(info.delayTimeDeadline2.substring(0,1)*60)+parseInt(info.delayTimeDeadline2.substring(2,4))))}selected{/if}>${x}:00</option>
+						<option value="${x}:30:00" {if (x*60+30)==(info.delayTimeDeadline2.length==8?(parseInt(info.delayTimeDeadline2.substring(0,2)*60)+parseInt(info.delayTimeDeadline2.substring(3,5))):(parseInt(info.delayTimeDeadline2.substring(0,1)*60)+parseInt(info.delayTimeDeadline2.substring(2,4))))}selected{/if}>${x}:30</option>
+					{/list}
+						<option value="23:59:00" {if (23*60+59)==(info.delayTimeDeadline2.length==8?(parseInt(info.delayTimeDeadline2.substring(0,2)*60)+parseInt(info.delayTimeDeadline2.substring(3,5))):(parseInt(info.delayTimeDeadline2.substring(0,1)*60)+parseInt(info.delayTimeDeadline2.substring(2,4))))}selected{/if}>23:59</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><label for="holidayDelay">非工作日是否顺延：</label></td>
+			<td colspan="3">
+				<select name="holidayDelay" class="u-textbox">
+					<option value="1" {if info.holidayDelay == 1}selected{/if}>是</option>
+					<option value="0" {if info.holidayDelay == 0}selected{/if}>否</option>
+				</select>
+			</td>
+		</tr>
+		{/if}
+		{if info.ruleType==2}
+		<tr>
+			<td><label for="delayHours">后延小时数：</label></td>
+			<td colspan="3"><input type="text" id="delayHours" name="delayHours" value="${info.delayHours}"  class="u-textbox" /></td>
+		</tr>
+		{/if}
+		{if info.isDefault==0}
+		<tr>
+			<td><label for="availableStart">规则生效时间：</label></td>
+			<td>
+				<input type="text" name="availableStart" id="availableStart" class="j-datepick u-textbox" {if info.availableStart}value="${info.availableStart.substring(0,10)}"{/if} />
+			</td>
+			<td><label for="availableEnd">规则失效时间：</label></td>
+			<td>
+				<input type="text" name="availableEnd" id="availableEnd" class="j-datepick u-textbox" {if info.availableEnd}value="${info.availableEnd.substring(0,10)}"{/if} />
+			</td>
+		</tr>
+		{/if}
+	</table>
+	<input type="hidden" name="id" value="${info.id}" />
+</textarea>
+<!-- <script type="text/javascript">
+	function test(){
+		ducument
+	}
+</script>
+
+{if item.id==1}selected{/if} 
+{if info.delayHours=="5"}{/if}
+ {{# if(item.id==info.storageId)}}selected{{/if}}
+  {{# if({{item.id}}=={{info.storageId}})}}selected{{/if}} 
+   {#if (${item.id}==${info.storageId})}selected{/if}
+-->

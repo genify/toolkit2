@@ -1,0 +1,14 @@
+.#<uispace>{
+	width:500px;
+}
+
+.#<uispace> table{
+	width:100%;tabel-layout:fixed;
+}
+.#<uispace> table td{
+	padding:10px 0;
+}
+.#<uispace> .iput{width:300px;}
+.#<uispace> textarea{resize:none;width:550px;height:160px}
+.#<uispace> .js-error{top:20px;left:0;color:red}
+.#<uispace> .content{width:260px}

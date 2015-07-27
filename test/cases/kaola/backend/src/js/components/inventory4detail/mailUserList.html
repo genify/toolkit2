@@ -1,0 +1,31 @@
+{{#if loading}}
+  <div class="m-loading">数据加载中...</div>
+{{#else}}
+  <table class="w-datatable">
+  <thead>
+    <tr>
+        <th>序号</th>
+        <th>用户名</th>
+        <th>创建日期</th>
+        <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#if list.length==0}}
+  没有列表数据！
+  {{#else}}
+	  {{#list list as item}}
+	    <tr>
+	      <td>{{item_index+1}}</td>
+	      <td>{{item.name}}({{item.email}})</td>
+	      <td>{{item.createTime}}</td>
+	      <td><a href="javascrip:void(0)" on-click={{this.onUpdateUser(item)}}>修改</a> | <a href="javascript:void(0)" on-click={{this.onRemoveUser(item,item_index)}}>删除</a></td>
+	    </tr>
+	  {{/list}}
+  {{/if}}
+  </tbody>
+  </table>
+{{/if}}
+<div class="m-pager f-cb">
+	<pager total={{Math.ceil(total/limit)}} current={{current}} on-nav="{{this.pageChange($event)}}"></pager>
+</div>

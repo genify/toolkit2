@@ -1,0 +1,70 @@
+<div class="m-detail">
+	<div class="info">
+		{{#if auditOrder.auditStatus == 10}}(跟单完成){{/if}}
+		审批单号：{{auditOrder.auditNo}}
+	</div>
+	<dl>
+		<dt>计划入库仓库:</dt>
+		<dd>{{auditOrder.warehouseName}}</dd>
+		<dt>采货供应商:</dt>	
+		<dd>{{auditOrder.supplierName}}</dd>
+		<dt>采购币种:</dt>
+		<dd>{{auditOrder.currencyName}}</dd>
+		<dt>采购方式:</dt>
+		<dd>{{auditOrder.purchaseName}}</dd>
+		<dt>竞价对象:</dt>
+		<dd>{{auditOrder.competitor}}</dd>
+		<br />
+		<dt>预计到港日期:</dt>
+		<dd>{{auditOrder.expectArrivalDay | time}}</dd>
+		<dt>预计入库日期:</dt>
+		<dd>{{auditOrder.expectInstockDay | time}}</dd>
+		<dt>运输方式:</dt>
+		<dd>{{auditOrder.transportName}}</dd>
+		<dt>运抵港口:</dt>
+		<dd>{{auditOrder.arrivalPortName}}</dd>
+		<br />
+		<dt>预计到货柜数:</dt>
+		<dd>{{auditOrder.expectCabinetCount}}</dd>
+		<dt>采购总金额:</dt>
+		<dd>{{auditOrder.totalGoodsAmount}}</dd>
+		<dt>采购总数量:</dt>
+		<dd>{{auditOrder.totalPurchaseCount}}</dd>
+		<dt>审批单状态:</dt>
+		<dd>{{auditOrder.auditStatusStr}}</dd>
+	</dl>
+	<table>
+		<thead>
+			<th>商品ID</th>
+			<th>商品名称</th>
+			<th>跨境方式</th>
+			<th>条形码</th>
+			<th>SKU</th>
+			<th>采购数量</th>
+			<th>单价成本</th>
+			<th>金额小计</th>
+			<th>竞品价格</th>
+		</thead>
+		<tbody>
+			{{#list products as product}}
+			<tr {{#if product_index%2 != 0}}class="odd"{{/if}}>
+				<td>{{product.newGoodsId}}</td>
+				<td>{{product.goodsName}}</td>
+				<td>{{product.importTypeStr}}</td>
+				<td>{{product.barcode}}</td>
+				<td>{{product.skuDesc}}</td>
+				<td>{{product.purchaseCount}}</td>
+				<td>{{product.unitPrice}}</td>
+				<td>{{product.goodsAmount}}</td>
+				<td>{{product.competitionPrice}}</td>
+			</tr>
+			{{/list}}
+		</tbody>
+	</table>
+	<div class="m-logs">
+		<h2>操作日志：</h2>
+		{{#list logs as log }}
+		{{log.accountName}}&nbsp;于&nbsp;{{log.opTime | time}}&nbsp;{{log.opLog}}{{#if log.remark}} 备注：{{log.remark}}{{/if}};<br/>
+		{{/list}}
+	</div>
+</div>

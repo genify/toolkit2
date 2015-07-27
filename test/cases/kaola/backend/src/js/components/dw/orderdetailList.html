@@ -1,0 +1,55 @@
+{{#if loading}}
+  <div class="m-loading">数据加载中...</div>
+{{#else}}
+  <table class="w-datatable">
+  <thead>
+    <tr>
+        <th>订单编号</th>
+        <th>物流编号</th>
+        <th>跨境方式</th>
+        <th>发货仓库</th>
+        <th>物流公司</th>
+        <th>省份</th>
+        <th>城市</th>
+        <th>包裹重量(kg)</th>
+        <th>支付时间</th>
+        <th>推送时间</th>
+        <th>发货时间</th>
+        <th>发货是否及时</th>
+        <th>揽收时间</th>
+        <th>揽收是否及时</th>
+        <th>妥投时间</th>
+        <th>妥投是否及时</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#if list.length==0}}没有列表数据！
+    
+  {{#else}}
+	  {{#list list as item}}
+	    <tr>
+        <td>{{item.orderId}}</td>
+        <td>{{item.waybillNo}}</td>
+        <td>{{item.importTypeStr}}</td>
+        <td>{{item.storageName}}</td>
+        <td>{{item.logisticCompanyName}}</td>
+        <td>{{item.tcustProvince}}</td>
+        <td>{{item.tcustCity}}</td>
+        <td>{{item.grossWeight}}</td>
+        <td>{{item.payTime}}</td>
+        <td>{{item.pushStorageTime}}</td>
+        <td>{{item.handoverTime}}</td>
+        <td>{{#if item.handoverDelay == null}}{{#elseif item.handoverDelay}}是{{#else}}否{{/if}}</td>
+        <td>{{item.pickupTime}}</td>
+        <td>{{#if item.pickupDelay == null}}{{#elseif item.pickupDelay}}是{{#else}}否{{/if}}</td>
+        <td>{{item.deliveryTime}}</td>
+        <td>{{#if item.deliveryDelay == null}}{{#elseif item.deliveryDelay}}是{{#else}}否{{/if}}</td>
+	    </tr>
+	  {{/list}}
+	{{/if}}
+  </tbody>
+  </table>
+	{{/if}}
+<div class="m-pager f-cb">
+	<pager total={{Math.ceil(total/limit)}} current={{current}} on-nav="{{this.pageChange($event)}}"></pager>
+</div>

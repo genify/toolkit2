@@ -1,0 +1,18 @@
+<!-- Modal -->
+<div class="modal fade in show">
+  <div class="modal-dialog" style="width: {{width||640}}px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close" on-click={{this.close()}}>X</span>
+        <h4 class="modal-title" id="myModalLabel">{{title || 'Modal title'}}</h4>
+      </div>
+      <div class="modal-body">
+        {{#include content ||this.content }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" on-click={{this.close()}}>{{coloseText || "关闭" }}</button>
+        <button type="button" class="btn btn-primary" on-click={{this.confirm()}}>{{confirmTitle || "确认"}}</button>
+      </div>
+    </div>
+  </div>
+</div>

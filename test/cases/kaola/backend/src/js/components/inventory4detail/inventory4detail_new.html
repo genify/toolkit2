@@ -1,0 +1,55 @@
+{{#if loading}}
+  <div class="m-loading">数据加载中...</div>
+{{#else}}
+  <table class="w-datatable">
+  <thead>
+    <tr>
+        <th>商品编号</th>
+        <th width="200px">商品名称</th>
+        <th>SKU</th>
+        <th>一级类目</th>
+        <th>二级类目</th>
+        <th>三级类目</th>
+        <th>品牌</th>
+        <th>仓库</th>
+        <th>库存</th>
+        <th>备货周期</th>
+        <th>昨天销量</th>
+        <th>日均销量(7天)</th>
+        <th>日均销量(30天)</th>
+        <th>库存天期(7天)</th>
+        <th>库存天期(30天)</th>
+        <th>库存天期</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#if list.length==0}}没有列表数据！
+  
+  {{#else}}
+	  {{#list list as item}}
+	    <tr>
+	      <td>{{item.productId}}</td>
+	      <td title={{item.goodsName}}>{{item.goodsName}}</td>
+	      <td>{{item.skuDesc}}</td>
+	      <td>{{item.categoryNameList[0]}}</td>
+	      <td>{{item.categoryNameList[1]}}</td>
+	      <td>{{item.categoryNameList[2]}}</td>
+	      <td>{{item.brandName}}</td>
+	      <td>{{item.storageName}}</td>
+	      <td>{{item.storageCount}}</td>
+	      <td>{{item.stockUpPeriod}}</td>
+	      <td>{{item.salesYestoday}}</td>
+	      <td>{{item.avgSales7}}</td>
+	      <td>{{item.avgSales30}}</td>
+	      <td {{#if item.stockUpPeriod >= item.doi7}} class="bRed"{{/if}}>{{item.doi7}}</td>
+	      <td {{#if item.stockUpPeriod >= item.doi30}} class="bRed"{{/if}}>{{item.doi30}}</td>
+	      <td {{#if item.stockUpPeriod >= item.doi30||item.stockUpPeriod >= item.doi7}} class="bRed"{{/if}}>{{#if item.doi30>item.doi7}}{{item.doi7}}{{#else}}{{item.doi30}}{{/if}}</td>
+	    </tr>
+	  {{/list}}
+	{{/if}}
+  </tbody>
+  </table>
+	{{/if}}
+<div class="m-pager f-cb">
+	<pager total={{Math.ceil(total/limit)}} current={{current}} on-nav="{{this.pageChange($event)}}"></pager>
+</div>

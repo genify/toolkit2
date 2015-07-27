@@ -1,0 +1,23 @@
+.w-calendarwidget a:link{color:#009;/*年份、月份、翻页按钮、年份选择框字体及月份选择框字体颜色*/text-decoration:none;}
+.w-calendarwidget a:visited{color:#464646;text-decoration:none;}
+.w-calendarwidget a:hover{color:#ed145b;text-decoration:underline;}
+.w-calendarwidget a:active{color:#ed145b;text-decoration:underline;}
+.w-calendarwidget td{font-size:12px/*控件整体大小*/}
+.w-calendarwidget #hourminute input {min-width: 30px;}
+
+/*DateCSS样式*/ 
+.w-calendarwidget .header{font:12px Arial, Tahoma!important;font-weight:bold!important;font:11px Arial, Tahoma;font-weight:bold;color:#154BA0;/*年月连字符颜色*/background:#3CF;/*年月连字符背景色*/height:25px;padding-left:10px;}
+.w-calendarwidget .header td{padding-left:10px;}
+.w-calendarwidget .header a{color:#F0F;}
+.w-calendarwidget .header input{background:none;vertical-align:middle;height:16px;}
+.w-calendarwidget .category{font:12px Arial, Tahoma!important;font:11px Arial, Tahoma;color:#90F;/*星期字体颜色*/height:20px;background-color:#CF9;/*星期字体背景色*/}
+.w-calendarwidget .category td{border-bottom:2px solid #3CF;/*星期与日期分割线颜色及宽度*/}
+.w-calendarwidget .expire, .expire a:link, .expire a:visited{color:#999;/*当前日期后的颜色*/}
+.w-calendarwidget .default, .default a:link, .default a:visited{color:#000;/*当前日期后的颜色*/}
+.w-calendarwidget .checked, .checked a:link, .checked a:visited{color:#F00;/*选定年份、选定月份及选定日期的颜色*/}
+.w-calendarwidget .today, .today a:link, .today a:visited{color:#0F0;/*当前年份、当前月份及当前日期的颜色*/}
+#calendar_year{display:none;line-height:130%;background:#3CF;/*年份选择框分割线颜色*/position:absolute;z-index:10;}
+#calendar_year .col{float:left;background:#3CF;/*年份选择框底色*/margin-left:0px;border:0px solid #3CF;/*年份选择框边框颜色及宽度*/padding:2px;}
+#calendar_month{display:none;background:#3CF;/*月份选择框底色*/line-height:130%;border:0px solid #3CF;/*月份选择框边框颜色及宽度*/padding:2px;position:absolute;z-index:11;}
+.w-calendarwidget .tableborder{background:white;border:2px solid #3CF;/*控件边框颜色*/}
+#year, #month{padding-right:2px;}

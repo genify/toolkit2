@@ -1,0 +1,96 @@
+.#<uispace> .title{
+	height:30px;
+	padding-left:5px;
+	background-color:#158cba;
+	line-height:30px;	
+	font-size:16px;
+	cursor: move;
+	color:#fff;
+}
+.#<uispace> .content{
+	padding:10px 5px;
+}
+.#<uispace> .controls{
+	text-align:right;
+	padding: 6px;
+}
+.#<uispace> .alert{
+	text-align:center;
+	padding: 6px;
+}
+.#<uispace> .alert .cc{
+	display:none
+}
+.#<uispace> .ok,.cc{
+	padding: 0 10px;
+}
+.#<uispace> .ok[disabled],.cc[disabled]{
+    color: rgb(187, 187, 187);
+    opacity: 0.8;
+}
+
+/*商品选择对话框*/
+.#<uispace> .itemlist,
+.#<uispace> .itementry{
+	list-style:none;
+	margin:0;
+}
+
+.#<uispace> .itemlist{
+	border: 1px solid #ccc;
+	padding: 5px;
+	height:400px;
+	width: 400px;
+	overflow-y: auto;
+	overflow-x:hidden;	
+}
+
+.#<uispace> .item {
+	display:block;	
+}
+.#<uispace> .item:hover {
+	background-color: #ddd;
+}
+.#<uispace> .item>input{
+	margin-right:12px;
+}
+.#<uispace> .sku{
+	padding-left: 24px;
+}
+
+/*强调样式，用于对话框中采购单号的突出显示*/
+.#<uispace> .f-hightlight{
+	color: #FF6600;
+	font-size: 16px;
+}
+
+/*采购审核 只有一行提示的对话框*/
+.#<uispace> .simple-content{	
+	position:relative;
+	width: 350px;
+	padding: 50px 0 50px 30px;
+	font-weight: bold;
+}
+
+/*入库确认 有一行主提示，一行副标题，*/
+
+.#<uispace> .confirm-content{
+	position:relative;
+	width: 400px;
+	min-height:160px;
+}
+
+.#<uispace>  .confirm-text{
+	font-weight: bold;
+}
+
+.#<uispace> .confirm-memo{
+	width: 360px;
+	height: 100px;
+	vertical-align:top;	
+}
+
+.#<uispace> .f-required:before{
+	content: "*";
+	color: #FF6600;	
+}

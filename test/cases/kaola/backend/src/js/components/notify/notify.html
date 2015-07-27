@@ -1,0 +1,10 @@
+<div class="m-notify m-notify-{{position}}">
+  {{#list messages as msg}}
+  <div class="notify notify-{{msg.type||'info'}}" r-animation='on: enter; class: animated fadeInX; on: leave; class: animated bounceOut fast; '>
+    <div class="glyphicon glyphicon-{{this.iconMap[msg.type]}}"></div>
+    <span class="notify_close" on-click={{this.clear(msg,msg_index)}}>×</span>
+    <h4 class="notify_title" r-hide={{!msg.title}}>{{msg.title}}</h4>
+    <p class="notify_message">{{msg.message}}</p>
+  </div>
+  {{/list}}
+</div>

@@ -1,0 +1,18 @@
+{{#list flowLevelList as item}}
+<div class="m-confighd">
+	<span class="f-fw1">{{item.flowLevel|level}}</span> 
+	{{#if item.disable}}
+		<a href="javascript:void(0);" on-click={{this.onOperate(1,item.flowLevel,item)}}>开启</a>
+	{{#else}}
+		<a href="javascript:void(0);" on-click={{this.onOperate(0,item.flowLevel,item)}}>关闭</a>
+	{{/if}}
+	<a class="f-fr addstorage" href="javascript:void(0);" on-click={{this.onAddAccount(item.accountList,item.flowLevel)}}>添加帐号</a>
+</div>
+<ul class="m-warehousebox f-cb">
+	{{#if !item.disable}}
+		{{#list item.accountList as account}}
+			<li>{{account}} <span class="icf-cross" on-click={{this.onRemoveAccount(item.accountList,item.flowLevel,account,account_index)}}>&nbsp;</span></li>
+		{{/list}}
+	{{/if}}
+</ul>
+{{/list}}

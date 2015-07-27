@@ -1,0 +1,24 @@
+<div class="m-relatemodal">
+	{{#if step == 1}}
+		<div class="content">
+			<div style="color:red;">{{msg}}</div>
+			商品ID: <input type="text" name="id" value="" r-model="{{id}}" />
+			<a href="javascript:;" on-click="{{this.queryById()}}">搜索</a>
+			{{#if product != null }} 
+				<div>{{product.goodsName}}</div>
+				<br />
+				{{#list product.skuList as sku}}
+					<input type="radio" name="sku" value="{{sku.skuId}}"  on-change="{{this.updateSkuCode(sku)}}" {{#if sku_index == 0}}checked{{/if}} />&nbsp;{{sku.skuDesc}}&emsp;
+				{{/list}}
+				<br />
+				<div>商品料号：{{sku.skuCode}}</div>
+			{{/if}}
+		</div>
+	{{#elseif step == 2}}
+		<strong style="color:orange">请仔细核对商品信息</strong><br/>
+		<strong style="color:red">{{msg}}</strong><br/>
+		{{product.goodsName}}<br/>
+		SKU:{{sku.skuDesc}}<br/>
+		商品料号：{{sku.skuCode}}
+	{{/if}}
+</div>

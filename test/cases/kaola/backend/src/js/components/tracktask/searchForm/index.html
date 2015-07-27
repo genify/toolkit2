@@ -1,0 +1,48 @@
+<form id="searchForm" class="w-dataform f-clearfix">
+    <div class="row f-cb">
+        <div class="group">
+            <label>供应商：</label>
+            <select name="supplierId">
+                <option value="">全部</option>
+                {{#list suppliers as ops}}
+                <option value='{{ops.supplierId}}'>{{ops.name}}</option>{{/list}}
+            </select>
+        </div>
+        <div class="group">
+            <label>入库仓库：</label>
+            <select name="warehouseId">
+                <option value="">全部</option>
+                {{#list storages as ops}}
+                <option value='{{ops.warehouseId}}'>{{ops.warehouseName}}</option>
+                {{/list}}
+            </select>
+        </div>
+        
+        {{#if current == 1}}
+            <div class="group">
+                <label for="auditOrPurchaseNo">审批单号:</label>
+                <input type="text" name="auditOrPurchaseNo" value="" placeholder="输入审批单号搜索" />
+            </div>
+        {{#else}}
+            <div class="group">
+                <select name="orderType">
+                    <option value="">全部</option>
+                    {{#list ordertypes as ops}}
+                    <option value='{{ops.orderType}}'>{{ops.auditOrPurchaseNo}}</option>{{/list}}
+                </select>
+            </div>   
+        {{/if}}
+        <div class="group">
+            <button  name="submit" class="w-btn w-btn-black btag">搜索</button>
+        </div>
+
+        <input type="hidden" id="tabs" name="trackTaskType" value="{{current}}" />
+    
+    
+        {{#if current == 0}}
+        <div class="group">
+            <a href="javascript:;" name="submit" class="w-btn w-btn-black btag" on-click="{{this.exportFile()}}">导出</a>
+        </div>
+        {{/if}}
+    </div>
+</form>

@@ -1,0 +1,82 @@
+{{#if loading}}
+  <div class="m-loading">数据加载中...</div>
+{{#else}}
+<div class="top">
+  <span class="text">利润明细</span>
+  <span class="export" on-click={{this.exportAll()}}>导出报表</span>
+</div>
+<div class="tablebox">
+  <table class="w-datatable">
+  <colgroup>
+    <col width="110px"/>
+    <col width="85px"/>
+    <col width="85px"/>
+    <col width="85px"/>
+    <col width="85px"/>
+    <col width="85px"/>
+    <col width="85px"/>
+    <col width="100px"/>
+    <col width="85px"/>
+    <col width="85px"/>
+    <col width="85px"/>
+    <col width="85px"/>
+    <col width="85px"/>
+    <col width="85px"/>
+    <col width="85px"/>
+    <col width="85px"/>
+    <col width="85px"/>
+    <col width="120px"/>
+  </colgroup>
+  <thead>
+    <tr>
+        <th>日期</th>
+        <th>商品采购成本</th>
+        <th>国际费用</th>
+        <th>转关费用</th>
+        <th>佣金费用</th>
+        <th>运费总额</th>
+        <th>仓费总额</th>
+        <th>支付扣点总额</th>
+        <th>用户支付运费</th>
+        <th>商品实付总额</th>
+        <th>利润</th>
+        <th>利润率</th>
+        <th>优惠券总额</th>
+        <th>活动扣减总额</th>
+        <th>订单总金额</th>
+        <th>出库订单数</th>
+        <th>关税总额</th>
+        <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#if noData}}没有列表数据！{{/if}}
+  {{#list list as item}}
+    <tr>
+      <td>{{item.analyzeTime|format:"yyyy-MM-dd HH:mm:ss"}}</td>
+      <td>{{item.costAmount}}</td>
+      <td>{{item.internationalCostAmount}}</td>
+      <td>{{item.transitCostAmount}}</td>
+      <td>{{item.commissionCostAmount}}</td>
+      <td>{{item.expressAmount}}</td>
+      <td>{{item.storageAmount}}</td>
+      <td>{{item.payDeductionAmount}}</td>
+      <td>{{item.userExpressAmount}}</td>
+      <td>{{item.goodActuallyPayAmount}}</td>
+      <td>{{item.profit}}</td>
+      <td>{{item.finxedprofitRate}}%</td>
+      <td>{{item.couponAmount}}</td>
+      <td>{{item.activityCostAmount}}</td>
+      <td>{{item.orderPayAmount}}</td>
+      <td>{{item.orderAmount}}</td>
+      <td>{{item.taxAmount}}</td>
+      <td><span class="export" on-click={{this.exportItem(item, item_index)}}>导出明细</span></td>
+    </tr>
+  {{/list}}
+  </tbody>
+  </table>
+</div>
+{{/if}}
+<div class="m-pager f-cb">
+	<pager total={{Math.ceil(total/limit)}} current={{current}} on-nav="{{this.pageChange($event)}}"></pager>
+</div>

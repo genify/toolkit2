@@ -1,0 +1,1 @@
+mngDetail.ftl

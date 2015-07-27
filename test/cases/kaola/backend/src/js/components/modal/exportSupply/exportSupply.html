@@ -1,0 +1,29 @@
+<table class="m-exportsupplymdl">
+<thead>
+	<tr>
+		<td></td>
+		<td></td>
+	</tr>
+</thead>
+<tbody>
+		<tr>
+			<td>
+				<div>收货时间：</div>
+			</td>
+			<td>
+				<span class="m-datepicker"><input type="text" ref="startTime" value={{this.getTime('startTime')}} on-click={{this.onTimeSelect($event,'startTime')}}></span> 到
+			</td>
+			<td>
+				<span class="m-datepicker"><input type="text"  ref="endTime"  value={{this.getTime('endTime')}}  on-click={{this.onTimeSelect($event,'endTime')}}></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div>email列表(分号;分隔)：</div>
+			</td>
+			<td colspan=2>
+				<input type="text" r-model={{emaillist}} placeholder="分号;分隔" class="emaillist">
+			</td>
+		</tr>
+</tbody>
+</table>

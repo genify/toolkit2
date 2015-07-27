@@ -1,0 +1,35 @@
+<div class="m-trackauditmodal">
+	<div class="title">
+		<span>付款记录</span>
+		<a href="javascript:void(0)" on-click={{this.onAddPayRecord()}}>添加记录</a>
+	</div>
+	<div class="box">
+		<table class="tbl">
+			<tbody>
+				{{#list list as item}}
+				<tr>
+					<td>支付币种：
+						<select r-model={{item.currencyType}} ref="currencyType_{{item_index}}">
+							{{#list currencyTypeList as currency}}
+							<option value={{currency.index}}>{{currency.value}}</option>
+							{{/list}}
+						</select>
+					</td>
+					<td>支付金额：
+						<input type="text" class="ipt" r-model={{item.amount}}>
+					</td>
+					<td>银行流水单号：
+						<input type="text" class="ipt-1" r-model={{item.bankTrace}}>
+					</td>
+					<td>付款备注：
+						<input type="text" class="ipt-2" r-model={{item.remark}}>
+					</td>
+					<td>
+						<a href="javascript:void(0);" on-click={{this.removeRecord(item_index)}}>删除</a>
+					</td>
+				</tr>
+				{{/list}}
+			</tbody>
+		</table>
+	</div>
+</div>

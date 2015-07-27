@@ -1,0 +1,47 @@
+<table class="m-productmdl">
+<thead>
+	<tr>
+		<td></td>
+		<td></td>
+	</tr>
+</thead>
+<tbody>
+	{{#if type==1}}
+	<tr>
+		<td>创建</td>
+		<td>
+			<input type="radio" name="type" id="createtype1" r-model={{createType}} value="1"><label for="createtype1">单个</label>
+		</td>
+		<td>	
+			<input type="radio" name="type" id="createtype2" r-model={{createType}}  value="2"><label for="createtype2">批量</label>
+		</td>
+	</tr>
+	{{/if}}
+	{{#if createType==1}}
+	<tr>
+		<td>商品ID</td>
+		<td><input type="text" r-model={{productId}}></td>
+		<td>
+			料号 <input type="text" r-model={{goodsItemNo}}>
+		</td>
+	</tr>
+	<tr>
+		<td>备货周期</td>
+		<td><input type="text" r-model={{stockUpPeriod}}> 天</td>
+	</tr>
+	{{#else}}
+		<tr>
+			<td colspan="3">
+				<div>文件填写示例*</div>
+				<img src="/rsc/backend/rsc/img/statistics/demo.jpg"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<div>导入文件：</div>
+				<label on-upload={{this.uploadFile()}} class="btn btn-primary">选择文件</label>
+			</td>
+		</tr>
+	{{/if}}
+</tbody>
+</table>

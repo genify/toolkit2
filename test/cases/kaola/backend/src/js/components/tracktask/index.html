@@ -1,0 +1,43 @@
+{{#if loading}}
+<div class="m-loading">数据加载中...</div>
+{{#else}}
+
+<table class="w-datatable">
+    <thead>
+        <tr>
+            <th>审批单号</th>
+            <th>创建人</th>
+            <th>计划入库仓库</th>
+            <th>供应商</th>
+            <th>采购方式</th>
+            <th>采购总件数</th>
+            <th>SKU数</th>
+            <th>跟踪采购单数</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#list list as item}}
+        <tr>
+            <td>{{@(item.auditNo)}}</td>
+            <td>{{@(item.creator)}}</td>
+            <td>{{@(item.warehouseId)}}</td>
+            <td>{{@(item.supplierId )}}</td>
+            <td>{{@(item.purchaseType )}}</td>
+            <td>{{@(item.purchaseCount)}}</td>
+            <td>{{@(item.skuCount)}}</td>
+            <td>{{@(item.trackTaskCount)}}</td>
+
+            <td>
+                <a href="/backend/relateRecord/showRecordDetail" target="_blank">进入跟单</a>
+                <a href="javascript:;" on-click="{{this.deleteItem(item)}}">展开</a>
+            </td>
+        </tr>
+        {{/list}}
+    </tbody>
+</table>
+{{/if}}
+<div id="dialog"></div>
+<div class="m-pager f-cb">
+    <pager total={{Math.ceil(total/limit)}} current={{current}}></pager>
+</div>

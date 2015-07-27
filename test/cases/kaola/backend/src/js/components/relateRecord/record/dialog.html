@@ -1,0 +1,8 @@
+<div>
+	<strong style="color:red">{{msg}}</strong>
+	{{#if isRelated == true}}
+		确定该商品信息已经备案完成了吗？
+	{{#else}}
+ 		备案料号<input type="text" name="code" value="" r-model={{code}} />
+	{{/if}}
+</div>

@@ -1,0 +1,21 @@
+{
+  "name": "regular-hub",
+  "version": "0.0.2",
+  "main": "hub.js",
+  "description": "Regular Component's Hub",
+  "authors": "@leeluolee <87399126@163.com>",
+  "license": "MIT",
+  "ignore": [
+    ".*",
+    "node_modules",
+    "bin",
+    "test",
+    "gulpfile.js",
+    "*.json",
+    "*.md"
+  ],
+  "dependencies": {
+    "regularjs": "*"
+  }
+
+}

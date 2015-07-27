@@ -1,0 +1,30 @@
+<div class="m-newauditmodal">
+	<div class="search">搜索：<span class="m-search"><input type="text" r-model="key" placeholder="按照商品名称、料号、条形码和后台ID搜索" on-blur={{this.onSearchProducts()}}><span class="icf-search u-searchbtn" on-click={{this.onSearchProducts()}}>&nbsp;</span></span></div>
+	<div class="productbox">
+		{{#if loading}}
+			<div class="m-loading">数据加载中</div>
+		{{#elseif list.length!=0}}
+				<div class="m-goodsbox">
+				{{#list list as item}}
+					<ul>
+						<li class="goods">
+							<div class="goodsname">
+								<input type="checkbox" id="id_{{item.goodsid}}" r-model={{item.checked}} on-click={{this.onCheckGoods($event,item_index)}}><label for="id_{{item.goodsId}}">({{item.importType|importType}}){{item.newGoods?'(新品)':''}}{{item.goodsName}}</label>
+							</div>
+							{{#if item.skuList.length!=0}}
+								<ul class="skulist">
+									{{#list item.skuList as sku}}
+										<li><input type="checkbox" id="id_{{sku.skuId}}" r-model={{sku.checked}} on-click={{this.onCheckSku($event,sku)}}><label for="id_{{sku.skuId}}">{{sku.skuDesc}}</label></li>
+									{{/list}}
+								</ul>
+							{{/if}}
+						</li>
+					</ul>
+				{{/list}}
+				</div>
+		{{#else}}
+			<div class="m-empty">搜索不到结果，请点击 <a on-click={{this.onNewProductItem()}} href="javascript:void(0)">新建新品</a></div>
+		{{/if}}
+	</div>
+	<div class="productaction"><span class="icf-plus">&nbsp;</span><a on-click={{this.onNewProductItem()}}  href="javascript:void(0)">新建新品</a> <a on-click={{this.importProducts()}}  href="javascript:void(0)">导入新品</a></div>
+</div>

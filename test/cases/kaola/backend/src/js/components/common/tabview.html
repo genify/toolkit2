@@ -1,0 +1,17 @@
+<div class="m-tabview">
+	<div class="head f-clearfix">
+	    {{#list tabs as tab}}
+	    <a href="javascript:;" class="icf-window tab {{this.data.current==tab_index?'active':''}} {{tab_index==0?'first':''}}" on-click="{{this.data.current=tab_index}}">
+	        {{tab}}({{#if this.data.current == tab_index}}<span id="count">-</span>{{#else}}-{{/if}})
+	    </a>
+	    {{/list}}
+	</div>
+	<div class="detail">
+		{{#if !loading}}
+			{{#include specs[current]}}
+		{{#else}}
+			加载中...
+		{{/if}}
+		
+	</div>
+</div>

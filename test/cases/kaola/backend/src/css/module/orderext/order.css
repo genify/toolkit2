@@ -1,0 +1,54 @@
+/**
+ * 订单详细页 及 编辑页面
+ * Created by zmm on 21/11/14.
+ */
+
+#J-orderBox .group .title {
+    min-width: 160px;
+}
+#J-orderBox .group .tip {
+    display: block;
+    margin-left: 170px;
+    font-size: 12px;
+}
+#J-orderBox .group-col1 {
+    margin-top: 40px;
+    margin-left: 155px;
+}
+
+#J-orderBox fieldset {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+#J-orderBox fieldset legend {
+    margin-left: 20px;
+    border: 1px solid #eee;
+    padding: 3px;
+}
+#J-orderBox fieldset .fbox {
+    float: left;
+    margin-right: 20px;
+}
+
+#J-goodsForm fieldset {
+    float: left;
+    margin: 0 20px 20px 0;
+}
+#J-logisticForm .group-col1,
+#J-goodsForm .group-col1 {
+    clear: both;
+}
+
+/* orderList.ftl */
+.w-dataform .group{
+    float:left;
+    margin:0 20px 10px 0;
+}
+#searchbox .group .title {
+    min-width: 145px;
+}
+#searchbox .group select {
+    min-width: 100px;
+}

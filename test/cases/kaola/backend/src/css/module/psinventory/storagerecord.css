@@ -1,0 +1,71 @@
+
+#g-searchbar{
+    left: 250px;
+}
+#u-searchbox{
+    display: none;
+}
+#g-supplier-list{
+    padding-top: 10px;
+    z-index: 100;
+}
+body #g-contentwrap{
+    overflow:visible;
+}
+#g-searchbar .date{
+    width: 100px;
+}
+/* 分页 */
+#m-pager{
+    position:fixed;
+    bottom: 0px;
+    right:0px; 
+    z-index: 50;
+    width:100%;
+    border:1px solid #c8c8c8;
+    text-align: right;
+}
+#m-pager{
+    padding:10px;
+    border:1px solid #c8c8c8;
+    border-top:0;
+    background:#e2e2e2;
+    text-align:right;
+}
+#m-pager b{
+    font-weight:700;
+    margin:0 3px;
+}
+#m-pager em{
+    margin:0 0 0 3px;
+}
+#m-pager span,
+#m-pager a,
+#m-pager a:hover{
+    display:inline-block;
+    text-align:center;
+    border:1px solid #ccc;
+    background:#f8f8f8;
+    padding:0 5px;
+    margin:0 0 0 3px;
+    text-decoration:none;
+    color:#383838;
+    
+     -webkit-border-radius: 6px 0 6px 0;
+          border-radius: 6px 0 6px 0;
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+#m-pager span{
+    border-color:#e2e2e2;
+    background:#e2e2e2;
+    font-weight:700;
+}
+#m-pager a:hover{
+    background:#f4a600;
+    color:#fff;
+}
+#g-tablebody{
+    height: 500px;
+    overflow-x:hidden;
+    overflow-y:auto;
+}

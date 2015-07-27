@@ -1,0 +1,44 @@
+{{#if loading}}
+  <div class="m-loading">数据加载中...</div>
+{{#else}}
+  <table class="w-datatable">
+    <thead>
+      <tr>
+          <th>序号</th>
+          <th>规则</th>
+          <th>物流公司</th>
+          <th>是否延长至当天24点</th>
+          <th>生效日期</th>
+          <th>失效日期</th>
+          <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#if !!errmsg}}
+    {{errmsg}}
+    {{#else}}
+      {{#if list.length==0}}
+      没有列表数据！
+      {{#else}}
+    	  {{#list list as item}}
+    	    <tr>
+    	      <td>{{item_index+1}}</td>
+    	      <td>{{ruleNames[item.ruleType]}}</td>
+    	      <td>{{item.name}}</td>
+            <td>{{delayMap[item.delay]}}</td>
+    	      <td>{{item.startTime?(item.startTime|format:'yyyy-MM-dd'):'--'}}</td>
+            <td>{{item.endTime?(item.endTime|format:'yyyy-MM-dd'):'--'}}</td>
+    	      <td>
+              <a href="/backend/dw/period/logisticRule/detail?ruleId={{item.id}}">查看</a>
+              <a href="javascript:void(0)" on-click={{this.updateItem(item,item_index)}}>编辑</a>
+            </td>
+    	    </tr>
+    	  {{/list}}
+      {{/if}}
+    {{/if}}
+    </tbody>
+  </table>
+{{/if}}
+<div class="m-pager f-cb">
+	<pager total={{Math.ceil(total/limit)}} current={{current}} on-nav="{{this.pageChange($event)}}"></pager>
+</div>

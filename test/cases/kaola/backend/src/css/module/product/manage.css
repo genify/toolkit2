@@ -1,0 +1,63 @@
+/*
+ * 商品详情页样式
+ * 2012-09-10 马超 创建
+ */
+html,body{overflow:hidden;
+	height:100%;}
+/* 调整顶部工具条距离 */
+#g-searchbar .date{width:68px;}
+#g-searchbar label{margin:0 5px}
+#g-searchbar .keys{width:130px}
+/*  */
+#u-tablebbody-scroller{ width:17px;}
+
+#matchTABLEWrap{
+	height:450px;
+	overflow:auto;
+}
+
+#goodsEditForm table input {width:200px; padding:5px}
+#goodsEditForm table th{
+	padding:5px 3px;
+	font-weight:700
+}
+#priceStrategyBox{padding:10px}
+
+span.f-pr{position:relative;}
+
+.cusp {
+    border-color: #333333 #F3F3F3 #F3F3F3;
+    border-style: solid;
+    border-width: 4px 4px 0;
+    display: block;
+    height: 0;
+    line-height: 0;
+    position: absolute;
+    right: -7px;
+    top: 5px;
+    width: 0;
+}
+
+#g-datatable table th, 
+#g-datatable table td{white-space:inherit;word-break:inherit;}
+
+/*操作工具条按钮位置自适应调整*/
+@media (min-width: 1500px){
+	#g-toolbar{
+		height:40px;
+	}
+}
+
+@media (max-width: 1499px) and (min-width: 900px){
+	#g-toolbar{
+		height:80px;
+	}
+}
+
+@media (max-width: 899px){
+	#g-toolbar{
+		height:120px;
+	}
+}
+
+

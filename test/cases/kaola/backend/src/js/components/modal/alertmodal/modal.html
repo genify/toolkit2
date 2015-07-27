@@ -1,0 +1,16 @@
+<!-- Modal -->
+<div class="modal fade in show">
+  <div class="modal-dialog" style="width: {{width||640}}px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">{{title || 'Modal title'}}</h4>
+      </div>
+      <div class="modal-body">
+        {{#include content ||this.content }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" on-click={{this.confirm()}}>{{confirmTitle || "确认"}}</button>
+      </div>
+    </div>
+  </div>
+</div>

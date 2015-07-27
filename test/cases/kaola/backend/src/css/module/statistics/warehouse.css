@@ -1,0 +1,23 @@
+.w-datatable tr td{
+	text-align: center;
+}
+.w-datatable tr th{
+	text-align: center;
+	font-weight: bold;
+}
+.addData{
+	position: relative;
+	top: -5px;
+	width: 90px;
+	height: 30px;
+	line-height: 13px;
+}
+.editData,.editPerson,.deletePerson{
+	height: 30px;
+	width: 52px;
+	margin-right: 5px;
+	line-height: 13px;
+}
+.f-fr{
+	float: right;
+}

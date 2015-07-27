@@ -1,0 +1,172 @@
+.m-contents {
+    margin: 10px 10px 0 10px;
+}
+/*12等分栅格*/
+
+.f-col-2, .f-col-4, .f-col-8 {
+    float: left;
+    padding: 2px 0;
+}
+.f-col-2 {
+    width: 131px;
+}
+.f-col-4 {
+    width: 262px;
+}
+.f-col-8 {
+    width: 524px;    
+}
+/*不同高度栅格*/
+
+.f-row-1 {
+    height: 30px;
+}
+.f-row-2 {
+    height: 50px;
+}
+/*警告色*/
+
+.f-warn {
+    color: #FF6600;
+}
+.f-alert {
+    border: 1px solid #FF6600;
+    box-shadow: 0 0 5px #FF6600;
+    -moz-animation: f-alert-am 1s ease-in-out 3;
+    -webkit-animation: f-alert-am 1s ease-in-out 3;
+    animation: f-alert-am 1s ease-in-out 3;
+}
+@-moz-keyframes f-alert-am {
+    0% {
+        box-shadow: 0 0 5px #FF6600;
+    }
+    50% {
+        box-shadow: 0 0 15px #FF6600;
+    }
+    100% {
+        box-shadow: 0 0 5px #FF6600;
+    }
+}
+@-webkit-keyframes f-alert-am {
+    0% {
+        box-shadow: 0 0 5px #FF6600;
+    }
+    50% {
+        box-shadow: 0 0 15px #FF6600;
+    }
+    100% {
+        box-shadow: 0 0 5px #FF6600;
+    }
+}
+@keyframes f-alert-am {
+    0% {
+        box-shadow: 0 0 5px #FF6600;
+    }
+    50% {
+        box-shadow: 0 0 15px #FF6600;
+    }
+    100% {
+        box-shadow: 0 0 5px #FF6600;
+    }
+}
+/*按钮*/
+
+.u-btn {
+    padding: 2px 8px;
+    margin-left: 10px;
+}
+.u-btn[disabled] {
+    color: rgb(187, 187, 187);
+    opacity: 0.8;
+}
+/*内容头部*/
+
+.m-title-bar {
+    padding: 10px 0;
+    border-bottom: 2px solid #777;
+}
+.m-title-bar .u-page-title {
+    color: #777;
+    font-weight: bold;
+}
+/*po 头*/
+
+.m-poheader {
+    padding: 10px 0;
+}
+.m-poheader select {
+    width: 125px;
+    padding: 4px 0;
+}
+.m-poheader .datepick {
+    width: 120px;
+    padding: 2px 0;
+}
+.m-poheader .logistics {
+    width: 371px;
+    height: 45px;
+    vertical-align: top;
+}
+/*po 行*/
+
+.m-polines .poline-tab {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+.m-polines .poline-tab th, .m-polines .poline-tab td {
+    word-break: break-all;
+}
+
+/*底部操作条*/
+
+.m-line-ctrl {
+    margin-top: 10px;
+    text-align: center;
+}
+/*操作日志*/
+
+.m-action-history {
+    min-height: 40px;
+    margin-top: 40px;
+    padding: 10px;
+    border-radius: 4px;
+    color: #333;
+    background-color: #E4E4E4;
+}
+.m-action-history .title {
+    font-weight: bold;
+}
+/*必需录入字段标识*/
+
+.f-required:before {
+    content: "*";
+    color: #FF6600;
+}
+.m-polines td.ma {
+    text-align: center;
+}
+.m-polines td.la {
+    text-align: left;
+}
+.m-polines td.ra {
+    text-align: right;
+}
+.m-polines .poprice-i, .m-polines .poqty-i, .m-polines .linememo-i {
+    width: 90%;
+    vertical-align: middle;
+}
+.m-polines .linememo-i {
+    height: 90%;
+}
+.m-polines .poprice, .m-polines .poqty, .m-polines .linememo {
+    text-align: center;
+}
+
+/*绕过NEJ window组件 drag事件的bug*/
+html {
+    height: 100%;
+}
+body {
+    min-height: 95%;
+}

@@ -1,0 +1,24 @@
+{
+	"code": 200,
+	"data": {
+		"total": 100,
+		"list": [{
+			"recieverId": "1",
+			"recieverName": "test",
+			"createTime": "2015/10/10",
+			"email": "xxx@email"
+			},
+			{
+			"recieverId": "2",
+			"recieverName": "test",
+			"createTime": "2015/10/11",
+			"email": "2xxx"
+			},
+			{
+			"recieverId": "2",
+			"recieverName": "test",
+			"createTime": "2015/10/11",
+			"email": "2xxx"
+			}]
+	}
+}

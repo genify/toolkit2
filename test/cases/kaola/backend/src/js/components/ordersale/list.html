@@ -1,0 +1,159 @@
+<div class="m-databox">
+    <div class="head f-clearfix">
+        <h2 class="icf-keyboard">查询结果</h2>
+    </div>
+    <div class="detail w-dataform f-clearfix">
+        {{#if summary }}
+        <div class="group">
+            <label class="titlel">
+                订单总计:
+                <b class="color-red">{{summary.orderCount|| 0}}</b>笔
+            </label>
+            <label class="titlel">售出商品:
+                <b class="color-red">{{summary.saleCount|| 0}}</b>笔
+            </label>
+            <label class="titlel">成本合计:
+                <b class="color-red">{{summary.costAmountTotal || 0}}</b>元
+            </label>
+            <label class="titlel">实收合计:
+                <b class="color-red">{{summary.payAmountTotal || 0}}</b>元
+            </label>
+            <label class="titlel">HQG分账合计:
+                <b class="color-red">{{summary.hqgDevideAmountTotal || 0}}</b>元
+            </label>
+            <label class="titlel">关税分账合计:
+                <b class="color-red">{{summary.taxDevideAmountTotal || 0}}</b>元
+            </label>
+        </div>
+        {{#else}}
+        <p>查询结果为空</p>
+        {{/if}}
+    </div>
+</div>
+<div class="m-databox" style="min-width: 1700px">
+    <div class="head">
+        <h2 class="icf-bird">订单销售数据列表</h2>
+    </div>
+    <div class="detail">
+        <table class="w-datatable mulrow-table">
+            <thead>
+                <tr>
+                    <th>订单编号</th>
+                    <th class="cmin1">商品ID</th>
+                    <th class="cmax2">商品名称<br/>规格</th>
+                    <th class="cmax2">销售数量</th>
+                    <th>成本价</th>
+                    <th>售价</th>
+                    <th>支付方式</th>
+                    <th class="cmax2">跨境方式</th>
+                    <th>物流公司</th>
+                    <th>发货仓库</th>
+                    <th>实收金额</th>
+                    <th>关税</th>
+                    <th>运费</th>
+                    <th>活动扣减</th>
+                    <th>优惠券</th>
+                    <th>HQG分账</th>
+                    <th>返利金额</th>
+                    <th>返利渠道</th>
+                    <th>关税分账</th>
+                    <th>订单状态</th>
+                    <th class="cmax2">是否退款</th>
+                    <th style="width: 90px;">支付时间</th>
+                    <th style="width: 90px;">发货时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#list orders as item }}
+                <tr>
+                    <td title="订单编号" rowspan="{{item.items.length}}" class="cmax3">{{item.outId || ''}}</td>
+                    <td title="商品ID" class="cmax2">{{item.items[0].mmPrctBackendId||''}}</td>
+                    <td title="商品名称" class="cmax3">
+                        {{#if item.items[0].goodsName}}
+                        <strong class="color-blue">{{item.items[0].goodsName || ''}}</strong>
+                        <br/>
+                        {{item.items[0].goodsModel ||''}}
+                        {{#else}}
+                        商品快照不存在<br/>
+                        {{/if}}
+                    </td>
+                    <td title="销售数量">
+                        {{item.items[0].goodsCount||'0'}}
+                    </td>
+                    <td title="成本价">
+                        {{item.items[0].costAmount || '0'}}
+                    </td>
+                    <td title="售价">
+                        {{item.items[0].originGoodsPrice || '0'}}
+                    </td>
+                    <td title="支付方式" rowspan="{{item.items.length}}">
+                        {{item.payMethod | paymethod}}
+                    </td>
+                    <td title="跨境方式" rowspan="{{item.items.length}}">
+                        {{item.importType |importtype}}
+                    </td>
+                     <td title="物流公司" rowspan="{{item.items.length}}" class="cmax3">
+                        {{item.logisCompanyName|| ''}}
+                    </td>
+                    <td title="发货仓库" rowspan="{{item.items.length}}">{{item.storageName||''}}</td>
+                    <td title="实收金额" rowspan="{{item.items.length}}">{{item.payTotalAmount || ''}}</td>
+                    <td title="关税" rowspan="{{item.items.length}}">{{item.taxAmount||''}}</td>
+                    <td title="运费" rowspan="{{item.items.length}}">{{item.expressFee|| '0'}}</td>
+                    <td title="活动扣减" rowspan="{{item.items.length}}">{{item.activityAmount || ''}}</td>
+                    <td title="优惠券" rowspan="{{item.items.length}}">{{item.couponAmount || ''}}</td>
+                    <td title="HQG分账" rowspan="{{item.items.length}}">{{item.hqgDevideInfoAmount||''}}</td>
+                    <td title="返利金额" rowspan="{{item.items.length}}">{{item.rebateAmount|| '0'}}</td>
+                    <td title="返利渠道" rowspan="{{item.items.length}}">{{item.rebateChannel||''}}</td>
+                    <td title="关税分账" rowspan="{{item.items.length}}">{{item.customDevideInfoAmount||''}}</td>
+                    <td title="订单状态" rowspan="{{item.items.length}}">
+                        {{ item.state | state}}
+                    </td>
+                    <td title="是否退款" rowspan="{{item.items.length}}">
+                        {{#if item.refundSuccess>0}}
+                        是
+                        {{#else}}
+                        否
+                        {{/if}}
+                    </td>
+                    <td rowspan="{{item.items.length}}">
+                        {{item.payTime | format:'yyyy-MM-dd HH:mm:ss'}}
+                    </td>
+                    <td rowspan="{{item.items.length}}">
+                        {{item.deliverTime | format:'yyyy-MM-dd HH:mm:ss'}}
+                    </td>
+                </tr>
+                {{#if item.items.length > 1}}
+                    {{#list item.items as orderItem}}
+                       {{#if orderItem_index != 0 }}
+                         <tr>
+                            <td title="商品ID" class="cmax2">{{orderItem.mmPrctBackendId||''}}</td>
+                            <td title="商品名称" class="cmax3">
+                                {{#if orderItem.goodsName}}
+                                <strong class="color-blue">{{orderItem.goodsName || ''}}</strong>
+                                <br/>
+                                {{orderItem.goodsModel ||''}}
+                                {{#else}}
+                                商品快照不存在<br/>
+                                {{/if}}
+                            </td>
+                            <td title="销售数量">
+                                {{orderItem.goodsCount||0}}
+                            </td>
+                            <td title="成本价">
+                                {{orderItem.costAmount || 0}}
+                            </td>
+                            <td title="售价">
+                                {{orderItem.originGoodsPrice || 0}}
+                            </td>
+                        </tr>
+                        {{/if}}
+                    {{/list}}
+                {{/if}}
+                {{/list}}
+            </tbody>
+        </table>
+        <div class="m-pager f-cb">
+            <pager total={{Math.ceil(total/limit)}} current={{current}}></pager>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+.m-log{background:#ddd;line-height:26px;padding:8px;}
+
+.m-newauditmodal .productbox{height:310px;overflow:auto;border:1px solid #ccc;}
+.m-newauditmodal .search{margin-bottom:10px}
+.m-newauditmodal .productaction{margin-top:10px}
+.m-search{border:1px solid #ccc;display:inline-block;zoom:1;height:}
+.m-search input{border:none;width:408px;height:30px;margin-left:2px}
+.m-search .u-searchbtn{  width: 20px;  height: 30px;  display: inline-block;  float: right;  line-height: 30px;  text-align: center;}
+.m-search .search{}
+
+.m-empty{text-align:center;margin:20px 0;}
+
+.m-newproductmodal td{padding:2px;}
+.m-newproductmodal textarea{height:120px;}
+.m-newproductmodal .m-longipt,.m-newproductmodal textarea{width:750px}
+.m-newproductmodal input[type=text]{height:30px;width:220px}
+.m-newproductmodal td .lipt{width:533px;}
+.m-newproductmodal td .lipt-1{width:750px;}
+.js-error{display:none;width: 0; overflow: hidden;}
+
+.m-databox .js-invalid{border:1px solid #d22147}
+
+#searchForm textarea, #searchForm select, #searchForm input{padding:8px 2px}
+#searchbox .supply{display:none}
+.w-supplychangtbl input[type=text]{width:60px;margin-left:0;padding-left:2px;padding-right:2px;}
+.w-datepick{position:relative;}
+.w-datepick .datepick{left:0;top:20px}
+.m-important{color:#d22147}
+.m-goodsbox{margin:20px}
+.m-goodsbox .skulist{padding-left:20px}
+.m-goodsbox li label{margin-left:5px}
+
+.m-trackauditmodal .ipt{width:80px}
+.m-trackauditmodal .ipt-1{width:150px}
+.m-trackauditmodal .ipt-2{width:300px}
+
+.m-trackauditmodal .title{border-bottom:1px solid #ccc;}
+.m-trackauditmodal .box{height:350px;overflow:auto;}
+.m-trackauditmodal .tbl{margin:10px 0;}
+.m-trackauditmodal .tbl td{padding:2px;}
+
+.m-audit{margin:20px 0;}
+.m-audit .audittbl{width:100%;}
+.m-audit .audittbl td{padding:2px 3px;}
+
+.m-rejectmodal td{padding:10px;}
+.m-rejectmodal .title{font-weight:bold;}
+.m-rejectmodal .auditid,.orange{color:#FF6600}
+.m-rejectmodal .remark{height: 100px;width: 325px;}
+.m-auditbar{padding-top:20px;border-top:1px solid #ccc; resize: none;}
+
+.m-contractbox{padding:10px 0}
+.m-contractbox li{float:left;margin-right:20px;border-radius:3px;border:1px solid #ccc;padding:5px 10px;}
+.m-contractbox .name{max-width: 140px;}
+.m-tracktaskbox{background:#f2f2f2;margin-top:10px;padding:10px}
+.m-tracktasktbl{width:100%;}
+
+.m-tracktasktbl .lbl{font-weight:bold;}
+
+.m-auditact{padding-bottom:10px;border-bottom:1px solid #ccc;}
+
+
+.w-datepick .zday td{padding:0}
+.w-datatable tbody tr.m-disable,.w-datatable tbody tr.m-disable:hover{background:#ccc}
+
+.m-planinfo{margin-bottom:10px;text-align:left;}
+
+#searchForm .supplybox{position:relative;z-index:999}
+.m-supplierCard{position:absolute;width:200px;height:400px;overflow:auto;line-height:26px;top:26px;left:5px;background:#fff;border:1px solid #ccc;}
+.m-supplierCard li{text-indent:10px;cursor:pointer;line-height:36px;}
+.m-supplierCard li:hover{background:#3399ff}

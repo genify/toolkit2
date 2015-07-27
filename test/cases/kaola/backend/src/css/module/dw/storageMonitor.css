@@ -1,0 +1,30 @@
+/*[name=from],[name=to]{width:80px;}*/
+[data-type=date]{width:100px;}
+
+#searchForm{
+	display: inline-block;
+	float: right;
+}
+.export{
+	float: left;
+}
+
+.w-dataform .group label{
+	/*width: 60px;*/
+  	height: 30px;
+  	line-height: 30px;
+}
+
+.bRed{background-color: #ff291c}
+.w-datatable th, .w-datatable td {
+	border:1px solid #ddd;
+	text-align: center;
+}
+.w-datatable th{
+	border-bottom:3px solid #ccc;
+}
+.w-datatable .title th{
+	font-weight: bold;
+	background-color: #f2f2f2;
+	border-bottom:1px solid #ddd;
+}

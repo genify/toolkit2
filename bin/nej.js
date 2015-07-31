@@ -38,7 +38,18 @@ var main = require('../main.js');
     },
     export:function(event){
         event.stopped = !0;
-        // TODO
+        var files = event.args[0];
+        if (!files){
+            this.show('export');
+            process.exit(0);
+        }else{
+            files = files.split(/\s*[,;]\s*]/);
+            var opt = event.options||{};
+            opt.output = opt.o||opt.output||'./';
+            main.export(files,opt,function(){
+                process.exit(0);
+            });
+        }
     }
 })).exec(
     process.argv.slice(2)

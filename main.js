@@ -125,15 +125,25 @@ exports.build = function(file,callback){
  * @param  {Object} config - config object
  * @return {Void}
  */
-exports.export = function(list,config){
-    var file = _path.absolute(
-        './export.html',process.cwd()+'/'
-    );
-    var exporter = new (require('./lib/export.js'))({
-        file:file,
-        list:list
+exports.export = function(list,config,callback){
+    var cwd = process.cwd()+'/';
+    // absolute path
+    list.forEach(function(file,index,list){
+        list[index] = _path.absolutePath(file,cwd);
     });
-    exporter.parse(config);
+    // absolute output
+    config = config||{};
+    config.output = _path.absolutePath(
+        config.output,cwd
+    );
+    // do export
+    new (require('./lib/export.js'))(
+        _util.merge(config,{
+            file:cwd,
+            list:list,
+            done:callback||function(){}
+        })
+    );
 };
 /**
  * build nei project

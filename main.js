@@ -129,7 +129,9 @@ exports.export = function(list,config,callback){
     var cwd = process.cwd()+'/';
     // absolute path
     list.forEach(function(file,index,list){
-        list[index] = _path.absolutePath(file,cwd);
+        var arr = file.split('?');
+        arr[0] = _path.absolutePath(arr[0],cwd);
+        list[index] = arr.join('?');
     });
     // absolute output
     config = config||{};

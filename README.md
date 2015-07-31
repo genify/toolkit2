@@ -47,7 +47,9 @@
     nej build /path/to/release.conf
     ```
 
-## 使用手册
+## 参考手册
+
+支持指令说明见[wiki](./doc/Manual/COMMAND.md)
 
 打包标记说明见[wiki](./doc/Manual/TAG.md)
 

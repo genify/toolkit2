@@ -55,6 +55,7 @@
         "",
         "使用举例：",
         "nej export ./a.js,./b.js",
-        "nej export /path/to/nej/define.js?pro=./src/,util/ajax/xdr,./app.js -o /path/to/app.min.js"
+        "nej export /path/to/nej/define.js?pro=./src/,util/ajax/xdr,./app.js -o /path/to/app.min.js",
+        "nej export ./a.js,./b.js --codeWrap (function(){%s})(); --dropconsole --charset gbk"
     ]
 }

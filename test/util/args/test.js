@@ -30,26 +30,26 @@ describe('util/args',function(){
             doTest(['new','-h'],{command:'new',options:{h:true}});
             doTest(['new','--help'],{command:'new',options:{help:true}});
         });
-        it('should be ok for "new -o=/path/to/output/" or "new --output=/path/to/output/"',function(){
-            doTest('new -o=/path/to/output/',{command:'new',options:{o:'/path/to/output/'}});
-            doTest('new --output=/path/to/output/',{command:'new',options:{output:'/path/to/output/'}});
-            doTest(['new','-o=/path/to/output/'],{command:'new',options:{o:'/path/to/output/'}});
-            doTest(['new','--output=/path/to/output/'],{command:'new',options:{output:'/path/to/output/'}});
+        it('should be ok for "new -o /path/to/output/" or "new --output /path/to/output/"',function(){
+            doTest('new -o /path/to/output/',{command:'new',options:{o:'/path/to/output/'}});
+            doTest('new --output /path/to/output/',{command:'new',options:{output:'/path/to/output/'}});
+            doTest(['new','-o /path/to/output/'],{command:'new',options:{o:'/path/to/output/'}});
+            doTest(['new','--output /path/to/output/'],{command:'new',options:{output:'/path/to/output/'}});
         });
-        it('should be ok for "new -o = /path/to/output/" or "new --output = /path/to/output/"',function(){
-            doTest('new -o = /path/to/output/',{command:'new',options:{o:'/path/to/output/'}});
-            doTest('new --output = /path/to/output/',{command:'new',options:{output:'/path/to/output/'}});
-            doTest(['new','-o = /path/to/output/'],{command:'new',options:{o:'/path/to/output/'}});
-            doTest(['new','--output = /path/to/output/'],{command:'new',options:{output:'/path/to/output/'}});
+        it('should be ok for "new -o   /path/to/output/" or "new --output   /path/to/output/"',function(){
+            doTest('new -o   /path/to/output/',{command:'new',options:{o:'/path/to/output/'}});
+            doTest('new --output   /path/to/output/',{command:'new',options:{output:'/path/to/output/'}});
+            doTest(['new','-o   /path/to/output/'],{command:'new',options:{o:'/path/to/output/'}});
+            doTest(['new','--output   /path/to/output/'],{command:'new',options:{output:'/path/to/output/'}});
         });
-        it('should be ok for "new -o = /path/to/output/ -u" or "new --output = /path/to/output/ -u"',function(){
-            doTest('new -o = /path/to/output/ -u',{command:'new',options:{o:'/path/to/output/',u:true}});
-            doTest('new --output = /path/to/output/ -u',{command:'new',options:{output:'/path/to/output/',u:true}});
-            doTest(['new','-o = /path/to/output/ -u'],{command:'new',options:{o:'/path/to/output/',u:true}});
-            doTest(['new','--output = /path/to/output/ -u'],{command:'new',options:{output:'/path/to/output/',u:true}});
+        it('should be ok for "new -o   /path/to/output/ -u" or "new --output   /path/to/output/ -u"',function(){
+            doTest('new -o   /path/to/output/ -u',{command:'new',options:{o:'/path/to/output/',u:true}});
+            doTest('new --output   /path/to/output/ -u',{command:'new',options:{output:'/path/to/output/',u:true}});
+            doTest(['new','-o   /path/to/output/ -u'],{command:'new',options:{o:'/path/to/output/',u:true}});
+            doTest(['new','--output   /path/to/output/ -u'],{command:'new',options:{output:'/path/to/output/',u:true}});
         });
-        it('should be ok for "export file1.js,file2.js,file3.js -o=/path/to/output/"',function(){
-            doTest(['export file1.js,file2.js,file3.js -o=/path/to/output/',{command:'export',o:'/path/to/output/'}])
+        it('should be ok for "export file1.js,file2.js,file3.js -o /path/to/output/"',function(){
+            doTest(['export file1.js,file2.js,file3.js -o /path/to/output/',{command:'export',o:'/path/to/output/'}])
         });
     });
     

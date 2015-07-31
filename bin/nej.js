@@ -38,12 +38,13 @@ var main = require('../main.js');
     },
     export:function(event){
         event.stopped = !0;
-        var files = event.args[0];
+        var files = event.args.join(',');
+        console.log(files);
         if (!files){
             this.show('export');
             process.exit(0);
         }else{
-            files = files.split(/\s*[,;]\s*]/);
+            files = files.split(/\s*[,;，；]+\s*]/);
             var opt = event.options||{};
             opt.output = opt.o||opt.output||'./';
             main.export(files,opt,function(){

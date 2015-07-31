@@ -192,6 +192,16 @@ describe('util/path',function(){
                 uri:'a/b',
                 root:'c:/user/local/',
                 result:'c:/user/local/a/b'
+            },
+            {
+                uri:'/a/b/',
+                root:'/',
+                result:'/a/b/'
+            },
+            {
+                uri:'c:/user/',
+                root:'/',
+                result:'c:/user/'
             }
         ].forEach(function(config){
             it('should return '+config.result+' for '+config.uri+' with root '+config.root,function(){

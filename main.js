@@ -121,27 +121,37 @@ exports.build = function(file,callback){
 };
 /**
  * export script list
- * @param  {Array} list - script list
- * @param  {Object} config - config object
+ * @param  {Array}    list     - script list
+ * @param  {Object}   config   - config object
+ * @param  {String}   config.output - output file path
+ * @param  {String}   config.bags   - output name bags
+ * @param  {Function} callback - export callback
  * @return {Void}
  */
 exports.export = function(list,config,callback){
-    var cwd = process.cwd()+'/';
-    // absolute path
-    list.forEach(function(file,index,list){
-        var arr = file.split('?');
-        arr[0] = _path.absolutePath(arr[0],cwd);
-        list[index] = arr.join('?');
-    });
+    // check list
+    callback = callback||function(){};
+    if (!list||!list.length){
+        _logger.warn('no input script files');
+        callback();
+        return;
+    }
     // absolute output
     config = config||{};
+    var cwd = process.cwd()+'/';
     config.output = _path.absolutePath(
         config.output,cwd
     );
+    // absolute name bags
+    if (!!config.bags){
+        config.bags = _path.absolutePath(
+            config.bags,cwd
+        );
+    }
     // do export
     new (require('./lib/export.js'))(
         _util.merge(config,{
-            file:cwd,
+            file:cwd+'script.html',
             list:list,
             done:callback||function(){}
         })

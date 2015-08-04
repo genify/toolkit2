@@ -6,17 +6,13 @@
     <#include "/wrap/config.ftl">
     <#include "/wrap/macro.ftl">
 
-    {% if !!mock %}
-    <#if useMockData><#include "/mock/{{mock}}"></#if>
-    {% endif %}
-
     <title>{{title}}</title>
     <meta charset="utf-8"/>
     <meta name="description" content="{{description}}"/>
     <meta name="keywords" content="{{description}}"/>
 
     <@css/>
-    <link href="${csRoot}page/{{filename}}.css" rel="stylesheet" type="text/css"/>
+    <link href="${csRoot}{{filename}}.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
 
@@ -25,7 +21,7 @@
     <script src="${nejRoot}"></script>
     <script>
         NEJ.define([
-            'pro/page/{{filename}}'
+            'pro/{{filename}}'
         ],function(m){
             m._$$Module._$allocate();
         });

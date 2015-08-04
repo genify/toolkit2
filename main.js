@@ -151,7 +151,9 @@ exports.export = function(list,config,callback){
     // do export
     new (require('./lib/export.js'))(
         _util.merge(config,{
-            file:cwd+'script.html',
+            file:_path.absolutePath(
+                './script.html',cwd
+            ),
             list:list,
             done:callback||function(){}
         })

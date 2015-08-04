@@ -45,7 +45,7 @@
         "iconv-lite": "~0.4.0"
     },
     "nei":{
-        "mock":"http://nei.hz.netease.com/api/parameter/getTestData?type=3&id=%s",
+        "mock":"http://nei.hz.netease.com/api/parameter/getTestData?type=%s&id=%s",
         "api":"http://nei.hz.netease.com/api/projectView/getByProjectId?pid=%s",
         "ga":"http://nei.hz.netease.com/api/ga"
     }

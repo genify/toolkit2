@@ -175,10 +175,11 @@ exports.nei = function(config,callback){
         project = _path.absolute(
             config.project+'/',cwd
         ),
+        neiconf = project+'nei/nei.json',
         action = config.action||'build';
     // check nei.json file
     var msg;
-    if (_fs.exist(project+'nei.json')){
+    if (_fs.exist(neiconf)){
         if (action==='build'){
             msg = 'use "nei update" to update nei project';
         }
@@ -206,7 +207,7 @@ exports.nei = function(config,callback){
     // generator config
     var conf = config;
     if (action==='update'){
-        conf = require(project+'nei.json');
+        conf = require(neiconf);
         conf.overwrite = !!config.overwrite;
     }else{
         conf.updateTime = 0;

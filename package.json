@@ -3,22 +3,10 @@
     "description": "nej toolkit",
     "version": "1.1.3",
     "license": "MIT",
-    "keywords": [
-        "nej",
-        "web",
-        "project",
-        "toolkit",
-        "builder",
-        "deploy",
-        "publisher",
-        "javascript",
-        "front end",
-        "obfuscator"
-    ],
+    "keywords": ["nej","web","project","toolkit","builder","deploy","publisher","javascript","front end","obfuscator"],
     "author": "genify <caijf@corp.netease.com> (http://genify.blog.163.com/)",
     "main": "./main.js",
     "bin": {
-        "nei":"./bin/nei.js",
         "nej": "./bin/nej.js",
         "nej-init": "./bin/init.js",
         "nej-build": "./bin/build.js"
@@ -48,8 +36,6 @@
         "iconv-lite": "~0.4.0"
     },
     "nei":{
-        "mock":"http://nei.hz.netease.com/api/parameter/getTestData?type=%s&id=%s",
-        "api":"http://nei.hz.netease.com/api/projectView/getByProjectId?pid=%s",
         "ga":"http://nei.hz.netease.com/api/ga"
     }
 }

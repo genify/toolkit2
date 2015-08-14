@@ -674,6 +674,30 @@ MANIFEST_FILTER = \.html$
 WRP_INLINE_SOURCE = <#noparse>%s</#noparse>
 ```
 
+### WRP_SCRIPT_SOURCE
+
+包装脚本源码，所有输出脚本均用此结构包装，其中 %s 表示要输出的源码
+
+注：除非你知道自己在做什么，否则不要修改此配置
+
+比如我们最终输出的代码类似这种
+
+```javascript
+var a = function(b){console.log(b)},c = function(d){alert(d)}; ...
+```
+
+如果配置了以下参数
+
+```
+WRP_SCRIPT_SOURCE = (function(){%s})();
+```
+
+则最终输出的代码为
+
+```javascript
+(function(){var a = function(b){console.log(b)},c = function(d){alert(d)}; ...})();
+```
+
 ### WRP_INLINE_CS
 
 内联样式模板输出规则，%s表示内联的样式代码

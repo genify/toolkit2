@@ -22,6 +22,7 @@
 * [图片优化](#图片优化) ： 主要用于配置图片优化参数
 * [离线配置](#离线配置) ： HTML5离线应用Manifest文件输出配置
 * [模板封装](#模板封装) ： NEJ模板输出配置
+* [页面压缩](#页面压缩) ： 页面文件如HTML、服务器模板文件等的压缩配置
 * [扩展配置](#扩展配置) ： 其他支持项配置
 
 ## 路径配置
@@ -738,25 +739,33 @@ WRP_EXLINE_JS = <textarea name="js" data-src="%s"></textarea>
 WRP_INLINE_TP = <textarea id="%s" name="%s">%s</textarea>
 ```
 
-## 扩展配置
+## 页面压缩
 
-这部分主要用于说明其他一些未归类的扩展配置
+这部分主要用于页面文件，如HTML文件、服务器端模板文件（freemarker、velocity等）的压缩输出配置
 
-### X_NOCOMPRESS
+### CPRS_FLAG
 
-输出文件不做压缩，默认根据页面标记处理，此优先级高于页面标记 @NOCOMPRESS
+输出文件压缩配置，可用的值说明如下，默认为 0
+
+* 0 - 根据页面标记处理，除带@NOCOMPRESS标记的内容，其余内容均去除行首尾空格
+* 1 - 所有页面不压缩，保留原有的首尾空格，此优先级高于页面标记@NOCOMPRESS
+* 2 - 所有页面压缩成一行，去除每行首尾空格和回车换行符，忽略页面@NOCOMPRESS标记
 
 ```
-X_NOCOMPRESS = true
+CPRS_FLAG = 0
 ```
 
-### X_KEEP_COMMENT
+### CPRS_KEEP_COMMENT
 
 是否保留HTML代码中的注释，默认删除所有页面结构中的注释
 
 ```
-X_KEEP_COMMENT = true
+CPRS_KEEP_COMMENT = true
 ```
+
+## 扩展配置
+
+这部分主要用于说明其他一些未归类的扩展配置
 
 ### X_AUTO_EXLINK_PATH
 

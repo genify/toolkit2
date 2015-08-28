@@ -6,14 +6,14 @@
     <link href="${css_root}template.css" rel="stylesheet" type="text/css"/>
     <link href="${css_root}app.css" rel="stylesheet" type="text/css"/>
 </head>
-<body id="www-wd-com">
+< id="www-wd-com">
 
 <div class="g-doc">
     <div class="g-hd">
         <h1 class="m-logo">网易-杭研院-前端技术组-实例库</h1>
         <h2 class="m-title">NEJ Module Sample</h2>
     </div>
-    <div class="g-bd" id="module-box"></div>
+    <div class="g-bd" id="module-box" <#if a??>abc<#else>bbbbbbb</#if> ></div>
     <div class="g-bd">
         <div class="m-foot">
             如有任何问题，请联系：蔡剑飞(<a href="mailto:caijf@corp.netease.com">caijf@corp.netease.com</a>)

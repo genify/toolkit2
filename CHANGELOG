@@ -1,4 +1,7 @@
-1.1.8
+1.1.9
+    - NEJ模块内联模板不使用WRP_INLINE_SOURCE配置包装
+
+1.1.8   (2015-08-28)
 1.1.7
     - 增加页面压缩配置参数支持 CPRS_FLAG/CPRS_KEEP_COMMENT
     - 修正标签换行异常

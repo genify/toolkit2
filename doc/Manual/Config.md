@@ -161,7 +161,7 @@ FILE_CHARSET = gbk
 
 ### FILE_FILTER
 
-输入文件通过路径过滤规则，说明如下：
+输入文件通过路径筛选要处理的文件，说明如下：
 
 * 正则表达式，忽略大小写
 * 确保可以通过new RegExp转换成正则
@@ -170,6 +170,19 @@ FILE_CHARSET = gbk
 
 ```
 FILE_FILTER = \.(ftl|html)$
+```
+
+### FILE_EXCLUDE
+
+输入文件通过路径排除规则过滤掉不要处理的文件，说明如下：
+
+* 正则表达式，忽略大小写
+* 确保可以通过new RegExp转换成正则
+* 规则用来检验不要处理的文件路径，默认不排除文件
+* 如以下范例规则表示不处理以js、mcss、css为后缀的文件
+
+```
+FILE_EXCLUDE = \.(js|mcss|css)$
 ```
 
 ## 别名配置

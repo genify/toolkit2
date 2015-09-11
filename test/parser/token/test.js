@@ -51,6 +51,9 @@ describe('parser/token',function(){
         },{
             code:'</#list>',
             result:{name:'#list',closed:!0,selfClosed:!1}
+        },{
+            code:'<img alt="" src="../../res/image/loading.gif" class="test">',
+            result:{name:'img',closed:!1,selfClosed:!1,attrs:{src:'../../res/image/loading.gif',alt:'',class:'test'}}
         }
     ];
 
@@ -60,7 +63,7 @@ describe('parser/token',function(){
             code:'<#assign a = b + c />',
             result:{name:'#assign',closed:!1,selfClosed:!0}
         },{
-            code:'<@topbar title="title!\"Ʒ��ҳ\""/>',
+            code:'<@topbar title="title!\"Ʒ��ҳ\""/>',
             result:{name:'@topbar',closed:!1,selfClosed:!0}
         });
         cases.forEach(function(config){

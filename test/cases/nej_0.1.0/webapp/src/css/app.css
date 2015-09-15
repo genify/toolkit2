@@ -1,3 +1,5 @@
+@font-face {font-family:"FontAwesome";src:url("../../res/font/font-awesome/fontawesome-webfont.eot?v=4.3.0");src:url("../../res/font/font-awesome/fontawesome-webfont.eot?#iefix&v=4.3.0") format("embedded-opentype"),url("../../res/font/font-awesome/fontawesome-webfont.woff2?v=4.3.0") format("woff2"),url("../../res/font/font-awesome/fontawesome-webfont.woff?v=4.3.0") format("woff"),url("../../res/font/font-awesome/fontawesome-webfont.ttf?v=4.3.0") format("truetype"),url("../../res/font/font-awesome-4.3.0/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular") format("svg");font-weight:normal;font-style:normal;}
+
 a{color:#21759B;}
 html{overflow-y:scroll;}
 /* clear float */

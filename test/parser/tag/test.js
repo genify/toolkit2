@@ -6,6 +6,9 @@ describe('parser/tag',function(){
 
     var cases = [
         {
+            code:'<img src="/res/loading.gif"/>',
+            result:{name:'img',attrs:{src:'/res/loading.gif'},closed:!1,selfClosed:!0}
+        },{
             code:'<!DOCTYPE html>',
             result:{name:'!DOCTYPE',attrs:{html:''},closed:!1,selfClosed:!1}
         },{
@@ -131,6 +134,6 @@ describe('parser/tag',function(){
             // check instruction
             ret.instr.should.be.empty;
         });
-        
+
     });
 });

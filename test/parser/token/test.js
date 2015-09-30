@@ -6,6 +6,12 @@ describe('parser/token',function(){
 
     var cases = [
         {
+            code:'<a href = "/res/loading.gif" title = "a = zbc & b =c ">',
+            result:{name:'a',attrs:{href:'/res/loading.gif',title:'a = zbc & b =c '},closed:!1,selfClosed:!1}
+        },{
+            code:'<img src = "/res/loading.gif" />',
+            result:{name:'img',attrs:{src:'/res/loading.gif'},closed:!1,selfClosed:!0}
+        },{
             code:'<!DOCTYPE html>',
             result:{name:'!DOCTYPE',attrs:{html:''},closed:!1,selfClosed:!1}
         },{

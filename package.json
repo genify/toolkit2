@@ -20,7 +20,7 @@
         "url": "https://github.com/genify/toolkit2.git"
     },
     "engines":{
-        "node":"0.12.x"
+        "node":">=0.12"
     },
     "bugs": {
         "url": "https://github.com/genify/toolkit2/issues"

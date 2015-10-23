@@ -1,7 +1,7 @@
 {
     "name": "nej",
     "description": "nej toolkit",
-    "version": "1.2.6",
+    "version": "1.2.7",
     "license": "MIT",
     "keywords": ["nej","web","project","toolkit","builder","deploy","publisher","javascript","front end","obfuscator"],
     "author": "genify <caijf@corp.netease.com> (http://genify.blog.163.com/)",

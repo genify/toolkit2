@@ -61,6 +61,10 @@
 <!-- @VERSION -->
 <script>location.config={root:'/src/html/'};</script>
 
+<script>
+    location.portrait = '/res/image/sprite.png';
+</script>
+
 <!-- @script -->
 <script src="${nej_root}"></script>
 <script src="${pro_root}page/app.js"></script>

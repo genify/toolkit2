@@ -1,8 +1,10 @@
 NEJ.define([
     'util/dispatcher/dispatcher',
     'json!./rules.json',
-    'json!./modules.json'
+    'json!./modules.json',
+    'text!./tpl.html'
 ],function(dsp,rules,modules){
+    console.log('/res/image/sprite.png');
     /* start up dispatcher */
     dsp._$startup({
         rules:rules,

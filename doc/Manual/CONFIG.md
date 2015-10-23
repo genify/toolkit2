@@ -803,6 +803,16 @@ X_AUTO_EXLINK_PATH = true
 X_AUTO_EXLINK_PREFIX = data-href|data-html-root
 ```
 
+### X_AUTO_EXLINK_SCRIPT
+
+发布后使用绝对路径调整脚本文件中的地址，检查符合以下条件的地址
+
+* 字符串中相对于[DIR_WEBROOT](#dir_webroot)的静态资源
+
+```
+X_AUTO_EXLINK_SCRIPT = true
+```
+
 ### X_RELEASE_MODE
 
 发布模式，主要用于控制IGNORE标记的处理，IGNORE标记配置的模式匹配到这里配置的模式则相应的代码在打包时会被过滤掉，系统内置以下三种模式，也可以使用自定义模式，模式不区分大小写

@@ -104,17 +104,19 @@ exports.init = function(output){
 /**
  * deploy project by config file
  * @param  {String}   file - config file path
+ * @param  {Object}   config - config options
  * @param  {Function} callback - deploy done callback
  * @return {Void}
  */
-exports.build = function(file,callback){
+exports.build = function(file,config,callback){
     file = _path.absolute(
         file,process.cwd()+'/'
     );
-    new (require('./lib/deploy.js'))({
+    var opt = _util.merge(config,{
         file:file,
         done:callback||function(){}
     });
+    new (require('./lib/deploy.js'))(opt);
 };
 /**
  * export script list

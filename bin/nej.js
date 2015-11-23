@@ -31,7 +31,9 @@ var main = require('../main.js');
             if (typeof file!=='string'){
                 file = './release.conf';
             }
-            main.build(file,function(){
+            var opt = event.options||{};
+            this.format('build',opt);
+            main.build(file,opt,function(){
                 process.exit(0);
             });
         }
@@ -45,7 +47,7 @@ var main = require('../main.js');
         }else{
             files = files.split(/\s*[,;，；]+\s*/);
             var opt = event.options||{};
-            opt.output = opt.o||opt.output||'./';
+            this.format('export',opt);
             main.export(files,opt,function(){
                 process.exit(0);
             });

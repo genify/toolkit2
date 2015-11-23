@@ -6,56 +6,70 @@
         "nej [命令] [参数]",
         "",
         "参数说明：",
-        "-v, --version      显示工具版本信息",
-        "-h, --help         显示指定命令的帮助信息",
+        "%p",
         "",
         "命令说明：",
-        "init               创建release.conf配置文件",
-        "build              根据release.conf配置文件发布项目",
-        "export             导出指定脚本文件列表"
+        "init\t\t\t创建release.conf配置文件",
+        "build\t\t\t根据release.conf配置文件发布项目",
+        "export\t\t\t导出指定脚本文件列表"
+    ],
+    "-default-params":[
+        {"j":"v","q":"version","m":"显示工具版本信息"},
+        {"j":"h","q":"help","m":"显示指定命令的帮助信息"}
     ],
     "init":[
         "使用说明：",
         "nej init [目录] [参数]",
         "",
-        "[目录]             配置文件输出目录，默认在当前目录下输出",
+        "[目录]\t\t\t配置文件输出目录，默认在当前目录下输出",
         "",
         "参数说明：",
-        "-h, --help         显示init命令帮助信息",
+        "%p",
         "",
         "使用举例：",
         "nej init",
         "nej init /path/to/output/"
     ],
+    "init-params":[
+        {"j":"h","q":"help","m":"显示init命令帮助信息"}
+    ],
     "build":[
         "使用说明：",
         "nej build [配置文件] [参数]",
         "",
-        "[配置文件]         指定release.conf配置文件的路径，默认尝试读取当前目录下的release.conf文件",
+        "[配置文件]\t\t指定release.conf配置文件的路径，默认尝试读取当前目录下的release.conf文件",
         "",
         "参数说明：",
-        "-h, --help         显示build命令帮助信息",
+        "%p",
         "",
         "使用举例：",
         "nej build",
         "nej build /path/to/release.conf"
     ],
+    "build-params":[
+        {"j":"h","q":"help","m":"显示build命令帮助信息"},
+        {"j":"m","q":"mode","d":"online","m":"发布模式，此优先级高于配置文件中X_RELEASE_MODE配置的优先级，默认为online"},
+        {"j":"l","q":"level","d":"ALL","m":"日志级别，此优先级高于配置文件中X_LOGGER_LEVEL配置的优先级，可用值：debug,info,warn,error,all,off，默认为all"}
+    ],
     "export":[
         "使用说明：",
         "nej export [脚本列表] [参数]",
         "",
-        "[脚本列表]         支持多个脚本文件输入，脚本文件之间使用逗号分隔，脚本文件路径支持NEJ依赖系统规范，支持NEJ依赖分析",
+        "[脚本列表]\t\t支持多个脚本文件输入，脚本文件之间使用逗号分隔，脚本文件路径支持NEJ依赖系统规范，支持NEJ依赖分析",
         "",
         "参数说明：",
-        "-h, --help         显示export命令帮助信息",
-        "-o, --output       指定导出脚本文件的路径，相对路径相对于当前目录，默认在当前目录生成output.js文件",
-        "--charset          文件输入输出编码，默认utf-8",
-        "--dropconsole      输出代码是否删除console相关日志输出代码",
-        "--codeWrap         输出代码包装语句，其中%s表示输出代码，默认为 %s",
+        "%p",
         "",
         "使用举例：",
         "nej export ./a.js,./b.js",
         "nej export /path/to/nej/define.js?pro=./src/,util/ajax/xdr,./app.js -o /path/to/app.min.js",
         "nej export ./a.js,./b.js --codeWrap (function(){%s})(); --dropconsole --charset gbk"
+    ],
+    "export-params":[
+        {"j":"h","q":"help","m":"显示export命令帮助信息"},
+        {"j":"o","q":"output","d":"./output.js","m":"指定导出脚本文件的路径，相对路径相对于当前目录，默认在当前目录生成output.js文件"},
+        {"q":"charset","d":"utf-8","m":"文件输入输出编码，默认utf-8"},
+        {"q":"dropconsole","d":false,"m":"输出代码是否删除console相关日志输出代码"},
+        {"q":"codeWrap","d":"%s","m":"输出代码包装语句，其中%s表示输出代码，默认为 %s"}
     ]
 }

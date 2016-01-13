@@ -211,7 +211,7 @@ A：
 2. 修改配置参数，[参数说明](./doc/Manual/CONFIG.md)
 3. 使用nej build打包
 
-如果需要指定打完包后的样式/脚本插入位置，则可以在页面中增加打包标记，[标记说明](./doc/Manual/TAG.md)
+如果需要指定打完包后的样式/脚本插入位置，则可以在页面中增加 style 和 script 打包标记，[标记说明](./doc/Manual/TAG.md)，如果使用自动处理可忽略，自动处理时插入点为第一个参与打包资源的位置
 
 ```html
 <html>
@@ -232,9 +232,8 @@ A：
     ...
 
     <!-- 在要打包后插入脚本的位置加入script标记 -->
-    <!-- script标记增加nodep为true的配置参数 -->
 
-    <!-- @script {nodep:true} -->
+    <!-- @script -->
     <script src="/src/js/a.js"></script>
     <script src="/src/js/b.js"></script>
     <script src="/src/js/c.js"></script>
@@ -276,43 +275,19 @@ Q：服务器模版项目中如何使用打包工具？
 <script src="/src/js/pg/c.js"></script>
 ```
 
-A：采用打包标记配合打包配置方式来实现
+A：采用打包配置方式来实现
 
-在core.js.ftl文件中增加script标记，这样打完包后的core.js会插入在指定位置
-
-```html
-<#macro coreJS>
-
-<!-- @script {nodep:true} -->
-
-<script src="/src/js/a.js"></script>
-<script src="/src/js/b.js"></script>
-<script src="/src/js/c.js"></script>
-<script src="/src/js/d.js"></script>
-<script src="/src/js/e.js"></script>
-<script src="/src/js/f.js"></script>
-</#macro>
-```
-
-在page.ftl文件中增加script标记，这样打完包后除core.js里的文件外的其他文件会插入在指定位置，注意这里script配置core参数为false禁止二次插入core.js文件，因为coreJS的ftl宏里面已经插入了core.js文件
-
-```html
-<@coreJS/>
-
-<!-- @script {nodep:true,core:false} -->
-
-<script src="/src/js/pg/a.js"></script>
-<script src="/src/js/pg/b.js"></script>
-<script src="/src/js/pg/c.js"></script>
-```
-
-在打包配置文件中打开CORE_LIST_JS配置参数，并将core.js.ftl中的js文件列表配置在该参数中
+方式一：在打包配置文件中打开 CORE_LIST_JS 配置参数，并将core.js.ftl中的js文件列表配置在该参数中
 
 ```js
 CORE_LIST_JS = ['/src/js/a.js','/src/js/b.js','/src/js/c.js','/src/js/d.js','/src/js/e.js','/src/js/f.js']
 ```
 
-最后执行打包命令即可
+方式二：合并策略开关 CORE_MERGE_FLAG 设置为 2 或者 3，让每个页面的脚本单独分析
+
+```bash
+CORE_MERGE_FLAG = 2
+```
 
 
 ## Q3
@@ -321,8 +296,7 @@ Q：如何在使用RequireJS加载器的项目中使用打包工具？
 
 A：可以按照以下步骤对RequireJS项目做打包输出
 
-1. 页面合适位置增加style标记
-2. 对页面外链脚本增加noparse标记
+1. 对页面引入的requirejs脚本增加noparse标记
 
     ```html
     <!-- @noparse -->
@@ -330,15 +304,15 @@ A：可以按照以下步骤对RequireJS项目做打包输出
     <!-- /@noparse -->
     ```
 
-3. 配置打包参数X_NOPARSE_FLAG为2，不对内联脚本做任何解析
+2. 配置打包参数 CORE_NOPARSE_FLAG 为2，不对内联脚本做任何解析
 
     ```js
-    X_NOPARSE_FLAG = 2
+    CORE_NOPARSE_FLAG = 2
     ```
 
-4. 使用RequireJS的打包工具r.js对项目进行打包输出
-5. 针对输出结果配置打包参数，包括输入输出配置等
-6. 执行打包命令对样式和静态资源等内容做优化输出
+3. 使用RequireJS的打包工具r.js对项目进行打包输出
+4. 针对输出结果配置打包参数，包括输入输出配置等
+5. 执行打包命令对样式和静态资源等内容做优化输出
 
 
 ## Q4

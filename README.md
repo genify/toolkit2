@@ -51,11 +51,153 @@
 
 ## 参考手册
 
-支持指令说明见[wiki](./doc/Manual/COMMAND.md)
-
 打包标记说明见[wiki](./doc/Manual/TAG.md)
 
 配置参数说明见[wiki](./doc/Manual/CONFIG.md)
+
+# 指令说明
+
+本工具使用时在终端或者命令行输入以下格式指令运行
+
+```bash
+nej [指令] [参数]
+```
+
+其中可用的指令包括：
+
+| 指令  | 描述 |
+| :--- | :--- |
+| init   | 创建release.conf配置文件 |
+| build  | 根据release.conf配置文件发布项目 |
+| export | 导出指定脚本文件列表 |
+
+其中针对nej可用的参数包括：
+
+| 简写 | 全称 | 描述 |
+| :--- | :--- | :--- |
+| -v | --version | 显示工具版本信息 |
+| -h | --help    | 显示指定命令的帮助信息 |
+
+使用范例：
+
+查看工具版本信息
+
+```bash
+nej -v
+```
+
+显示工具帮助信息
+
+```bash
+nej -h
+```
+
+查看build指令帮助信息
+
+```bash
+nej build -h
+```
+
+## init
+
+在指定目录下输出release.conf文件模板，后续可在此基础上调整配置参数，指令的运行格式为：
+
+```bash
+nej init [目录] [参数]
+``` 
+
+其中 [目录] 为配置文件的输出目录，相对路径相对于当前执行命令的目录，默认在当前目录下输出
+
+针对 nej init 指令可用的参数包括：
+
+| 简写 | 全称 | 描述 |
+| :--- | :--- | :--- |
+| -h | --help    | 显示 init 命令的帮助信息 |
+
+使用范例：
+
+在当前目录下生成 release.conf 文件
+
+```bash
+nej init
+``` 
+
+在 /path/to/output/ 下输出 release.conf 文件
+
+```bash
+nej init /path/to/output/
+``` 
+
+## build
+
+使用指定的配置文件打包项目，指令的运行格式为：
+
+```bash
+nej build [配置文件] [参数]
+``` 
+
+其中 [配置文件] 为通过 "nej init" 生成的项目配置文件路径
+
+针对 nej build 指令可用的参数包括：
+
+| 简写 | 全称 | 描述 |
+| :--- | :--- | :--- |
+| -h | --help  | 显示 build 命令的帮助信息 |
+| -m | --mode  | 发布模式，此优先级高于配置文件中X_RELEASE_MODE配置的优先级，默认为online |
+| -l | --level | 日志级别，此优先级高于配置文件中X_LOGGER_LEVEL配置的优先级，可用值：debug,info,warn,error,all,off，默认为all |
+
+使用范例：
+
+通过当前目录下的 release.conf 文件发布项目
+
+```bash
+nej build
+``` 
+
+使用 /path/to/release.conf 配置文件发布项目，并使用 test 模式，仅输出 warn/error 的日志
+
+```bash
+nei build /path/to/release.conf -m test -l warn
+```
+
+## export
+
+导出指定的脚本文件列表，多个脚本用逗号分隔，指令的运行格式为：
+
+```bash
+nej export <脚本列表> [参数]
+``` 
+
+其中 <脚本列表> 为脚本路径的列表，支持多个脚本文件输入，脚本文件之间使用逗号分隔，脚本文件路径支持NEJ依赖系统规范，支持NEJ依赖分析
+
+针对 nei export 指令可用的参数包括：
+
+| 简写 | 全称 | 描述 |
+| :--- | :--- | :--- |
+| -h | --help    | 显示 update 命令的帮助信息 |
+| -o | --output  | 指定导出脚本文件的路径，相对路径相对于当前目录，默认在当前目录生成output.js文件 |
+
+可扩展的配置参数，后续根据实际需求扩展
+
+| 简写 | 全称 | 描述 |
+| :--- | :--- | :--- |
+| 无 | --charset | 文件输入输出编码，默认utf-8 |
+| 无 | --dropconsole | 输出代码是否删除console相关日志输出代码，默认不删除 |
+| 无 | --codeWrap | 输出代码包装语句，其中%s表示输出代码，默认为 %s |
+
+使用范例：
+
+导出当前目录下的 a.js和b.js 输出到 /path/to/min.js
+
+```bash
+nej export ./a.js,./b.js -o /path/to/min.js
+``` 
+
+导出NEJ模块到 /path/to/app.min.js 文件
+
+```bash
+nej export /path/to/nej/define.js?pro=./src/,util/ajax/xdr,./app.js -o /path/to/app.min.js
+```
 
 # 常见问题
 

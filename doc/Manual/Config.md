@@ -807,6 +807,7 @@ X_AUTO_EXLINK_PREFIX = data-href|data-html-root
 
 发布后使用绝对路径调整脚本文件中的地址，检查符合以下条件的地址
 
+* 配置[DM_STATIC](#dm_static)或者[DM_STATIC_RS](#dm_static_rs)中的任意一项
 * 字符串中相对于[DIR_WEBROOT](#dir_webroot)的静态资源
 
 ```

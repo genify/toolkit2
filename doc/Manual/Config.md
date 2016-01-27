@@ -752,6 +752,70 @@ WRP_EXLINE_JS = <textarea name="js" data-src="%s"></textarea>
 WRP_INLINE_TP = <textarea id="%s" name="%s">%s</textarea>
 ```
 
+### WRP_INLINE_STYLE
+
+内联样式包装规则，%s表示内联的样式内容
+
+```
+WRP_INLINE_STYLE  = <style type="text/css">\n%s\n</style>
+```
+
+### WRP_EXLINE_STYLE
+
+外联样式包装规则，%s表示外联样式文件路径
+
+```
+WRP_EXLINE_STYLE  = <link rel="stylesheet" href="%s"/>
+```
+
+### WRP_INLINE_SCRIPT
+
+内联脚本包装规则，%s表示内联的脚本内容
+
+```
+WRP_INLINE_SCRIPT = <script>\n%s\n</script>
+```
+
+### WRP_EXLINE_SCRIPT
+
+外联脚本包装规则，%s表示外联脚本文件路径
+
+```
+WRP_EXLINE_SCRIPT = <script src="%s"></script>
+```
+
+此属性可应用于移动端在head处加载脚本，比如
+
+```html
+<head>
+  <!-- 指定打包后脚本插入位置 -->
+  <!-- @script {nodep:true} -->
+</head>
+<body>
+  <!-- 开发时脚本引入位置 -->
+  <script src="/js/a.js"></script>
+  <script src="/js/b.js"></script>
+</body>
+```
+
+打包配置脚本输出模板
+
+```
+WRP_EXLINE_SCRIPT = <script src="%s" defer async></script>
+```
+
+那么页面在打包后就会输出类似这种代码
+
+```html
+<head>
+  <!-- 打包后输出脚本 -->
+  <script src="/r/p.js?xxxddrrdde" defer async></script>
+</head>
+<body>
+  <!-- 其他代码 -->
+</body>
+```
+
 ## 页面压缩
 
 这部分主要用于页面文件，如HTML文件、服务器端模板文件（freemarker、velocity等）的压缩输出配置

@@ -168,4 +168,12 @@ describe('util/util',function(){
         });
     });
 
+    describe('.datetime(time,format)',function(){
+        var dt = new Date(2015,11,12,10,30,20,300);
+        it('should return ok for format yyyy-MM-dd HH:mm:ss.ms',function(){
+            var ret = util.datetime(dt,'yyyy-MM-dd HH:mm:ss.ms');
+            ret.should.be.eql('2015-12-12 10:30:20.300');
+        });
+    });
+
 });

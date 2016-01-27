@@ -96,8 +96,13 @@ HTML文件输出路径，默认为 [DIR_WEBROOT](#dir_webroot) 配置的路径�
 
 配置的目录如不在 [DIR_WEBROOT](#dir_webroot) 目录下则在发布过程会有警告信息
 
+配置路径支持变量替换，替换规则如下：
+
+* [TIMESTAMP]   - 插入时间戳目录，如配置 ./pub/[TIMESTAMP]/ 则输出的路径可能为 ./pub/1453792147197/
+* [yyyy_MM_dd]  - 插入日期格式化出来的字符串作为目录，其中yyyy代表四位年份，MM代表两位月份，dd代表两位日期，如配置 ./pub/[yyyy]/[MM]/[dd]/ 则输出的路径可能为 ./pub/2016/01/26/
+
 ```
-DIR_OUTPUT = ./pub/
+DIR_OUTPUT = ./pub/[TIMESTAMP]/
 ```
 
 ### DIR_OUTPUT_STATIC

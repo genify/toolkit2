@@ -23,6 +23,12 @@
         .a{color:#aaa;}
         .b{background:#bbb;}
     </style>
+    <!-- @noparse -->
+    <style>
+      .a{color:#aaa;}
+      .b{background:#bbb;}
+    </style>
+    <!-- /@noparse -->
     <style type="nej/css">
         .aa{color:#aaa;}
         .bb{background:#bbb;}
@@ -31,6 +37,7 @@
         .aa{color:#aaa;}
         .bb{background:#bbb;}
     </style>
+    <!-- @noparse -->
     <script>
       <#assign nowTime = .now?long>
       <#assign endTime = (schedule.endTime)!0>
@@ -41,6 +48,11 @@
           leftTime:${endTime-nowTime},
           noprice:${(startTime>nowTime)?string("true","false")}
       };
+    </script>
+    <!-- /@noparse -->
+
+    <script>
+      console.log('abc')
     </script>
   </head>
   <body id="schedule-netease-com" class="p-schedule">

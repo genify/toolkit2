@@ -1,3 +1,6 @@
+1.2.9
+    - 增加 WRP_INLINE_STYLE/WRP_EXLINE_STYLE/WRP_INLINE_SCRIPT/WRP_EXLINE_SCRIPT 配置支持
+
 1.2.8   (2016-01-12)
     - 优化参数解析方式
     - 命令行增加发布模式配置支持

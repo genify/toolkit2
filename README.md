@@ -338,6 +338,12 @@ if (DEBUG){
 
 # 版本历史
 
+## 1.2.9   (2016-01-27)
+
+* 增加 WRP_INLINE_STYLE/WRP_EXLINE_STYLE/WRP_INLINE_SCRIPT/WRP_EXLINE_SCRIPT 配置支持
+* 增加打开 X_AUTO_EXLINK_SCRIPT 开关时，处理不参与脚本合并的代码中的资源路径和版本的调整
+* 增加 DIR_OUTPUT 配置上的变量支持
+
 ## 1.2.8   (2016-01-12)
 
 * 优化参数解析方式

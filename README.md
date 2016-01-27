@@ -53,7 +53,7 @@
 
 打包标记说明见[wiki](./doc/Manual/TAG.md)
 
-配置参数说明见[wiki](./doc/Manual/CONFIG.md)
+配置参数说明见[wiki](./doc/Manual/Config.md)
 
 # 指令说明
 

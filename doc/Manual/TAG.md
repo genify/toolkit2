@@ -171,7 +171,7 @@
 | --- | --- | --- |
 | mode | String | 忽略模式，可选test/online/develop |
 
-此标记用以表明从当前位置至结束标记之前的内容在打完包后删除，mode配置忽略的条件，多个值使用“|”分隔，当打包工具中的X_RELEASE_MODE配置值出现在mode的值中时即忽略此标记间的内容，模式说明
+此标记用以表明从当前位置至结束标记之前的内容在打完包后删除，mode配置忽略的条件，多个值使用“|”分隔，当打包工具中的X_RELEASE_MODE配置值出现在mode的值中时即忽略此标记间的内容，支持模式名称之前加“!”取反，模式说明
 
 | 模式 | 说明 |
 | --- | --- |
@@ -195,6 +195,12 @@
 
 ``` html
 <!-- @IGNORE {mode:'online|test'} -->
+<script src="../javascript/config/develop.js"></script>
+<!-- /@IGNORE -->
+
+<!-- 如果只使用online、test、develop模式，则以上模式等价于以下模式 -->
+
+<!-- @IGNORE {mode:'!develop'} -->
 <script src="../javascript/config/develop.js"></script>
 <!-- /@IGNORE -->
 ```

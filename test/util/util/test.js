@@ -176,4 +176,38 @@ describe('util/util',function(){
         });
     });
 
+    describe('.isModeOf(mode,test)',function(){
+        [
+            {
+                arg:['online','online'],
+                ret:!0
+            },
+            {
+                arg:['online|test','release'],
+                ret:!1
+            },
+            {
+                arg:['online|test','test'],
+                ret:!0
+            },
+            {
+                arg:['!online|test','release'],
+                ret:!0
+            },
+            {
+                arg:['!test','online'],
+                ret:!0
+            },
+            {
+                arg:['!test','test'],
+                ret:!1
+            }
+        ].forEach(function(conf){
+            it('should return '+conf.ret+'for mode '+conf.arg[0]+' with test '+conf.arg[1],function(){
+                var ret = util.isModeOf.apply(util,conf.arg);
+                conf.ret.should.be.equal(ret);
+            });
+        })
+    });
+
 });

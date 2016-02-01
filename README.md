@@ -338,6 +338,11 @@ if (DEBUG){
 
 # 版本历史
 
+## 1.3.1   (2016-02-01)
+
+* 修正 NEJ.define 依赖远程路径时URL的解析错误
+* IGNORE 标记增加反模式匹配规则，如 !online
+
 ## 1.3.0   (2016-01-27)
 
 * 增加 WRP_INLINE_STYLE/WRP_EXLINE_STYLE/WRP_INLINE_SCRIPT/WRP_EXLINE_SCRIPT 配置支持

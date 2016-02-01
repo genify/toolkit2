@@ -3,7 +3,7 @@ var should = require('should'),
 
 describe('deploy',function(){
 
-    it('should be ok for with nej config',function(done){
+    it('should be ok for nej config',function(done){
         this.timeout(60000);
         new Processor({
             file:__dirname+'/release.conf',

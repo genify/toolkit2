@@ -139,7 +139,7 @@ exports.export = function(list,config,callback){
     config = config||{};
     var cwd = process.cwd()+'/';
     config.output = _path.absolutePath(
-        config.output,cwd
+        config.output||'./output.js',cwd
     );
     // absolute name bags
     if (!!config.bags){

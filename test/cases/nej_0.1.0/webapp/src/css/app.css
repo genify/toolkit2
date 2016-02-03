@@ -83,7 +83,17 @@ html{overflow-y:scroll;}
 .w-jlk .jbx p{margin:5px 0;}
 
 
-
+.portrait_img{
+    background-image:url("../../res/image/loading.gif");
+    background:url("../../res/image/sprite.png") \9\0;
+    background-size:22px auto;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5){
+    .portrait_img{
+        background-image:url("../../res/image/loading.gif");
+        background:url("../../res/image/sprite.png") \9\0;
+    }
+}
 
 
 

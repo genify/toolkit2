@@ -170,6 +170,8 @@ nej export <脚本列表> [参数]
 
 其中 <脚本列表> 为脚本路径的列表，支持多个脚本文件输入，脚本文件之间使用逗号分隔，脚本文件路径支持NEJ依赖系统规范，支持NEJ依赖分析
 
+**注意：脚本路径中出现的 “&” 符号因为是命令行关键字，需使用 “%26” 代替**
+
 针对 nei export 指令可用的参数包括：
 
 | 简写 | 全称 | 描述 |
@@ -196,7 +198,7 @@ nej export ./a.js,./b.js -o /path/to/min.js
 导出NEJ模块到 /path/to/app.min.js 文件
 
 ```bash
-nej export /path/to/nej/define.js?pro=./src/,util/ajax/xdr,./app.js -o /path/to/app.min.js
+nej export /path/to/nej/define.js?pro=./src/%26com=./src/common/,util/ajax/xdr,./app.js -o /path/to/app.min.js
 ```
 
 # 常见问题
@@ -337,6 +339,10 @@ if (DEBUG){
 ```
 
 # 版本历史
+
+## 1.3.4   (2016-02-16)
+
+* 修正 export 命令行 & 关键字处理
 
 ## 1.3.3   (2016-02-03)
 

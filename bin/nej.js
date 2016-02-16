@@ -40,7 +40,9 @@ var main = require('../main.js');
     },
     export:function(event){
         event.stopped = !0;
-        var files = event.args.join(',');
+        var files = decodeURIComponent(
+            event.args.join(',')
+        );
         if (!files){
             this.show('export');
             process.exit(0);

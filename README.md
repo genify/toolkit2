@@ -338,6 +338,14 @@ if (DEBUG){
 
 ```
 
+## Q5
+
+Q：如何用 Sublime Text 优雅的查看配置文件
+
+A：使用 Sublime Text 打开配置文件，点击编辑器右下角，选择始终使用 Java -> Java Properties 语法高亮该扩展名的配置文件，如下图所示
+
+![在Sublime中查看配置文件](./doc/sublime.png)
+
 # 版本历史
 
 ## 1.3.4   (2016-02-16)

@@ -81,7 +81,16 @@ html{overflow-y:scroll;}
 .w-jlk .jbx p{margin:5px 0;}
 
 
-
+@font-face {
+    font-family: 'icomoon-yunxin';
+    src: url('fonts/icomoon-yunxin.eot?tk5itx');
+    src: url('fonts/icomoon-yunxin.eot?tk5itx#iefix') format('embedded-opentype'),
+    url('fonts/icomoon-yunxin.ttf?tk5itx') format('truetype'),
+    url('fonts/icomoon-yunxin.woff?tk5itx') format('woff'),
+    url('fonts/icomoon-yunxin.svg?tk5itx#icomoon-yunxin') format('svg');
+    font-weight: normal;
+    font-style: normal
+}
 
 
 

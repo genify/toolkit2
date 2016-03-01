@@ -340,6 +340,24 @@ if (DEBUG){
 
 ## Q5
 
+Q：为什么我在windows、mac系统下用nej build可以正常打包，但是在linux下打包会报JS语法错误
+
+A：这种情况下多半是因为你依赖的文件路径名称中有大小写搞错了，你可以根据提示在打包配置文件下找到出异常的JS文件，然后找到对应行看一下出错的文件路径是什么，比如以下打包异常提示
+
+```bash
+[E] 2016-03-01 17:05:12.076 - js code parse error for pp_app.js, source code in pp_app.js, exception information :
+Unexpected token: name (read) at line 55 col 5
+```
+
+则可以在release.conf文件所在的目录下找到 pp_app.js 文件，查看第55行查看异常信息，如
+
+```javascript
+55： cant read file E:/workspace/nej-toolkit/test/cases/abort/webapp/src/javascript/not/exist.js for utf-8, cause:
+56： {"errno":-4058,"code":"ENOENT","syscall":"open","path":"E:\\workspace\\nej-toolkit\\test\\cases\\abort\\webapp\\src\\javascript\\not\\exist.js"}
+```
+
+## Q6
+
 Q：如何用 Sublime Text 优雅的查看配置文件
 
 A：使用 Sublime Text 打开配置文件，点击编辑器右下角，选择始终使用 Java -> Java Properties 语法高亮该扩展名的配置文件，如下图所示

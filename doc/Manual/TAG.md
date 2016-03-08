@@ -214,6 +214,7 @@
 | 参数 | 类型 | 说明 |
 | --- | --- | --- |
 | name | String | 输出文件名称，默认自动生成，注意自己配置时避免多个MERGE输出同样的名称，此参数不要带后缀 |
+| minify | Boolean | 是否对脚本做压缩，默认不做压缩 |
 
 此标记用以表明在此标记开始和结束之间的脚本合并成一个文件输出，脚本的内联外联、文件版本等的控制同页面脚本的配置
 
@@ -227,7 +228,7 @@
 <!-- /@MERGE -->
 ```
 
-打包后的代码可能如下所示
+打包后的代码输出可能如下所示
 
 ```html
 <script src="/path/to/output/xxx.js?234123ewfdsfdsf"></script>
@@ -236,7 +237,7 @@
 如果需要自己指定MERGE后的文件名称则可以使用以下方式
 
 ```html
-<!-- @MERGE {name:'3rd'} -->
+<!-- @MERGE {name:'3rd',minify:true} -->
 <script src="/path/to/lib/a.js"></script>
 <script src="/path/to/lib/b.js"></script>
 <script src="/path/to/lib/c.js"></script>
@@ -245,7 +246,7 @@
 <!-- /@MERGE -->
 ```
 
-打包后的代码可能如下所示
+打包后的代码输出可能如下所示
 
 ```html
 <script src="/path/to/output/3rd.js?234123ewfdsfdsf"></script>

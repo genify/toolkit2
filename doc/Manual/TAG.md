@@ -205,13 +205,59 @@
 <!-- /@IGNORE -->
 ```
 
+## MERGE
+
+是否需要结束：必须
+
+支持配置参数：
+
+| 参数 | 类型 | 说明 |
+| --- | --- | --- |
+| name | String | 输出文件名称，默认自动生成，注意自己配置时避免多个MERGE输出同样的名称，此参数不要带后缀 |
+
+此标记用以表明在此标记开始和结束之间的脚本合并成一个文件输出
+
+```html
+<!-- @MERGE -->
+<script src="/path/to/lib/a.js"></script>
+<script src="/path/to/lib/b.js"></script>
+<script src="/path/to/lib/c.js"></script>
+<script src="/path/to/lib/d.js"></script>
+<script src="/path/to/lib/e.js"></script>
+<!-- /@MERGE -->
+```
+
+打包后的代码可能如下所示
+
+```html
+<script src="/path/to/output/xxx.js?234123ewfdsfdsf"></script>
+```
+
+如果需要自己指定MERGE后的文件名称则可以使用以下方式
+
+```html
+<!-- @MERGE {name:'3rd'} -->
+<script src="/path/to/lib/a.js"></script>
+<script src="/path/to/lib/b.js"></script>
+<script src="/path/to/lib/c.js"></script>
+<script src="/path/to/lib/d.js"></script>
+<script src="/path/to/lib/e.js"></script>
+<!-- /@MERGE -->
+```
+
+打包后的代码可能如下所示
+
+```html
+<script src="/path/to/output/3rd.js?234123ewfdsfdsf"></script>
+```
+
 ## MANIFEST
 
 是否需要结束：无
 
 支持配置参数：无
 
-此标记用以表面后续的<html>标签需要插入manifest文件
+此标记用以表明后续的<html>标签需要插入manifest文件
 
 ```html
 <!-- @MANIFEST -->

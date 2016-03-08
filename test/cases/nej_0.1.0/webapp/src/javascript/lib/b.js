@@ -1,0 +1,1 @@
+console.log('lib from b.js')

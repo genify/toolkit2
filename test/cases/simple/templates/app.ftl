@@ -29,6 +29,8 @@
         </div>
     </div>
 </div>
+<!-- @version -->
+<script>location.config = {root:'/src/html/abc/'}</script>
 
 <script src="/src/javascript/widget.js"></script>
 <script src="http://fed.hz.netease.com/git/nej2/src/define.js"></script>

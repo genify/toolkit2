@@ -1,0 +1,11 @@
+{
+  "name": "nej",
+  "version": "1.3.7",
+  "homepage": "https://github.com/genify/toolkit2",
+  "authors": ["genify <caijf@corp.netease.com>"],
+  "description": "frontend publish toolkit",
+  "main": "./main.js",
+  "keywords": ["nej","web","project","toolkit","builder","deploy","publisher","javascript","front end","obfuscator"],
+  "ignore": [".*"],
+  "license": "MIT"
+}

@@ -386,7 +386,7 @@ A：使用 WebStorm 的 Jodd Props 插件来查看，具体操作步骤如下图
 
 5. 在菜单 File -> Settings 中打开 WebStorm 的配置，并选择左侧的 Editor -> File Types 选项，找到 Jodd Props 文件类型，并将 \*.conf 添加到此文件类型的识别规则中
 
-![搜索插件](./doc/webstorm-4.png)
+![配置插件](./doc/webstorm-4.png)
 
 # 版本历史
 

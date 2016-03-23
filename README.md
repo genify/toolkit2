@@ -364,7 +364,7 @@ A：使用 Sublime Text 打开配置文件，点击编辑器右下角，选择�
 
 ![在Sublime中查看配置文件](./doc/sublime.png)
 
-## Q
+## Q7
 
 Q：如何用 WebSorm 优雅的查看配置文件
 
@@ -372,21 +372,21 @@ A：使用 WebStorm 的 Jodd Props 插件来查看，具体操作步骤如下图
 
 1. 在菜单 File -> Settings 中打开 WebStorm 的配置
 
-![打开配置](./doc/webstorm-1.png)
+    ![打开配置](./doc/webstorm-1.png)
 
 2. 在设置窗口左侧中找到 Plugins 菜单项，点击 Browse repositories... 按钮
 
-![打开插件库](./doc/webstorm-2.png)
+    ![打开插件库](./doc/webstorm-2.png)
 
 3. 在搜索框里输入 prop 关键字搜索插件，并安装找到的插件
 
-![搜索插件](./doc/webstorm-3.png)
+    ![搜索插件](./doc/webstorm-3.png)
 
 4. 重启 WebStorm
 
 5. 在菜单 File -> Settings 中打开 WebStorm 的配置，并选择左侧的 Editor -> File Types 选项，找到 Jodd Props 文件类型，并将 \*.conf 添加到此文件类型的识别规则中
 
-![配置插件](./doc/webstorm-4.png)
+    ![配置插件](./doc/webstorm-4.png)
 
 # 版本历史
 

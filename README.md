@@ -390,6 +390,10 @@ A：使用 WebStorm 的 Jodd Props 插件来查看，具体操作步骤如下图
 
 # 版本历史
 
+## 1.3.9
+
+* 一个页面中增加多个 @template 标记支持
+
 ## 1.3.8   (2016-04-12)
 
 * 修正样式中url()地址带引号的异常（https://github.com/genify/toolkit2/issues/2）

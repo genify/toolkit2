@@ -394,7 +394,7 @@ A：使用 WebStorm 的 Jodd Props 插件来查看，具体操作步骤如下图
 
 * define增加nej标识，通过define.nej识别是否NEJ提供的define函数
 
-## 1.3.9
+## 1.3.9   (2016-05-12)
 
 * 一个页面中增加多个 @template 标记支持
 

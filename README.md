@@ -366,7 +366,7 @@ A：使用 Sublime Text 打开配置文件，点击编辑器右下角，选择�
 
 ## Q7
 
-Q：如何用 WebSorm 优雅的查看配置文件
+Q：如何用 WebStorm 优雅的查看配置文件
 
 A：使用 WebStorm 的 Jodd Props 插件来查看，具体操作步骤如下图所示
 

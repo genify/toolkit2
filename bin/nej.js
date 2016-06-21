@@ -54,6 +54,23 @@ var main = require('../main.js');
                 process.exit(0);
             });
         }
+    },
+    cache:function(event){
+        event.stopped = !0;
+        var file = event.args[0]||'./cache.json';
+        if (!file){
+            this.show('build');
+            process.exit(0);
+        }else{
+            if (typeof file!=='string'){
+                file = './cache.json';
+            }
+            var opt = event.options||{};
+            this.format('cache',opt);
+            main.cache(file,opt,function(){
+                process.exit(0);
+            });
+        }
     }
 })).exec(
     process.argv.slice(2)

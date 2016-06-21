@@ -71,5 +71,22 @@
         {"q":"charset","d":"utf-8","m":"文件输入输出编码，默认utf-8"},
         {"q":"dropconsole","d":false,"m":"输出代码是否删除console相关日志输出代码"},
         {"q":"codeWrap","d":"%s","m":"输出代码包装语句，其中%s表示输出代码，默认为 %s"}
+    ],
+    "cache":[
+        "使用说明：",
+        "nej cache [配置文件] [参数]",
+        "",
+        "[配置文件]\t\t指定cache.json配置文件的路径，默认尝试读取当前目录下的cache.json文件",
+        "",
+        "参数说明：",
+        "%p",
+        "",
+        "使用举例：",
+        "nej cache",
+        "nej cache /path/to/cache.json"
+    ],
+    "cache-params":[
+        {"j":"h","q":"help","m":"显示build命令帮助信息"},
+        {"j":"k","q":"token","m":"上传接口使用的验证Token"}
     ]
 }

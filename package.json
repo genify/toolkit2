@@ -33,7 +33,8 @@
         "css":">=2.2.0",
         "swig":">=1.4.2",
         "uglify-js": ">=2.5.0",
-        "iconv-lite": "~0.4.0"
+        "iconv-lite": "~0.4.0",
+        "form-data": "^0.2.0"
     },
     "nei":{
         "ga":"http://nei.hz.netease.com/api/ga"

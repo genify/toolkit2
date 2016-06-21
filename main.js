@@ -78,7 +78,8 @@ global(KLASS);
 global(API);
 
 // bin api
-var _fs     = require('./lib/util/file.js'),
+var  path   = require('path'),
+    _fs     = require('./lib/util/file.js'),
     _path   = require('./lib/util/path.js'),
     _util   = require('./lib/util/util.js'),
     _log    = require('./lib/util/logger.js'),
@@ -157,4 +158,33 @@ exports.export = function(list,config,callback){
             done:callback||function(){}
         })
     );
+};
+/**
+ * build web cache information
+ * @param {String} file - config file path
+ * @param {Object} options - build config object
+ * @param {String} options.appid - web cache for app identify
+ * @param {String} options.token - web cache upload api token
+ * @param {Function} callback - after build callback
+ */
+exports.cache = function(file,options,callback){
+    var config = _path.absolute(
+        file,process.cwd()+'/'
+    );
+    var root = path.dirname(config)+'/';
+    _logger.info('run web cache build with config file %s',config);
+    try{
+        config = require(config);
+        _logger.debug('config information -> %j',config);
+    }catch(ex){
+        _logger.error('cant get web cache config for reason:\n%s',ex.stack);
+        process.abort();
+    }
+    config.root = root;
+    config.ondone = callback||function(){
+        // TODO
+    };
+    config.token = options.token||config.token||'';
+    config.appid = options.appid||config.appid||'';
+    require('./lib/cache.js').run(config);
 };

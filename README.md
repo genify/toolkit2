@@ -53,7 +53,9 @@
 
 打包标记说明见[wiki](./doc/Manual/TAG.md)
 
-配置参数说明见[wiki](./doc/Manual/Config.md)
+release.conf 文件配置参数说明见[wiki](./doc/Manual/Config.md)
+
+cache.json 文件配置参数说明见[wiki](./doc/Manual/CACHE.md)
 
 # 指令说明
 
@@ -67,9 +69,10 @@ nej [指令] [参数]
 
 | 指令  | 描述 |
 | :--- | :--- |
-| init   | 创建release.conf配置文件 |
-| build  | 根据release.conf配置文件发布项目 |
-| export | 导出指定脚本文件列表 |
+| [init](#init)   | 创建release.conf配置文件 |
+| [build](#build)  | 根据release.conf配置文件发布项目 |
+| [export](#export) | 导出指定脚本文件列表 |
+| [cache](#cache)  | APP 发布到 Web Cache 服务器 |
 
 其中针对nej可用的参数包括：
 
@@ -199,6 +202,36 @@ nej export ./a.js,./b.js -o /path/to/min.js
 
 ```bash
 nej export /path/to/nej/define.js?pro=./src/%26com=./src/common/,util/ajax/xdr,./app.js -o /path/to/app.min.js
+```
+
+## cache
+
+将需要 Web Cache 缓存的资源发布到服务器，如果当前目录在 cache.json 所在目录可以不传参数，指令的运行格式为：
+
+```bash
+nej cache [配置文件] [参数]
+``` 
+
+针对 nej cache 指令可用的参数包括：
+
+| 简写 | 全称 | 描述 |
+| :--- | :--- | :--- |
+| -h | --help  | 显示 cache 命令的帮助信息 |
+| -k | --token  | 上传接口使用的验证Token |
+| -i | --appid | 移动APP在 Web Cache 服务器上的标识 |
+
+使用范例：
+
+通过当前目录下的 cache.json 文件发布项目
+
+```bash
+nej cache
+``` 
+
+使用 /path/to/cache.json 配置文件发布项目
+
+```bash
+nei cache /path/to/cache.json -k erqwerqwerqwer -i 220000
 ```
 
 # 常见问题

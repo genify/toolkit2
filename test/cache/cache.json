@@ -1,0 +1,8 @@
+{
+    "api": "http://localhost:8000/upload",
+    "webRoot": "E:/workspace/nej-toolkit/test/cases/nej_0.1.0/webapp/",
+    "fileInclude": "\\.(js|css|html)$",
+    "fileExclude": "\\/res\\/.*$",
+    "resRoot": "E:/workspace/nej-toolkit/test/cases/nej_0.1.0/webapp/res/,E:/workspace/nej-toolkit/test/cases/nej_0.1.0/webapp/pub.nej/s/",
+    "domains": "b4.bst.126.net,b5.bst.126.net,b1.bst.126.net/pub/,b2.bst.126.net"
+}

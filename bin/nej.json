@@ -83,7 +83,7 @@
         "",
         "使用举例：",
         "nej cache",
-        "nej cache /path/to/cache.json"
+        "nej cache /path/to/cache.json -k erqwerqwerqwer -i 220000 -n 3456789"
     ],
     "cache-params":[
         {"j":"h","q":"help","m":"显示build命令帮助信息"},

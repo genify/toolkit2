@@ -232,7 +232,7 @@ nej cache -k werasdfasdferwr
 使用 /path/to/cache.json 配置文件发布项目，命令行配置的 token、appid、nativeId 优先级高于 cache.json 文件里配置的优先级
 
 ```bash
-nei cache /path/to/cache.json -k erqwerqwerqwer -i 220000 -n 3456789
+nej cache /path/to/cache.json -k erqwerqwerqwer -i 220000 -n 3456789
 ```
 
 # 常见问题

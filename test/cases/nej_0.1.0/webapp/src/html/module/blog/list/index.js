@@ -11,8 +11,7 @@ NEJ.define([
     'util/template/tpl',
     'util/list/page',
     'pro/module/module',
-    'pro/cache/blog',
-    'text!./a.html'
+    'pro/cache/blog'
 ], function(_k,_e,_l,_t,_m,_d,_p,_pro){
     /**
      * 日志列表模块对象

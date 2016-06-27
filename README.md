@@ -218,20 +218,21 @@ nej cache [配置文件] [参数]
 | :--- | :--- | :--- |
 | -h | --help  | 显示 cache 命令的帮助信息 |
 | -k | --token  | 上传接口使用的验证Token |
-| -i | --appid | 移动APP在 Web Cache 服务器上的标识 |
+| -i | --appid | 产品在 Web Cache 服务器上的标识 |
+| -n | --nativeId | 产品下的某个应用在 Web Cache 服务器上的标识 |
 
 使用范例：
 
 通过当前目录下的 cache.json 文件发布项目
 
 ```bash
-nej cache
+nej cache -k werasdfasdferwr
 ``` 
 
-使用 /path/to/cache.json 配置文件发布项目
+使用 /path/to/cache.json 配置文件发布项目，命令行配置的 token、appid、nativeId 优先级高于 cache.json 文件里配置的优先级
 
 ```bash
-nei cache /path/to/cache.json -k erqwerqwerqwer -i 220000
+nei cache /path/to/cache.json -k erqwerqwerqwer -i 220000 -n 3456789
 ```
 
 # 常见问题

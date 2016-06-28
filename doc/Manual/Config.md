@@ -24,6 +24,7 @@
 * [模板封装](#模板封装) ： NEJ模板输出配置
 * [页面压缩](#页面压缩) ： 页面文件如HTML、服务器模板文件等的压缩配置
 * [扩展配置](#扩展配置) ： 其他支持项配置
+* [WebCache配置](#webcache配置) : WebCache 服务相关配置
 
 ## 路径配置
 
@@ -905,3 +906,73 @@ X_RELEASE_MODE = online
 * ERROR   - 输出ERROR级别的日志
 * ALL     - 输出所有日志
 * OFF     - 关闭日志输出
+
+## WebCache配置
+
+这部分主要结合杭研移动 APP 使用的 Web Cache 解决方案提供的配置信息
+
+### WCS_UPLOAD_URL
+
+Web Cache 服务器用来接收打包静态资源上传的接口地址
+
+```
+WCS_UPLOAD_URL = http://api.kaola.com/upload
+```
+
+### WCS_UPLOAD_TOKEN
+
+WCS_UPLOAD_URL 配置的上传接口调用时的验证信息配置，此参数如果不在此处配置，也可以通过 nej cache 指令的命令行参数输入，建议通过 nej cache 指令输入此参数信息
+
+```
+WCS_UPLOAD_TOKEN = )khz)mWmkHPV<59{xkaEM9SKq6cZbS
+```
+
+### WCS_APP_ID
+
+产品在 WebCache Server 上的标识信息，此参数如果不在此处配置，也可以通过 nej cache 指令的命令行参数输入，建议通过 nej cache 指令输入此参数信息
+
+```
+WCS_APP_ID = 4876678
+```
+
+### WCS_NATIVE_ID
+
+该产品下的具体应用标识，此参数如果不在此处配置，也可以通过 nej cache 指令的命令行参数输入，建议通过 nej cache 指令输入此参数信息
+
+```
+WCS_NATIVE_ID = 43234234
+```
+
+### WCS_FILE_INCLUDE
+
+需要通过 WebCache Server 缓存的文件路径包含规则，如果同时满足包含和排除规则，则优先使用排除规则排除文件，配置规则符合以下条件
+
+* 正则表达式，忽略大小写
+* 确保可以通过new RegExp转换成正则
+* 规则用来检验要缓存的文件路径
+* 默认情况下 DIR_OUTPUT_STATIC 和 DIR_STATIC 配置目录下的所有文件进行缓存
+
+```
+WCS_FILE_INCLUDE = \.(js|css|html)$
+```
+
+### WCS_FILE_EXCLUDE
+
+不需要通过 WebCache Server 缓存的文件路径排除规则，如果同时满足包含和排除规则，则优先使用排除规则排除文件，配置规则符合以下条件：
+
+* 正则表达式，忽略大小写
+* 确保可以通过new RegExp转换成正则
+* 规则用来检验不要缓存的文件路径，默认不排除文件
+
+```
+WCS_FILE_EXCLUDE = \/res\/.*$
+```
+
+### WCS_CONFIG_FILE
+
+Web Cache 配置文件输出路径和文件名配置，此文件路径可直接用于 nej cache 指令的配置文件路径，默认在配置文件所在目录下生成 cache.json 输出，如果是相对路径则相对于当前配置文件路径(即.conf文件所在目录)
+
+```
+WCS_CONFIG_FILE  = ./cache.json
+```
+

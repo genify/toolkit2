@@ -424,6 +424,11 @@ A：使用 WebStorm 的 Jodd Props 插件来查看，具体操作步骤如下图
 
 # 版本历史
 
+## 1.4.1   (2016-07-01)
+
+* 支持 Web Cache 配置文件输出
+* 支持 nej cache 指令，同步移动APP缓存信息
+
 ## 1.4.0   (2016-05-24)
 
 * define增加nej标识，通过define.nej识别是否NEJ提供的define函数

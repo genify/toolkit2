@@ -1,3 +1,7 @@
+1.4.2
+    - nej cache 上传失败判断逻辑调整
+    - nej cache 格式化日志输出
+
 1.4.1   (2016-07-01)
     - 支持 Web Cache 配置文件输出
     - 支持 nej cache 指令，同步移动APP缓存信息

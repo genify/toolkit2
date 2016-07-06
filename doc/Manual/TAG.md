@@ -25,6 +25,19 @@
 
 # 标记指令
 
+| 标记名称 | 功能描述 |
+| :--- | :--- |
+| [NOCOMPRESS](#nocompress) | 指定无压缩的内容块 |
+| [STYLE](#style) | 指定输出样式在页面的插入位置 |
+| [SCRIPT](#script) | 指定输出脚本在页面的插入位置 |
+| [MODULE](#module) | 标记NEJ单页模块预内联模块 |
+| [VERSION](#version) | 指定NEJ单页模块版本信息输出位置 |
+| [TEMPLATE](#template) | 指定NEJ单页模块的模板插入位置 |
+| [NOPARSE](#noparse) | 标记不做资源解析的代码块 |
+| [IGNORE](#ignore) | 标记输出忽略的代码块 |
+| [MERGE](#merge) | 标记需要做脚本合并的代码块 |
+| [MANIFEST](#manifest) | 标记当前页面是否需要输出AppCache使用的manifest配置文件 |
+
 ## NOCOMPRESS
 
 是否需要结束：可选
@@ -138,6 +151,49 @@
 ```html
 <!-- @VERSION -->
 <script>location.config={root:'./'};</script>
+```
+
+## TEMPLATE
+
+是否需要结束：可选
+
+支持配置参数：无
+
+此标记用以表明页面模板插入位置，默认情况下模板的识别及插入位置由工具自动识别
+
+* 如果页面只有一批模板集合此标记可以不加
+* 如果页面有多个模板集合在每个集合之前加入此标记表明后续模板识别处理后的插入位置
+
+打包针对外链模板会做优化处理包括：
+
+* 外联样式文件（类型为css的模板）做内联处理
+* 外联嵌套模板文件（类型为html的模板）做内联处理
+* 外联脚本文件（类型为js的模板）按照指定标记做内联或者外联处理
+
+因此仅需要在引入资源模板是加此标记即可，具体使用范例如下所示：
+
+```html
+<div style="display:none;" id="template-box">
+  <!-- @TEMPLATE -->
+  <textarea name="txt" id="txt-0">
+      text content
+  </textarea>
+  <textarea name="jst" id="jst-0">
+      jst content
+  </textarea>
+  <textarea name="ntp" id="ntp-0">
+      ntp content
+  </textarea>
+  <textarea name="css">
+      css code
+  </textarea>
+  <textarea name="js">
+      js code
+  </textarea>
+  <textarea name="css" data-src="./css/component/left.css"></textarea>
+  <textarea name="js" data-src="./javascript/component/left.js"></textarea>
+  <textarea name="html" data-src="./html/component/left.html"></textarea>
+</div>
 ```
 
 ## NOPARSE
@@ -266,47 +322,4 @@
   <head>
     <meta charset="utf-8"/>
 ...
-```
-
-## TEMPLATE
-
-是否需要结束：可选
-
-支持配置参数：无
-
-此标记用以表明页面模板插入位置，默认情况下模板的识别及插入位置由工具自动识别
-
-* 如果页面只有一批模板集合此标记可以不加
-* 如果页面有多个模板集合在每个集合之前加入此标记表明后续模板识别处理后的插入位置
-
-打包针对外链模板会做优化处理包括：
-
-* 外联样式文件（类型为css的模板）做内联处理
-* 外联嵌套模板文件（类型为html的模板）做内联处理
-* 外联脚本文件（类型为js的模板）按照指定标记做内联或者外联处理
-
-因此仅需要在引入资源模板是加此标记即可，具体使用范例如下所示：
-
-```html
-<div style="display:none;" id="template-box">
-  <!-- @TEMPLATE -->
-  <textarea name="txt" id="txt-0">
-      text content
-  </textarea>
-  <textarea name="jst" id="jst-0">
-      jst content
-  </textarea>
-  <textarea name="ntp" id="ntp-0">
-      ntp content
-  </textarea>
-  <textarea name="css">
-      css code
-  </textarea>
-  <textarea name="js">
-      js code
-  </textarea>
-  <textarea name="css" data-src="./css/component/left.css"></textarea>
-  <textarea name="js" data-src="./javascript/component/left.js"></textarea>
-  <textarea name="html" data-src="./html/component/left.html"></textarea>
-</div>
 ```

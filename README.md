@@ -220,13 +220,14 @@ nej cache [配置文件] [参数]
 | -k | --token  | 上传接口使用的验证Token |
 | -i | --appid | 产品在 Web Cache 服务器上的标识 |
 | -n | --nativeId | 产品下的某个应用在 Web Cache 服务器上的标识 |
+| -l | --level | 日志输出级别，可用值：debug,info,warn,error,all,off，默认为all |
 
 使用范例：
 
 通过当前目录下的 cache.json 文件发布项目
 
 ```bash
-nej cache -k werasdfasdferwr
+nej cache -k werasdfasdferwr -l info
 ``` 
 
 使用 /path/to/cache.json 配置文件发布项目，命令行配置的 token、appid、nativeId 优先级高于 cache.json 文件里配置的优先级
@@ -423,6 +424,11 @@ A：使用 WebStorm 的 Jodd Props 插件来查看，具体操作步骤如下图
     ![配置插件](./doc/webstorm-4.png)
 
 # 版本历史
+
+## 1.4.4   (2016-07-07)
+
+* nej cache 指令增加日志级别参数 -l 或者 --level
+* 修正 zip.jar 包在低版本jdk下使用的异常
 
 ## 1.4.3   (2016-07-06)
 

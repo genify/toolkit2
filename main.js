@@ -168,6 +168,7 @@ exports.export = function(list,config,callback){
  * @param {Function} callback - after build callback
  */
 exports.cache = function(file,options,callback){
+    _logger.setLevel(options.level);
     var config = _path.absolute(
         file,process.cwd()+'/'
     );

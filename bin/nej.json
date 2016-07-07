@@ -89,6 +89,7 @@
         {"j":"h","q":"help","m":"显示build命令帮助信息"},
         {"j":"k","q":"token","m":"上传接口使用的验证Token"},
         {"j":"i","q":"appid","m":"产品在WebCache服务器上标识"},
-        {"j":"n","q":"nativeId","m":"产品下的某个应用在WebCache服务器上标识"}
+        {"j":"n","q":"nativeId","m":"产品下的某个应用在WebCache服务器上标识"},
+        {"j":"l","q":"level","d":"ALL","m":"日志输出级别，可用值：debug,info,warn,error,all,off，默认为all"}
     ]
 }

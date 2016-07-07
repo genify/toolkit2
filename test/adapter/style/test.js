@@ -23,8 +23,9 @@ describe('adapter/style',function(){
     describe('.parse(config)',function(){
         it('should be ok after parse with config',function(){
             parser.parse({
-                webRoot:'c:/webapp/',
-                resRoot:ps.normalize(__dirname+'/')
+                webRoot:ps.normalize(__dirname+'/'),
+                resRoot:ps.normalize(__dirname+'/'),
+                sptRoot:ps.normalize(__dirname+'/sp/')
             });
             var ret = parser.stringify().replace(/\s/g,'');
             var out = fs.read(__dirname+'/r.css').join('\n').replace(/\s/g,'');

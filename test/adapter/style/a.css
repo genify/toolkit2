@@ -13,3 +13,11 @@
 .x{background:url(http://a.b.com/a.png?v=1);}
 .y{background:url(./b.png?t=2);}
 .z{background:url(/c.png?i=567);}
+.a1{background:url(./sp/a/a1.png) no-repeat;}
+.a2{background:url(./sp/a/a2.png) no-repeat;}
+.b1{background:url(./sp/b/b1.png) no-repeat;}
+.b2{background:url(./sp/b/b2.png) no-repeat;}
+.c1{background:url(./sp/d1.png) no-repeat;}
+.c2{background:url(./sp/d2.png) no-repeat;}
+
+

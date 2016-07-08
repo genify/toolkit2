@@ -51,11 +51,13 @@
 
 ## 参考手册
 
-打包标记说明见[wiki](./doc/Manual/TAG.md)
+打包标记说明见 [wiki](./doc/Manual/TAG.md)
 
-release.conf 文件配置参数说明见[wiki](./doc/Manual/Config.md)
+精灵图合并说明见 [wiki](./doc/Manual/SPRITE.md)
 
-cache.json 文件配置参数说明见[wiki](./doc/Manual/CACHE.md)
+release.conf 文件配置参数说明见 [wiki](./doc/Manual/Config.md)
+
+cache.json 文件配置参数说明见 [wiki](./doc/Manual/CACHE.md)
 
 # 指令说明
 

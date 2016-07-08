@@ -621,12 +621,27 @@ OPT_IMAGE_QUALITY = 100
 
 ### OPT_IMAGE_SPRITE
 
+图片做精灵图合并的路径,即项目的样式中使用到该路径下的图片资源会先做合并再使用，相对路径相对于 [DIR_STATIC](#dir_static) 配置的路径，如果没有配置此参数则不会做精灵图合并
 
+```
+OPT_IMAGE_SPRITE  = ./sprite/
+```
 
+### OPT_IMAGE_SPRITE_OPTIONS
 
+精灵图合并的配置选项，JSON字符串，可配置册参数信息
 
+| 参数 | 类型 | 默认值 | 描述 |
+| :--- | :--- | :--- | :--- |
+| layout | String | binary-tree | 精灵图合并算法，可选值参照 [这里](https://github.com/twolfson/layout) |
 
+layout 各值的布局参照
 
+![布局算法参照](../layout.png)
+
+```
+OPT_IMAGE_SPRITE_OPTIONS = {"layout":"left-right"}
+```
 
 ## 离线配置
 

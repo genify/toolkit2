@@ -635,9 +635,10 @@ OPT_IMAGE_SPRITE  = ./sprite/
 | :--- | :--- | :--- | :--- |
 | layout | String | binary-tree | 精灵图合并算法，可用值为top-down、left-right、diagonal、alt-diagonal、binary-tree，各值的布局参照 ![布局算法参照](../layout.png) |
 | margin | String or Number | 4 | 精灵图合并时各图标之间的间距，可以是数值，也可以是字符串，数值表示水平/垂直间距都是指定的值，字符串可以用来分别指定水平/垂直间距，逗号分隔，如 “5,10” 表示水平间距是5px，垂直间距是10px |
+| prefix | String | "" | 输出精灵图文件名前缀，默认为空，不带前缀 |
 
 ```
-OPT_IMAGE_SPRITE_OPTIONS = {"layout":"left-right","margin":4}
+OPT_IMAGE_SPRITE_OPTIONS = {"layout":"left-right","margin":4,"prefix":"spt_"}
 ```
 
 ## 离线配置

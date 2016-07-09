@@ -638,7 +638,7 @@ OPT_IMAGE_SPRITE  = ./sprite/
 | prefix | String | "" | 输出精灵图文件名前缀，默认为空，不带前缀 |
 
 ```
-OPT_IMAGE_SPRITE_OPTIONS = {"layout":"left-right","margin":4,"prefix":"spt_"}
+OPT_IMAGE_SPRITE_OPTIONS = {"layout":"left-right","margin":"5,10","prefix":"spt_"}
 ```
 
 ## 离线配置

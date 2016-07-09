@@ -7,6 +7,7 @@
 * 支持采用[NEJ依赖管理系统](https://github.com/genify/nej/blob/master/doc/DEPENDENCY.md)的项目，并分离NEJ依赖系统
 * 支持[NEJ平台适配系统](https://github.com/genify/nej/blob/master/doc/PLATFORM.md)，并按平台配置选择性输出内容
 * 支持SourceMap输出，增加测试环境可调试性
+* 支持发布时精灵图合并，增加图片的可维护性
 
 # 工具使用
 

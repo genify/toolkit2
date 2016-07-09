@@ -641,7 +641,7 @@ layout 各值的布局参照
 ![布局算法参照](../layout.png)
 
 ```
-OPT_IMAGE_SPRITE_OPTIONS = {"layout":"left-right",margin:4}
+OPT_IMAGE_SPRITE_OPTIONS = {"layout":"left-right","margin":4}
 ```
 
 ## 离线配置

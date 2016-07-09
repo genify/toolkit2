@@ -634,13 +634,14 @@ OPT_IMAGE_SPRITE  = ./sprite/
 | 参数 | 类型 | 默认值 | 描述 |
 | :--- | :--- | :--- | :--- |
 | layout | String | binary-tree | 精灵图合并算法，可选值参照 [这里](https://github.com/twolfson/layout) |
+| margin | String|Number | 4 | 精灵图合并时各图标之间的间距，可以是数值，也可以是字符串，数值表示水平/垂直间距都是指定的值，字符串可以用来分别指定水平/垂直间距，逗号分隔，如 “5,10” 表示水平间距是5px，垂直间距是10px |
 
 layout 各值的布局参照
 
 ![布局算法参照](../layout.png)
 
 ```
-OPT_IMAGE_SPRITE_OPTIONS = {"layout":"left-right"}
+OPT_IMAGE_SPRITE_OPTIONS = {"layout":"left-right",margin:4}
 ```
 
 ## 离线配置

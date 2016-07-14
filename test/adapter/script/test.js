@@ -23,9 +23,16 @@ describe('adapter/script',function(){
             'b1.js':'var c="ccc";if (CMPT){dosomething2(1);}',
             'b2.js':'var d="ddddd";',
             'c1.js':'var a;console.log(1);var b;',
+            'd1.js':'var obj = {"for":"xxxxx","abc":"ddddd"}; console.log("%j",obj);',
             'error.js':'zzzz+function();'
         };
         [
+            {
+                map:{'d.js':['d1.js']},
+                result:function(ret){
+                    console.log('%j',ret);
+                }
+            },
             {
                 map:{'1.js':['error.js','a1.js','a2.js','error.js','b1.js','b2.js']},
                 config:{level:0},

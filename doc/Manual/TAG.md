@@ -272,7 +272,25 @@
 | name | String | 输出文件名称，默认自动生成，注意自己配置时避免多个MERGE输出同样的名称，此参数不要带后缀 |
 | minify | Boolean | 是否对脚本做压缩，默认不做压缩 |
 
-此标记用以表明在此标记开始和结束之间的脚本合并成一个文件输出，脚本的内联外联、文件版本等的控制同页面脚本的配置
+此标记用以表明在此标记开始和结束之间的样式/脚本合并成一个文件输出，样式/脚本的内联外联、文件版本等的控制同页面脚本的配置，输出样式/脚本插入到 MERGE 起始标记位置
+
+针对样式的合并
+
+```html
+<!-- @MERGE -->
+<link href="/path/to/css/a.css" rel="stylesheet" type="text/css"/>
+<link href="/path/to/css/b.css" rel="stylesheet" type="text/css"/>
+<link href="/path/to/css/c.css" rel="stylesheet" type="text/css"/>
+<!-- /@MERGE -->
+```
+
+打包后的代码输出可能如下所示
+
+```html
+<link href="/path/to/output/xxx.css?234123ewfdsfdsf" rel="stylesheet" type="text/css"/>
+```
+
+针对脚本的合并
 
 ```html
 <!-- @MERGE -->
@@ -287,6 +305,29 @@
 打包后的代码输出可能如下所示
 
 ```html
+<script src="/path/to/output/xxx.js?234123ewfdsfdsf"></script>
+```
+
+针对样式、脚本混合合并
+
+```html
+<!-- @MERGE -->
+<link href="/path/to/css/a.css" rel="stylesheet" type="text/css"/>
+<link href="/path/to/css/b.css" rel="stylesheet" type="text/css"/>
+<link href="/path/to/css/c.css" rel="stylesheet" type="text/css"/>
+
+<script src="/path/to/lib/a.js"></script>
+<script src="/path/to/lib/b.js"></script>
+<script src="/path/to/lib/c.js"></script>
+<script src="/path/to/lib/d.js"></script>
+<script src="/path/to/lib/e.js"></script>
+<!-- /@MERGE -->
+```
+
+打包后的代码输出可能如下所示
+
+```html
+<link href="/path/to/output/xxx.css?234123ewfdsfdsf" rel="stylesheet" type="text/css"/>
 <script src="/path/to/output/xxx.js?234123ewfdsfdsf"></script>
 ```
 

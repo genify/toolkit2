@@ -1,11 +1,15 @@
 {
-    "api": "http://localhost:8000/upload",
+    "api": "http://10.165.124.46:8080/api/upload",
     "token": "",
     "appid": "2300000",
     "nativeId": "343465354",
     "webRoot": "E:/workspace/nej-toolkit/test/cases/nej_0.1.0/webapp/",
-    "fileInclude": "",
-    "fileExclude": "",
+    "fileInclude": "\\.(js|css|html)$",
+    "fileExclude": "\\/res\\/.*$",
+    "extension": {
+        "version": "0.2",
+        "platform": "ios"
+    },
     "resRoot": "E:/workspace/nej-toolkit/test/cases/nej_0.1.0/webapp/res/,E:/workspace/nej-toolkit/test/cases/nej_0.1.0/webapp/pub/s/",
-    "domains": "b4.bst.126.net,b5.bst.126.net,b1.bst.126.net/pub/,b2.bst.126.net"
+    "domains": ""
 }

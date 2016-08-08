@@ -30,13 +30,13 @@
         "should": "^4.3.0"
     },
     "dependencies": {
-        "css":"2.2.1",
-        "swig":"1.4.2",
-        "uglify-js": "2.6.4",
-        "iconv-lite": "0.4.13",
-        "form-data": "0.2.0",
+        "css": "2.2.1",
+        "swig": "1.4.2",
         "pngjs": "0.4.0",
-        "layout": "2.2.0"
+        "layout": "2.2.0",
+        "form-data": "0.2.0",
+        "uglify-js": "2.6.4",
+        "iconv-lite": "0.4.13"
     },
     "nei":{
         "ga":"http://nei.hz.netease.com/api/ga"

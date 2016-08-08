@@ -14,6 +14,7 @@
         <h2 class="m-title">NEJ Module Sample</h2>
     </div>
     <div class="g-bd" id="module-box">
+        <img src="/res/image/loading.gif"/>
         <a href="/src/html/app.html">link</a>
         <div data-href="/src/html/link.html">xxxx</div>
         <a data-html="/src/html/notexist.html">link</a>

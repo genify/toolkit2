@@ -429,7 +429,12 @@ A：使用 WebStorm 的 Jodd Props 插件来查看，具体操作步骤如下图
 
 # 版本历史
 
-## 1.5.0   (2016-07-26)
+## 1.5.2   (2016-08-09)
+
+* 增加 X_AUTO_EXLINK_SCRIPT_EXTENSION 配置参数支持
+* 增加 VERSION_STATIC_MODE 静态资源版本模式配置参数支持
+
+## 1.5.1   (2016-07-26)
 
 * 增加 WebCache 扩展字段的配置
 

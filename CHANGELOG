@@ -1,4 +1,4 @@
-1.5.2
+1.5.2   (2016-08-09)
     - 增加 X_AUTO_EXLINK_SCRIPT_EXTENSION 配置参数支持
     - 增加 VERSION_STATIC_MODE 静态资源版本模式配置参数支持
 

@@ -530,6 +530,24 @@ OBF_CORE_INLINE_FLAG = 3
 VERSION_STATIC = true
 ```
 
+### VERSION_STATIC_MODE
+
+打开 [VERSION_STATIC](#version_staic) 开关后，静态资源版本号生成规则配置，默认自动模式，配置说明如下：
+
+* 0 - 自动模式，根据文件内容生成，版本号通过地址的查询串携带，如/a.png?9e107d9d372bb6826bd81d3542a419d6
+* 1 - 随机模式，每次生成随机版本信息，不重复，版本号通过地址的查询串携带，如/a.png?123456
+* \* - 固定模式，配置字符串作为文件名后缀，地址的查询串中不再携带版本信息，如配置为v1,则生成的文件文件名后追加此配置值，生成文件名如a_v1.png
+
+固定模式配置中可以使用以下变量来表示内建值，如果出现以下变量，则不再追加原文件名
+
+* [RAND]     - 替代随机版本号，如[FILENAME]_[RAND]则生成文件a_9865734934.png
+* [VERSION]  - 替代文件的MD5值，如v2_[VERSION]则生成文件为v2_9e107d9d372bb6826bd81d3542a419d6.png
+* [FILENAME] - 替代文件名，系统自动生成的唯一文件名标识，如[FILENAME]_v2则生成文件a_v2.png
+
+```
+VERSION_STATIC_MODE = [FILENAME]_[VERSION]
+```
+
 ### VERSION_MODE
 
 样式、脚本版本号生成规则配置，默认自动模式，配置说明如下：

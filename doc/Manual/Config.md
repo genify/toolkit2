@@ -900,10 +900,48 @@ X_AUTO_EXLINK_PREFIX = data-href|data-html-root
 发布后使用绝对路径调整脚本文件中的地址，检查符合以下条件的地址
 
 * 配置[DM_STATIC](#dm_static)或者[DM_STATIC_RS](#dm_static_rs)中的任意一项
-* 字符串中相对于[DIR_WEBROOT](#dir_webroot)的静态资源
+* 字符串中相对于[DIR_STATIC](#dir_static)的静态资源
 
 ```
 X_AUTO_EXLINK_SCRIPT = true
+```
+
+这样脚本中的代码
+
+```javascript
+var portrait = "/res/portrait/default.png";
+var prtRoot = "/res/portrait/";
+```
+
+打包之后的代码可能为如下所示，注意这里的目录不会做处理
+
+```javascript
+var portrait = "http://b.bst.123.com/res/portrait/default.png";
+var prtRoot = "/res/portrait/";
+```
+
+### X_AUTO_EXLINK_SCRIPT_EXTENSION
+
+在打开 [X_AUTO_EXLINK_SCRIPT](#x_auto_exlink_script) 开关之后，可以使用以下配置参数做扩展信息的配置，已支持配置信息如下
+
+* checkDIR - 是否处理符合条件的目录，默认为 false
+
+```
+X_AUTO_EXLINK_SCRIPT_EXTENSION = {"checkDIR":true}
+```
+
+当 checkDIR 设置为true时，以下脚本中的代码
+
+```javascript
+var portrait = "/res/portrait/default.png";
+var prtRoot = "/res/portrait/";
+```
+
+打包之后的代码可能为如下所示，同时处理目录
+
+```javascript
+var portrait = "http://b.bst.123.com/res/portrait/default.png";
+var prtRoot = "http://b.bst.123.com/res/portrait/";
 ```
 
 ### X_RELEASE_MODE

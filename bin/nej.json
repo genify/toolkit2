@@ -48,8 +48,8 @@
     ],
     "build-params":[
         {"j":"h","q":"help","m":"显示build命令帮助信息"},
-        {"j":"m","q":"mode","d":"online","m":"发布模式，此优先级高于配置文件中X_RELEASE_MODE配置的优先级，默认为online"},
-        {"j":"l","q":"level","d":"ALL","m":"日志级别，此优先级高于配置文件中X_LOGGER_LEVEL配置的优先级，可用值：debug,info,warn,error,all,off，默认为all"}
+        {"j":"m","q":"mode","m":"发布模式，此优先级高于配置文件中X_RELEASE_MODE配置的优先级，默认为online"},
+        {"j":"l","q":"level","m":"日志级别，此优先级高于配置文件中X_LOGGER_LEVEL配置的优先级，可用值：debug,info,warn,error,all,off，默认为all"}
     ],
     "export":[
         "使用说明：",

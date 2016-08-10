@@ -429,6 +429,11 @@ A：使用 WebStorm 的 Jodd Props 插件来查看，具体操作步骤如下图
 
 # 版本历史
 
+## 1.5.4   (2016-08-10)
+
+* 修正配置文件中 X_LOGGER_LEVEL/X_RELEASE_MODE 设置无效的bug
+* 打开 VERSION_STATIC 开关时，静态资源带版本号的情况下 warn 日志输出
+
 ## 1.5.2   (2016-08-09)
 
 * 增加 X_AUTO_EXLINK_SCRIPT_EXTENSION 配置参数支持

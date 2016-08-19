@@ -1,3 +1,6 @@
+1.5.5
+    - 支持 精灵多倍图 缩放
+
 1.5.4   (2016-08-10)
     - 修正配置文件中 X_LOGGER_LEVEL/X_RELEASE_MODE 设置无效的bug
     - 打开 VERSION_STATIC 开关时，静态资源带版本号的情况下 warn 日志输出

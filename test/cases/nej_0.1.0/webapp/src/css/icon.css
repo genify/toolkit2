@@ -2,8 +2,14 @@
 .a2{background:url(/res/sprite/a/a2.png) no-repeat;}
 .a3{background:url(/res/sprite/a/a3.png) no-repeat;}
 .a4{background:url(/res/sprite/a/a4.png) no-repeat;}
+.aa1{background:url(/res/sprite/a/a1.png) no-repeat;background-size:50%;}
+.aa2{background:url(/res/sprite/a/a2.png) no-repeat;background-size:50% 60%;}
+.aa3{background:url(/res/sprite/a/a3.png) no-repeat;background-size:50% auto;}
+.aa4{background:url(/res/sprite/a/a4.png) no-repeat;background-size:auto 60%;}
 .b1{background:url(/res/sprite/b/b1.png) no-repeat;}
 .b2{background:url(/res/sprite/b/b2.png) no-repeat;}
+.bb1{background:url(/res/sprite/b/b1.png) no-repeat;background-size:50% 20px;}
+.bb2{background:url(/res/sprite/b/b2.png) no-repeat;background-size:50px 20%;}
 .c1{background:url(/res/sprite/d1.png) no-repeat;}
 .c2{background:url(/res/sprite/d2.png) no-repeat;}
 .a1{background-image:url(/res/sprite/a/a1.png);}

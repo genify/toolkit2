@@ -132,18 +132,22 @@ res
 .d1 {
     background-image: url(http://b4.bst.126.net/res/sprite/sprite_c5ee32ccd6639bc03ed7b8648ed93045.png);
     background-position: -0px -0px;
+    background-size: 50%;
 }
 .d2 {
     background-image: url(http://b4.bst.126.net/res/sprite/sprite_c5ee32ccd6639bc03ed7b8648ed93045.png);
     background-position: -0px -0px;
+    background-size: 50% 50%;
 }
 .d3 {
     background-image: url(http://b4.bst.126.net/res/sprite/sprite_c5ee32ccd6639bc03ed7b8648ed93045.png);
     background-position: -512px -0px;
+    background-size: 50% auto;
 }
 .d4 {
     background-image: url(http://b4.bst.126.net/res/sprite/sprite_c5ee32ccd6639bc03ed7b8648ed93045.png);
     background-position: -512px -0px;
+    background-size: auto 50%;
 }
 ```
 

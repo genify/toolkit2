@@ -32,6 +32,19 @@ nej build 指令支持两种形式的精灵图片识别
 
 这里 a1.png 和 a2.png 两张图片合并到 a.png 图片输出，b1.png 和 b2.png 两张图片合并到 b.png 图片输出，如果加了精灵标记而未指明输出图片文件名称，则均合并到 sprite.png 图片中
 
+在精灵标记之后也可以指定此图片缩放倍数，如下代码所示
+
+```css
+.a1{background:url(/path/to/a1.png?sprite!a@50,70) no-repeat;}
+.a2{background-image:url(/path/to/a2.png?sprite!a@50,70) no-repeat;}
+
+.b1{background:url(/path/to/b1.png?sprite!@50) no-repeat;}
+.b2{background-image:url(/path/to/b2.png?sprite!@50) no-repeat;}
+```
+
+这里 a1.png 和 a2.png 两张图片合并到 a.png 图片，同时位置计算时按照水平 50% 垂直 70% 缩放
+这里 b1.png 和 b2.png 两张图片合并到 sprite.png 图片，同时位置计算时按照水平垂直 50% 缩放
+
 ## 精灵配置
 
 此方式通过配置 release.conf 文件中的精灵参数 OPT_IMAGE_SPRITE 来指定样式文件中使用此目录下的图片均做精灵图合并，合并规则以精灵参数 OPT_IMAGE_SPRITE 为根目录，所有第一级子目录合并成目录同名精灵图片输出，比如精灵参数 OPT_IMAGE_SPRITE 的配置如下所示
@@ -74,6 +87,11 @@ res
 
 .c1{background-image:url(/res/sprite/d1.png);}
 .c2{background-image:url(/res/sprite/d2.png);}
+
+.d1{background-image:url(/res/sprite/d1.png);background-size:50%;}
+.d2{background-image:url(/res/sprite/d1.png);background-size:50% 50%;}
+.d3{background-image:url(/res/sprite/d2.png);background-size:50% auto;}
+.d4{background-image:url(/res/sprite/d2.png);background-size:auto 50%;}
 ```
 
 这里因为样式中没有用到 a3.png、b3.png、c/*.png 因此这些图片不会被合并，所以最终输出的图片为
@@ -111,4 +129,22 @@ res
     background-image: url(http://b4.bst.126.net/res/sprite/sprite_c5ee32ccd6639bc03ed7b8648ed93045.png);
     background-position: -1024px -0px;
 }
+.d1 {
+    background-image: url(http://b4.bst.126.net/res/sprite/sprite_c5ee32ccd6639bc03ed7b8648ed93045.png);
+    background-position: -0px -0px;
+}
+.d2 {
+    background-image: url(http://b4.bst.126.net/res/sprite/sprite_c5ee32ccd6639bc03ed7b8648ed93045.png);
+    background-position: -0px -0px;
+}
+.d3 {
+    background-image: url(http://b4.bst.126.net/res/sprite/sprite_c5ee32ccd6639bc03ed7b8648ed93045.png);
+    background-position: -512px -0px;
+}
+.d4 {
+    background-image: url(http://b4.bst.126.net/res/sprite/sprite_c5ee32ccd6639bc03ed7b8648ed93045.png);
+    background-position: -512px -0px;
+}
 ```
+
+

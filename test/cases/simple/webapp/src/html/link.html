@@ -17,7 +17,9 @@
 <!-- /@IGNORE -->
 
 <style>
-    .a{background:url(/res/image/loading.gif);}
+    .a1{background:url(/res/image/loading.gif);}
+    .b1{background:url(/lib/component/res/a.png);}
+    .c1{background:url(../../lib/component/res/b.png);}
     .portrait_img{
         background-image:url("/res/image/loading.gif");
         background:url("/res/image/sprite.png") \9\0;
@@ -46,6 +48,8 @@
         content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>')
     }
 </style>
+<link href="../css/a.css" rel="stylesheet" type="text/css"/>
+
 
 <img src="/res/image/loading.gif?v=123"/>
 <img src="/res/image/loading.gif"/>
@@ -58,3 +62,7 @@
 
 <script>console.log("/res/image/loading.gif?v=12345")</script>
 <script>console.log("/res/abc/");</script>
+
+
+<script src="http://fed.hz.netease.com/git/nej2/src/define.js"></script>
+<script src="/src/javascript/page/app.js"></script>

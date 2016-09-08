@@ -153,6 +153,55 @@ DIR_OUTPUT_TP = ./tpl/
 DIR_STATIC = ./res/
 ```
 
+### DIR_STATIC_MERGE
+
+需要合并到 [DIR_STATIC](#dir_static) 配置的目录下的静态资源路径，发布后引用到此目录下的所有资源文件均将被拷贝到 [DIR_STATIC](#dir_static) 配置的目录下，如果 [DIR_STATIC](#dir_static) 目录下已存在同名文件则WARNNING提示不做覆盖，否则直接拷贝
+
+* 正则表达式，忽略大小写
+* 确保可以通过new RegExp转换成正则
+* 资源路径通过此正则表达式替换可以得到输出到 [DIR_STATIC](#dir_static) 目录下的文件路径
+
+假设配置如下
+
+```
+DIR_STATIC_MERGE   = .*\/lib\/.*\/res\/
+```
+
+目录结构如下
+
+```
+webapp
+   |- lib
+   |   |- component
+   |          |- res
+   |          |   |- a.png
+   |          |- css
+   |              |- a.css
+   |- res
+       |- b.png
+```
+
+样式文件 a.css 引用的图片地址
+
+```css
+.a{background:url(../res/a.png) no-repeat;}
+```
+
+则在配置了此参数后 webapp/lib/component/res/a.png 文件将被复制到 webapp/res/a.png，并调整 a.css 文件引用的图片到 webapp/res/a.png 下
+
+```
+webapp
+   |- lib
+   |   |- component
+   |          |- res
+   |          |   |- a.png
+   |          |- css
+   |              |- a.css
+   |- res
+       |- b.png
+       |- a.png
+```
+
 ## 文件过滤
 
 这部分配置主要用于配置待处理文件的过滤信息

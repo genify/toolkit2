@@ -1,5 +1,6 @@
-1.5.5
+1.5.5   (2016-09-08)
     - 支持 精灵多倍图 缩放
+    - 支持 DIR_STATIC_MERGE 配置
 
 1.5.4   (2016-08-10)
     - 修正配置文件中 X_LOGGER_LEVEL/X_RELEASE_MODE 设置无效的bug

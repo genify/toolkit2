@@ -202,6 +202,12 @@ webapp
        |- a.png
 ```
 
+输出样式如
+
+```css
+.a{background:url(/res/a.png) no-repeat;}
+```
+
 ## 文件过滤
 
 这部分配置主要用于配置待处理文件的过滤信息

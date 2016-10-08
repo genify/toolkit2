@@ -1,0 +1,24 @@
+.a{
+    background:url(../res/sprite/1x/a.png) no-repeat;
+}
+.b{
+    background:url(../res/sprite/1x/b.png) no-repeat;
+}
+
+.a2{
+    background:url(../res/sprite/2x/a.png) no-repeat;
+    background-size: 200%;
+}
+.b2{
+    background:url(../res/sprite/2x/b.png) no-repeat;
+    background-size: 200%;
+}
+
+.a4{
+    background:url(../res/sprite/4x/a.png) no-repeat;
+    background-size: 400%;
+}
+.b4{
+    background:url(../res/sprite/4x/b.png) no-repeat;
+    background-size: 400%;
+}

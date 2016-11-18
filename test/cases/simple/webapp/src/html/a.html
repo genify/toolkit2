@@ -6,11 +6,11 @@
 </head>
 <body>
 
-<script src="http://fed.hz.netease.com/git/nej2/src/define.js"></script>
+<script src="http://fed.hz.netease.com/git/nej2/src/define.js?a=css&b=../lib"></script>
 <script>
     NEJ.define([
-        'text!../css/a.css',
-        '../../lib/a.js'
+        'text!../{a}/a.css',
+        '../{b}/a.js'
     ],function (x,y) {
         console.log('bbbbb');
     });

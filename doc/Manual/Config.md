@@ -396,6 +396,22 @@ NEJ框架本地路径，没有配置情况下会尝试识别lib/nej目录，如�
 NEJ_DIR = http://nej.netease.com/nej/src/
 ```
 
+### NEJ_CONFIG
+
+重写 define.js 后的查询参数配置信息，这里配置的所有的参数都会做地址补全，如果参数不希望做地址补全则配置到 [NEJ_PARAMETERS](#nej_parameters) 参数中
+
+```
+NEJ_CONFIG = pro=/src/javascript/&com=/src/lib/
+```
+
+### NEJ_PARAMETERS
+
+重写 define.js 后的查询参数配置信息，这里配置的参数不做地址解析处理
+
+```
+NEJ_PARAMETERS = {"mode":"wap"}
+```
+
 ### NEJ_REGULAR
 
 REGULAR预解析执行文件路径，没有配置情况下会尝试识别lib/regularjs/目录，如果是规范的目录结构可以不用配置此参数，工具自动识别，工具自动识别的路径为： [DIR_WEBROOT]/src/javascript/lib/regularjs/dist/regular.js

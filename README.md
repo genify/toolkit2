@@ -429,6 +429,10 @@ A：使用 WebStorm 的 Jodd Props 插件来查看，具体操作步骤如下图
 
 # 版本历史
 
+## 1.5.9   (2016-11-25)
+
+* 支持 NEJ_CONFIG/NEJ_PARAMETERS 配置参数
+
 ## 1.5.8   (2016-11-18)
 
 * 支持 NEJ.define 依赖列表中任意多 {param} 变量占位

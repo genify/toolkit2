@@ -1,3 +1,6 @@
+1.6.0   (2017-01-19)
+    - nej build 导出的 web cache 配置文件支持相对协议路径配置，如 //a.b.com/a/
+
 1.5.9   (2016-11-25)
     - 支持 NEJ_CONFIG/NEJ_PARAMETERS 配置参数
 

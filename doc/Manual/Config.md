@@ -19,12 +19,11 @@
 * [混淆压缩](#混淆压缩) ： 脚本混淆压缩规则配置
 * [版本配置](#版本配置) ： 样式、脚本资源版本控制输出形式配置
 * [域名配置](#域名配置) ： 静态资源使用的CDN域名配置
-* [图片优化](#图片优化) ： 图片大小、格式优化、图片合并等配置
+* [图片优化](#图片优化) ： 主要用于配置图片优化参数
 * [离线配置](#离线配置) ： HTML5离线应用Manifest文件输出配置
 * [模板封装](#模板封装) ： NEJ模板输出配置
 * [页面压缩](#页面压缩) ： 页面文件如HTML、服务器模板文件等的压缩配置
 * [扩展配置](#扩展配置) ： 其他支持项配置
-* [WebCache配置](#webcache配置) : WebCache 服务相关配置
 
 ## 路径配置
 
@@ -97,13 +96,8 @@ HTML文件输出路径，默认为 [DIR_WEBROOT](#dir_webroot) 配置的路径�
 
 配置的目录如不在 [DIR_WEBROOT](#dir_webroot) 目录下则在发布过程会有警告信息
 
-配置路径支持变量替换，替换规则如下：
-
-* [TIMESTAMP]   - 插入时间戳目录，如配置 ./pub/[TIMESTAMP]/ 则输出的路径可能为 ./pub/1453792147197/
-* [yyyy_MM_dd]  - 插入日期格式化出来的字符串作为目录，其中yyyy代表四位年份，MM代表两位月份，dd代表两位日期，如配置 ./pub/[yyyy]/[MM]/[dd]/ 则输出的路径可能为 ./pub/2016/01/26/
-
 ```
-DIR_OUTPUT = ./pub/[TIMESTAMP]/
+DIR_OUTPUT = ./pub/
 ```
 
 ### DIR_OUTPUT_STATIC
@@ -151,61 +145,6 @@ DIR_OUTPUT_TP = ./tpl/
 
 ```
 DIR_STATIC = ./res/
-```
-
-### DIR_STATIC_MERGE
-
-需要合并到 [DIR_STATIC](#dir_static) 配置的目录下的静态资源路径，发布后引用到此目录下的所有资源文件均将被拷贝到 [DIR_STATIC](#dir_static) 配置的目录下，如果 [DIR_STATIC](#dir_static) 目录下已存在同名文件则WARNNING提示不做覆盖，否则直接拷贝
-
-* 正则表达式，忽略大小写
-* 确保可以通过new RegExp转换成正则
-* 资源路径通过此正则表达式替换可以得到输出到 [DIR_STATIC](#dir_static) 目录下的文件路径
-
-假设配置如下
-
-```
-DIR_STATIC_MERGE   = .*\/lib\/.*\/res\/
-```
-
-目录结构如下
-
-```
-webapp
-   |- lib
-   |   |- component
-   |          |- res
-   |          |   |- a.png
-   |          |- css
-   |              |- a.css
-   |- res
-       |- b.png
-```
-
-样式文件 a.css 引用的图片地址
-
-```css
-.a{background:url(../res/a.png) no-repeat;}
-```
-
-则在配置了此参数后 webapp/lib/component/res/a.png 文件将被复制到 webapp/res/a.png，并调整 a.css 文件引用的图片到 webapp/res/a.png 下
-
-```
-webapp
-   |- lib
-   |   |- component
-   |          |- res
-   |          |   |- a.png
-   |          |- css
-   |              |- a.css
-   |- res
-       |- b.png
-       |- a.png
-```
-
-输出样式如
-
-```css
-.a{background:url(/res/a.png) no-repeat;}
 ```
 
 ## 文件过滤
@@ -394,22 +333,6 @@ NEJ框架本地路径，没有配置情况下会尝试识别lib/nej目录，如�
 
 ```
 NEJ_DIR = http://nej.netease.com/nej/src/
-```
-
-### NEJ_CONFIG
-
-重写 define.js 后的查询参数配置信息，这里配置的所有的参数都会做地址补全，如果参数不希望做地址补全则配置到 [NEJ_PARAMETERS](#nej_parameters) 参数中
-
-```
-NEJ_CONFIG = pro=/src/javascript/&com=/src/lib/
-```
-
-### NEJ_PARAMETERS
-
-重写 define.js 后的查询参数配置信息，这里配置的参数不做地址解析处理
-
-```
-NEJ_PARAMETERS = {"mode":"wap"}
 ```
 
 ### NEJ_REGULAR
@@ -601,24 +524,6 @@ OBF_CORE_INLINE_FLAG = 3
 VERSION_STATIC = true
 ```
 
-### VERSION_STATIC_MODE
-
-打开 [VERSION_STATIC](#version_staic) 开关后，静态资源版本号生成规则配置，默认自动模式，配置说明如下：
-
-* 0 - 自动模式，根据文件内容生成，版本号通过地址的查询串携带，如/a.png?9e107d9d372bb6826bd81d3542a419d6
-* 1 - 随机模式，每次生成随机版本信息，不重复，版本号通过地址的查询串携带，如/a.png?123456
-* \* - 固定模式，配置字符串作为文件名后缀，地址的查询串中不再携带版本信息，如配置为v1,则生成的文件文件名后追加此配置值，生成文件名如a_v1.png
-
-固定模式配置中可以使用以下变量来表示内建值，如果出现以下变量，则不再追加原文件名
-
-* [RAND]     - 替代随机版本号，如[FILENAME]_[RAND]则生成文件a_9865734934.png
-* [VERSION]  - 替代文件的MD5值，如v2_[VERSION]则生成文件为v2_9e107d9d372bb6826bd81d3542a419d6.png
-* [FILENAME] - 替代文件名，系统自动生成的唯一文件名标识，如[FILENAME]_v2则生成文件a_v2.png
-
-```
-VERSION_STATIC_MODE = [FILENAME]_[VERSION]
-```
-
 ### VERSION_MODE
 
 样式、脚本版本号生成规则配置，默认自动模式，配置说明如下：
@@ -706,28 +611,6 @@ OPT_IMAGE_FLAG = true
 
 ```
 OPT_IMAGE_QUALITY = 100
-```
-
-### OPT_IMAGE_SPRITE
-
-图片做精灵图合并的路径,即项目的样式中使用到该路径下的图片资源会先做合并再使用，相对路径相对于 [DIR_STATIC](#dir_static) 配置的路径，如果没有配置此参数则不会做精灵图合并
-
-```
-OPT_IMAGE_SPRITE  = ./sprite/
-```
-
-### OPT_IMAGE_SPRITE_OPTIONS
-
-精灵图合并的配置选项，JSON字符串，可配置参数信息如下表所示
-
-| 参数 | 类型 | 默认值 | 描述 |
-| :--- | :--- | :--- | :--- |
-| layout | String | binary-tree | 精灵图合并算法，可用值为top-down、left-right、diagonal、alt-diagonal、binary-tree，各值的布局参照 ![布局算法参照](../layout.png) |
-| margin | String or Number | 4 | 精灵图合并时各图标之间的间距，可以是数值，也可以是字符串，数值表示水平/垂直间距都是指定的值，字符串可以用来分别指定水平/垂直间距，逗号分隔，如 “5,10” 表示水平间距是5px，垂直间距是10px |
-| prefix | String | "" | 输出精灵图文件名前缀，默认为空，不带前缀 |
-
-```
-OPT_IMAGE_SPRITE_OPTIONS = {"layout":"left-right","margin":"5,10","prefix":"spt_"}
 ```
 
 ## 离线配置
@@ -869,70 +752,6 @@ WRP_EXLINE_JS = <textarea name="js" data-src="%s"></textarea>
 WRP_INLINE_TP = <textarea id="%s" name="%s">%s</textarea>
 ```
 
-### WRP_INLINE_STYLE
-
-内联样式包装规则，%s表示内联的样式内容
-
-```
-WRP_INLINE_STYLE  = <style type="text/css">\n%s\n</style>
-```
-
-### WRP_EXLINE_STYLE
-
-外联样式包装规则，%s表示外联样式文件路径
-
-```
-WRP_EXLINE_STYLE  = <link rel="stylesheet" href="%s"/>
-```
-
-### WRP_INLINE_SCRIPT
-
-内联脚本包装规则，%s表示内联的脚本内容
-
-```
-WRP_INLINE_SCRIPT = <script>\n%s\n</script>
-```
-
-### WRP_EXLINE_SCRIPT
-
-外联脚本包装规则，%s表示外联脚本文件路径
-
-```
-WRP_EXLINE_SCRIPT = <script src="%s"></script>
-```
-
-此属性可应用于移动端在head处加载脚本，比如
-
-```html
-<head>
-  <!-- 指定打包后脚本插入位置 -->
-  <!-- @script {nodep:true} -->
-</head>
-<body>
-  <!-- 开发时脚本引入位置 -->
-  <script src="/js/a.js"></script>
-  <script src="/js/b.js"></script>
-</body>
-```
-
-打包配置脚本输出模板
-
-```
-WRP_EXLINE_SCRIPT = <script src="%s" defer async></script>
-```
-
-那么页面在打包后就会输出类似这种代码
-
-```html
-<head>
-  <!-- 打包后输出脚本 -->
-  <script src="/r/p.js?xxxddrrdde" defer async></script>
-</head>
-<body>
-  <!-- 其他代码 -->
-</body>
-```
-
 ## 页面压缩
 
 这部分主要用于页面文件，如HTML文件、服务器端模板文件（freemarker、velocity等）的压缩输出配置
@@ -988,49 +807,10 @@ X_AUTO_EXLINK_PREFIX = data-href|data-html-root
 
 发布后使用绝对路径调整脚本文件中的地址，检查符合以下条件的地址
 
-* 配置[DM_STATIC](#dm_static)或者[DM_STATIC_RS](#dm_static_rs)中的任意一项
-* 字符串中相对于[DIR_STATIC](#dir_static)的静态资源
+* 字符串中相对于[DIR_WEBROOT](#dir_webroot)的静态资源
 
 ```
 X_AUTO_EXLINK_SCRIPT = true
-```
-
-这样脚本中的代码
-
-```javascript
-var portrait = "/res/portrait/default.png";
-var prtRoot = "/res/portrait/";
-```
-
-打包之后的代码可能为如下所示，注意这里的目录不会做处理
-
-```javascript
-var portrait = "http://b.bst.123.com/res/portrait/default.png";
-var prtRoot = "/res/portrait/";
-```
-
-### X_AUTO_EXLINK_SCRIPT_EXTENSION
-
-在打开 [X_AUTO_EXLINK_SCRIPT](#x_auto_exlink_script) 开关之后，可以使用以下配置参数做扩展信息的配置，已支持配置信息如下
-
-* checkDIR - 是否处理符合条件的目录，默认为 false
-
-```
-X_AUTO_EXLINK_SCRIPT_EXTENSION = {"checkDIR":true}
-```
-
-当 checkDIR 设置为true时，以下脚本中的代码
-
-```javascript
-var portrait = "/res/portrait/default.png";
-var prtRoot = "/res/portrait/";
-```
-
-打包之后的代码可能为如下所示，同时处理目录
-
-```javascript
-var portrait = "http://b.bst.123.com/res/portrait/default.png";
-var prtRoot = "http://b.bst.123.com/res/portrait/";
 ```
 
 ### X_RELEASE_MODE
@@ -1055,87 +835,3 @@ X_RELEASE_MODE = online
 * ERROR   - 输出ERROR级别的日志
 * ALL     - 输出所有日志
 * OFF     - 关闭日志输出
-
-## WebCache配置
-
-这部分主要结合杭研移动 APP 使用的 Web Cache 解决方案提供的配置信息
-
-### WCS_UPLOAD_URL
-
-Web Cache 服务器用来接收打包静态资源上传的接口地址
-
-```
-WCS_UPLOAD_URL = http://api.kaola.com/upload
-```
-
-### WCS_UPLOAD_TOKEN
-
-WCS_UPLOAD_URL 配置的上传接口调用时的验证信息配置，此参数如果不在此处配置，也可以通过 nej cache 指令的命令行参数输入，建议通过 nej cache 指令输入此参数信息
-
-```
-WCS_UPLOAD_TOKEN = )khz)mWmkHPV<59{xkaEM9SKq6cZbS
-```
-
-### WCS_APP_ID
-
-产品在 WebCache Server 上的标识信息，此参数如果不在此处配置，也可以通过 nej cache 指令的命令行参数输入，建议通过 nej cache 指令输入此参数信息
-
-```
-WCS_APP_ID = 4876678
-```
-
-### WCS_NATIVE_ID
-
-该产品下的具体应用标识，此参数如果不在此处配置，也可以通过 nej cache 指令的命令行参数输入，建议通过 nej cache 指令输入此参数信息
-
-```
-WCS_NATIVE_ID = 43234234
-```
-
-### WCS_FILE_INCLUDE
-
-需要通过 WebCache Server 缓存的文件路径包含规则，如果同时满足包含和排除规则，则优先使用排除规则排除文件，配置规则符合以下条件
-
-* 正则表达式，忽略大小写
-* 确保可以通过new RegExp转换成正则
-* 规则用来检验要缓存的文件路径
-* 默认情况下 DIR_OUTPUT_STATIC 和 DIR_STATIC 配置目录下的所有文件进行缓存
-
-```
-WCS_FILE_INCLUDE = \.(js|css|html)$
-```
-
-### WCS_FILE_EXCLUDE
-
-不需要通过 WebCache Server 缓存的文件路径排除规则，如果同时满足包含和排除规则，则优先使用排除规则排除文件，配置规则符合以下条件：
-
-* 正则表达式，忽略大小写
-* 确保可以通过new RegExp转换成正则
-* 规则用来检验不要缓存的文件路径，默认不排除文件
-
-```
-WCS_FILE_EXCLUDE = \/res\/.*$
-```
-
-### WCS_CONFIG_FILE
-
-Web Cache 配置文件输出路径和文件名配置，此文件路径可直接用于 nej cache 指令的配置文件路径，默认在配置文件所在目录下生成 cache.json 输出，如果是相对路径则相对于当前配置文件路径(即.conf文件所在目录)
-
-```
-WCS_CONFIG_FILE  = ./cache.json
-```
-
-### WCS_CONFIG_EXTENSION
-
-Web Cache 资源包上传时其他扩展字段配置，支持参数如下表所示
-
-| 名称 | 描述 |
-| :--- | :--- |
-| version    | 协议版本，默认为 0.1 |
-| platform   | 资源包支持平台，多个平台用“&”分隔，默认 ios&android |
-| diffCount  | 本资源包上传之后，服务端与历史版本做diff的个数，最小0，最大10，默认0。如果个数超过服务端所拥有历史资源包个数，则使用实际历史资源包个数。如果不需要增量更新，则不需要传该字段 |
-| resVersion | 资源包版本号，如果上传没有带该字段，服务器会为资源包自动生成一个版本号，如果上传时带了该字段，则使用该字段的值 |
-
-```
-WCS_CONFIG_EXTENSION = {"version":"0.2","diffCount":5}
-```

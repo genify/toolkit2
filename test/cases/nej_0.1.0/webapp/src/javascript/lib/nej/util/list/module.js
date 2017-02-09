@@ -93,6 +93,10 @@ NEJ.define([
      * @event    module:util/list/module._$$ListModule#onbeforelistrender
      * @param    {Object} event  - 事件信息
      * @property {Node}   parent - 容器节点
+     * @property {Number} offset - 当前绘制列表偏移量
+     * @property {Number} limit  - 当前绘制列表数量
+     * @property {Number} total  - 当前列表总数
+     * @property {Array}  list   - 当前列表
      */
     /**
      * 列表显示之后处理业务逻辑，此事件确保列表有数据
@@ -100,6 +104,10 @@ NEJ.define([
      * @event    module:util/list/module._$$ListModule#onafterlistrender
      * @param    {Object} event  - 事件信息
      * @property {Node}   parent - 容器节点
+     * @property {Number} offset - 当前绘制列表偏移量
+     * @property {Number} limit  - 当前绘制列表数量
+     * @property {Number} total  - 当前列表总数
+     * @property {Array}  list   - 当前列表
      */
     /**
      * 列表清除之前处理业务逻辑
@@ -464,6 +472,7 @@ NEJ.define([
      */
     _pro.__doChangeOffset = function(_offset){
         this.__ropt.offset = _offset;
+        this.__doBeforeListLoad();
         this.__doLoadList();
     };
     /**
@@ -485,7 +494,6 @@ NEJ.define([
      * @return {Void}
      */
     _pro.__doLoadList = function(){
-        this.__doBeforeListLoad();
         // load data from cache
         var _data = this.__ropt.data;
         _data.offset = this.__ropt.offset;
@@ -519,9 +527,10 @@ NEJ.define([
         if (!_list||!_list.length){
             // check load error
             if (!this._$cache()._$isLoaded(_options.key)){
-                this._$dispatchEvent('onlistloaderror',{
-                    parent:this.__lbox
-                });
+                this.__doShowMessage('onlistloaderror','列表加载失败');
+                //this._$dispatchEvent('onlistloaderror',{
+                //    parent:this.__lbox
+                //});
             }else{
                 this.__doShowEmpty();
             }
@@ -531,9 +540,10 @@ NEJ.define([
         var _limit = _options.limit,
             _offset = _options.offset;
         if (!this.__cache._$isFragmentFilled(_options.key,_offset,_limit)){
-            this._$dispatchEvent('onlistloaderror',{
-                parent:this.__lbox
-            });
+            this.__doShowMessage('onlistloaderror','列表加载失败');
+            //this._$dispatchEvent('onlistloaderror',{
+            //    parent:this.__lbox
+            //});
             return !0;
         }
         if (this.__doBeforeListRender(
@@ -541,8 +551,10 @@ NEJ.define([
             return;
         this._$dispatchEvent('onbeforelistrender',{
             list:_list,
+            limit:_limit,
             offset:_offset,
-            parent:this.__lbox
+            parent:this.__lbox,
+            total:this.__cache._$getTotal(_options.key)
         });
         if (!!this.__ikey){
             // render by jst
@@ -566,8 +578,10 @@ NEJ.define([
         }
         this._$dispatchEvent('onafterlistrender',{
             list:_list,
+            limit:_limit,
             offset:_offset,
-            parent:this.__lbox
+            parent:this.__lbox,
+            total:this.__cache._$getTotal(_options.key)
         });
     };
     /**
@@ -681,9 +695,17 @@ NEJ.define([
             var _xlist = [_data];
             if (!!this.__ikey){
                 // render by jst
+                var _xlist = this.__cache._$getListInCache(
+                        this.__ropt.key
+                    ),
+                    _index = _u._$indexOf(_xlist,_data);
+                if (_index<0){
+                    _index = 0;
+                    _xlist = [_data];
+                }
                 this.__iopt.xlist = _xlist;
-                this.__iopt.beg = 0;
-                this.__iopt.end = 0;
+                this.__iopt.beg = _index;
+                this.__iopt.end = _index;
                 this.__iopt.act = 'add';
                 this.__doShowListByJST(
                     _t1._$get(
@@ -703,6 +725,7 @@ NEJ.define([
                 this.__iopt.parent = this.__lbox;
                 this.__doShowListByItem(_items);
             }
+            this._$dispatchEvent('onafterinsert');
         };
     })();
     /**
@@ -905,7 +928,7 @@ NEJ.define([
         }else{
             var _node = this._$getItemBody(_id);
             if (!_node) return;
-            var _list = this.__cache._$getListInCache(_event.key),
+            var _list = this.__cache._$getListInCache(this.__ropt.key),
                 _index = _u._$indexOf(_list,_event.data);
             if (_index<0) return;
             this.__iopt.xlist = _list;
@@ -971,7 +994,10 @@ NEJ.define([
      * @return {Void}
      */
     _pro.__cbListChange = function(_event){
-        if (_event.key!=this.__ropt.key) return;
+        if (!!_event.key&&
+            _event.key!=this.__ropt.key){
+            return;
+        }
         switch(_event.action){
             case 'add':
                 this.__cbItemAdd(_event);
@@ -1091,6 +1117,19 @@ NEJ.define([
         this._$refresh();
     };
     /**
+     * 重新加载列表
+     *
+     * @method module:util/list/module._$$ListModule#_$reload
+     * @param  {Boolean} arg0 - 是否清除缓存数据
+     * @return {Void}
+     */
+    _pro._$reload = function(noclear){
+        if (!noclear){
+            this.__cache._$clearListInCache(this.__ropt.key);
+        }
+        this.__doLoadList();
+    };
+    /**
      * 前向刷新列表
      * 
      * @method module:util/list/module._$$ListModule#_$pullRefresh
@@ -1181,6 +1220,53 @@ NEJ.define([
     _pro._$showMessage = function(_html){
         this.__doClearListBox();
         this.__doShowMessage(null,_html);
+    };
+    /**
+     * 去到下一页列表
+     *
+     * @method module:util/list/module._$$ListModule#_$nextPage
+     * @return {Boolean} 是否还有下一页
+     */
+    _pro._$nextPage = function(){
+        if (!this.__pager){
+            return;
+        }
+        var _index = this.__pager._$getIndex()+1,
+            _total = this.__pager._$getTotal();
+        _index = Math.max(1,Math.min(_index,_total));
+        this._$pageTo(_index);
+        return _index<_total;
+    };
+    /**
+     * 去到上一页列表
+     *
+     * @method module:util/list/module._$$ListModule#_$nextPage
+     * @return {Boolean} 是否还有上一页
+     */
+    _pro._$prevPage = function(){
+        if (!this.__pager){
+            return;
+        }
+        var _index = this.__pager._$getIndex()-1,
+            _total = this.__pager._$getTotal();
+        _index = Math.max(1,Math.min(_index,_total));
+        this._$pageTo(_index);
+        return _index<=1;
+    };
+    /**
+     * 去到指定页码列表
+     *
+     * @method module:util/list/module._$$ListModule#_$pageTo
+     * @param  {Number} arg0 - 指定页码
+     * @return {Void}
+     */
+    _pro._$pageTo = function(_index){
+        if (!this.__pager){
+            return;
+        }
+        var _total = this.__pager._$getTotal();
+        _index = Math.max(1,Math.min(_index,_total));
+        this.__pager._$setIndex(_index);
     };
 
     if (CMPT){

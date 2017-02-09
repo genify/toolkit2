@@ -113,6 +113,7 @@ NEJ.define([
      */
     _pro.__destroy = function(){
         this.__super();
+        this.__onDragEnd();
         delete this.__body;
         delete this.__mbar;
         delete this.__view;
@@ -157,6 +158,7 @@ NEJ.define([
      */
     _pro.__onDragging = function(_event){
         if (!this.__offset) return;
+        _v._$stop(_event);
         var _offset = {
             x:_v._$pageX(_event),
             y:_v._$pageY(_event)
@@ -184,7 +186,29 @@ NEJ.define([
         if (!this.__offset) return;
         delete this.__maxbox;
         delete this.__offset;
-        this._$dispatchEvent('ondragend',this._$getPosition());
+        this._$dispatchEvent(
+            'ondragend',
+            this._$getPosition()
+        );
+    };
+    /**
+     * 修正位置信息
+     * @param event
+     * @private
+     */
+    _pro.__doFixPosition = function(event){
+        if (!this.__overflow){
+            var maxbox = this.__maxbox||
+                         this.__getMaxRange();
+            event.top  = Math.min(
+                maxbox.y,
+                Math.max(0,event.top)
+            );
+            event.left = Math.min(
+                maxbox.x,
+                Math.max(0,event.left)
+            );
+        }
     };
     /**
      * 设置位置
@@ -202,15 +226,15 @@ NEJ.define([
      * @return   {Void}
      */
     _pro._$setPosition = function(_event){
-        if (!this.__overflow){
-            var _maxbox = this.__maxbox||
-                          this.__getMaxRange();
-            _event.top  = Math.min(_maxbox.y,
-                          Math.max(0,_event.top));
-            _event.left = Math.min(_maxbox.x,
-                          Math.max(0,_event.left));
-        }
-        this._$dispatchEvent('onbeforechange',_event);
+        _event.top = Math.round(_event.top);
+        _event.left = Math.round(_event.left);
+        // fix position
+        this.__doFixPosition(_event);
+        this._$dispatchEvent(
+            'onbeforechange',_event
+        );
+        this.__doFixPosition(_event);
+        // update position
         var _style  = this.__body.style;
         if (this.__direction==0||
             this.__direction==2)
@@ -233,8 +257,8 @@ NEJ.define([
      */
     _pro._$getPosition = function(){
         return {
-            left:parseInt(_e._$getStyle(this.__body,'left'))||0,
-            top:parseInt(_e._$getStyle(this.__body,'top'))||0
+            left:parseInt(_e._$getStyle(this.__body,'left'),10)||0,
+            top:parseInt(_e._$getStyle(this.__body,'top'),10)||0
         };
     };
     // alias for draggable

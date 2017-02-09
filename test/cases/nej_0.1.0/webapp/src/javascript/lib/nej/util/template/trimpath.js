@@ -562,7 +562,12 @@
         var _xeed = +new Date;
         return function(_content,_sn){
             if (!_content) return '';
-            _sn = _sn||('ck_'+(_xeed++));
+            _sn = _sn||('ck-'+(_xeed++));
+            if (_tcache[_sn]!=null){
+                console.warn('jst template overwrited with key '+_sn);
+                console.debug('old template content: '+_tcache[_sn].replace(/\n/g,' '));
+                console.debug('new template content: '+_content.replace(/\n/g,' '));
+            }
             _tcache[_sn] = _content;
             return _sn;
         };

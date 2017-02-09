@@ -177,6 +177,32 @@ NEJ.define([
      * @property {String} href  - 完整路径，带查询参数
      * @property {Object} query - 查询参数解析出来的对象
      */
+    /**
+     * 模块无法匹配时触发事件
+     *
+     * 脚本举例
+     * ```javascript
+     * NEJ.define([
+     *     'util/dispatcher/dispatcher'
+     * ],function(_p){
+     *     // startup dispatcher
+     *     _p._$startup({
+     *         // ...
+     *         onnotfound:function(_event){
+     *             // _event -> {path:'/m/a',href:'http://a.b.com/m/a'}
+     *             _event.stopped = !0;
+     *             location.href = '/404';
+     *         }
+     *     });
+     * });
+     * ```
+     *
+     * @event    module:util/dispatcher/dispatcher._$$Dispatcher#onnotfound
+     * @param    {Object}  event - 地址信息
+     * @property {String}  path  - 路径信息，不带查询参数
+     * @property {String}  href  - 完整路径，带查询参数
+     * @property {Boolean} stopped - 是否阻止进一步调度器逻辑
+     */
     _p._$$Dispatcher = _k._$klass();
     _pro = _p._$$Dispatcher._$extend(_t2._$$EventTarget);
     /**
@@ -341,6 +367,10 @@ NEJ.define([
                 function(_config){
                     _u._$forIn(_config,
                         function(_value,_key){
+                            // fix safari array bug #{404:'/'}
+                            if (_value==null){
+                                return;
+                            }
                             // function
                             if (_u._$isFunction(_value)){
                                 var _ret = !1;
@@ -441,6 +471,16 @@ NEJ.define([
             }
             // public umi not registed
             if (!_gid&&!_t3._$isUMIPrivate(_umi)){
+                // check 404 callback
+                var event = {
+                    path:_umi,
+                    href:_location.href
+                };
+                this._$dispatchEvent('onnotfound',event);
+                if (event.stopped){
+                    return;
+                }
+                // go 404 config
                 _umi = this.__config.rr['404'];
                 _gid = this.__config.mg[_umi];
             }
@@ -475,8 +515,13 @@ NEJ.define([
                 pos:_reg0.test(_location.href)?RegExp.$1:''
             };
             // dispatch module
-            var _title = this.__getModuleConf(_source,'title');
-            if (!!_title) document.title = _title;
+            var event = {
+                title:this.__getModuleConf(_source,'title')
+            };
+            this._$dispatchEvent('ontitlechange',event);
+            if (!!event.title){
+                document.title = event.title;
+            }
             this.__groups[_gid]._$dispatchUMI(_umi);
         };
     })();
@@ -838,6 +883,7 @@ NEJ.define([
      * @property {String|module:util/dispatcher/module._$$ModuleAbstract}
      *                           module    - 指定模块对应的模板文件地址或者模块的构造函数
      * @property {Object}        composite - 组合模块容器对应关系,{pid:umi},其中pid为umi对应模块的容器
+     * @property {Object}        config    - 模块构建配置信息，在模块的init/reset/dobuild时可以获取到的配置信息
      * @return   {Void}
      */
     _pro._$regist = (function(){
@@ -896,6 +942,10 @@ NEJ.define([
                 // cache module composite
                 if (!!_config.composite){
                     _data.composite = _config.composite;
+                }
+                // cache module build config
+                if (!!_config.config){
+                    _data.config = _config.config;
                 }
             }
             // save module
@@ -1102,12 +1152,13 @@ NEJ.define([
      * ```
      *
      * @method   module:util/dispatcher/dispatcher._$$Dispatcher#_$redirect
-     * @param    {String}   arg0    - 模块UMI，可以带查询参数
-     * @param    {Object}   arg1    - 配置信息
-     * @property {Boolean}  replace - 是否替换当前历史
-     * @property {Boolean}  force   - 是否强制刷新
-     * @property {Variable} input   - 输入数据
-     * @property {Boolean}  ignored - 是否忽略地址变化前的验证
+     * @param    {String}   arg0     - 模块UMI，可以带查询参数
+     * @param    {Object}   arg1     - 配置信息
+     * @property {Variable} input    - 输入数据
+     * @property {Boolean}  replace  - 是否替换当前历史
+     * @property {Boolean}  force    - 是否强制刷新
+     * @property {Boolean}  ignored  - 是否忽略地址变化前的验证
+     * @property {Boolean}  exitable - 是否可强行退出前面的模块
      * @return   {Void}
      */
     _pro._$redirect = function(_url,_options){
@@ -1122,7 +1173,7 @@ NEJ.define([
             // dispatch public module
             var _group = this.__groups[this.__pbseed],
                 _event = {target:_location,umi:_umi};
-            if (!!_group._$exitable(_event)){
+            if (_options.exitable||!!_group._$exitable(_event)){
                 if (location.same(_url)&&!!_options.force){
                     this.__onURLChange(_location);
                 }else{
@@ -1193,6 +1244,14 @@ NEJ.define([
         }
     };
     /**
+     * 获取对应UMI配置的标题信息
+     * @param umi
+     * @private
+     */
+    _pro._$getTitle = function(umi){
+        return this.__getModuleConf(umi,'title');
+    };
+    /**
      * 启动调度系统
      *
      * 脚本举例
@@ -1231,6 +1290,10 @@ NEJ.define([
      * @return   {module:util/dispatcher/dispatcher._$$Dispatcher} 调度器实例
      */
     _p._$startup = function(_options){
+        if (!!window.dispatcher){
+            console.error('dispatcher is already startup');
+            return;
+        }
         window.dispatcher =
             _p._$$Dispatcher.
             _$getInstance(_options);

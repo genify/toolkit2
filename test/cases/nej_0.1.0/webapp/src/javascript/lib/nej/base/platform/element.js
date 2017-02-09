@@ -78,7 +78,9 @@ NEJ.define([
      * @return {String} 属性值
      */
     _p.__getAttribute = function(_element,_name){
-        return _element.getAttribute(_name);
+        if ('getAttribute' in _element){
+            return _element.getAttribute(_name);
+        }
     };
     /**
      * 将dom节点转为xml串

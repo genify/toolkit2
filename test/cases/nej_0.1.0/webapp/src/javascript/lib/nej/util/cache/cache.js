@@ -114,6 +114,17 @@ NEJ.define([
         }
     };
     /**
+     * 控件销毁
+     *
+     * @protected
+     * @method module:util/cache/cache._$$CacheAbstract#__destroy
+     * @return {Void}
+     */
+    _pro.__destroy = function(){
+        this.__doClearReqFromQueue();
+        this.__super();
+    };
+    /**
      * 从缓存中取数据
      * 
      * @protected
@@ -333,6 +344,15 @@ NEJ.define([
      * @return {Boolean}         是否已存在相同请求
      */
     _pro.__doQueueRequest = function(_key,_callback){
+        // cache to clear list
+        if (!this.__qtmp){
+            this.__qtmp = [];
+        }
+        this.__qtmp.push({
+            key:_key,
+            callback:_callback
+        });
+        // check request queue list
         _callback = _callback||_f;
         var _list = this.__cache[_ckey+'-l'][_key];
         if (!_list){
@@ -342,6 +362,29 @@ NEJ.define([
         }
         _list.push(_callback);
         return !0;
+    };
+    /**
+     * 从请求队列中移除回调
+     *
+     * @protected
+     * @method module:util/cache/cache._$$CacheAbstract#__doClearReqFromQueue
+     * @return {Void}
+     */
+    _pro.__doClearReqFromQueue = function(){
+        _u._$forEach(this.__qtmp,function(it){
+            var _xlist = this.__cache[_ckey+'-l'][it.key];
+            _u._$reverseEach(
+                _xlist,function(item,index,list){
+                    if (item===it.callback){
+                        list.splice(index);
+                    }
+                }
+            );
+            if (!_xlist||!_xlist.length){
+                this.__doClearReqQueue(it.key);
+            }
+        },this);
+        delete this.__qtmp;
     };
     /**
      * 清除锁定请求
@@ -354,6 +397,19 @@ NEJ.define([
     _pro.__doClearReqQueue = function(_key){
         delete this.__cache[_ckey+'-l'][_key];
     };
+
+    /**
+     * 判断列表项是否未定义，子类可根据实际情况重写判断逻辑
+     *
+     * @protected
+     * @method module:util/cache/cache._$$CacheAbstract#__isItemUndefined
+     * @param  {Object}  arg0 - 列表项
+     * @return {Boolean} 是否未定义
+     */
+    _pro.__isItemUndefined = function (item) {
+        return item===undefined;
+    };
+
     /**
      * 检测列表中是否已存在指定片段数据
      * 
@@ -369,17 +425,20 @@ NEJ.define([
         _offset = parseInt(_offset)||0;
         _limit  = parseInt(_limit)||0;
         if (!_limit){
-            if (!_list.loaded)
+            if (!_list.loaded){
                 return !1;
+            }
             _limit = _list.length;
         }
         // length is list total number
-        if (!!_list.loaded)
-            _limit = Math.min(_limit,
-                     _list.length-_offset);
-        for(var i=0;i<_limit;i++)
-            if (!_list[_offset+i])
+        if (!!_list.loaded){
+            _limit = Math.min(_limit,_list.length-_offset);
+        }
+        for(var i=0;i<_limit;i++){
+            if (this.__isItemUndefined(_list[_offset+i])){
                 return !1;
+            }
+        }
         return !0;
     };
     /**

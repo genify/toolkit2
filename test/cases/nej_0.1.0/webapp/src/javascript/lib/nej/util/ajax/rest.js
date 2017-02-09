@@ -64,14 +64,14 @@ NEJ.define([
      * @property {Object}   param   - 请求参数,包括模板地址里使用的参数
      * @property {String}   method  - 请求方式,GET/POST/PUT/DELETE
      * @property {Number}   timeout - 超时时间,0 禁止超时监测
-     * @property {Object}   headers - 头信息
+     * @property {Object}   headers - 头信息，标准HTTP头字段
      * @property {Object}   result  - onload回调输入时需包含的额外信息
      *
      * @property {module:util/ajax/xdr.onload} onload   - 请求载入成功回调
      * @property {module:util/ajax/xdr.onerror} onerror - 请求载入失败回调
      * @property {module:util/ajax/xdr.onbeforerequest} onbeforerequest - 发起请求之前回调
      *
-     * @return   {Void}
+     * @return   {String} 请求标识
      */
     _p._$request = (function(){
         var _cache = {},  // request cache - sn:{s:funciton(){},f:function(){}}
@@ -194,9 +194,46 @@ NEJ.define([
             _options.headers = _headers;
             _options.onload  = _onLoad._$bind(null,_key);
             _options.onerror = _onError._$bind(null,_key);
-            _j._$request(_url,_options);
+            return _j._$request(_url,_options);
         };
     })();
+    /**
+     * 中断请求
+     *
+     * 脚本举例
+     * ```javascript
+     * NEJ.define([
+     *     'util/ajax/rest'
+     * ],function(_j){
+     *     var _id = _j._$request(
+     *         'http://123.163.com/rest/add',{
+     *             method:'POST',
+     *             data:{name:'ABC'},
+     *             timeout:60000,
+     *             onload:function(_data){
+     *                 // TODO
+     *             },
+     *             onerror:function(_error){
+     *                 // TODO
+     *             }
+     *         }
+     *     );
+     *     // 1秒后中断掉这个请求
+     *     window.setTimeout(
+     *         function(){
+     *             _j._$abort(_id);
+     *         },1000
+     *     );
+     * });
+     * ```
+     *
+     * @method module:util/ajax/rest._$abort
+     * @param  {String} arg0 - 请求标识
+     * @return {Void}
+     */
+    _p._$abort = function(_sn){
+        _j._$abort(_sn);
+    };
     /**
      * 通用载入出错回调函数，所有REST请求的异常均会进入此事件的回调逻辑中
      *

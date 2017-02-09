@@ -110,6 +110,7 @@ NEJ.define([
         if (location.hostname!=document.domain)
             _document.domain = document.domain;
         _document.close(); // <- will trigger iframe onload
+        _h.__supportSelectionChange(_document.body);
         this.__doInitDomEvent([[
             _document,'click',
             this.__onDocumentClick._$bind(this)
@@ -339,7 +340,11 @@ NEJ.define([
         // this._$focus(2);
         _h.__execCommand(_document,'styleWithCSS',false);
         _h.__execCommand(_document,_command,_value);
-        this._$focus(3);
+        if (_command == 'inserthtml'){
+            this._$focus(3);
+        }else{
+            this._$focus(2);
+        }
         this.__onInputCheck();
     };
     /**

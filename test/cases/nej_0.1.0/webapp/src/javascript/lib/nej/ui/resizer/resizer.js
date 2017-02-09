@@ -189,6 +189,7 @@ NEJ.define([
     _pro.__initNode = function(){
         this.__super();
         this.__nsize = _e._$getChildren(this.__body)[0];
+        this.__ropt.sbody = this.__nsize;
     };
     /**
      * 大小变化之前触发事件
@@ -201,8 +202,8 @@ NEJ.define([
         _event.stopped = !0;
         _e._$style(
             this.__nsize,{
-                width:_event.width-2+'px',
-                height:_event.height-2+'px'
+                width:_event.width+'px',
+                height:_event.height+'px'
             }
         );
         _e._$style(
@@ -211,7 +212,7 @@ NEJ.define([
                 left:_event.left+'px'
             }
         );
-        this._$dispatchEvent('onresize',_event);
+        this._$dispatchEvent('onresize',this._$getResizeBox());
     };
     /**
      * 裁剪信息

@@ -16,14 +16,15 @@ NEJ.define([
          * @param  {Node}     节点
          * @param  {String}   事件类型
          * @param  {Function} 处理函数
-         * @return {Object}   验证后事件信息 type/handler
+         * @return {Object}   验证后事件信�? type/handler
          */
         _h.__checkEvent = (function(){
             var _emap = {
                 touchcancel:'MSPointerCancel',
                 touchstart:'MSPointerDown',
                 touchmove:'MSPointerMove',
-                touchend:'MSPointerUp'
+                touchend:'MSPointerUp',
+                fullscreenchange:'MSFullscreenChange'
             };
             return _h.__checkEvent._$aop(function(_event){
                 var _args = _event.args;
@@ -46,7 +47,7 @@ NEJ.define([
          * @param  {Node}     节点
          * @param  {String}   事件类型
          * @param  {Function} 处理函数
-         * @return {Object}   验证后事件信息 type/handler
+         * @return {Object}   验证后事件信�? type/handler
          */
         _h.__checkEvent = (function(){
             var _vmap = {};
@@ -139,7 +140,7 @@ NEJ.define([
          * @param  {Node}     节点
          * @param  {String}   事件类型
          * @param  {Function} 处理函数
-         * @return {Object}   验证后事件信息 type/handler
+         * @return {Object}   验证后事件信�? type/handler
          */
         _h.__checkEvent = (function(){
             var _lmap = {};
@@ -149,11 +150,17 @@ NEJ.define([
                         type:'propertychange'
                     };
                     if (!!_handler){
+                        var _id = _element.id;
+                        var _hack = function(_event){
+                            if (!!_element.value&&!_lmap['x-'+_id]){
+                                _lmap['x-'+_id] = !0;
+                                _handler.call(_element,_event);
+                            }
+                        };
                         _result.handler = function(_event){
                             // for input.value or textarea.value
                             if (('value' in _element)&&
                                 _event.propertyName=='value'){
-                                var _id = _element.id;
                                 // lock cycle trigger
                                 if (!!_lmap[_id]){
                                     return;
@@ -162,6 +169,15 @@ NEJ.define([
                                 _handler.call(_element,_event);
                                 delete _lmap[_id];
                             }
+                        };
+                        _result.link = [
+                            [_element,'keyup',_hack],
+                            [_element,'mouseup',_hack],
+                            [_element,'mousemove',_hack]
+                        ];
+                        _result.destroy = function(){
+                            delete _lmap[_id];
+                            delete _lmap['x-'+_id];
                         };
                     }
                     return _result;
@@ -225,8 +241,8 @@ NEJ.define([
             _args[0].detachEvent('on'+_args[1],_args[2]);
         };
         /**
-         * 触发对象的某个事件
-         * @param  {String|Node} 节点ID或者对象
+         * 触发对象的某个事�?
+         * @param  {String|Node} 节点ID或�?�对�?
          * @param  {String}      鼠标事件类型
          * @return {Void}
          */
@@ -254,7 +270,7 @@ NEJ.define([
          * @param  {Node}     节点
          * @param  {String}   事件类型
          * @param  {Function} 处理函数
-         * @return {Object}   验证后事件信息 type/handler
+         * @return {Object}   验证后事件信�? type/handler
          */
         _h.__checkEvent = (function(){
             var _nreg = /^(?:transitionend|animationend|animationstart|animationiteration)$/i;

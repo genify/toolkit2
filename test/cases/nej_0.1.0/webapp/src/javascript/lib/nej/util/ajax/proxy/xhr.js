@@ -108,6 +108,8 @@ NEJ.define([
             // state change
             this.__xhr.onreadystatechange = 
                 this.__onStateChange._$bind(this,2);
+            this.__xhr.onabort =
+                this.__onAbort._$bind(this);
             // timeout
             if (_request.timeout!==0){
                 this.__timer = window.setTimeout(
@@ -126,6 +128,13 @@ NEJ.define([
             if (!!this.__request.cookie&&
                ('withCredentials' in this.__xhr)){
                 this.__xhr.withCredentials = !0;
+            }
+            // format data for sending Object
+            if(_headers[_g._$HEAD_CT]===_g._$HEAD_CT_FORM&&
+              (!window.FormData||!(_request.data instanceof window.FormData))){
+                if (_u._$isObject(_request.data)){
+                    _request.data = _u._$object2string(_request.data,'&',!0);
+                }
             }
             this.__xhr.send(_request.data);
         };
@@ -177,7 +186,12 @@ NEJ.define([
      * @return {Void}
      */
     _pro._$abort = function(){
-        this.__onLoadRequest({status:0});
+        if (!_h.__hasAbortEvent()){
+            this.__onAbort();
+        }else{
+            this.__xhr.onreadystatechange = _f;
+            this.__xhr.abort();
+        }
     };
     
     return _p;

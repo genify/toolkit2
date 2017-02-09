@@ -15,12 +15,12 @@
             _css = {display:'none',position:'absolute',top:0,right:0,boder:'1px solid #aaa',overflow:'auto',height:'300px',width:'400px',zIndex:'1000',fontSize:'12px',color:'#fff',backgroundColor:'#000',lineHeight:'20px',textAlign:'left'};
         return function(_msg){
             if (!_div){
-                _div = document.createElement('div');
+                _div = d.createElement('div');
                 var _style = _div.style;
                 for(var x in _css)
                     _style[x] = _css[x];
-                document.body.appendChild(_div);
-                _div1 = document.createElement('div');
+                d.body.appendChild(_div);
+                _div1 = d.createElement('div');
                 _div1.title = '关闭控制台信息';
                 _div1.innerHTML = '×';
                 _style = _div1.style;
@@ -28,13 +28,13 @@
                     _style[x] = _css1[x];
                 _div.appendChild(_div1);
                 _div1.onclick = function(){_div.style.display='none';};
-                document.attachEvent('onkeypress',function(_event){
+                d.attachEvent('onkeypress',function(_event){
                     // press ~ to show console
                     if (_event.keyCode==96)
                         _div.style.display = 'block';
                 });
             }
-            var p = document.createElement('div');
+            var p = d.createElement('div');
             p.innerHTML = _msg;
             _div1.insertAdjacentElement('afterEnd',p);
         };
@@ -44,8 +44,9 @@
      * @return {Void}
      */
     var _doInit = function(){
-        if (!p.console)
-            p.console = {log:_doLog,warn:_doLog};
+        if (!p.console&&d.body){
+            p.console = {log:_doLog,warn:_doLog,debug:_doLog,error:_doLog};
+        }
         // do init add loaded script and remove node
         var _list = d.getElementsByTagName('script');
         if (!_list||!_list.length) return;
@@ -59,6 +60,7 @@
         }
         if (!__config.global&&!p.define){
             p.define = NEJ.define;
+            p.define.nej = !0;
         }
     };
     /*
@@ -96,7 +98,7 @@
             _root.pro = '../javascript/';
         }
         if (!!_deps){
-            document.write('<script src="'+_deps+'"></scr'+'ipt>');
+            d.write('<script src="'+_deps+'"></scr'+'ipt>');
         }
         //console.log(__config.root.lib);
     };
@@ -162,6 +164,9 @@
             },
             regular:function(_uri){
                 _doLoadText(_uri);
+            },
+            css:function (_uri) {
+                _doLoadStyle(_uri);
             }
         };
         return function(_uri){
@@ -387,7 +392,7 @@
             if (_xxx) return;
             _xxx = !0;
             _anchor.style.display = 'none';
-            document.body.appendChild(_anchor);
+            (d.body||d.getElementsByTagName('head')[0]).appendChild(_anchor);
         };
         return function(_uri){
             _append();
@@ -408,7 +413,8 @@
             _reg3= /[^\/]*$/,
             _reg4= /\.js$/i,
             _reg5= /^[{\/\.]/,
-            _reg6= /(file:\/\/)([^\/])/i;
+            _reg6= /(file:\/\/)([^\/])/i,
+            _reg7= /([^:])\/\//g;
         var _absolute = function(_uri){
             return _uri.indexOf('://')>0;
         };
@@ -420,9 +426,10 @@
             return _uri.replace(_reg3,'');
         };
         var _format = function(_uri){
-            var _uri = _doAbsoluteURI(_uri);
-            // fix mac file:// error
-            return _uri.replace(_reg6,'$1/$2');
+            return _doAbsoluteURI(
+                _uri.replace(_reg7,'$1/')   // fix ie8 http://a.b.com:80/a//b//c/d.js error
+                    .replace(_reg6,'$1/$2') // fix mac file:// error
+            );
         };
         var _amdpath = function(_uri,_type){
             // start with {xx} or /xx/xx or ./ or ../
@@ -513,9 +520,13 @@
                 _doScriptLoaded(_element,!0);
         };
         return function(_script){
-            _script.onload = function(e){_doScriptLoaded(_getElement(e),!0);};
-            _script.onerror = function(e){_doScriptLoaded(_getElement(e),!1);};
-            _script.onreadystatechange = _statechange;
+            if (!_script.onload){
+                _script.onload = function(e){_doScriptLoaded(_getElement(e),!0);};
+                _script.onerror = function(e){_doScriptLoaded(_getElement(e),!1);};
+                _script.onreadystatechange = _statechange;
+            }else{
+                _script.xxx = !0;
+            }
         };
     })();
     /*
@@ -529,7 +540,7 @@
             return _code.search(_reg)>=0;
         };
         return function(){
-            var _list = document.getElementsByTagName('script');
+            var _list = d.getElementsByTagName('script');
             for(var i=_list.length-1,_script;i>=0;i--){
                 _script = _list[i];
                 if (!_script.xxx){
@@ -687,7 +698,26 @@
         _script.charset = _doParseCharset(_uri);
         _doAddListener(_script);
         _script.src = _uri;
-        (d.getElementsByTagName('head')[0]||document.body).appendChild(_script);
+        (d.getElementsByTagName('head')[0]||d.body).appendChild(_script);
+    };
+    /**
+     * 外联载入依赖样式
+     *
+     * @param  {String} _uri 样式地址
+     * @return {Void}
+     */
+    var _doLoadStyle = function (_uri) {
+        if (!_uri) return;
+        var _state = __scache[_uri];
+        if (_state!=null) return;
+        // load state as done
+        __scache[_uri] = 2;
+        __rcache[_uri] = ' ';
+        // load style link
+        var link = d.createElement('link');
+        link.rel = 'stylesheet';
+        (d.getElementsByTagName('head')[0]||d.body).appendChild(link);
+        link.href = _uri;
     };
     /*
      * 脚本载入完成回调
@@ -783,9 +813,7 @@
      */
     var _doExecFunction = (function(){
         // dependency inject param
-        var _o = {},
-            _r = [],
-            _f = function(){return !1;};
+        var _f = function(){return !1;};
         // merge inject param
         var _doMergeDI = function(_dep,_map){
             var _arr = [];
@@ -801,7 +829,7 @@
                     _arr.push(__rcache[_it]||__rcache[_map[_it]]||{});
                 }
             }
-            _arr.push({},_o,_f,_r);
+            _arr.push({},{},_f,[]); // p,o,f,r
             return _arr;
         };
         var _doMergeResult = function(_uri,_result){
@@ -885,7 +913,7 @@
      */
     var _doFindScriptRunning = function(){
         // for ie8+
-        var _list = document.getElementsByTagName('script');
+        var _list = d.getElementsByTagName('script');
         for(var i=_list.length-1,_script;i>=0;i--){
             _script = _list[i];
             if (_script.readyState=='interactive'){
@@ -989,6 +1017,14 @@
      * @namespace NEJ
      */
     p.NEJ = {};
+    // only for test
+    p.NEJ.dump = function(){
+        return {
+            state:__scache,
+            result:__rcache,
+            queue:__xqueue
+        };
+    };
     /**
      * 模块定义，单个文件只允许定义一个模块，即只允许执行一次NEJ.define，模块执行函数支持依赖列表注入和名字空间两种方式
      * 
@@ -1222,7 +1258,7 @@
             _arr.push('<script src="'+_it+'"></scr'+'ipt>');
             __scache[_it] = 2;
         }
-        document.writeln(_arr.join(''));
+        d.writeln(_arr.join(''));
     };
     /**
      * 是否兼容模式，兼容模式下支持用全局名字空间使用API和控件

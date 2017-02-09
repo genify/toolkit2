@@ -11,14 +11,19 @@ NEJ.define([
     'base/util',
     'base/event',
     'base/element',
+    'base/platform',
     'util/template/jst',
     'util/event/event',
     'util/ajax/tag',
     'util/ajax/xdr',
     'base/chain'
-],function(NEJ,_u,_v,_e,_y,_t,_j0,_j1,_x,_p,_o,_f,_r){
+],function(NEJ,_u,_v,_e,_b,_y,_t,_j0,_j1,_x,_p,_o,_f,_r){
     var _cache = {}, // template cache
-        _skey  = (+new Date)+'-';
+        _skey  = 'ntp-'+(+new Date)+'-';
+    // only for test
+    _p.tpl = function(){
+        return _cache;
+    };
     /**
      * 解析模板集合
      *
@@ -110,6 +115,14 @@ NEJ.define([
             });
             return _src;
         };
+        var _doDumpContent = function(_node){
+            // bugfix textarea content not corrent for safari in mac 
+            if (_b._$is('mac')&&_b._$KERNEL.browser==='safari'){
+                return _u._$unescape(_node.innerHTML);
+            }else{
+                return _node.value||_node.innerText||'';
+            }
+        };
         var _doAddStyle = function(_textarea,_options){
             if (!_textarea) return;
             var _src = _doParseSrc(_textarea,_options);
@@ -192,15 +205,16 @@ NEJ.define([
         };
         var _doAddTemplate = function(_node,_options){
             var _type = _node.name.toLowerCase();
+            //console.debug(_type+'<'+_node.id+'> : '+_node.value.replace(/\n/g,' '));
             switch(_type){
                 case 'jst':
-                    _y._$add(_node,!0);
+                    _y._$addTemplate(_doDumpContent(_node),_node.id);
                 return;
                 case 'txt':
-                    _p._$addTextTemplate(_node.id,_node.value||'');
+                    _p._$addTextTemplate(_node.id,_doDumpContent(_node));
                 return;
                 case 'ntp':
-                    _p._$addNodeTemplate(_node.value||'',_node.id);
+                    _p._$addNodeTemplate(_doDumpContent(_node),_node.id);
                 return;
                 case 'js':
                     _doAddScript(_node,_options);
@@ -291,6 +305,11 @@ NEJ.define([
      * @return {Void}
      */
     _p._$addTextTemplate = function(_key,_value){
+        if (_cache[_key]!=null&&((typeof _cache[_key])===(typeof _value))){
+            console.warn('text template overwrited with key '+_key);
+            console.debug('old template content: '+_cache[_key].replace(/\n/g,' '));
+            console.debug('new template content: '+_value.replace(/\n/g,' '));
+        }
         _cache[_key] = _value||'';
     };
     /**
@@ -520,10 +539,19 @@ NEJ.define([
      * @return {Object} 模版id的map
      */
     _p._$parseUITemplate = (function(){
-        var _reg = /#<(.+?)>/;
+        var _reg = /#<(.+?)>/g;
         return function(_html,_map){ // {abc:'eeee'} // #<abc>
             _map = _map||{};
-            var _element = _e._$html2node(_html);
+            _html = (_html||'').replace(_reg,function($1,$2){
+                var _id = _map[$2];
+                if (!_id){
+                    _id = 'tpl-'+_u._$uniqueID();
+                    _map[$2] = _id;
+                }
+                return _id;
+            });
+            //console.debug('template source code -> '+_html.replace(/\n/g,' '));
+            /*
             _u._$forIn(
                 _element.getElementsByTagName('textarea'),
                 function(_textarea){
@@ -539,7 +567,10 @@ NEJ.define([
                     );
                 }
             );
-            _p._$parseTemplate(_element);
+            */
+            _p._$parseTemplate(
+                _e._$html2node(_html)
+            );
             return _map;
         };
     })();

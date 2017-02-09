@@ -134,6 +134,14 @@ NEJ.define([
         // do nothing
     };
     /**
+     * FF支持selectionchange
+     * @param  {[type]} _document [description]
+     * @return {[type]}           [description]
+     */
+    _p.__supportSelectionChange = function(_document){
+        // do nothing
+    };
+    /**
      * 移动光标至节点的指定位置
      * @param  {Node}   _node     节点
      * @param  {Number} _position 位置，0-末尾、1-起始
@@ -144,18 +152,11 @@ NEJ.define([
                     ,function(){return 0;}];
         return function(_node,_position){
             var _func = _fmap[_position];
-            if (_position == 2){
+            if (!_func){
                 return;
             }
-            var _selection = _p.__getSelection(_p.__getWindow(_node));
-            if (_position == 3){
-                // IE11 bugfix
-                var _focusOffset = _selection.focusOffset;
-                _node = _selection.focusNode||_node;
-                _selection.collapse(_node,_focusOffset);
-            }else{
-                _selection.collapse(_node,_func(_node));
-            }
+            _p.__getSelection(_p.__getWindow(_node))
+            .collapse(_node,_func(_node));
         };
     })();
     /**

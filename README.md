@@ -429,6 +429,10 @@ A：使用 WebStorm 的 Jodd Props 插件来查看，具体操作步骤如下图
 
 # 版本历史
 
+## 1.6.1   (2017-02-09)
+
+* 增加 NEJ_MODULE_VERSION 配置支持 nej 模块路径带版本号输出
+
 ## 1.6.0   (2017-01-19)
 
 * nej build 导出的 web cache 配置文件支持相对协议路径配置，如 //a.b.com/a/

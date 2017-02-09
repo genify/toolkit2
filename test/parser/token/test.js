@@ -43,7 +43,7 @@ describe('parser/token',function(){
             code:'<a hidefocus="true">',
             result:{name:'a',attrs:{hidefocus:'true'},closed:!1,selfClosed:!1}
         },{
-            code:'<a hidefocus="true"/>',
+            code:'<a "hidefocus"="true"/>',
             result:{name:'a',attrs:{hidefocus:'true'},closed:!1,selfClosed:!0}
         },{
             code:'<#escape x as x?html>',
@@ -60,6 +60,18 @@ describe('parser/token',function(){
         },{
             code:'<img alt="" src="../../res/image/loading.gif" class="test">',
             result:{name:'img',closed:!1,selfClosed:!1,attrs:{src:'../../res/image/loading.gif',alt:'',class:'test'}}
+        },{
+            code:'<def"abc">',
+            result:{name:'def"abc"',closed:!1,selfClosed:!1,attrs:{}}
+        },{
+            code:"<def'abc'>",
+            result:{name:"def'abc'",closed:!1,selfClosed:!1,attrs:{}}
+        },{
+            code:"<def'a bc'>",
+            result:{name:"def'a",closed:!1,selfClosed:!1,attrs:{"bc'":''}}
+        },{
+            code:"<def' '>",
+            result:{name:"def'",closed:!1,selfClosed:!1,attrs:{"'":''}}
         }
     ];
 
@@ -83,6 +95,7 @@ describe('parser/token',function(){
                     content:config.code
                 });
                 var ret = (tokenizer.dump(config.type)[0]||{}).data;
+                // console.log(ret);
                 // check result
                 var r = config.result;
                 if (!!r.attrs){

@@ -7,11 +7,11 @@ describe('parser/html',function(){
     describe('new Parser',function(){
          it('should be ok for parse html file',function(){
              var parser = new Parser({
-                 file:__dirname+'/detail.ftl',
+                 file:__dirname+'/create.ftl',
                  noParseFlag:3,
-                 content:fs.read(__dirname+'/detail.ftl').join('\n')
+                 content:fs.read(__dirname+'/create.ftl').join('\n')
              });
-             //console.log('%s',JSON.stringify(parser,null,4));
+             console.log('%s',JSON.stringify(parser,null,4));
              parser.scan(function(event){
                  console.log('%s : %s',event.type,event.content);
              });

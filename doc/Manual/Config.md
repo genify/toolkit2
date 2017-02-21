@@ -824,6 +824,16 @@ X_AUTO_EXLINK_PREFIX = data-href|data-html-root
 X_AUTO_EXLINK_SCRIPT = true
 ```
 
+### X_AUTO_EXLINK_SCRIPT_EXTENSION
+
+在打开 X_AUTO_EXLINK_SCRIPT 开关之后，可以使用以下配置参数做扩展信息的配置，已支持配置信息如下
+
+* checkDIR - 是否处理符合条件的目录，默认为 false
+
+```
+X_AUTO_EXLINK_SCRIPT_EXTENSION = {"checkDIR":true}
+```
+
 ### X_RELEASE_MODE
 
 发布模式，主要用于控制IGNORE标记的处理，IGNORE标记配置的模式匹配到这里配置的模式则相应的代码在打包时会被过滤掉，系统内置以下三种模式，也可以使用自定义模式，模式不区分大小写

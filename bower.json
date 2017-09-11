@@ -1,7 +1,7 @@
 {
   "name": "nej-toolkit",
   "description": "frontend publish toolkit",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "license": "MIT",
   "keywords": ["nej","web","project","toolkit","builder","deploy","publisher","javascript","front end","obfuscator"],
   "author": "genify <caijf@corp.netease.com> (http://genify.blog.163.com/)",

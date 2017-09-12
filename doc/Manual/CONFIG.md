@@ -403,6 +403,17 @@ NEJ单页模块系统中模块根路径配置，默认自动解析
 NEJ_MODULE_ROOT = /
 ```
 
+### NEJ_MODULE_VERSION
+
+模块文件的版本模式，支持配置的值如下所示
+
+* 0 - 使用查询参数的版本【默认配置】，如 index.html?12343423432
+* 1 - 使用路径版本，比如 index.html 的模块生成 index_13432233243.html 的打包文件
+
+```
+NEJ_MODULE_VERSION = 1
+```
+
 ## 混淆压缩
 
 这部分主要用来配置脚本压缩混淆时所做的一些扩展
@@ -522,6 +533,24 @@ OBF_CORE_INLINE_FLAG = 3
 
 ```
 VERSION_STATIC = true
+```
+
+### VERSION_STATIC_MODE
+
+静态资源版本号生成规则，默认自动模式，配置说明如下：
+
+* 0 - 自动模式，根据文件内容生成，版本号通过地址的查询串携带，如/a.png?9e107d9d372bb6826bd81d3542a419d6
+* 1 - 随机模式，每次生成随机版本信息，不重复，版本号通过地址的查询串携带，如/a.png?123456
+* \* - 固定模式，配置字符串作为文件名后缀，地址的查询串中不再携带版本信息，如配置为v1,则生成的文件文件名后追加此配置值，生成文件名如a_v1.png
+
+固定模式配置中可以使用以下变量来表示内建值，如果出现以下变量，则不再追加原文件名
+
+* [RAND]     - 替代随机版本号，如[FILENAME]_[RAND]则生成文件a_9865734934.png
+* [VERSION]  - 替代文件的MD5值，如v2_[VERSION]则生成文件为v2_9e107d9d372bb6826bd81d3542a419d6.png
+* [FILENAME] - 替代文件名，系统自动生成的唯一文件名标识，如[FILENAME]_v2则生成文件a_v2.png
+
+```
+VERSION_STATIC_MODE = [FILENAME]_[VERSION]
 ```
 
 ### VERSION_MODE
@@ -811,6 +840,16 @@ X_AUTO_EXLINK_PREFIX = data-href|data-html-root
 
 ```
 X_AUTO_EXLINK_SCRIPT = true
+```
+
+### X_AUTO_EXLINK_SCRIPT_EXTENSION
+
+在打开 X_AUTO_EXLINK_SCRIPT 开关之后，可以使用以下配置参数做扩展信息的配置，已支持配置信息如下
+
+* checkDIR - 是否处理符合条件的目录，默认为 false
+
+```
+X_AUTO_EXLINK_SCRIPT_EXTENSION = {"checkDIR":true}
 ```
 
 ### X_RELEASE_MODE

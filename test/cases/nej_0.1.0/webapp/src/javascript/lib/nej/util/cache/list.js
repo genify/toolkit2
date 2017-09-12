@@ -853,7 +853,7 @@ NEJ.define([
      */
     _pro._$getItem = function(_options){
         _options = _options||_o;
-        var _id = _options[this.__key],
+        var _id = _options[this.__key]||_options.id,
             _ropt = {
                 id:_id,
                 ext:_options.ext,
@@ -932,24 +932,40 @@ NEJ.define([
      * @return {Void}
      */
     _pro.__addItem = function(_options,_item){
-        var _key = _options.key;
-        _item = this.__doSaveItemToCache(_item,_key);
-        // add to list
-        if (!!_item){
-            var _flag = 0,
-                _list = this._$getListInCache(_key);
-            if (!_options.push){
-                _flag = -1;
-                var _offset = _options.offset||0;
-                _list.splice(_offset,0,_item);
-            }else if(_list.loaded){
-                _flag = 1;
-                _list.push(_item);
-            }else{
-                // add total
-                _list.length++;
+        var _key = _options.key,
+            _flag = 0;
+        // add one item to cache
+        var addOneItem = function(item){
+            var _item = this.__doSaveItemToCache(item,_key);
+            // add to list
+            if (!!_item){
+                var _list = this._$getListInCache(_key);
+                if (!_options.push){
+                    _flag = -1;
+                    var _offset = _options.offset||0;
+                    _list.splice(_offset,0,_item);
+                }else if(_list.loaded){
+                    _flag = 1;
+                    _list.push(_item);
+                }else{
+                    // add total
+                    _list.length++;
+                }
             }
+            return _item;
+        };
+
+        // check batch add
+        if (_u._$isArray(_item)){
+            var ret = [];
+            _u._$forEach(_item,function(it){
+                ret.push(addOneItem.call(this,it));
+            },this);
+            _item = ret;
+        }else{
+            _item = addOneItem.call(this,_item);
         }
+
         // callback
         var _event = {
             key:_key,
@@ -1007,6 +1023,7 @@ NEJ.define([
         var _event = {
             key:_key,
             data:_item,
+            result:_isok,
             action:'delete',
             ext:_options.ext
         };
@@ -1056,6 +1073,7 @@ NEJ.define([
         var _event = {
             key:_key,
             data:_item,
+            result:_item,
             action:'update',
             ext:_options.ext
         };

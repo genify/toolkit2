@@ -642,6 +642,34 @@ OPT_IMAGE_FLAG = true
 OPT_IMAGE_QUALITY = 100
 ```
 
+### OPT_IMAGE_BASE64
+
+内嵌的静态资源文件使用BASE64地址的大小配置，单位为 K，当静态资源文件大小小于这里配置的值的时候采用BASE64内联到宿主文件中，默认为 0，即不使用BASE64地址，如果配置 100 ，则表示小于100K的静态资源均使用BASE64路径
+
+```
+OPT_IMAGE_BASE64  = 100
+```
+
+### OPT_IMAGE_SPRITE
+
+图片做精灵图合并的路径,即项目的样式中使用到该路径下的图片资源会先做合并再使用，相对路径相对于DIR_STATIC配置的路径，如果没有配置此参数则不会做精灵图合并
+
+```
+OPT_IMAGE_SPRITE  = ./sprite/
+```
+
+### OPT_IMAGE_SPRITE_OPTIONS
+
+图片合并相关参数，JSON字符串，可配置参数如下所示，支持的参数
+
+* layout 图片布局方式，默认 binary-tree，可选布局方式 top-down,left-right,diagonal,alt-diagonal,binary-tree，具体算法效果见 https://github.com/twolfson/layout
+* margin 图片之间的间隙，默认为 4px
+* prefix 输出精灵图文件名前缀，默认为空，不带前缀
+
+```
+OPT_IMAGE_SPRITE_OPTIONS = {"layout":"left-right","margin":4,"sprite":"spt_"}
+```
+
 ## 离线配置
 
 这部分主要用于配置HTML5中离线应用的manifest文件的输出

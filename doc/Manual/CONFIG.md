@@ -782,7 +782,7 @@ WRP_INLINE_CS = <textarea name="css">%s</textarea>
 外联样式模板输出规则，%s表示外联的样式路径，带版本信息
 
 ```
-<textarea name="css" data-src="%s"></textarea>
+WRP_EXLINE_CS = <textarea name="css" data-src="%s"></textarea>
 ```
 
 ### WRP_INLINE_JS
@@ -790,7 +790,7 @@ WRP_INLINE_CS = <textarea name="css">%s</textarea>
 内联脚本模板输出规则，%s表示内联的脚本代码
 
 ```
-WRP_INLINE_JS     = <textarea name="js">%s</textarea>
+WRP_INLINE_JS = <textarea name="js">%s</textarea>
 ```
 
 ### WRP_EXLINE_JS

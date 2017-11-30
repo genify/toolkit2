@@ -217,6 +217,37 @@
 <!-- /@NOPARSE -->
 ```
 
+假如代码如下所示：
+
+```html
+<!-- @NOPARSE -->
+<img src="../../res/image/loading.gif" alt="" class="test">
+<script src="../../res/a.js" type="text/javascript"></script>
+<link href="../../res/a.css" rel="stylesheet" type="text/css"/>
+<script>
+  location.portrait1 = '/res/image/sprite.png';
+</script>
+<!-- /@NOPARSE -->
+```
+
+如果使用以下配置
+
+```
+VERSION_STATIC = true
+DM_STATIC = //a.b.com/
+```
+
+则输出以下结果
+
+```html
+<img src="//a.b.com/res/image/loading.gif?3f0b16dacaef33fff435210012f4bd9e" alt class="test">
+<script src="//a.b.com/res/a.js?135116294dd6ac43f150ca9c2db4a19d" type="text/javascript"></script>
+<link href="//a.b.com/res/a.css?a9917ca995d613ec05f321b6d32e2c00" rel="stylesheet" type="text/css"/>
+<script>
+  location.portrait1 = '/res/image/sprite.png';
+</script>
+```
+
 ## IGNORE
 
 是否需要结束：必须
